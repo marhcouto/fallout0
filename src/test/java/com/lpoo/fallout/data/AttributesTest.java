@@ -19,6 +19,13 @@ class AttributesTest {
     }
     @Test
     void boostAttributes() {
+        Attributes newAttributes = new Attributes(10, 5, 10, 5);
+        baseAttributes.boostAttributes(newAttributes);
+
+        Assertions.assertEquals(20, baseAttributes.getStrength());
+        Assertions.assertEquals(15, baseAttributes.getAgility());
+        Assertions.assertEquals(20, baseAttributes.getIntelligence());
+        Assertions.assertEquals(15, baseAttributes.getLuck());
     }
 
     @Test
@@ -34,5 +41,13 @@ class AttributesTest {
 
     @Test
     void removeAttributes() {
+        Attributes attributes = new Attributes(5, 5, 5, 5);
+
+        Assertions.assertTrue(baseAttributes.removeAttributes(attributes));
+
+        Assertions.assertEquals(5, baseAttributes.getStrength());
+        Assertions.assertEquals(5, baseAttributes.getAgility());
+        Assertions.assertEquals(5, baseAttributes.getIntelligence());
+        Assertions.assertEquals(5, baseAttributes.getLuck());
     }
 }
