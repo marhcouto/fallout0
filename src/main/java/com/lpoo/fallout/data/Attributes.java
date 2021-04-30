@@ -45,41 +45,17 @@ public class Attributes {
         this.luck = luck;
     }
 
-    public void boostAttributes(Attributes attributes) {
+    public boolean validChange(Attributes attributes) {
+        return this.agility > attributes.agility && this.strength > attributes.strength
+                 && this.intelligence > attributes.intelligence && this.luck > attributes.luck;
+    }
+
+    public void changeAttributes(Attributes attributes) {
+        if (!validChange(attributes)) //TODO (to throw something)
         this.strength += attributes.getStrength();
         this.agility += attributes.getAgility();
         this.intelligence += attributes.getIntelligence();
         this.luck += attributes.getLuck();
     }
 
-    private boolean canRemoveStrenght(Attributes attributes) {
-        return (this.strength >= attributes.getStrength());
-    }
-
-    private boolean canRemoveAgility(Attributes attributes) {
-        return (this.agility >= attributes.getAgility());
-    }
-
-    private boolean canRemoveIntelligence(Attributes attributes) {
-        return (this.intelligence >= attributes.getIntelligence());
-    }
-
-    private boolean canRemoveLuck(Attributes attributes) {
-        return (this.luck >= attributes.getLuck());
-    }
-
-    public boolean validRemoval(Attributes attributes) {
-        return (canRemoveStrenght(attributes) && canRemoveAgility(attributes) && canRemoveIntelligence(attributes) && canRemoveLuck(attributes));
-    }
-
-    public boolean removeAttributes(Attributes attributes) {
-        if (validRemoval(attributes)) {
-            this.strength -= attributes.getStrength();
-            this.agility -= attributes.getAgility();
-            this.intelligence -= attributes.getIntelligence();
-            this.luck -= attributes.getLuck();
-            return true;
-        }
-        return false;
-    }
 }

@@ -17,37 +17,23 @@ class AttributesTest {
     void setUpAttributes() {
         baseAttributes = new Attributes(10, 10, 10, 10);
     }
-    @Test
-    void boostAttributes() {
-        Attributes newAttributes = new Attributes(10, 5, 10, 5);
-        baseAttributes.boostAttributes(newAttributes);
 
-        Assertions.assertEquals(20, baseAttributes.getStrength());
+    @Test
+    void testValidChange1() {
+        Attributes attributes1 = new Attributes(5, 5, 5, 5);
+        Attributes attributes2 = new Attributes(-10, -20, 10, 0);
+
+        baseAttributes.changeAttributes(attributes1);
+
+        Assertions.assertEquals(15, baseAttributes.getStrength());
         Assertions.assertEquals(15, baseAttributes.getAgility());
-        Assertions.assertEquals(20, baseAttributes.getIntelligence());
+        Assertions.assertEquals(15, baseAttributes.getIntelligence());
         Assertions.assertEquals(15, baseAttributes.getLuck());
-    }
 
-    @Test
-    void validRemoval() {
-        Attributes frontierAttributes = new Attributes(10, 10, 10, 10);
-        Attributes canAttributes = new Attributes(5, 5, 5, 5);
-        Attributes cantAttributes = new Attributes(15, 15, 15, 15);
-
-        Assertions.assertTrue(baseAttributes.validRemoval(frontierAttributes));
-        Assertions.assertTrue(baseAttributes.validRemoval(canAttributes));
-        Assertions.assertFalse(baseAttributes.validRemoval(cantAttributes));
-    }
-
-    @Test
-    void removeAttributes() {
-        Attributes attributes = new Attributes(5, 5, 5, 5);
-
-        Assertions.assertTrue(baseAttributes.removeAttributes(attributes));
-
+        baseAttributes.changeAttributes(attributes2);
         Assertions.assertEquals(5, baseAttributes.getStrength());
-        Assertions.assertEquals(5, baseAttributes.getAgility());
-        Assertions.assertEquals(5, baseAttributes.getIntelligence());
-        Assertions.assertEquals(5, baseAttributes.getLuck());
+        Assertions.assertEquals(-5, baseAttributes.getAgility());
+        Assertions.assertEquals(25, baseAttributes.getIntelligence());
+        Assertions.assertEquals(15, baseAttributes.getLuck());
     }
 }
