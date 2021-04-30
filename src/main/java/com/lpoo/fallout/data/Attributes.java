@@ -53,19 +53,19 @@ public class Attributes {
     }
 
     private boolean canRemoveStrenght(Attributes attributes) {
-        return (this.strength < attributes.getStrength());
+        return (this.strength >= attributes.getStrength());
     }
 
     private boolean canRemoveAgility(Attributes attributes) {
-        return (this.agility < attributes.getAgility());
+        return (this.agility >= attributes.getAgility());
     }
 
     private boolean canRemoveIntelligence(Attributes attributes) {
-        return (this.intelligence < attributes.getIntelligence());
+        return (this.intelligence >= attributes.getIntelligence());
     }
 
     private boolean canRemoveLuck(Attributes attributes) {
-        return (this.luck < attributes.getLuck());
+        return (this.luck >= attributes.getLuck());
     }
 
     public boolean validRemoval(Attributes attributes) {
