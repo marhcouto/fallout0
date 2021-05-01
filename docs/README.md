@@ -19,3 +19,16 @@ A solução de este problema passou pela criação de uma classe **_Attributes_*
 #### Consequências
  - Respeito dos principios SOLID
  - Algumas armas e personagens (maioritariamente monstros) podem estar cientes de atributos que não possuem. Por exemplo, um monstro pode não ter inteligência e nesse caso o atributo está a zero quando podia não existir.
+
+### Movimentação dos Personagens
+#### Contexto do problema
+O nosso personagem e os monstros vão ter estratégias de movimentação. Como a movimentação dos monstros é maioritáriamente aleatória produzir bons testes para as funções que lidam com movimentação poderia ser difícil.
+#### _Design Pattern_
+Para resolver este problema decidimos utilizar o _Strategy Pattern_ para que a estratégia de movimentação não faça parte dos monstros e possa ser manipulada para efeitos de teste.
+#### Implementação
+<p align="center">
+  <img width=650 src="images/movement.svg">
+</p>
+#### Consequências
+ - Respeito do Open closed principle. Para adicionar uma estratégia de movimento basta criar uma nova subclasse. 
+ - Código mais fácil de testar
