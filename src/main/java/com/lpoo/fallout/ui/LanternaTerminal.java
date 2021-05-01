@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class LanternaTerminal {
-    private final Integer FONT_SIZE = 15;
+    private static final Integer FONT_SIZE = 15;
     private Screen screen;
     private TextGraphics graphics;
 
