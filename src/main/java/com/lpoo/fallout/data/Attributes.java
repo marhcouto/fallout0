@@ -1,5 +1,7 @@
 package com.lpoo.fallout.data;
 
+import org.w3c.dom.Attr;
+
 public class Attributes {
     private Integer strength;
     private Integer agility;
@@ -46,16 +48,33 @@ public class Attributes {
     }
 
     public boolean validChange(Attributes attributes) {
-        return this.agility > attributes.agility && this.strength > attributes.strength
-                 && this.intelligence > attributes.intelligence && this.luck > attributes.luck;
+        return this.agility + attributes.agility > 0 && this.strength + attributes.strength > 0
+                 && this.intelligence + attributes.intelligence > 0 && this.luck + attributes.luck > 0;
     }
 
-    public void changeAttributes(Attributes attributes) {
-        if (!validChange(attributes)) //TODO (to throw something)
+    public boolean greaterThan(Attributes attributes) {
+        return this.agility >= attributes.agility && this.strength >= attributes.strength
+                && this.intelligence >= attributes.intelligence && this.luck >= attributes.luck;
+    }
+
+    public void changeAttributes(Attributes attributes) throws InvalidAttributesForChangeException {
+        if (!validChange(attributes)) throw new InvalidAttributesForChangeException();
         this.strength += attributes.getStrength();
         this.agility += attributes.getAgility();
         this.intelligence += attributes.getIntelligence();
         this.luck += attributes.getLuck();
     }
 
+    public static class InvalidAttributesForChangeException extends Throwable {
+        private final String message;
+
+        public InvalidAttributesForChangeException() {
+            this.message = "Invalid change of attributes";
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+    }
 }

@@ -29,7 +29,6 @@ public class Character extends Element {
     }
 
     public boolean canUseWeapon(Weapon weapon) {
-        //TODO
-        return true;
+        return this.attributes.greaterThan(weapon.getRequiredAttributes());
     }
 }
