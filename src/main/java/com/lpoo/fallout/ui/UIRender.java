@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 import java.util.AbstractList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class UIRender {
@@ -12,11 +13,11 @@ public class UIRender {
 
     public UIRender() throws IOException {
         characterStack = new LinkedList<>();
-        terminal = new LanternaTerminal(40, 40);
+        terminal = new LanternaTerminal();
     }
 
-    public void pushChar(LCharacter character) {
-        characterStack.add(character);
+    public void pushChar(LCharacter... characters) {
+        characterStack.addAll(Arrays.asList(characters));
     }
 
     public void commit() throws IOException {
@@ -28,5 +29,13 @@ public class UIRender {
         }
         terminal.getScreen().refresh();
         characterStack.clear();
+    }
+
+    public Class<CharacterFactory> createCharacterFactory() {
+        return CharacterFactory.class;
+    }
+
+    public LanternaTerminal getTerminal() {
+        return terminal;
     }
 }
