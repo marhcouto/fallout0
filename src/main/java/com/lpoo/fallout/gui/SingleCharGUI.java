@@ -19,7 +19,7 @@ public class SingleCharGUI implements GUI{
 
     @Override
     public DrawableFactory<? extends Drawable<? extends GUI>> getDrawableFactory() {
-        return new SingleCharFactory();
+        return new SingleCharDrawableFactory();
     }
 
     @Override

@@ -1,7 +1,8 @@
-package com.lpoo.fallout.view;
+package com.lpoo.fallout.view.main_menu;
 
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.gui.SingleCharGUI;
+import com.lpoo.fallout.view.GameView;
 import com.sun.tools.javac.Main;
 
 import java.io.IOException;
