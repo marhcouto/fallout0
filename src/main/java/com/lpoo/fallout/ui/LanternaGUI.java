@@ -23,8 +23,8 @@ public class LanternaGUI implements GUI{
     }
 
     @Override
-    public void draw() {
-
+    public void draw() throws IOException{
+        terminal.getScreen().refresh();
     }
 
     public void placeChar(LanternaDrawable drawable) {
