@@ -2,16 +2,16 @@ package com.lpoo.fallout.ui;
 
 import com.lpoo.fallout.data.Position;
 
-public class LCharacter {
+public class LanternaDrawable implements Drawable<LanternaGUI>{
     private final String foregroundColor;
     private final String backgroudColor;
-    private final String imgChar;
+    private final String img;
     private final Position position;
 
-    public LCharacter(Position position, String foregroundColor, String backgroudColor, String imgChar) {
+    public LanternaDrawable(Position position, String foregroundColor, String backgroudColor, String img) {
         this.foregroundColor = foregroundColor;
         this.backgroudColor = backgroudColor;
-        this.imgChar = imgChar;
+        this.img = img;
         this.position = position;
     }
 
@@ -23,11 +23,16 @@ public class LCharacter {
         return backgroudColor;
     }
 
-    public String getImgChar() {
-        return imgChar;
+    public String getChar() {
+        return img;
     }
 
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public void pushDraw(LanternaGUI gui) {
+        gui.placeChar(this);
     }
 }
