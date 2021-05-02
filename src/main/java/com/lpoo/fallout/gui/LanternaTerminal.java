@@ -1,4 +1,4 @@
-package com.lpoo.fallout.ui;
+package com.lpoo.fallout.gui;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;

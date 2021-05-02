@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 
-public class LanternaGUI implements GUI{
+public class SingleCharGUI implements GUI{
     private final LanternaTerminal terminal;
     private enum DRAW_STATUS {
         CLEAN,
@@ -12,14 +12,14 @@ public class LanternaGUI implements GUI{
     }
     private DRAW_STATUS currentStatus;
 
-    public LanternaGUI() throws IOException {
-        terminal = new LanternaTerminal();
+    public SingleCharGUI(LanternaTerminal terminal) throws IOException {
+        this.terminal = terminal;
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
     @Override
     public DrawableFactory<? extends Drawable<? extends GUI>> getDrawableFactory() {
-        return new LanternaDrawableFactory();
+        return new SingleCharFactory();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LanternaGUI implements GUI{
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void placeChar(LanternaChar drawable) {
+    public void placeChar(SingleCharDrawable drawable) {
         if (currentStatus == DRAW_STATUS.DIRTY) {
             terminal.getScreen().clear();
             currentStatus = DRAW_STATUS.CLEAN;
