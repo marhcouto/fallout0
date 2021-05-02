@@ -1,4 +1,4 @@
-package com.lpoo.fallout.ui;
+package com.lpoo.fallout.gui;
 
 import com.googlecode.lanterna.TextColor;
 
@@ -25,14 +25,20 @@ public class LanternaGUI implements GUI{
     @Override
     public void draw() throws IOException{
         terminal.getScreen().refresh();
+        currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void placeChar(LanternaDrawable drawable) {
+    public void placeChar(LanternaChar drawable) {
         if (currentStatus == DRAW_STATUS.DIRTY) {
             terminal.getScreen().clear();
+            currentStatus = DRAW_STATUS.CLEAN;
         }
-        terminal.getGraphics().setBackgroundColor(TextColor.Factory.fromString(drawable.getForegroundColor()));
-        terminal.getGraphics().setForegroundColor(TextColor.Factory.fromString(drawable.getBackgroudColor()));
+        terminal.getGraphics().setBackgroundColor(TextColor.Factory.fromString(drawable.getBackgroundColor()));
+        terminal.getGraphics().setForegroundColor(TextColor.Factory.fromString(drawable.getForegroundColor()));
         terminal.getGraphics().putString(drawable.getPosition().getColumn(), drawable.getPosition().getRow(), drawable.getChar());
+    }
+
+    public LanternaTerminal getTerminal() {
+        return terminal;
     }
 }

@@ -1,38 +1,42 @@
-package com.lpoo.fallout.ui;
+package com.lpoo.fallout.gui;
 
 import com.lpoo.fallout.data.Position;
 
-public class LanternaDrawable implements Drawable<LanternaGUI>{
+public class LanternaSingleCharDrawable implements Drawable<SingleCharGUI>, LanternaChar {
     private final String foregroundColor;
-    private final String backgroudColor;
+    private final String backgroundColor;
     private final String img;
     private final Position position;
 
-    public LanternaDrawable(Position position, String foregroundColor, String backgroudColor, String img) {
+    public LanternaSingleCharDrawable(Position position, String foregroundColor, String backgroundColor, String img) {
         this.foregroundColor = foregroundColor;
-        this.backgroudColor = backgroudColor;
+        this.backgroundColor = backgroundColor;
         this.img = img;
         this.position = position;
     }
 
+    @Override
     public String getForegroundColor() {
         return foregroundColor;
     }
 
-    public String getBackgroudColor() {
-        return backgroudColor;
+    @Override
+    public String getBackgroundColor() {
+        return backgroundColor;
     }
 
+    @Override
     public String getChar() {
         return img;
     }
 
+    @Override
     public Position getPosition() {
         return position;
     }
 
     @Override
-    public void pushDraw(LanternaGUI gui) {
+    public void pushDraw(SingleCharGUI gui) {
         gui.placeChar(this);
     }
 }
