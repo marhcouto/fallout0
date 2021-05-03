@@ -1,10 +1,11 @@
 package com.lpoo.fallout.gui;
 
 import com.googlecode.lanterna.TextColor;
+import com.lpoo.fallout.data.LanternaDrawable;
 
 import java.io.IOException;
 
-public class SingleCharGUI implements GUI{
+public class LanternaGUI {
     private final LanternaTerminal terminal;
     private enum DRAW_STATUS {
         CLEAN,
@@ -12,23 +13,17 @@ public class SingleCharGUI implements GUI{
     }
     private DRAW_STATUS currentStatus;
 
-    public SingleCharGUI(LanternaTerminal terminal) throws IOException {
+    public LanternaGUI(LanternaTerminal terminal) throws IOException {
         this.terminal = terminal;
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    @Override
-    public DrawableFactory<? extends Drawable<? extends GUI>> getDrawableFactory() {
-        return new SingleCharDrawableFactory();
-    }
-
-    @Override
     public void draw() throws IOException{
         terminal.getScreen().refresh();
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void placeChar(SingleCharDrawable drawable) {
+    public void placeDrawable(LanternaDrawable drawable) {
         if (currentStatus == DRAW_STATUS.DIRTY) {
             terminal.getScreen().clear();
             currentStatus = DRAW_STATUS.CLEAN;
