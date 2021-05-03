@@ -1,7 +1,16 @@
 package com.lpoo.fallout;
 
+import com.lpoo.fallout.gui.LanternaTerminal;
+import com.lpoo.fallout.view.GameView;
+
+import java.io.IOException;
+
 public class Game {
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    private LanternaTerminal terminal; //TODO: provavelmente é um singleton porque se criarmos outro terminal a janela vai fechar e abrir a meio do jogo e fica feio
+    private GameView view;
+    //TODO: Aqui há de estar um controller tmb
+
+    public static void main(String[] args) throws IOException {
+        System.out.println("Hello Fallout!");
     }
 }
