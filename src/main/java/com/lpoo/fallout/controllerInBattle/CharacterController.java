@@ -9,10 +9,7 @@ public class CharacterController {
 
     public CharacterController(Character character) {
         this.character = character;
-
+        this.stats = new IngameStats(character);
     }
 
-    public void setIngameStats(Character character) {
-        //TODO calculate ingame stats
-    }
 }

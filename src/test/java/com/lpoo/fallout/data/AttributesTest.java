@@ -34,7 +34,7 @@ class AttributesTest {
     }
 
     @Test
-    public void testSimetricalAttributes() {
+    public void testGreaterThanAttributes() {
         baseAttributes.setLuck(0);
         Attributes a1 = new Attributes(1, 2, 3, 15);
         Attributes a2 = new Attributes(1, 2, 10, -15);

@@ -3,16 +3,24 @@ package com.lpoo.fallout.data;
 public class IngameStats {
     private Integer healthPoints;
     private Float dodgeChance;
-    private Float missChange;
+    private Float missChance;
     private Integer baseDamage;
     private Float critRatio;
 
     public IngameStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
         this.healthPoints = healthPoints;
         this.dodgeChance = dodgeChance;
-        this.missChange = missChange;
+        this.missChance = missChange;
         this.baseDamage = baseDamage;
         this.critRatio = critRatio;
+    }
+
+    public IngameStats(Character character) {
+        this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
+        this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
+        this.missChance = (float) ((100 - character.getAttributes().getLuck()) / 100);
+        this.baseDamage = character.getWeapon().getDamage();
+        this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
     }
 
     public Integer getHealthPoints() {
@@ -31,12 +39,12 @@ public class IngameStats {
         this.dodgeChance = dodgeChance;
     }
 
-    public Float getMissChange() {
-        return missChange;
+    public Float getMissChance() {
+        return missChance;
     }
 
-    public void setMissChange(Float missChange) {
-        this.missChange = missChange;
+    public void setMissChance(Float missChance) {
+        this.missChance = missChance;
     }
 
     public Integer getBaseDamage() {
@@ -47,11 +55,18 @@ public class IngameStats {
         this.baseDamage = baseDamage;
     }
 
-    public Float getCritRatio() {
-        return critRatio;
-    }
+    public Float getCritRatio() { return critRatio; }
 
     public void setCritRatio(Float critRatio) {
         this.critRatio = critRatio;
     }
+
+    /*public void caculateStats(Character character) {
+        this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
+        this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
+        this.missChance = (float) ((100 - character.getAttributes().getLuck()) / 100);
+        this.baseDamage = character.getWeapon().getDamage();
+        this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
+        return this;
+    }*/
 }
