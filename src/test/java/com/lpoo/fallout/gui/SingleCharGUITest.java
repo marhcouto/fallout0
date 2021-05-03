@@ -1,8 +1,8 @@
 package com.lpoo.fallout.gui;
 
 import com.googlecode.lanterna.TextColor;
-import com.lpoo.fallout.data.Element;
-import com.lpoo.fallout.data.Position;
+import com.lpoo.fallout.model.Element;
+import com.lpoo.fallout.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

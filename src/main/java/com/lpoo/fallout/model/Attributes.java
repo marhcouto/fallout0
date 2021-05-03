@@ -1,6 +1,4 @@
-package com.lpoo.fallout.data;
-
-import org.w3c.dom.Attr;
+package com.lpoo.fallout.model;
 
 public class Attributes {
     private Integer strength;

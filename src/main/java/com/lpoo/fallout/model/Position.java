@@ -1,4 +1,4 @@
-package com.lpoo.fallout.data;
+package com.lpoo.fallout.model;
 
 import java.util.Objects;
 

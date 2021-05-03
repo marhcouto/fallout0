@@ -1,4 +1,4 @@
-package com.lpoo.fallout.data;
+package com.lpoo.fallout.model;
 
 public class Equipment {
     private final Attributes attributes;

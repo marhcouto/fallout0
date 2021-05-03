@@ -1,6 +1,6 @@
 package com.lpoo.fallout.gui;
 
-import com.lpoo.fallout.data.Position;
+import com.lpoo.fallout.model.Position;
 
 public class SingleCharDrawable implements Drawable<SingleCharGUI> {
     private final String foregroundColor;

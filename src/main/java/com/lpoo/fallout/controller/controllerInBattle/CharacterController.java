@@ -1,7 +1,7 @@
-package com.lpoo.fallout.controllerInBattle;
+package com.lpoo.fallout.controller.controllerInBattle;
 
-import com.lpoo.fallout.data.*;
-import com.lpoo.fallout.data.Character;
+import com.lpoo.fallout.model.*;
+import com.lpoo.fallout.model.Character;
 
 public class CharacterController {
     private final Character character;
