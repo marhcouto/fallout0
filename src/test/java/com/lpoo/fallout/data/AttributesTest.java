@@ -8,46 +8,38 @@ import org.w3c.dom.Attr;
 
 import javax.management.Attribute;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AttributesTest {
     private Attributes baseAttributes;
 
     @BeforeEach
-    void setUpAttributes() {
+    public void setUpAttributes() {
         baseAttributes = new Attributes(10, 10, 10, 10);
     }
-    @Test
-    void boostAttributes() {
-        Attributes newAttributes = new Attributes(10, 5, 10, 5);
-        baseAttributes.boostAttributes(newAttributes);
 
-        Assertions.assertEquals(20, baseAttributes.getStrength());
+    @Test
+    public void testValidChange() {
+        Attributes attributes1 = new Attributes(5, 5, 5, 5);
+        Attributes attributes2 = new Attributes(-10, -20, 10, 0);
+
+
+        Assertions.assertDoesNotThrow(() -> baseAttributes.changeAttributes(attributes1), "An exception was thrown when it should not\n");
+
+        Assertions.assertEquals(15, baseAttributes.getStrength());
         Assertions.assertEquals(15, baseAttributes.getAgility());
-        Assertions.assertEquals(20, baseAttributes.getIntelligence());
+        Assertions.assertEquals(15, baseAttributes.getIntelligence());
         Assertions.assertEquals(15, baseAttributes.getLuck());
+
+        Assertions.assertThrows(Attributes.InvalidAttributesForChangeException.class, () ->
+            baseAttributes.changeAttributes(attributes2), "An exception was not thrown when it should\n");
     }
 
     @Test
-    void validRemoval() {
-        Attributes frontierAttributes = new Attributes(10, 10, 10, 10);
-        Attributes canAttributes = new Attributes(5, 5, 5, 5);
-        Attributes cantAttributes = new Attributes(15, 15, 15, 15);
+    public void testGreaterThanAttributes() {
+        baseAttributes.setLuck(0);
+        Attributes a1 = new Attributes(1, 2, 3, 15);
+        Attributes a2 = new Attributes(1, 2, 10, -15);
 
-        Assertions.assertTrue(baseAttributes.validRemoval(frontierAttributes));
-        Assertions.assertTrue(baseAttributes.validRemoval(canAttributes));
-        Assertions.assertFalse(baseAttributes.validRemoval(cantAttributes));
-    }
-
-    @Test
-    void removeAttributes() {
-        Attributes attributes = new Attributes(5, 5, 5, 5);
-
-        Assertions.assertTrue(baseAttributes.removeAttributes(attributes));
-
-        Assertions.assertEquals(5, baseAttributes.getStrength());
-        Assertions.assertEquals(5, baseAttributes.getAgility());
-        Assertions.assertEquals(5, baseAttributes.getIntelligence());
-        Assertions.assertEquals(5, baseAttributes.getLuck());
+        Assertions.assertTrue(baseAttributes.greaterThan(a2));
+        Assertions.assertFalse(baseAttributes.greaterThan(a1));
     }
 }

@@ -1,5 +1,7 @@
 package com.lpoo.fallout.data;
 
+import org.w3c.dom.Attr;
+
 public class Attributes {
     private Integer strength;
     private Integer agility;
@@ -45,41 +47,34 @@ public class Attributes {
         this.luck = luck;
     }
 
-    public void boostAttributes(Attributes attributes) {
+    public boolean validChange(Attributes attributes) {
+        return this.agility + attributes.agility > 0 && this.strength + attributes.strength > 0
+                 && this.intelligence + attributes.intelligence > 0 && this.luck + attributes.luck > 0;
+    }
+
+    public boolean greaterThan(Attributes attributes) {
+        return this.agility >= attributes.agility && this.strength >= attributes.strength
+                && this.intelligence >= attributes.intelligence && this.luck >= attributes.luck;
+    }
+
+    public void changeAttributes(Attributes attributes) throws InvalidAttributesForChangeException {
+        if (!validChange(attributes)) throw new InvalidAttributesForChangeException();
         this.strength += attributes.getStrength();
         this.agility += attributes.getAgility();
         this.intelligence += attributes.getIntelligence();
         this.luck += attributes.getLuck();
     }
 
-    private boolean canRemoveStrenght(Attributes attributes) {
-        return (this.strength >= attributes.getStrength());
-    }
+    public static class InvalidAttributesForChangeException extends Throwable {
+        private final String message;
 
-    private boolean canRemoveAgility(Attributes attributes) {
-        return (this.agility >= attributes.getAgility());
-    }
-
-    private boolean canRemoveIntelligence(Attributes attributes) {
-        return (this.intelligence >= attributes.getIntelligence());
-    }
-
-    private boolean canRemoveLuck(Attributes attributes) {
-        return (this.luck >= attributes.getLuck());
-    }
-
-    public boolean validRemoval(Attributes attributes) {
-        return (canRemoveStrenght(attributes) && canRemoveAgility(attributes) && canRemoveIntelligence(attributes) && canRemoveLuck(attributes));
-    }
-
-    public boolean removeAttributes(Attributes attributes) {
-        if (validRemoval(attributes)) {
-            this.strength -= attributes.getStrength();
-            this.agility -= attributes.getAgility();
-            this.intelligence -= attributes.getIntelligence();
-            this.luck -= attributes.getLuck();
-            return true;
+        public InvalidAttributesForChangeException() {
+            this.message = "Invalid change of attributes";
         }
-        return false;
+
+        public String getMessage() {
+            return message;
+        }
+
     }
 }

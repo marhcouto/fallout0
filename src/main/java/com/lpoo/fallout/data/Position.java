@@ -1,5 +1,7 @@
 package com.lpoo.fallout.data;
 
+import java.util.Objects;
+
 public class Position {
     private final Integer row;
     private final Integer column;
@@ -12,16 +14,27 @@ public class Position {
     public Integer getRow() {
         return row;
     }
-
     public Integer getColumn() {
         return column;
     }
 
-    public Position left() {
-        //TODO temos de decidir se este if fica aqui ou vai para o controller
-        if (this.column > 0) {
-            return new Position(this.getColumn() - 1, this.getRow());
-        }
-        return this;
+    public Position left() { return new Position(this.getColumn() - 1, this.getRow()); }
+    public Position down() {
+        return new Position(this.getColumn(), this.getRow() + 1);
+    }
+    public Position up() { return new Position(this.getColumn(), this.getRow() - 1); }
+    public Position right() { return new Position(this.getColumn() + 1, this.getRow()); }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return Objects.equals(row, position.row) && Objects.equals(column, position.column);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column);
     }
 }
