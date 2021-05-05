@@ -1,6 +1,6 @@
 package com.lpoo.fallout.model;
 
-public class Element {
+public abstract class Element {
     private Position position;
 
     public Element(Position position) {
