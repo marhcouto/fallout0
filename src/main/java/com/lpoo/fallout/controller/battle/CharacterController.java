@@ -1,4 +1,4 @@
-package com.lpoo.fallout.controller.controllerInBattle;
+package com.lpoo.fallout.controller.battle;
 
 import com.lpoo.fallout.model.*;
 import com.lpoo.fallout.model.Character;
