@@ -1,6 +1,8 @@
 package com.lpoo.fallout.gui;
 
 import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.lpoo.fallout.data.LanternaDrawable;
 
 import java.io.IOException;
@@ -12,6 +14,8 @@ public class LanternaGUI {
         DIRTY
     }
     private DRAW_STATUS currentStatus;
+
+    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE}
 
     public LanternaGUI(LanternaTerminal terminal) throws IOException {
         this.terminal = terminal;
@@ -31,6 +35,21 @@ public class LanternaGUI {
         terminal.getGraphics().setBackgroundColor(TextColor.Factory.fromString(drawable.getBackgroundColor()));
         terminal.getGraphics().setForegroundColor(TextColor.Factory.fromString(drawable.getForegroundColor()));
         terminal.getGraphics().putString(drawable.getPosition().getColumn(), drawable.getPosition().getRow(), drawable.getChar());
+    }
+
+    public ACTION getAction() throws IOException {
+        KeyStroke keyStroke = terminal.getScreen().pollInput();
+        if (keyStroke == NULL)
+            return ACTION.NONE;
+
+        if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
+        if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
+        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
+        if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return ACTION.UTIL_E;
+
+        return ACTION.NONE;
     }
 
     public LanternaTerminal getTerminal() {
