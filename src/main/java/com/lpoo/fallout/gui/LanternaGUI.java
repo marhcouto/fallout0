@@ -1,8 +1,11 @@
 package com.lpoo.fallout.gui;
 
+
+
 import com.googlecode.lanterna.TextColor;
-import com.lpoo.fallout.model.LanternaDrawable;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.lpoo.fallout.model.LanternaDrawable;
 
 import java.io.IOException;
 
@@ -17,7 +20,7 @@ public class LanternaGUI {
     }
     private DRAW_STATUS currentStatus;
 
-    public LanternaGUI(LanternaTerminal terminal) throws IOException {
+    public LanternaGUI(LanternaTerminal terminal) {
         this.terminal = terminal;
         currentStatus = DRAW_STATUS.DIRTY;
     }
@@ -39,7 +42,7 @@ public class LanternaGUI {
 
     public ACTION getAction() throws IOException {
         KeyStroke keyStroke = terminal.getScreen().pollInput();
-        if (keyStroke == NULL)
+        if (keyStroke == null)
             return ACTION.NONE;
 
         if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
