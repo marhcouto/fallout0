@@ -1,6 +1,6 @@
 package com.lpoo.fallout.model;
 
-public class Character extends Element {
+public abstract class Character extends Element {
     private Attributes attributes;
     private Weapon weapon;
     private Integer level;

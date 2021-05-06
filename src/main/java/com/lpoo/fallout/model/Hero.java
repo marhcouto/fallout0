@@ -11,5 +11,8 @@ public class Hero extends Character {
         super(position, attributes, weapon, level);
     }
 
-
+    @Override
+    protected LanternaDrawable imageCreator() {
+        return new LanternaDrawable("Red", "Black", "H");
+    }
 }

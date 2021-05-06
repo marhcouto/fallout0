@@ -2,11 +2,11 @@ package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.controller.Controller;
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.view.Wander.WanderViewer;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static com.lpoo.fallout.gui.LanternaGUI.ACTION.*;
 
@@ -27,9 +27,11 @@ public class WanderController implements Controller {
     }
 
     @Override
-    public void run() throws IOException {
+    public void run() throws IOException, InterruptedException {
         while(true) {
             this.heroController.action(this.game.getGui().getAction());
+            this.viewer.draw();
+            TimeUnit.MILLISECONDS.sleep(10);
         }
     }
 }

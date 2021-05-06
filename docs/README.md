@@ -33,3 +33,7 @@ Para resolver este problema decidimos utilizar o _Strategy Pattern_ para que a e
 #### Consequências
  - Respeito do Open closed principle. Para adicionar uma estratégia de movimento basta criar uma nova subclasse. 
  - Código mais fácil de testar
+
+### Diferentes Estados de Jogo
+#### Contexto do problema
+O nosso jogo estará dividido em vários estados, cujo comportamento e aspeto deverá ser diferente. Como tal, estes diferentes estados deveriam ser controlados por diferentes Controllers.

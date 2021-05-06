@@ -19,8 +19,9 @@ public class WanderViewer implements Viewer {
     @Override
     public void draw() throws IOException {
         for (Wall wall: model.getWalls()) {
-            new WallViewer(gui, wall).draw();
+            gui.placeDrawable(wall.getImage(), wall.getPosition());
         }
+        gui.placeDrawable(model.getHero().getImage(), model.getHero().getPosition());
         gui.draw();
     }
 }

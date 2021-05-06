@@ -6,6 +6,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.lpoo.fallout.model.LanternaDrawable;
+import com.lpoo.fallout.model.Position;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -31,14 +32,14 @@ public class LanternaGUI {
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void placeDrawable(LanternaDrawable drawable) {
+    public void placeDrawable(LanternaDrawable drawable, Position position) {
         if (currentStatus == DRAW_STATUS.DIRTY) {
             terminal.getScreen().clear();
             currentStatus = DRAW_STATUS.CLEAN;
         }
         terminal.getGraphics().setBackgroundColor(TextColor.Factory.fromString(drawable.getBackgroundColor()));
         terminal.getGraphics().setForegroundColor(TextColor.Factory.fromString(drawable.getForegroundColor()));
-        terminal.getGraphics().putString(drawable.getPosition().getColumn(), drawable.getPosition().getRow(), drawable.getChar());
+        terminal.getGraphics().putString(position.getColumn(), position.getRow(), drawable.getChar());
     }
 
     public ACTION getAction() throws IOException {

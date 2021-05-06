@@ -17,7 +17,7 @@ public class Game {
         // Stack for the controllers
         controllers = new Stack<>();
 
-        // What is this for?
+
         frameTime = 1000/60;
 
         this.gui = new LanternaGUI(new LanternaTerminal());
@@ -39,7 +39,7 @@ public class Game {
         return gui;
     }
 
-    public void run() throws IOException {
+    public void run() throws IOException, InterruptedException {
         while (!controllers.empty()) {
             long startTime = System.currentTimeMillis();
             controllers.peek().run();
