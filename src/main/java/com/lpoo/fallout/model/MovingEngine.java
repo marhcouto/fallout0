@@ -1,5 +1,7 @@
 package com.lpoo.fallout.model;
 
-public interface MovingEngine {
-    Position move(Position oldPosition);
+public abstract class MovingEngine {
+
+
+    public abstract Position move(Position oldPosition);
 }
