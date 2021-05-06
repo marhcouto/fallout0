@@ -1,7 +1,6 @@
 package com.lpoo.fallout.view.Wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.Wall;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.view.Viewer;
@@ -20,7 +19,7 @@ public class WanderViewer implements Viewer {
     @Override
     public void draw() throws IOException {
         for (Wall wall: model.getWalls()) {
-            gui.placeDrawable(new LanternaDrawable(wall.getPosition(), "#FF0000", "#000000", "O"));
+            new WallViewer(gui, wall).draw();
         }
         gui.draw();
     }
