@@ -3,18 +3,18 @@ package com.lpoo.fallout.model;
 import java.util.Objects;
 
 public class Position {
-    private final Integer row;
-    private final Integer column;
+    private final int row;
+    private final int column;
 
-    public Position(Integer column, Integer row) {
+    public Position(int column, int row) {
         this.row = row;
         this.column = column;
     }
 
-    public Integer getRow() {
+    public int getRow() {
         return row;
     }
-    public Integer getColumn() {
+    public int getColumn() {
         return column;
     }
 

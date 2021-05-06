@@ -1,13 +1,13 @@
 package com.lpoo.fallout.model;
 
-public class IngameStats {
+public class InGameStats {
     private Integer healthPoints;
     private Float dodgeChance;
     private Float missChance;
     private Integer baseDamage;
     private Float critRatio;
 
-    public IngameStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
+    public InGameStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
         this.healthPoints = healthPoints;
         this.dodgeChance = dodgeChance;
         this.missChance = missChange;
@@ -15,7 +15,7 @@ public class IngameStats {
         this.critRatio = critRatio;
     }
 
-    public IngameStats(Character character) {
+    public InGameStats(Character character) {
         this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
         this.missChance = (float) ((100 - character.getAttributes().getLuck()) / 100);

@@ -1,6 +1,5 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.Hero;
 import com.lpoo.fallout.model.Position;
 import com.lpoo.fallout.model.Wall;
 

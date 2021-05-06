@@ -5,11 +5,11 @@ import com.lpoo.fallout.model.Character;
 
 public class CharacterController {
     private final Character character;
-    private IngameStats stats;
+    private InGameStats stats;
 
     public CharacterController(Character character) {
         this.character = character;
-        this.stats = new IngameStats(character);
+        this.stats = new InGameStats(character);
     }
 
 }

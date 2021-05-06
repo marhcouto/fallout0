@@ -21,7 +21,7 @@ public class WanderViewer implements Viewer {
         for (Wall wall: model.getWalls()) {
             gui.placeDrawable(wall.getImage(), wall.getPosition());
         }
-        gui.placeDrawable(model.getHero().getImage(), model.getHero().getPosition());
+        gui.placeDrawable(model.getVaultBoy().getImage(), model.getVaultBoy().getPosition());
         gui.draw();
     }
 }
