@@ -9,11 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class WanderModel {
-    private Hero hero;
+    private final Hero hero;
     private List <Wall> walls;
     private List <Enemy> enemies;
 
-    public WanderModel() {
+    public WanderModel(Hero hero) {
+        this.hero = hero;
         this.walls = new LinkedList<>();
     }
 
@@ -25,8 +26,8 @@ public class WanderModel {
         this.enemies = enemies;
     }
 
-    public void setHero(@NotNull Hero hero) {
-        this.hero = hero;
+    public Hero getHero() {
+        return hero;
     }
 
     public List<Wall> getWalls() {

@@ -8,6 +8,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.lpoo.fallout.model.LanternaDrawable;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 public class LanternaGUI {
     private final LanternaTerminal terminal;
@@ -41,6 +42,7 @@ public class LanternaGUI {
     }
 
     public ACTION getAction() throws IOException {
+
         KeyStroke keyStroke = terminal.getScreen().pollInput();
         if (keyStroke == null)
             return ACTION.NONE;

@@ -1,5 +1,8 @@
 package com.lpoo.fallout.controller;
 
+import java.io.IOException;
+
 public interface Controller {
-    void run();
+
+    void run() throws IOException;
 }

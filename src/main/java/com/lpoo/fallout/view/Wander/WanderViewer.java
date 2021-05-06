@@ -12,7 +12,7 @@ public class WanderViewer implements Viewer {
     private final LanternaGUI gui;
     private final WanderModel model;
 
-    WanderViewer(LanternaGUI gui, WanderModel model) {
+    public WanderViewer(LanternaGUI gui, WanderModel model) {
         this.gui = gui;
         this.model = model;
     }

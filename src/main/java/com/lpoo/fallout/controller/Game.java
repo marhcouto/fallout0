@@ -1,15 +1,27 @@
 package com.lpoo.fallout.controller;
 
+import com.lpoo.fallout.controller.wander.WanderController;
+import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.LanternaTerminal;
+
+import java.io.IOException;
 import java.util.Stack;
 
 public class Game {
     private Stack<Controller> controllers;
     private static final Integer FPS = 60;
     private final long frameTime;
+    private final LanternaGUI gui;
 
-    public Game() {
+    public Game() throws IOException {
+        // Stack for the controllers
         controllers = new Stack<>();
+
+        // What is this for?
         frameTime = 1000/60;
+
+        this.gui = new LanternaGUI(new LanternaTerminal());
+        this.pushController(new WanderController(this));
     }
 
     public void pushController(Controller newController) {
@@ -23,7 +35,11 @@ public class Game {
         controllers.clear();
     }
 
-    public void run() {
+    public LanternaGUI getGui() {
+        return gui;
+    }
+
+    public void run() throws IOException {
         while (!controllers.empty()) {
             long startTime = System.currentTimeMillis();
             controllers.peek().run();

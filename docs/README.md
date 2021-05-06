@@ -29,6 +29,7 @@ Para resolver este problema decidimos utilizar o _Strategy Pattern_ para que a e
 <p align="center">
   <img width=650 src="images/movement.svg">
 </p>
+
 #### Consequências
  - Respeito do Open closed principle. Para adicionar uma estratégia de movimento basta criar uma nova subclasse. 
  - Código mais fácil de testar

@@ -1,5 +1,6 @@
 package com.lpoo.fallout.model.wander;
 
+import com.lpoo.fallout.model.Hero;
 import com.lpoo.fallout.model.Position;
 import com.lpoo.fallout.model.Wall;
 
@@ -21,7 +22,7 @@ public class RandomWanderFactory implements WanderFactory {
     @Override
     public WanderModel createWanderModel() {
         Random randomEngine = new Random();
-        WanderModel newModel = new WanderModel();
+        WanderModel newModel = new WanderModel(new HeroCreator().createHero());
         newModel.setWalls(buildWalls());
         return newModel;
     }
