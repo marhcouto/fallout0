@@ -8,28 +8,28 @@ import com.lpoo.fallout.view.Wander.WanderViewer;
 
 import java.io.IOException;
 
-import static com.lpoo.fallout.gui.LanternaGUI.ACTION.*;
-
 public class WanderController implements Controller {
-    private WanderModel arena;
+    private WanderModel map;
     private WanderViewer viewer;
     private final Game game;
 
-    private final HeroController heroController;
-
+    private final VaultBoyController vaultBoyController;
 
     public WanderController(Game game) {
-        this.arena = new RandomWanderFactory(10, 10, 4).createWanderModel();
-        this.viewer = new WanderViewer(game.getGui(), arena);
+        this.map = new RandomWanderFactory(10, 10, 4).createWanderModel();
+        this.viewer = new WanderViewer(game.getGui(), map);
         this.game = game;
-        this.heroController = new HeroController(arena.getHero());
+        this.vaultBoyController = new VaultBoyController(map.getHero());
 
     }
 
     @Override
     public void run() throws IOException {
-        while(true) {
-            this.heroController.action(this.game.getGui().getAction());
+        LanternaGUI.ACTION nextAction = this.game.getGui().getAction();
+        if (nextAction == LanternaGUI.ACTION.QUIT) {
+            this.game.clearControllers();
+        } else {
+            this.vaultBoyController.action(this.game.getGui().getAction());
         }
     }
 }

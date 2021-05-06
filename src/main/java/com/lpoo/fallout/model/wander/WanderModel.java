@@ -1,7 +1,7 @@
 package com.lpoo.fallout.model.wander;
 
 import com.lpoo.fallout.model.Enemy;
-import com.lpoo.fallout.model.Hero;
+import com.lpoo.fallout.model.VaultBoy;
 import com.lpoo.fallout.model.Wall;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,12 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class WanderModel {
-    private final Hero hero;
+    private final VaultBoy vaultBoy;
     private List <Wall> walls;
     private List <Enemy> enemies;
 
-    public WanderModel(Hero hero) {
-        this.hero = hero;
+    public WanderModel(VaultBoy vaultBoy) {
+        this.vaultBoy = vaultBoy;
         this.walls = new LinkedList<>();
     }
 
@@ -26,8 +26,8 @@ public class WanderModel {
         this.enemies = enemies;
     }
 
-    public Hero getHero() {
-        return hero;
+    public VaultBoy getHero() {
+        return vaultBoy;
     }
 
     public List<Wall> getWalls() {

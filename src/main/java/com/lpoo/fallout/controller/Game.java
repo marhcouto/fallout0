@@ -17,7 +17,6 @@ public class Game {
         // Stack for the controllers
         controllers = new Stack<>();
 
-        // What is this for?
         frameTime = 1000/60;
 
         this.gui = new LanternaGUI(new LanternaTerminal());
@@ -46,11 +45,14 @@ public class Game {
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
-            if (sleepTime > 0) try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
+        gui.getTerminal().getScreen().close();
     }
 }
