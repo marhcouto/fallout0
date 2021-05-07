@@ -1,4 +1,4 @@
-package com.lpoo.fallout.view.Wander;
+package com.lpoo.fallout.view.wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.Wall;
