@@ -7,6 +7,6 @@ public class Wall extends Element{
 
     @Override
     protected LanternaDrawable imageCreator() {
-        return new LanternaDrawable("Blue", "Black", "#");
+        return new LanternaDrawable(getPosition(), "Blue", "Black", "#");
     }
 }

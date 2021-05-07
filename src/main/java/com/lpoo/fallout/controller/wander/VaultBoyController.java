@@ -2,36 +2,33 @@ package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.model.VaultBoy;
 import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.wander.WanderModel;
 
 import static com.lpoo.fallout.gui.LanternaGUI.ACTION;
 
 public class VaultBoyController {
-    private final VaultBoy vaultBoy;
+    private final WanderModel model;
 
-    public VaultBoyController(VaultBoy vaultBoy) {
-        this.vaultBoy = vaultBoy;
-    }
-
-    public VaultBoy getVaultBoy() {
-        return vaultBoy;
+    public VaultBoyController(WanderModel model) {
+        this.model = model;
     }
 
     public void action(ACTION act) {
         switch (act) {
             case UP: {
-                moveVaultBoy(vaultBoy.getPosition().up());
+                moveVaultBoy(model.getVaultBoy().getPosition().up());
                 break;
             }
             case LEFT: {
-                moveVaultBoy(vaultBoy.getPosition().left());
+                moveVaultBoy(model.getVaultBoy().getPosition().left());
                 break;
             }
             case DOWN: {
-                moveVaultBoy(vaultBoy.getPosition().down());
+                moveVaultBoy(model.getVaultBoy().getPosition().down());
                 break;
             }
             case RIGHT: {
-                moveVaultBoy(vaultBoy.getPosition().right());
+                moveVaultBoy(model.getVaultBoy().getPosition().right());
                 break;
             }
             default:
@@ -40,6 +37,7 @@ public class VaultBoyController {
     }
 
     public void moveVaultBoy(Position position) {
-        vaultBoy.setPosition(position);
+        if (model.isEmpty(position))
+            model.getVaultBoy().setPosition(position);
     }
 }

@@ -15,6 +15,6 @@ public class VaultBoy extends Character {
 
     @Override
     protected LanternaDrawable imageCreator() {
-        return new LanternaDrawable("Red", "Black", "H");
+        return new LanternaDrawable(getPosition(), "Red", "Black", "H");
     }
 }

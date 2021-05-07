@@ -1,6 +1,8 @@
 package com.lpoo.fallout.model;
 
-public class Enemy extends Character {
+import com.lpoo.fallout.controller.wander.MovingEngine;
+
+public abstract class Enemy extends Character {
     private MovingEngine movingEngine;
 
     public Enemy(Position position, Attributes attributes, Integer level) {
@@ -11,8 +13,10 @@ public class Enemy extends Character {
         super(position, attributes, weapon, level);
     }
 
-    @Override
-    protected LanternaDrawable imageCreator() {
-        return new LanternaDrawable("GREEN", "BLACK", "M");
+    public MovingEngine getMovingEngine() {
+        return movingEngine;
     }
+
+    @Override
+    protected abstract LanternaDrawable imageCreator();
 }
