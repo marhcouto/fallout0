@@ -1,4 +1,4 @@
-package com.lpoo.fallout.view.Wander;
+package com.lpoo.fallout.view.wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
@@ -7,8 +7,6 @@ import com.lpoo.fallout.model.wander.WanderModel;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WanderViewerTest {
     @Test
