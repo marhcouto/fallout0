@@ -65,17 +65,17 @@ public class WanderModel {
             return false;
         }
         if (pos1.getRow() == pos2.getRow()) {
-            int from = Math.min(pos1.getRow(), pos2.getRow());
-            int to = Math.min(pos1.getRow(), pos2.getRow());
+            int from = Math.min(pos1.getColumn(), pos2.getColumn());
+            int to = Math.max(pos1.getColumn(), pos2.getColumn());
             for (int i = from; i < to; i++) {
-                if (wallMap.containsKey(new Position(pos1.getColumn(), i)))
+                if (wallMap.containsKey(new Position(i, pos1.getRow())))
                     return false;
             }
         } else {
-            int from = Math.min(pos1.getColumn(), pos2.getColumn());
-            int to = Math.min(pos1.getColumn(), pos2.getColumn());
+            int from = Math.min(pos1.getRow(), pos2.getRow());
+            int to = Math.max(pos1.getRow(), pos2.getRow());
             for (int i = from; i < to; i++) {
-                if (wallMap.containsKey(new Position(i, pos1.getRow())))
+                if (wallMap.containsKey(new Position(pos1.getColumn(), i)))
                     return false;
             }
         }

@@ -8,15 +8,17 @@ public class EnemyController {
     private final WanderModel model;
     private final MovingEngine engine;
     private int tickCounter;
+    private int framesPerSecond;
 
-    EnemyController(WanderModel model, MovingEngine engine) {
+    public EnemyController(WanderModel model, MovingEngine engine, Integer framesPerSecond) {
         this.model = model;
         this.engine = engine;
+        this.framesPerSecond = framesPerSecond;
     }
 
-    void moveEnemies() {
+    public void moveEnemies() {
         tickCounter++;
-        if (tickCounter >= 60) {
+        if (tickCounter >= framesPerSecond) {
             for (Enemy enemy: model.getEnemies()) {
                 Position newPosition = engine.move(enemy.getPosition());
                 if (model.isEmpty(newPosition)) {
