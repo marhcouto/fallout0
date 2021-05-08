@@ -17,8 +17,6 @@ public class WanderFactoryTest {
     @Test
     public void fileWanderFactoryTest() {
         FileWanderFactory wf = new FileWanderFactory("arena1", this.vaultBoy);
-
-
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(ArenaMaker.createWalls(), ArenaMaker.createEnemies(), "arena1"),
                 "An exception was thrown when it should have not been thrown");
 

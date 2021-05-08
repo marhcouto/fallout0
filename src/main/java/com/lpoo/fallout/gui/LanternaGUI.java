@@ -31,7 +31,7 @@ public class LanternaGUI {
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void placeDrawable(LanternaDrawable drawable) {
+    /*public void placeDrawable(LanternaDrawable drawable) {
         if (currentStatus == DRAW_STATUS.DIRTY) {
             terminal.getScreen().clear();
             currentStatus = DRAW_STATUS.CLEAN;
@@ -39,7 +39,7 @@ public class LanternaGUI {
         terminal.getGraphics().setBackgroundColor(TextColor.Factory.fromString(drawable.getBackgroundColor()));
         terminal.getGraphics().setForegroundColor(TextColor.Factory.fromString(drawable.getForegroundColor()));
         terminal.getGraphics().putString(drawable.getPosition().getColumn(), drawable.getPosition().getRow(), drawable.getChar());
-    }
+    }*/
 
     // I think this is better
     public void placeDrawable(LanternaDrawable drawable, Position position) {

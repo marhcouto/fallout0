@@ -30,7 +30,7 @@ class WanderViewerTest {
         /*
             There are 3 elements in the model, so, placeDrawable must be called 3 times
          */
-        Mockito.verify(gui, Mockito.times(3)).placeDrawable(Mockito.any(LanternaDrawable.class));
+        Mockito.verify(gui, Mockito.times(3)).placeDrawable(Mockito.any(LanternaDrawable.class), Mockito.any(Position.class));
         /*
             The commit function must be called just once. It's only called at the end of all placements
          */

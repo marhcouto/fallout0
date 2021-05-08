@@ -30,13 +30,13 @@ public class WanderViewer implements Viewer {
     @Override
     public void draw() throws IOException {
 
-        for (Map.Entry<Position, Wall> wall: model.getWalls().entrySet()) {
-            Position wallPosition = wall.getValue().getPosition();
-            gui.placeDrawable(new LanternaDrawable(wallPosition, "#000000", "#00FF00", "#"));
-        }
-        gui.placeDrawable(new LanternaDrawable(model.getVaultBoy().getPosition(), "#000000", "#0000FF", "W"));
+        for (Map.Entry<Position, Wall> wall: model.getWalls().entrySet())
+            gui.placeDrawable(new LanternaDrawable( "#000000", "#00FF00", "#"), wall.getValue().getPosition());
+
         for (Enemy enemy: model.getEnemies())
             gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
+
+        gui.placeDrawable(new LanternaDrawable( "#000000", "#0000FF", "W"), model.getVaultBoy().getPosition());
         gui.draw();
     }
 }
