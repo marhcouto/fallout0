@@ -30,6 +30,15 @@ public class WanderController implements Controller {
 
     private Enemy checkFight() {
         AbstractQueue<Enemy> enemies = map.getOrderedEnemies(map.getVaultBoy().getPosition());
+        while(!enemies.isEmpty()) {
+            Enemy curEnemy = enemies.poll();
+            if (curEnemy.insideAttackRadius(map.getVaultBoy())) {
+                if (map.hasClearSight(map.getVaultBoy().getPosition(), curEnemy.getPosition()))
+                    return curEnemy;
+            } else {
+                return null;
+            }
+        }
         return null;
     }
 

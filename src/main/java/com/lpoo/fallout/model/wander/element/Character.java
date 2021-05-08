@@ -33,6 +33,14 @@ public abstract class Character extends Element {
     }
     public Attributes getAttributes() { return attributes; }
     public Integer getLevel() { return level; }
+    public Integer getAttackRadius() {
+        return attackRadius;
+    }
+
+    public boolean insideAttackRadius(Character right) {
+        double distanceBetweenPositions = this.getPosition().getDist(right.getPosition());
+        return !(distanceBetweenPositions > (this.getAttackRadius() + right.getAttackRadius()));
+    }
 
     public boolean canUseWeapon(Weapon weapon) {
         return this.attributes.greaterThan(weapon.getRequiredAttributes());

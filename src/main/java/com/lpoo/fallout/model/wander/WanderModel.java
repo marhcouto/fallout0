@@ -60,6 +60,28 @@ public class WanderModel {
         return true;
     }
 
+    public boolean hasClearSight(Position pos1, Position pos2) {
+        if (pos1.getRow() != pos2.getRow() && pos1.getColumn() != pos2.getColumn()) {
+            return false;
+        }
+        if (pos1.getRow() == pos2.getRow()) {
+            int from = Math.min(pos1.getRow(), pos2.getRow());
+            int to = Math.min(pos1.getRow(), pos2.getRow());
+            for (int i = from; i < to; i++) {
+                if (wallMap.containsKey(new Position(pos1.getColumn(), i)))
+                    return false;
+            }
+        } else {
+            int from = Math.min(pos1.getColumn(), pos2.getColumn());
+            int to = Math.min(pos1.getColumn(), pos2.getColumn());
+            for (int i = from; i < to; i++) {
+                if (wallMap.containsKey(new Position(i, pos1.getRow())))
+                    return false;
+            }
+        }
+        return true;
+    }
+
     public AbstractQueue<Enemy> getOrderedEnemies(Position position) {
         EnemyComparator comparator = new EnemyComparator(position);
         AbstractQueue<Enemy> sortedEnemies = new PriorityQueue<>(comparator);
