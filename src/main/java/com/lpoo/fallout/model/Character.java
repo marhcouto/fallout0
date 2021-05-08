@@ -29,7 +29,6 @@ public abstract class Character extends Element {
     public Attributes getAttributes() { return attributes; }
     public Integer getLevel() { return level; }
 
-
     public boolean canUseWeapon(Weapon weapon) {
         return this.attributes.greaterThan(weapon.getRequiredAttributes());
     }

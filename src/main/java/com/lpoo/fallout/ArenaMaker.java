@@ -117,17 +117,17 @@ public class ArenaMaker {
         List<Enemy> enemies = new ArrayList<>();
 
         enemies.add(new Enemy(new Position(2, 2), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(2, 3), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(3, 3), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(7, 9), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(7, 2), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(4, 8), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, Enemy.TYPE.SCORPION));
 
 
 

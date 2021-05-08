@@ -7,27 +7,31 @@ import com.lpoo.fallout.model.Wall;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WanderModel {
     private VaultBoy vaultBoy;
-    private List <Wall> walls;
+    private Map<Position, Wall> wallMap;
     private List <Enemy> enemies;
 
     public WanderModel(@NotNull VaultBoy vaultBoy) {
         this.vaultBoy = vaultBoy;
-        this.walls = new ArrayList<>();
+        this.wallMap = new HashMap<>();
         this.enemies = new ArrayList<>();
     }
 
-    public WanderModel(@NotNull VaultBoy vaultBoy, @NotNull List<Wall> walls, @NotNull List<Enemy> enemies) {
+    public WanderModel(@NotNull VaultBoy vaultBoy, @NotNull Map<Position, Wall> walls, @NotNull List<Enemy> enemies) {
         this.vaultBoy = vaultBoy;
-        this.walls = walls;
+        this.wallMap = walls;
         this.enemies = enemies;
     }
 
     public void setWalls(@NotNull List<Wall> walls) {
-        this.walls = walls;
+        for (Wall wall: walls) {
+            wallMap.put(wall.getPosition(), wall);
+        }
     }
 
     public void setEnemies(@NotNull List <Enemy> enemies) {
@@ -42,8 +46,8 @@ public class WanderModel {
         return vaultBoy;
     }
 
-    public List<Wall> getWalls() {
-        return walls;
+    public Map<Position, Wall> getWalls() {
+        return wallMap;
     }
 
     public List<Enemy> getEnemies() {
@@ -51,12 +55,10 @@ public class WanderModel {
     }
 
     public boolean isEmpty(@NotNull Position position) {
+        if (wallMap.containsKey(position))
+            return false;
         for (Enemy enemy: enemies) {
             if (enemy.getPosition().equals(position))
-                return false;
-        }
-        for (Wall wall: walls) {
-            if (wall.getPosition().equals(position))
                 return false;
         }
         return true;

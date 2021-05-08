@@ -31,7 +31,7 @@ public class WanderFactoryTest {
         WanderModel wanderModel = wf.createWanderModel();
 
         for (int i = 0; i < wanderModel.getWalls().size(); i++)
-            Assertions.assertEquals(ArenaMaker.createWalls().get(i), wanderModel.getWalls().get(i));
+            Assertions.assertTrue(wanderModel.getWalls().containsValue(ArenaMaker.createWalls().get(i)));
 
         for (int i = 0; i < wanderModel.getEnemies().size(); i++)
             Assertions.assertEquals(ArenaMaker.createEnemies().get(i), wanderModel.getEnemies().get(i));

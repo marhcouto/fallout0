@@ -1,15 +1,26 @@
 package com.lpoo.fallout.view.Wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.model.Enemy;
+import com.lpoo.fallout.model.LanternaDrawable;
+import com.lpoo.fallout.model.Position;
 import com.lpoo.fallout.model.Wall;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.view.Viewer;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WanderViewer implements Viewer {
     private final LanternaGUI gui;
     private final WanderModel model;
+    private static final Map<Enemy.TYPE, LanternaDrawable> drawableMap = new HashMap<>();
+
+    static {
+        drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#00FF00", "#FF00FF", "R"));
+        drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#FF00FF", "#00FF00", "S"));
+    }
 
     public WanderViewer(LanternaGUI gui, WanderModel model) {
         this.gui = gui;
@@ -19,6 +30,11 @@ public class WanderViewer implements Viewer {
     @Override
     public void draw() throws IOException {
 
+        for (Map.Entry<Position, Wall> wall: model.getWalls().entrySet()) {
+            Position wallPosition = wall.getValue().getPosition();
+            gui.placeDrawable(new LanternaDrawable(wallPosition, "#000000", "#00FF00", "#"));
+        }
+        gui.placeDrawable(new LanternaDrawable(model.getVaultBoy().getPosition(), "#000000", "#0000FF", "W"));
         gui.draw();
     }
 }

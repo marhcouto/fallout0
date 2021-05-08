@@ -5,9 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileWanderFactory implements WanderFactory {
     private final String arenaName;
@@ -21,7 +19,7 @@ public class FileWanderFactory implements WanderFactory {
     @Override
     public WanderModel createWanderModel() {
 
-        List<Wall> walls = new ArrayList<>();
+        Map<Position, Wall> walls = new HashMap<>();
         List<Enemy> enemies = new ArrayList<>();
 
         try {
@@ -34,14 +32,15 @@ public class FileWanderFactory implements WanderFactory {
 
     }
 
-    private void readFromFile(List<Wall> walls, List<Enemy> enemies) throws IOException, ClassNotFoundException {
+    private void readFromFile(Map<Position, Wall> walls, List<Enemy> enemies) throws IOException, ClassNotFoundException {
 
         // Walls
         FileInputStream wallsIS = new FileInputStream(new File("resources/arenas/" + arenaName + "/walls.bin"));
         ObjectInputStream wallsOIS = new ObjectInputStream(wallsIS);
 
         while(wallsIS.available() > 0) {
-            walls.add((Wall) wallsOIS.readObject());
+            Wall w = (Wall) wallsOIS.readObject();
+            walls.put(w.getPosition(), w);
         }
 
         wallsOIS.close();
