@@ -36,7 +36,7 @@ public class FileHandlingTest {
                     new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10)),
                     new Weapon(randNumber.nextInt(40), "Alakazam",
                             new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10))),
-                    randNumber.nextInt(30), RAT));
+                    randNumber.nextInt(30), 4, RAT));
         }
         return enemies;
     }
@@ -58,17 +58,16 @@ public class FileHandlingTest {
         vaultBoy1 = getRandomVaultBoy(); vaultBoy2 = getRandomVaultBoy();
 
         String arenaName = "arenatest";
-        WanderModel wanderModel;
 
         //1
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls1, enemies1, arenaName));
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy1));
-        wanderModel = new FileWanderModelFactory().createWanderModel();
+        WanderModel wanderModel = new FileWanderModelFactory().createWanderModel();
 
         for (int i = 0; i < wanderModel.getArena().getWallMap().size(); i++) // Test walls
             Assertions.assertTrue(wanderModel.getArena().getWallMap().containsValue(walls1.get(i)));
         for (int i = 0; i < wanderModel.getArena().getEnemies().size(); i++) // Test enemies
-            Assertions.assertEquals(enemies1.get(i), wanderModel.getArena().getEnemies().get(i));
+            Assertions.assertTrue(wanderModel.getArena().getEnemies().contains(enemies1.get(i)));
         Assertions.assertEquals(vaultBoy1, wanderModel.getVaultBoy()); // Test vaultBoy
 
         //2

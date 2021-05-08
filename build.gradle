@@ -20,7 +20,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'com.lpoo.fallout.Game'
+    mainClassName = 'com.lpoo.fallout.Application'
 }
 
 test {

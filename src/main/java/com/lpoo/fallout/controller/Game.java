@@ -29,13 +29,18 @@ public class Game {
     public void popController() {
         controllers.pop();
     }
-
     public void clearControllers() {
         controllers.clear();
     }
-
+    public Controller topController() {
+        return controllers.peek();
+    }
     public LanternaGUI getGui() {
         return gui;
+    }
+
+    public static Integer getFps() {
+        return FPS;
     }
 
     public void run() throws IOException, InterruptedException {

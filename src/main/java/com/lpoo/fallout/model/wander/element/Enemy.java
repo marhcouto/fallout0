@@ -4,29 +4,25 @@ import com.lpoo.fallout.controller.wander.MovingEngine;
 import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.Weapon;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
 public class Enemy extends Character implements Serializable {
-    private MovingEngine movingEngine;
     private TYPE enemyType;
 
-    public Enemy(Position position, Attributes attributes, Integer level, TYPE enemyType) {
-        super(position, attributes, level);
+    public Enemy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Weapon weapon, @NotNull Integer level, @NotNull Integer attackRadius, TYPE enemyType) {
+        super(position, attributes, weapon, level, attackRadius);
         this.enemyType = enemyType;
     }
 
-    public Enemy(Position position, Attributes attributes, Weapon weapon, Integer level, TYPE enemyType) {
-        super(position, attributes, weapon, level);
+    public Enemy(Position position, TYPE enemyType) {
+        super(position);
         this.enemyType = enemyType;
     }
 
     public TYPE getType() {
         return enemyType;
-    }
-
-    public MovingEngine getMovingEngine() {
-        return movingEngine;
     }
 
     @Override

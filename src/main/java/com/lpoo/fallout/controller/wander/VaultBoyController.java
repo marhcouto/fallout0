@@ -12,7 +12,6 @@ public class VaultBoyController {
         this.model = model;
     }
 
-
     public void moveVaultBoy(Position position) {
         if (model.getArena().isSpaceEmpty(position))
             model.getVaultBoy().setPosition(position);

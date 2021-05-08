@@ -26,6 +26,10 @@ public class Position implements Serializable {
     public Position up() { return new Position(this.getColumn(), this.getRow() - 1); }
     public Position right() { return new Position(this.getColumn() + 1, this.getRow()); }
 
+    public double getDist(Position right) {
+        return Math.sqrt(Math.pow(this.getColumn() - right.getColumn(), 2) + Math.pow(this.getRow() - right.getRow(), 2));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

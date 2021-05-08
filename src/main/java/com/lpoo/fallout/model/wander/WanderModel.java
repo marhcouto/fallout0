@@ -1,14 +1,9 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
-import com.lpoo.fallout.model.wander.element.Wall;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WanderModel {
     private final VaultBoy vaultBoy;
@@ -30,4 +25,5 @@ public class WanderModel {
     public void setArena(Arena arena) {
         this.arena = arena;
     }
+
 }
