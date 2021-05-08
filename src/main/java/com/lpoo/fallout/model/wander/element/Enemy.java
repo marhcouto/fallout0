@@ -8,7 +8,6 @@ import com.lpoo.fallout.model.wander.Weapon;
 import java.io.Serializable;
 
 public class Enemy extends Character implements Serializable {
-    private MovingEngine movingEngine;
     private TYPE enemyType;
 
     public Enemy(Position position, Attributes attributes, Integer level, TYPE enemyType) {
@@ -23,10 +22,6 @@ public class Enemy extends Character implements Serializable {
 
     public TYPE getType() {
         return enemyType;
-    }
-
-    public MovingEngine getMovingEngine() {
-        return movingEngine;
     }
 
     @Override
