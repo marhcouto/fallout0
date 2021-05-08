@@ -6,8 +6,7 @@ public class HeroCreator {
 
 
     public VaultBoy createHero() {
-        Attributes attr = new Attributes(1, 1, 1, 1);
         Position pos = new Position(5, 5);
-        return new VaultBoy(pos, attr);
+        return new VaultBoy(pos);
     }
 }

@@ -11,7 +11,7 @@ public class WanderFactoryTest {
 
     @BeforeEach
     public void createVaultBoy() {
-        this.vaultBoy = new VaultBoy(new Position(9, 9), new Attributes(10, 10, 10, 10));
+        this.vaultBoy = new VaultBoy(new Position(9, 9));
     }
 
     @Test

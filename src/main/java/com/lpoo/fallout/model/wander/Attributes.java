@@ -8,6 +8,10 @@ public class Attributes implements Serializable {
     private Integer intelligence;
     private Integer luck;
 
+    public Attributes() {
+        this(0, 0, 0, 0);
+    }
+
     public Attributes(Integer strength, Integer agility, Integer intelligence, Integer luck) {
         this.strength = strength;
         this.agility = agility;

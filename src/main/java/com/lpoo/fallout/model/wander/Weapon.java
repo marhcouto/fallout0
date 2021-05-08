@@ -7,6 +7,10 @@ public class Weapon implements Serializable {
     private final Integer damage;
     private final Attributes requiredAttributes;
 
+    public Weapon() {
+        this(4, "BBGun", new Attributes());
+    }
+
     public Weapon(Integer damage, String name, Attributes requiredAttributes) {
         this.damage = damage;
         this.name = name;
