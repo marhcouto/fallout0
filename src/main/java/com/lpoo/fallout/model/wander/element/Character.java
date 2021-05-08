@@ -36,4 +36,16 @@ public abstract class Character extends Element {
     public boolean canUseWeapon(Weapon weapon) {
         return this.attributes.greaterThan(weapon.getRequiredAttributes());
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o.getClass() != this.getClass()) return false;
+        if (o == null) return false;
+
+        Character e = (Character) o;
+        return this.getPosition().equals(e.getPosition()) && this.getLevel().equals(e.getLevel()) &&
+                this.getAttributes().equals(e.getAttributes()) && this.getWeapon().equals(e.getWeapon());
+    }
 }

@@ -36,8 +36,7 @@ public class Enemy extends Character implements Serializable {
         if (o == null) return false;
 
         Enemy e = (Enemy) o;
-        return this.getPosition().equals(e.getPosition()) && this.getLevel().equals(e.getLevel()) &&
-                this.getAttributes().equals(e.getAttributes()) && this.getWeapon().equals(e.getWeapon());
+        return super.equals(e) && e.getType() == this.getType();
     }
     public enum TYPE { SCORPION, RAT }
 }
