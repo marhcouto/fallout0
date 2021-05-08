@@ -32,6 +32,9 @@ public class Game {
     public void clearControllers() {
         controllers.clear();
     }
+    public Controller topController() {
+        return controllers.peek();
+    }
     public LanternaGUI getGui() {
         return gui;
     }

@@ -21,7 +21,11 @@ public class WanderController implements Controller {
     private final EnemyController enemyController;
 
     public WanderController(Game game) {
-        this.map = new FileWanderFactory("arena1", new VaultBoy(new Position(5, 5))).createWanderModel();
+        this(game, new FileWanderFactory("arena1", new VaultBoy(new Position(5, 5))).createWanderModel());
+    }
+
+    public WanderController(Game game, WanderModel model) {
+        this.map = model;
         this.enemyController = new EnemyController(map, new RandomMovingEngine(), Game.getFps());
         this.viewer = new WanderViewer(game.getGui(), map);
         this.game = game;
