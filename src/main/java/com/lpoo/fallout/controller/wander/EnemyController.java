@@ -5,17 +5,25 @@ import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.WanderModel;
 
 public class EnemyController {
-    private WanderModel model;
+    private final WanderModel model;
+    private final MovingEngine engine;
+    private int tickCounter;
 
-    EnemyController(WanderModel model) {
+    EnemyController(WanderModel model, MovingEngine engine) {
         this.model = model;
+        this.engine = engine;
     }
+
     void moveEnemies() {
-        for (Enemy enemy: model.getEnemies()) {
-            Position newPosition = enemy.getMovingEngine().move(enemy.getPosition());
-            if (model.isEmpty(newPosition)) {
-                enemy.setPosition(newPosition);
+        tickCounter++;
+        if (tickCounter >= 60) {
+            for (Enemy enemy: model.getEnemies()) {
+                Position newPosition = engine.move(enemy.getPosition());
+                if (model.isEmpty(newPosition)) {
+                    enemy.setPosition(newPosition);
+                }
             }
+            tickCounter = 0;
         }
     }
 }
