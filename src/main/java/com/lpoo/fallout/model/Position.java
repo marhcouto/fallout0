@@ -1,8 +1,9 @@
 package com.lpoo.fallout.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Position {
+public class Position implements Serializable {
     private final int row;
     private final int column;
 

@@ -1,37 +1,60 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Attributes;
-import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class FileWanderFactory implements WanderFactory {
-    private final String filename;
+    private final String arenaName;
     private final VaultBoy vaultBoy;
 
-    public FileWanderFactory(@NotNull String filename, @NotNull VaultBoy vaultBoy) {
-        this.filename = filename;
+    public FileWanderFactory(@NotNull String arenaName, @NotNull VaultBoy vaultBoy) {
+        this.arenaName = arenaName;
         this.vaultBoy = vaultBoy;
     }
 
+    @Override
     public WanderModel createWanderModel() {
 
-        //TODO Not yet implemented
-        return new WanderModel(this.vaultBoy);
+        List<Wall> walls = new ArrayList<>();
+        List<Enemy> enemies = new ArrayList<>();
+
+        try {
+            this.readFromFile(walls, enemies);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return new WanderModel(this.vaultBoy, walls, enemies);
 
     }
 
-    public void readFromFile() throws FileNotFoundException, IOException {
-        URL resource = this.getClass().getResource(this.filename);
-        BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
-        int dimensions = br.read();
-        System.out.println(dimensions);
+    private void readFromFile(List<Wall> walls, List<Enemy> enemies) throws IOException, ClassNotFoundException {
+
+        // Walls
+        FileInputStream wallsIS = new FileInputStream(new File("resources/arenas/" + arenaName + "/walls.bin"));
+        ObjectInputStream wallsOIS = new ObjectInputStream(wallsIS);
+
+        while(wallsIS.available() > 0) {
+            walls.add((Wall) wallsOIS.readObject());
+        }
+
+        wallsOIS.close();
+
+        // Enemies
+        FileInputStream enemiesIS = new FileInputStream(new File("resources/arenas/" + arenaName + "/enemies.bin"));
+        ObjectInputStream enemiesOIS = new ObjectInputStream(enemiesIS);
+
+        while(enemiesIS.available() > 0) {
+            enemies.add((Enemy) enemiesOIS.readObject());
+        }
+
+        enemiesOIS.close();
 
     }
 }

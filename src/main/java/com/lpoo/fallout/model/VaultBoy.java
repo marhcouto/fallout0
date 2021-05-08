@@ -12,9 +12,4 @@ public class VaultBoy extends Character {
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Weapon weapon, @NotNull Integer level) {
         super(position, attributes, weapon, level);
     }
-
-    @Override
-    protected LanternaDrawable imageCreator() {
-        return new LanternaDrawable(getPosition(), "Red", "Black", "H");
-    }
 }

@@ -1,6 +1,8 @@
 package com.lpoo.fallout.model;
 
-public class Attributes {
+import java.io.Serializable;
+
+public class Attributes implements Serializable {
     private Integer strength;
     private Integer agility;
     private Integer intelligence;
@@ -63,6 +65,17 @@ public class Attributes {
         this.luck += attributes.getLuck();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o.getClass() != this.getClass()) return false;
+        if (o == null) return false;
+
+        Attributes a = (Attributes) o;
+        return a.getAgility().equals(this.agility) && a.getIntelligence().equals(this.getIntelligence()) &&
+                a.getStrength().equals(this.getStrength()) && a.getLuck().equals(this.getLuck());
+    }
+
     public static class InvalidAttributesForChangeException extends Throwable {
         private final String message;
 
@@ -73,6 +86,5 @@ public class Attributes {
         public String getMessage() {
             return message;
         }
-
     }
 }

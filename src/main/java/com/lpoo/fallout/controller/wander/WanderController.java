@@ -4,7 +4,7 @@ import com.lpoo.fallout.controller.Controller;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.wander.*;
-import com.lpoo.fallout.view.wander.WanderViewer;
+import com.lpoo.fallout.view.Wander.WanderViewer;
 
 import java.io.IOException;
 

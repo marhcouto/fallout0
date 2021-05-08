@@ -20,6 +20,12 @@ public class WanderModel {
         this.enemies = new ArrayList<>();
     }
 
+    public WanderModel(@NotNull VaultBoy vaultBoy, @NotNull List<Wall> walls, @NotNull List<Enemy> enemies) {
+        this.vaultBoy = vaultBoy;
+        this.walls = walls;
+        this.enemies = enemies;
+    }
+
     public void setWalls(@NotNull List<Wall> walls) {
         this.walls = walls;
     }

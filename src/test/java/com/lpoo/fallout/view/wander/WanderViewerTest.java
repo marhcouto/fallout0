@@ -11,10 +11,10 @@ import java.io.IOException;
 class WanderViewerTest {
     @Test
     public void TESTEDOTESTE() throws IOException, InterruptedException {
-        LanternaGUI gui = new LanternaGUI(new LanternaTerminal());
+        /*LanternaGUI gui = new LanternaGUI(new LanternaTerminal());
         WanderModel model = new RandomWanderFactory(10, 10, 0).createWanderModel();
         WanderViewer viewer = new WanderViewer(gui, model);
         viewer.draw();
-        Thread.sleep(10*1000);
+        Thread.sleep(10*1000);*/
     }
 }

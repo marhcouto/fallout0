@@ -1,23 +1,29 @@
 package com.lpoo.fallout.model;
 
-public abstract class Element {
+import java.io.Serializable;
+
+public abstract class Element implements Serializable {
     private Position position;
-    protected final LanternaDrawable image;
 
     public Element(Position position) {
         this.position = position;
-        this.image = this.imageCreator();
     }
 
     public Position getPosition() {
         return position;
     }
-    public LanternaDrawable getImage() {
-        return image;
-    }
+
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    protected abstract LanternaDrawable imageCreator();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o.getClass() != this.getClass()) return false;
+        if (o == null) return false;
+
+        Element e = (Element) o;
+        return this.getPosition().equals(e.getPosition());
+    }
 }
