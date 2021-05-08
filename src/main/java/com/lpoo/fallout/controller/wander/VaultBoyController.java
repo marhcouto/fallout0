@@ -35,7 +35,7 @@ public class VaultBoyController {
         }
     }
 
-    public void moveVaultBoy(Position position) {
+    private void moveVaultBoy(Position position) {
         if (model.isEmpty(position))
             model.getVaultBoy().setPosition(position);
     }
