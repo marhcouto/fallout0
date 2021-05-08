@@ -13,6 +13,8 @@ public class Application {
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

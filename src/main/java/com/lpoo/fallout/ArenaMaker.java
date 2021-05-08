@@ -2,17 +2,35 @@ package com.lpoo.fallout;
 
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArenaMaker {
 
-    public static void createFile(List<Wall> walls, List<Enemy> enemies, String arenaName) throws IOException {
+    public static void createFile(List<Wall> wallsList, List<Enemy> enemies, String arenaName) throws IOException {
 
-        // Walls
+        Map<Position, Wall> walls = new HashMap<>();
+
+        for (Wall wall : wallsList)
+            walls.put(wall.getPosition(), wall);
+
+        Arena arena = new Arena(walls, enemies, arenaName);
+
+        File file = new File("resources/arenas/" + arenaName + ".bin");
+        if (!file.exists())
+            file.createNewFile();
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file, false));
+        os.writeObject(arena);
+        os.close();
+
+
+        /*// Walls
         File wallsFile = new File("resources/arenas/" + arenaName + "/walls.bin");
         if (!wallsFile.exists())
             wallsFile.createNewFile();
@@ -32,7 +50,23 @@ public class ArenaMaker {
         for (Enemy enemy : enemies)
             enemiesOS.writeObject(enemy);
 
-        enemiesOS.close();
+        enemiesOS.close();*/
+    }
+
+    public static VaultBoy createVaultBoy() {
+        return new VaultBoy(new Position(5, 5), new Attributes(1,1,1,1));
+    }
+
+    public static void createGameFile(String arena, VaultBoy vaultBoy) throws IOException {
+
+        File file = new File("resources/gamestat.bin");
+        if (!file.exists())
+            file.createNewFile();
+
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file));
+        os.writeObject(arena);
+        os.writeObject(vaultBoy);
+        os.close();
     }
 
     public static List<Wall> createWalls() {

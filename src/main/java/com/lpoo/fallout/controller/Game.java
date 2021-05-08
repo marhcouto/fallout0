@@ -13,7 +13,7 @@ public class Game {
     private final long frameTime;
     private final LanternaGUI gui;
 
-    public Game() throws IOException {
+    public Game() throws IOException, ClassNotFoundException {
         // Stack for the controllers
         controllers = new Stack<>();
 

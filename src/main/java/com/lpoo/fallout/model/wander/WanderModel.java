@@ -11,56 +11,23 @@ import java.util.List;
 import java.util.Map;
 
 public class WanderModel {
-    private VaultBoy vaultBoy;
-    private Map<Position, Wall> wallMap;
-    private List <Enemy> enemies;
+    private final VaultBoy vaultBoy;
+    private Arena arena;
 
-    public WanderModel(@NotNull VaultBoy vaultBoy) {
+    public WanderModel(@NotNull VaultBoy vaultBoy, @NotNull Arena arena) {
         this.vaultBoy = vaultBoy;
-        this.wallMap = new HashMap<>();
-        this.enemies = new ArrayList<>();
-    }
-
-    public WanderModel(@NotNull VaultBoy vaultBoy, @NotNull Map<Position, Wall> walls, @NotNull List<Enemy> enemies) {
-        this.vaultBoy = vaultBoy;
-        this.wallMap = walls;
-        this.enemies = enemies;
-    }
-
-    public void setWalls(@NotNull List<Wall> walls) {
-        for (Wall wall: walls) {
-            wallMap.put(wall.getPosition(), wall);
-        }
-    }
-
-    public void setEnemies(@NotNull List <Enemy> enemies) {
-        this.enemies = enemies;
-    }
-
-    public void setVaultBoy(@NotNull VaultBoy vaultBoy) {
-        this.vaultBoy = vaultBoy;
+        this.arena = arena;
     }
 
     public VaultBoy getVaultBoy() {
         return vaultBoy;
     }
 
-    public Map<Position, Wall> getWalls() {
-        return wallMap;
+    public Arena getArena() {
+        return arena;
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
+    public void setArena(Arena arena) {
+        this.arena = arena;
     }
-
-    public boolean isEmpty(@NotNull Position position) {
-        if (wallMap.containsKey(position))
-            return false;
-        for (Enemy enemy: enemies) {
-            if (enemy.getPosition().equals(position))
-                return false;
-        }
-        return true;
-    }
-
 }

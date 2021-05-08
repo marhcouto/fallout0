@@ -12,31 +12,9 @@ public class VaultBoyController {
         this.model = model;
     }
 
-    public void action(ACTION act) {
-        switch (act) {
-            case UP: {
-                moveVaultBoy(model.getVaultBoy().getPosition().up());
-                break;
-            }
-            case LEFT: {
-                moveVaultBoy(model.getVaultBoy().getPosition().left());
-                break;
-            }
-            case DOWN: {
-                moveVaultBoy(model.getVaultBoy().getPosition().down());
-                break;
-            }
-            case RIGHT: {
-                moveVaultBoy(model.getVaultBoy().getPosition().right());
-                break;
-            }
-            default:
-                break;
-        }
-    }
 
     public void moveVaultBoy(Position position) {
-        if (model.isEmpty(position))
+        if (model.getArena().isSpaceEmpty(position))
             model.getVaultBoy().setPosition(position);
     }
 }

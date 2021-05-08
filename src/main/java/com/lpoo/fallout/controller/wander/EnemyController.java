@@ -11,9 +11,9 @@ public class EnemyController {
         this.model = model;
     }
     void moveEnemies() {
-        for (Enemy enemy: model.getEnemies()) {
+        for (Enemy enemy: model.getArena().getEnemies()) {
             Position newPosition = enemy.getMovingEngine().move(enemy.getPosition());
-            if (model.isEmpty(newPosition)) {
+            if (model.getArena().isSpaceEmpty(newPosition)) {
                 enemy.setPosition(newPosition);
             }
         }

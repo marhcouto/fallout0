@@ -12,13 +12,6 @@ import java.io.IOException;
 
 public class LanternaGUI {
     private final LanternaTerminal terminal;
-
-    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE}
-
-    private enum DRAW_STATUS {
-        CLEAN,
-        DIRTY
-    }
     private DRAW_STATUS currentStatus;
 
     public LanternaGUI(LanternaTerminal terminal) {
@@ -70,5 +63,14 @@ public class LanternaGUI {
 
     public LanternaTerminal getTerminal() {
         return terminal;
+    }
+
+
+
+    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE}
+
+    private enum DRAW_STATUS {
+        CLEAN,
+        DIRTY
     }
 }

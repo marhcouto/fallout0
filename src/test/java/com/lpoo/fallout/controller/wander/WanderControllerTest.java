@@ -12,8 +12,8 @@ import java.util.Arrays;
 class WanderControllerTest {
     @BeforeEach
     void setUp() {
-        WanderModel model = new WanderModel(new VaultBoy(new Position(1, 0), new Attributes(0, 0, 0, 0)));
-        model.setWalls(Arrays.asList(new Wall(new Position(0, 0)), new Wall(new Position(1, 1))));
+        /*WanderModel model = new WanderModel(new VaultBoy(new Position(1, 0), new Attributes(0, 0, 0, 0)));
+        model.setWalls(Arrays.asList(new Wall(new Position(0, 0)), new Wall(new Position(1, 1))));*/
     }
 
 }
