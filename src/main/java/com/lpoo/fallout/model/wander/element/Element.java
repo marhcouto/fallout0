@@ -1,4 +1,6 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.wander.element;
+
+import com.lpoo.fallout.model.wander.Position;
 
 import java.io.Serializable;
 

@@ -1,10 +1,10 @@
-package com.lpoo.fallout.view.Wander;
+package com.lpoo.fallout.view.wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.model.Enemy;
+import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.LanternaDrawable;
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.Wall;
+import com.lpoo.fallout.model.wander.Position;
+import com.lpoo.fallout.model.wander.element.Wall;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.view.Viewer;
 
@@ -35,6 +35,8 @@ public class WanderViewer implements Viewer {
             gui.placeDrawable(new LanternaDrawable(wallPosition, "#000000", "#00FF00", "#"));
         }
         gui.placeDrawable(new LanternaDrawable(model.getVaultBoy().getPosition(), "#000000", "#0000FF", "W"));
+        for (Enemy enemy: model.getEnemies())
+            gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
         gui.draw();
     }
 }

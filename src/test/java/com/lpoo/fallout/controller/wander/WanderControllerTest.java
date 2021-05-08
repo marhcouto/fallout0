@@ -1,15 +1,13 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.model.Attributes;
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Wall;
+import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.Position;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.model.wander.element.Wall;
 import com.lpoo.fallout.model.wander.WanderModel;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WanderControllerTest {
     @BeforeEach

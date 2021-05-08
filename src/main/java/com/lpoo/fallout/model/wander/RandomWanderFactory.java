@@ -1,7 +1,6 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.Wall;
+import com.lpoo.fallout.model.wander.element.Wall;
 
 import java.util.LinkedList;
 import java.util.List;

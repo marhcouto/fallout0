@@ -1,6 +1,6 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.wander.element;
 
-import java.io.Serializable;
+import com.lpoo.fallout.model.wander.Position;
 
 public class Wall extends Element {
     public Wall(Position position) {

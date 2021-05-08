@@ -1,4 +1,8 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.wander.element;
+
+import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.Position;
+import com.lpoo.fallout.model.wander.Weapon;
 
 public abstract class Character extends Element {
     private Attributes attributes;

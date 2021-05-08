@@ -1,4 +1,6 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.battle;
+
+import com.lpoo.fallout.model.wander.element.Character;
 
 public class InGameStats {
     private Integer healthPoints;

@@ -1,9 +1,10 @@
-package com.lpoo.fallout.view.Wander;
+package com.lpoo.fallout.view.wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.*;
-import com.lpoo.fallout.model.wander.WanderModel;
-import com.lpoo.fallout.view.Wander.WanderViewer;
+import com.lpoo.fallout.model.wander.*;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.model.wander.element.Wall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,7 +25,6 @@ class WanderViewerTest {
     }
 
     @Test
-
     void countPlaceDrawable() throws IOException {
         viewer.draw();
         /*

@@ -1,5 +1,8 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.wander.element;
 
+import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.Position;
+import com.lpoo.fallout.model.wander.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 public class VaultBoy extends Character {

@@ -1,16 +1,10 @@
 package com.lpoo.fallout.model.wander;
 
 import com.lpoo.fallout.ArenaMaker;
-import com.lpoo.fallout.model.Attributes;
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Wall;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class WanderFactoryTest {
     private VaultBoy vaultBoy;

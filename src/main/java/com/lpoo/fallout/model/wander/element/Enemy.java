@@ -1,6 +1,9 @@
-package com.lpoo.fallout.model;
+package com.lpoo.fallout.model.wander.element;
 
 import com.lpoo.fallout.controller.wander.MovingEngine;
+import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.Position;
+import com.lpoo.fallout.model.wander.Weapon;
 
 import java.io.Serializable;
 
@@ -18,7 +21,7 @@ public class Enemy extends Character implements Serializable {
         this.enemyType = enemyType;
     }
 
-    TYPE getType() {
+    public TYPE getType() {
         return enemyType;
     }
 

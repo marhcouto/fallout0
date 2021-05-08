@@ -1,12 +1,12 @@
 package com.lpoo.fallout;
 
-import com.lpoo.fallout.model.*;
+import com.lpoo.fallout.model.wander.*;
+import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.model.wander.element.Wall;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
 
 public class ArenaMaker {
 

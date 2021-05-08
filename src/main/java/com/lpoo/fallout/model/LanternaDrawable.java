@@ -1,5 +1,6 @@
 package com.lpoo.fallout.model;
 
+import com.lpoo.fallout.model.wander.Position;
 import org.jetbrains.annotations.NotNull;
 
 public class LanternaDrawable {

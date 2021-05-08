@@ -1,6 +1,6 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.wander.Position;
 
 import java.util.Random;
 

@@ -1,7 +1,7 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.model.Enemy;
-import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.WanderModel;
 
 public class EnemyController {

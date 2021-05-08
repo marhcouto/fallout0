@@ -1,8 +1,6 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.Attributes;
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
 
 public class HeroCreator {
 

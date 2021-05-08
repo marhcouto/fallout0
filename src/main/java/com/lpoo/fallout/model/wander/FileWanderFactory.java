@@ -1,10 +1,11 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.*;
+import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.model.wander.element.Wall;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 
 public class FileWanderFactory implements WanderFactory {

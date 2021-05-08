@@ -1,9 +1,8 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.Enemy;
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Wall;
+import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.model.wander.element.Wall;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

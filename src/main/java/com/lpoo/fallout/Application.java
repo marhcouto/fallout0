@@ -1,8 +1,6 @@
 package com.lpoo.fallout;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.model.Position;
-import com.lpoo.fallout.model.Wall;
 
 import java.io.*;
 

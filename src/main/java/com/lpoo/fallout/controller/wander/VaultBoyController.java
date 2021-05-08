@@ -1,7 +1,6 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.model.VaultBoy;
-import com.lpoo.fallout.model.Position;
+import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.WanderModel;
 
 import static com.lpoo.fallout.gui.LanternaGUI.ACTION;
