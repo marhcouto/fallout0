@@ -5,10 +5,7 @@ import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WanderModel {
     private VaultBoy vaultBoy;
@@ -61,6 +58,13 @@ public class WanderModel {
                 return false;
         }
         return true;
+    }
+
+    public AbstractQueue<Enemy> getOrderedEnemies(Position position) {
+        EnemyComparator comparator = new EnemyComparator(position);
+        AbstractQueue<Enemy> sortedEnemies = new PriorityQueue<>(comparator);
+        sortedEnemies.addAll(enemies);
+        return sortedEnemies;
     }
 
 }
