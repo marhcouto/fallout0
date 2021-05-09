@@ -4,7 +4,7 @@ import com.lpoo.fallout.controller.Controller;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.battle.BattleController;
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.model.filehandling.FileWanderModelFactory;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.view.wander.WanderViewer;
@@ -22,7 +22,7 @@ public class WanderController implements Controller {
 
 
     public WanderController(Game game) throws IOException, ClassNotFoundException {
-        this(game, FileWanderModelFactory.createWanderModel("gamestat"));
+        this(game, FileHandler.createWanderModel("gamestat"));
     }
 
     public WanderController(Game game, WanderModel model) {
