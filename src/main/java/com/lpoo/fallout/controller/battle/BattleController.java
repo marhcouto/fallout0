@@ -6,22 +6,21 @@ import com.lpoo.fallout.model.wander.element.Enemy;
 
 import java.io.IOException;
 
-public class BattleController implements Controller {
+public class BattleController extends Controller {
     private Enemy enemy;
-    private Game game;
 
-    public BattleController(Game game, Enemy enemy) {
+    public BattleController(Game game, Enemy enemy)  {
+        super(game);
         this.enemy = enemy;
-        this.game = game;
     }
     public Enemy getEnemy() {
         return enemy;
     }
 
     @Override
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException {
         System.out.println("BATTLE BEGINS... NOT YET IMPLEMENTED...");
-        game.popController();
+        getGame().popController();
     }
 
     @Override

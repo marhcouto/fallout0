@@ -12,10 +12,9 @@ import com.lpoo.fallout.view.wander.WanderViewer;
 import java.io.IOException;
 import java.util.AbstractQueue;
 
-public class WanderController implements Controller {
+public class WanderController extends Controller {
     private WanderModel model;
     private WanderViewer viewer;
-    private final Game game;
 
     private final VaultBoyController vaultBoyController;
     private final EnemyController enemyController;
@@ -25,11 +24,11 @@ public class WanderController implements Controller {
         this(game, FileHandler.createWanderModel("gamestat"));
     }
 
-    public WanderController(Game game, WanderModel model) {
+    public WanderController(Game game, WanderModel model)  {
+        super(game);
         this.model = model;
         this.enemyController = new EnemyController(model, new RandomMovingEngine(), Game.getFps());
         this.viewer = new WanderViewer(game.getGui(), model);
-        this.game = game;
         this.vaultBoyController = new VaultBoyController(model);
     }
 
@@ -53,14 +52,14 @@ public class WanderController implements Controller {
         this.enemyController.moveEnemies();
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
-            game.pushController(new BattleController(this.game, fightingEnemy));
+            this.getGame().pushController(new BattleController(this.getGame(), fightingEnemy));
         }
         this.viewer.draw();
     }
 
     @Override
     public void react() throws IOException {
-        LanternaGUI.ACTION nextAction = this.game.getGui().getAction();
+        LanternaGUI.ACTION nextAction = this.getGame().getGui().getAction();
         switch (nextAction) {
             case UP: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().up());
@@ -82,7 +81,7 @@ public class WanderController implements Controller {
                 break;
             }
             case QUIT: {
-                this.game.clearControllers();
+                this.getGame().clearControllers();
                 break;
             }
         }
