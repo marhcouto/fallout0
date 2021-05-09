@@ -28,38 +28,15 @@ public class ArenaMaker {
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file, false));
         os.writeObject(arena);
         os.close();
-
-
-        /*// Walls
-        File wallsFile = new File("resources/arenas/" + arenaName + "/walls.bin");
-        if (!wallsFile.exists())
-            wallsFile.createNewFile();
-        ObjectOutputStream wallsOS = new ObjectOutputStream(new FileOutputStream(wallsFile, false));
-
-        for (Wall wall : walls)
-            wallsOS.writeObject(wall);
-
-        wallsOS.close();
-
-        // Enemies
-        File enemiesFile = new File("resources/arenas/" + arenaName + "/enemies.bin");
-        if (!enemiesFile.exists())
-            enemiesFile.createNewFile();
-        ObjectOutputStream enemiesOS = new ObjectOutputStream(new FileOutputStream(enemiesFile, false));
-
-        for (Enemy enemy : enemies)
-            enemiesOS.writeObject(enemy);
-
-        enemiesOS.close();*/
     }
 
     public static VaultBoy createVaultBoy() {
         return new VaultBoy(new Position(5, 5), new Attributes(1,1,1,1));
     }
 
-    public static void createGameFile(String arena, VaultBoy vaultBoy) throws IOException {
+    public static void createGameFile(String arena, VaultBoy vaultBoy, String fileName) throws IOException {
 
-        File file = new File("resources/gamestat.bin");
+        File file = new File("resources/" + fileName + ".bin");
         if (!file.exists())
             file.createNewFile();
 
@@ -82,6 +59,16 @@ public class ArenaMaker {
         walls.add(new Wall(new Position(8, 1)));
         walls.add(new Wall(new Position(9, 1)));
         walls.add(new Wall(new Position(10, 1)));
+        walls.add(new Wall(new Position(11, 1)));
+        walls.add(new Wall(new Position(12, 1)));
+        walls.add(new Wall(new Position(13, 1)));
+        walls.add(new Wall(new Position(14, 1)));
+        walls.add(new Wall(new Position(15, 1)));
+        walls.add(new Wall(new Position(16, 1)));
+        walls.add(new Wall(new Position(17, 1)));
+        walls.add(new Wall(new Position(18, 1)));
+        walls.add(new Wall(new Position(19, 1)));
+        walls.add(new Wall(new Position(20, 1)));
         walls.add(new Wall(new Position(1, 2)));
         walls.add(new Wall(new Position(1, 3)));
         walls.add(new Wall(new Position(1, 4)));
@@ -91,24 +78,43 @@ public class ArenaMaker {
         walls.add(new Wall(new Position(1, 8)));
         walls.add(new Wall(new Position(1, 9)));
         walls.add(new Wall(new Position(1, 10)));
-        walls.add(new Wall(new Position(10, 2)));
-        walls.add(new Wall(new Position(10, 3)));
-        walls.add(new Wall(new Position(10, 4)));
-        walls.add(new Wall(new Position(10, 5)));
-        walls.add(new Wall(new Position(10, 6)));
-        walls.add(new Wall(new Position(10, 7)));
-        walls.add(new Wall(new Position(10, 8)));
-        walls.add(new Wall(new Position(10, 9)));
-        walls.add(new Wall(new Position(10, 10)));
-        walls.add(new Wall(new Position(2, 10)));
-        walls.add(new Wall(new Position(3, 10)));
-        walls.add(new Wall(new Position(4, 10)));
-        walls.add(new Wall(new Position(5, 10)));
-        walls.add(new Wall(new Position(6, 10)));
-        walls.add(new Wall(new Position(7, 10)));
-        walls.add(new Wall(new Position(8, 10)));
-        walls.add(new Wall(new Position(9, 10)));
-
+        walls.add(new Wall(new Position(1, 11)));
+        walls.add(new Wall(new Position(1, 12)));
+        walls.add(new Wall(new Position(1, 13)));
+        walls.add(new Wall(new Position(1, 14)));
+        walls.add(new Wall(new Position(1, 15)));
+        walls.add(new Wall(new Position(20, 2)));
+        walls.add(new Wall(new Position(20, 3)));
+        walls.add(new Wall(new Position(20, 4)));
+        walls.add(new Wall(new Position(20, 5)));
+        walls.add(new Wall(new Position(20, 6)));
+        walls.add(new Wall(new Position(20, 7)));
+        walls.add(new Wall(new Position(20, 8)));
+        walls.add(new Wall(new Position(20, 9)));
+        walls.add(new Wall(new Position(20, 10)));
+        walls.add(new Wall(new Position(20, 11)));
+        walls.add(new Wall(new Position(20, 12)));
+        walls.add(new Wall(new Position(20, 13)));
+        walls.add(new Wall(new Position(20, 14)));
+        walls.add(new Wall(new Position(20, 15)));
+        walls.add(new Wall(new Position(2, 15)));
+        walls.add(new Wall(new Position(3, 15)));
+        walls.add(new Wall(new Position(4, 15)));
+        walls.add(new Wall(new Position(5, 15)));
+        walls.add(new Wall(new Position(6, 15)));
+        walls.add(new Wall(new Position(7, 15)));
+        walls.add(new Wall(new Position(8, 15)));
+        walls.add(new Wall(new Position(9, 15)));
+        walls.add(new Wall(new Position(10, 15)));
+        walls.add(new Wall(new Position(11, 15)));
+        walls.add(new Wall(new Position(12, 15)));
+        walls.add(new Wall(new Position(13, 15)));
+        walls.add(new Wall(new Position(14, 15)));
+        walls.add(new Wall(new Position(15, 15)));
+        walls.add(new Wall(new Position(16, 15)));
+        walls.add(new Wall(new Position(17, 15)));
+        walls.add(new Wall(new Position(18, 15)));
+        walls.add(new Wall(new Position(19, 15)));
 
 
 
@@ -151,17 +157,17 @@ public class ArenaMaker {
         List<Enemy> enemies = new ArrayList<>();
 
         enemies.add(new Enemy(new Position(2, 2), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 2, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(2, 3), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));
-        enemies.add(new Enemy(new Position(3, 3), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));
-        enemies.add(new Enemy(new Position(7, 9), new Attributes(1, 2, 3, 4),
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 2, Enemy.TYPE.RAT));
+        enemies.add(new Enemy(new Position(16, 3), new Attributes(1, 2, 3, 4),
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 2, Enemy.TYPE.RAT));
+        /*enemies.add(new Enemy(new Position(7, 9), new Attributes(1, 2, 3, 4),
                 new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));
         enemies.add(new Enemy(new Position(7, 2), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));
-        enemies.add(new Enemy(new Position(4, 8), new Attributes(1, 2, 3, 4),
-                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 3, Enemy.TYPE.SCORPION));
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 5, Enemy.TYPE.RAT));*/
+        enemies.add(new Enemy(new Position(14, 8), new Attributes(1, 2, 3, 4),
+                new Weapon(10, "Avocado", new Attributes(0, 0, 0, 0)), 4, 1, Enemy.TYPE.SCORPION));
 
 
 

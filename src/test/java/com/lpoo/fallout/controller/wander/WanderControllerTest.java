@@ -1,6 +1,5 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.controller.Controller;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.battle.BattleController;
 import com.lpoo.fallout.model.wander.Arena;
@@ -12,7 +11,6 @@ import com.lpoo.fallout.model.wander.WanderModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.*;

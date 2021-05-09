@@ -8,23 +8,18 @@ import com.lpoo.fallout.model.wander.element.VaultBoy;
 import java.io.*;
 
 public class FileWanderModelFactory {
-    private String arenaName;
-    private VaultBoy vaultBoy;
 
-    public WanderModel createWanderModel() throws IOException, ClassNotFoundException {
-        readGameStatFile();
-        Arena arena = new FileArenaFactory(arenaName).createArena();
-        return new WanderModel(vaultBoy, arena);
-    }
+    public static WanderModel createWanderModel(String fileName) throws IOException, ClassNotFoundException {
 
-    private void readGameStatFile() throws IOException, ClassNotFoundException {
-        FileInputStream is = new FileInputStream("resources/gamestat.bin");
+        FileInputStream is = new FileInputStream("resources/" + fileName + ".bin");
         ObjectInputStream ois = new ObjectInputStream(is);
 
-        if (is.available() <= 0) return;
+        String arenaName = (String) ois.readObject();
+        VaultBoy vaultBoy = (VaultBoy) ois.readObject();
+        ois.close();
 
-        this.arenaName = (String) ois.readObject();
-        this.vaultBoy = (VaultBoy) ois.readObject();
+        Arena arena = FileArenaFactory.createArena(arenaName);
+        return new WanderModel(vaultBoy, arena);
     }
 
 }

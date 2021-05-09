@@ -22,7 +22,7 @@ public class WanderController implements Controller {
 
 
     public WanderController(Game game) throws IOException, ClassNotFoundException {
-        this(game, new FileWanderModelFactory().createWanderModel());
+        this(game, FileWanderModelFactory.createWanderModel("gamestat"));
     }
 
     public WanderController(Game game, WanderModel model) {
@@ -53,7 +53,7 @@ public class WanderController implements Controller {
         this.enemyController.moveEnemies();
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
-            game.pushController(new BattleController(fightingEnemy));
+            game.pushController(new BattleController(this.game, fightingEnemy));
         }
         this.viewer.draw();
     }
@@ -64,21 +64,26 @@ public class WanderController implements Controller {
         switch (nextAction) {
             case UP: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().up());
+                break;
             }
             case DOWN: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().down());
+                break;
             }
             case RIGHT: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().right());
+                break;
             }
             case LEFT: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().left());
+                break;
             }
             case NONE: {
                 break;
             }
             case QUIT: {
                 this.game.clearControllers();
+                break;
             }
         }
     }

@@ -11,9 +11,7 @@ public class Application {
             Game game = new Game();
             game.run();
 
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | InterruptedException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
