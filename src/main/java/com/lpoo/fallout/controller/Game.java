@@ -1,6 +1,7 @@
 package com.lpoo.fallout.controller;
 
-import com.lpoo.fallout.controller.wander.WanderController;
+import com.lpoo.fallout.controller.mainmenu.MainMenuMainController;
+import com.lpoo.fallout.controller.wander.WanderMainController;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 
@@ -8,8 +9,8 @@ import java.io.IOException;
 import java.util.Stack;
 
 public class Game {
-    private Stack<Controller> controllers;
-    private static final Integer FPS = 60;
+    private Stack<MainController> controllers;
+    private static final Integer FPS = 24;
     private final long frameTime;
     private final LanternaGUI gui;
 
@@ -19,11 +20,11 @@ public class Game {
 
         frameTime = 1000/60;
 
-        this.gui = new LanternaGUI(new LanternaTerminal());
-        this.pushController(new WanderController(this));
+        this.gui = new LanternaGUI(new LanternaTerminal(25, 25));
+        this.pushController(new MainMenuMainController(this));
     }
 
-    public void pushController(Controller newController) {
+    public void pushController(MainController newController) {
         controllers.push(newController);
     }
     public void popController() {
@@ -32,7 +33,7 @@ public class Game {
     public void clearControllers() {
         controllers.clear();
     }
-    public Controller topController() {
+    public MainController topController() {
         return controllers.peek();
     }
     public LanternaGUI getGui() {

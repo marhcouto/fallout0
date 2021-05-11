@@ -1,8 +1,8 @@
 package com.lpoo.fallout.controller.wander;
 
-import com.lpoo.fallout.controller.Controller;
+import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.battle.BattleController;
+import com.lpoo.fallout.controller.battle.BattleMainController;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.wander.*;
@@ -12,7 +12,7 @@ import com.lpoo.fallout.view.wander.WanderViewer;
 import java.io.IOException;
 import java.util.AbstractQueue;
 
-public class WanderController implements Controller {
+public class WanderMainController implements MainController {
     private WanderModel model;
     private WanderViewer viewer;
     private final Game game;
@@ -21,11 +21,11 @@ public class WanderController implements Controller {
     private final EnemyController enemyController;
 
 
-    public WanderController(Game game) throws IOException, ClassNotFoundException {
+    public WanderMainController(Game game) throws IOException, ClassNotFoundException {
         this(game, FileHandler.createWanderModel("gamestat"));
     }
 
-    public WanderController(Game game, WanderModel model) {
+    public WanderMainController(Game game, WanderModel model) {
         this.model = model;
         this.enemyController = new EnemyController(model, new RandomMovingEngine(), Game.getFps());
         this.viewer = new WanderViewer(game.getGui(), model);
@@ -53,7 +53,7 @@ public class WanderController implements Controller {
         this.enemyController.moveEnemies();
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
-            game.pushController(new BattleController(this.game, fightingEnemy));
+            game.pushController(new BattleMainController(this.game, fightingEnemy));
         }
         this.viewer.draw();
     }

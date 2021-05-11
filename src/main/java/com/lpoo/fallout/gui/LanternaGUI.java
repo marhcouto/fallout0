@@ -46,6 +46,7 @@ public class LanternaGUI {
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return ACTION.UTIL_E;
+        if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.ENTER;
 
         return ACTION.NONE;
     }
@@ -54,7 +55,7 @@ public class LanternaGUI {
         return terminal;
     }
 
-    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE}
+    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE, ENTER}
 
     private enum DRAW_STATUS {
         CLEAN,

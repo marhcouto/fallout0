@@ -1,16 +1,16 @@
 package com.lpoo.fallout.controller.battle;
 
-import com.lpoo.fallout.controller.Controller;
+import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.model.wander.element.Enemy;
 
 import java.io.IOException;
 
-public class BattleController implements Controller {
+public class BattleMainController implements MainController {
     private Enemy enemy;
     private Game game;
 
-    public BattleController(Game game, Enemy enemy) {
+    public BattleMainController(Game game, Enemy enemy) {
         this.enemy = enemy;
         this.game = game;
     }
