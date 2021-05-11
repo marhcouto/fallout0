@@ -2,7 +2,7 @@ package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.battle.BattleMainController;
+import com.lpoo.fallout.controller.battle.BattleController;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.wander.*;
@@ -12,24 +12,23 @@ import com.lpoo.fallout.view.wander.WanderViewer;
 import java.io.IOException;
 import java.util.AbstractQueue;
 
-public class WanderMainController implements MainController {
+public class WanderController extends MainController {
     private WanderModel model;
     private WanderViewer viewer;
-    private final Game game;
 
     private final VaultBoyController vaultBoyController;
     private final EnemyController enemyController;
 
 
-    public WanderMainController(Game game) throws IOException, ClassNotFoundException {
+    public WanderController(Game game) throws IOException, ClassNotFoundException {
         this(game, FileHandler.createWanderModel("gamestat"));
     }
 
-    public WanderMainController(Game game, WanderModel model) {
+    public WanderController(Game game, WanderModel model)  {
+        super(game);
         this.model = model;
         this.enemyController = new EnemyController(model, new RandomMovingEngine(), Game.getFps());
         this.viewer = new WanderViewer(game.getGui(), model);
-        this.game = game;
         this.vaultBoyController = new VaultBoyController(model);
     }
 
@@ -53,14 +52,14 @@ public class WanderMainController implements MainController {
         this.enemyController.moveEnemies();
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
-            game.pushController(new BattleMainController(this.game, fightingEnemy));
+            this.getGame().pushController(new BattleController(this.getGame(), fightingEnemy));
         }
         this.viewer.draw();
     }
 
     @Override
     public void react() throws IOException {
-        LanternaGUI.ACTION nextAction = this.game.getGui().getAction();
+        LanternaGUI.ACTION nextAction = this.getGame().getGui().getAction();
         switch (nextAction) {
             case UP: {
                 this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().up());
@@ -82,7 +81,7 @@ public class WanderMainController implements MainController {
                 break;
             }
             case QUIT: {
-                this.game.clearControllers();
+                this.getGame().clearControllers();
                 break;
             }
         }

@@ -8,23 +8,22 @@ import com.lpoo.fallout.view.mainmenu.MainMenuViewer;
 
 import java.io.IOException;
 
-public class MainMenuMainController implements MainController {
+public class MainMenuController extends MainController {
     private static int MAX_AVAILABLE_POINTS = 8;
-    private Game game;
     private MainMenuModel model;
     private MainMenuViewer viewer;
     private int availablePoints;
 
-    public MainMenuMainController(Game game) {
-        this.game = game;
+    public MainMenuController(Game game) {
+        super(game);
         model = new MainMenuModel();
-        viewer = new MainMenuViewer(game.getGui(), model);
+        viewer = new MainMenuViewer(getGame().getGui(), model);
         availablePoints = 8;
     }
 
     @Override
     public void react() throws IOException {
-        LanternaGUI.ACTION nextAction = game.getGui().getAction();
+        LanternaGUI.ACTION nextAction = getGame().getGui().getAction();
         switch (nextAction) {
             case UP: {
                 model.selectUp();
@@ -61,7 +60,7 @@ public class MainMenuMainController implements MainController {
     }
 
     @Override
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException {
         react();
         viewer.draw();
     }

@@ -1,7 +1,6 @@
 package com.lpoo.fallout.controller;
 
-import com.lpoo.fallout.controller.mainmenu.MainMenuMainController;
-import com.lpoo.fallout.controller.wander.WanderMainController;
+import com.lpoo.fallout.controller.mainmenu.MainMenuController;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 
@@ -21,7 +20,7 @@ public class Game {
         frameTime = 1000/60;
 
         this.gui = new LanternaGUI(new LanternaTerminal(25, 25));
-        this.pushController(new MainMenuMainController(this));
+        this.pushController(new MainMenuController(this));
     }
 
     public void pushController(MainController newController) {
