@@ -24,6 +24,11 @@ public class WanderController extends MainController {
         this(game, FileHandler.createWanderModel("gamestat"));
     }
 
+    public WanderController(Game game, Attributes vaultBoyAttributes) throws IOException, ClassNotFoundException {
+        this(game, FileHandler.createWanderModel("gamestat"));
+        model.getVaultBoy().setAttributes(vaultBoyAttributes);
+    }
+
     public WanderController(Game game, WanderModel model)  {
         super(game);
         this.model = model;

@@ -2,13 +2,13 @@ package com.lpoo.fallout.view.mainmenu;
 
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
-import com.lpoo.fallout.model.Option;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.view.StringViewer;
 import com.lpoo.fallout.view.Viewer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenuViewer implements Viewer {
@@ -37,10 +37,10 @@ public class MainMenuViewer implements Viewer {
         }
 
         new StringViewer(gui, "#66503a", "#E3BF9A", WELCOME_MESSAGE, StringViewer.ALIGN.CENTER, 3, 1).draw();
-        List<String> formatedOptions = model.getFormatedOptions();
+        List<String> formatedOptions = getFormatedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
-            if (i == model.getSelectedOptionIndex()) {
+            if (i == model.getSelectedIndex()) {
                 new StringViewer(gui, "#FF0000", "#E3BF9A", formatedOptions.get(i), StringViewer.ALIGN.CENTER, 8 + i, 1).draw();
             } else {
                 new StringViewer(gui, "#66503a", "#E3BF9A", formatedOptions.get(i), StringViewer.ALIGN.CENTER, 8 + i, 1).draw();
@@ -48,5 +48,22 @@ public class MainMenuViewer implements Viewer {
         }
 
         gui.draw();
+    }
+
+    List<String> getFormatedOptions() {
+        List<String> resList = new ArrayList<>();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (MainMenuModel.OPTION option: MainMenuModel.OPTION.values()) {
+            stringBuilder.append(option.label);
+            if (model.getValue(option) != -1) {
+                stringBuilder.append(" <");
+                stringBuilder.append(model.getValue(option));
+                stringBuilder.append(">");
+            }
+            resList.add(stringBuilder.toString());
+            stringBuilder.setLength(0);
+        }
+        return resList;
     }
 }

@@ -1,78 +1,89 @@
 package com.lpoo.fallout.model.mainmenu;
 
-import com.lpoo.fallout.ControllableMenu;
-import com.lpoo.fallout.model.Option;
 import com.lpoo.fallout.model.wander.Attributes;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MainMenuModel implements ControllableMenu <Integer> {
-    private final List<Option<Integer>> availableOptions;
+public class MainMenuModel {
+    private Attributes attributes;
     private int selectedOption;
 
-    public MainMenuModel() {
-        availableOptions = new ArrayList<>();
-        availableOptions.add(new Option<>("Strength", 0));
-        availableOptions.add(new Option<>("Agility", 0));
-        availableOptions.add(new Option<>("Intelligence", 0));
-        availableOptions.add(new Option<>("Luck", 0));
-        availableOptions.add(new Option<>("Let's GO", -1));
+    public enum OPTION {
+        STRENGTH(0, "STRENGTH"),
+        AGILITY (1, "AGILITY"),
+        INTELLIGENCE(2, "INTELLIGENCE"),
+        LUCK (3, "LUCK"),
+        NEXT (4, "NEXT");
 
+        private static final Map<Integer, OPTION> BY_INDEX = new HashMap<>();
+        private static final Map<String, OPTION> BY_LABEL = new HashMap<>();
+
+        static {
+            for (OPTION o: values()) {
+                BY_INDEX.put(o.index, o);
+                BY_LABEL.put(o.label, o);
+            }
+        }
+
+        public final String label;
+        public final Integer index;
+
+        OPTION(Integer index, String label) {
+            this.index = index;
+            this.label = label;
+        }
+
+        public static OPTION valueOfLabel(String label) {
+            return BY_LABEL.get(label);
+        }
+
+        public static OPTION valueOfIndex(Integer index) {
+            return BY_INDEX.get(index);
+        }
+    }
+
+    public MainMenuModel() {
+        attributes = new Attributes();
         selectedOption = 0;
     }
 
-    public Option<Integer> getSelectedOption() {
-        return availableOptions.get(selectedOption);
+    public OPTION getSelected() {
+        return OPTION.valueOfIndex(selectedOption);
     }
 
-    @Override
-    public Integer getSelectedOptionIndex() {
+    public Integer getSelectedIndex() {
         return selectedOption;
     }
 
     public void incrementOption() {
-        if (selectedOption < (availableOptions.size() - 1)) {
-            Integer curVal = availableOptions.get(selectedOption).getValue();
-            availableOptions.get(selectedOption).setValue(curVal + 1);
+        if (selectedOption < (OPTION.values().length - 1)) {
+            selectedOption++;
         }
     }
 
-    public boolean nextButtonSelected() {
-        return (selectedOption == (availableOptions.size() - 1));
+    public Attributes getAttributes() {
+        return attributes;
     }
 
     public void decrementOption() {
-        if (selectedOption < (availableOptions.size() - 1)) {
-            Integer curVal = availableOptions.get(selectedOption).getValue();
-            availableOptions.get(selectedOption).setValue(curVal - 1);
+        if (selectedOption > 0) {
+            selectedOption--;
         }
     }
 
-    @Override
-    public void selectUp() {
-        if (selectedOption > 0)
-            selectedOption -= 1;
-    }
-
-    @Override
-    public void selectDown() {
-        if (selectedOption < (availableOptions.size() - 1))
-            selectedOption += 1;
-    }
-
-    public List<String> getFormatedOptions() {
-        List<String> resList = new ArrayList<>();
-
-        for (Option<Integer> option: availableOptions) {
-            StringBuffer buffer = new StringBuffer(option.getName());
-            if (option.getValue() != -1) {
-                buffer.append(" <");
-                buffer.append(option.getValue().toString());
-                buffer.append(">");
-            }
-            resList.add(buffer.toString());
+    public Integer getValue(OPTION option) {
+        switch (option) {
+            case STRENGTH:
+                return attributes.getStrength();
+            case AGILITY:
+                return attributes.getAgility();
+            case LUCK:
+                return attributes.getLuck();
+            case INTELLIGENCE:
+                return attributes.getIntelligence();
+            default:
+                return -1;
         }
-        return resList;
     }
 }
