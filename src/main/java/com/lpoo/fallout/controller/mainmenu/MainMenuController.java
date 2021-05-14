@@ -61,6 +61,9 @@ public class MainMenuController extends MainController {
                 commandMap.get(model.getSelected()).activate();
                 break;
             }
+            case QUIT: {
+                getGame().clearControllers();
+            }
             default: {
                 break;
             }

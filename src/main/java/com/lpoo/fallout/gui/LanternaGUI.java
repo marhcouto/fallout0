@@ -47,6 +47,7 @@ public class LanternaGUI {
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return ACTION.UTIL_E;
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.ENTER;
+        if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
 
         return ACTION.NONE;
     }
