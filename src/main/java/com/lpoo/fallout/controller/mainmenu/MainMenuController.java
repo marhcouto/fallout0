@@ -63,6 +63,7 @@ public class MainMenuController extends MainController {
             }
             case QUIT: {
                 getGame().clearControllers();
+                break;
             }
             default: {
                 break;

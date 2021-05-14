@@ -66,28 +66,15 @@ public class WanderController extends MainController {
     public void react() throws IOException {
         LanternaGUI.ACTION nextAction = this.getGame().getGui().getAction();
         switch (nextAction) {
-            case UP: {
-                this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().up());
-                break;
-            }
-            case DOWN: {
-                this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().down());
-                break;
-            }
-            case RIGHT: {
-                this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().right());
-                break;
-            }
-            case LEFT: {
-                this.vaultBoyController.moveVaultBoy(this.model.getVaultBoy().getPosition().left());
-                break;
-            }
             case NONE: {
                 break;
             }
             case QUIT: {
                 this.getGame().clearControllers();
                 break;
+            }
+            default: {
+                vaultBoyController.move(nextAction);
             }
         }
     }
