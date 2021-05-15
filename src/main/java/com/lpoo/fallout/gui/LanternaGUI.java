@@ -1,7 +1,5 @@
 package com.lpoo.fallout.gui;
 
-
-
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -10,7 +8,7 @@ import com.lpoo.fallout.model.wander.Position;
 
 import java.io.IOException;
 
-public class LanternaGUI {
+public class LanternaGUI implements GUI<LanternaDrawable> {
     private final LanternaTerminal terminal;
     private DRAW_STATUS currentStatus;
 
@@ -19,7 +17,7 @@ public class LanternaGUI {
         currentStatus = DRAW_STATUS.DIRTY;
     }
 
-    public void draw() throws IOException{
+    public void draw() throws IOException {
         terminal.getScreen().refresh();
         currentStatus = DRAW_STATUS.DIRTY;
     }
@@ -34,29 +32,27 @@ public class LanternaGUI {
         terminal.getGraphics().putString(position.getColumn(), position.getRow(), drawable.getChar());
     }
 
-    public ACTION getAction() throws IOException {
-
+    @Override
+    public GUI.ACTION getAction() throws IOException {
         KeyStroke keyStroke = terminal.getScreen().pollInput();
         if (keyStroke == null)
-            return ACTION.NONE;
+            return GUI.ACTION.NONE;
 
-        if (keyStroke.getKeyType() == KeyType.ArrowUp) return ACTION.UP;
-        if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
-        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
-        if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return ACTION.QUIT;
-        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return ACTION.UTIL_E;
-        if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.ENTER;
-        if (keyStroke.getKeyType() == KeyType.EOF) return ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.ArrowUp) return GUI.ACTION.UP;
+        if (keyStroke.getKeyType() == KeyType.ArrowDown) return GUI.ACTION.DOWN;
+        if (keyStroke.getKeyType() == KeyType.ArrowLeft) return GUI.ACTION.LEFT;
+        if (keyStroke.getKeyType() == KeyType.ArrowRight) return GUI.ACTION.RIGHT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'q') return GUI.ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return GUI.ACTION.UTIL_E;
+        if (keyStroke.getKeyType() == KeyType.Enter) return GUI.ACTION.ENTER;
+        if (keyStroke.getKeyType() == KeyType.EOF) return GUI.ACTION.QUIT;
 
-        return ACTION.NONE;
+        return GUI.ACTION.NONE;
     }
 
     public LanternaTerminal getTerminal() {
         return terminal;
     }
-
-    public enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE, ENTER}
 
     private enum DRAW_STATUS {
         CLEAN,

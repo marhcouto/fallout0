@@ -1,17 +1,17 @@
 package com.lpoo.fallout.view.renderers;
 
-import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.GUI;
 
-public abstract class Renderer<T> {
-    T model;
+public abstract class Renderer<M, I extends GUI<?>> {
+    M model;
 
-    public Renderer(T model) {
+    public Renderer(M model) {
         this.model = model;
     }
 
-    public T getModel() {
+    public M getModel() {
         return model;
     }
 
-    public abstract void placeElement(LanternaGUI gui);
+    public abstract void placeElement(I gui);
 }

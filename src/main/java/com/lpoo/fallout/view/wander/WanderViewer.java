@@ -11,7 +11,7 @@ import com.lpoo.fallout.view.Viewer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WanderViewer extends Viewer<WanderModel> {
+public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     private static final Map<Enemy.TYPE, LanternaDrawable> drawableMap = new HashMap<>();
 
     static {

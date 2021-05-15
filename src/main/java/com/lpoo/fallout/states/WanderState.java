@@ -2,6 +2,7 @@ package com.lpoo.fallout.states;
 
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.wander.WanderController;
+import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.wander.WanderViewer;
@@ -12,7 +13,7 @@ public class WanderState extends State<WanderModel> {
     }
 
     @Override
-    protected Viewer<WanderModel> getViewer() {
+    protected Viewer<WanderModel, LanternaGUI> getViewer() {
         return new WanderViewer(getModel());
     }
 

@@ -4,7 +4,7 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.wander.Position;
 
-public class StringRenderer extends Renderer<String> {
+public class StringRenderer extends Renderer<String, LanternaGUI> {
     private String foregroundColour;
     private String backgroundColour;
     private StringRenderer.ALIGN alignment;

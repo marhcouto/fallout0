@@ -2,6 +2,7 @@ package com.lpoo.fallout.states;
 
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.battle.BattleController;
+import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.battle.BattleViewer;
@@ -22,7 +23,7 @@ public class BattleState extends State <BattleModel> {
     }
 
     @Override
-    protected Viewer<BattleModel> getViewer() {
+    protected Viewer<BattleModel, LanternaGUI> getViewer() {
         return new BattleViewer(getModel());
     }
 }

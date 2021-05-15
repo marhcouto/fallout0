@@ -10,7 +10,7 @@ import com.lpoo.fallout.view.renderers.StringRenderer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenuViewer extends Viewer<MainMenuModel> {
+public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
     private static String WELCOME_MESSAGE = "WELCOME TO FALLOUT!";
 
     public MainMenuViewer(MainMenuModel model) {
