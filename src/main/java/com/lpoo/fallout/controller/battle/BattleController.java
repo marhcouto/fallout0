@@ -2,29 +2,18 @@ package com.lpoo.fallout.controller.battle;
 
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.model.wander.element.Enemy;
+import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.model.battle.BattleModel;
 
-import java.io.IOException;
-
-public class BattleController extends MainController {
-    private Enemy enemy;
-
-    public BattleController(Game game, Enemy enemy)  {
-        super(game);
-        this.enemy = enemy;
-    }
-    public Enemy getEnemy() {
-        return enemy;
+public class BattleController extends MainController<BattleModel> {
+    public BattleController(BattleModel model)  {
+        super(model);
     }
 
     @Override
-    public void run() throws IOException {
+    public void step(Game game, LanternaGUI.ACTION action, long time) {
         System.out.println("BATTLE BEGINS... NOT YET IMPLEMENTED...");
-        getGame().popController();
+        game.popController();
     }
 
-    @Override
-    public void react() throws IOException {
-
-    }
 }

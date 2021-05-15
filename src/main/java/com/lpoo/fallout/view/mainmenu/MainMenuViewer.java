@@ -4,25 +4,21 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 import com.lpoo.fallout.model.wander.Position;
-import com.lpoo.fallout.view.StringViewer;
 import com.lpoo.fallout.view.Viewer;
+import com.lpoo.fallout.view.renderers.StringRenderer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenuViewer implements Viewer {
-    private LanternaGUI gui;
-    private MainMenuModel model;
+public class MainMenuViewer extends Viewer<MainMenuModel> {
     private static String WELCOME_MESSAGE = "WELCOME TO FALLOUT!";
 
-    public MainMenuViewer(LanternaGUI gui, MainMenuModel model) {
-        this.gui = gui;
-        this.model = model;
+    public MainMenuViewer(MainMenuModel model) {
+        super(model);
     }
 
     @Override
-    public void draw() throws IOException {
+    protected void drawElements(LanternaGUI gui) {
         int columns = gui.getTerminal().getScreen().getTerminalSize().getColumns();
         int rows = gui.getTerminal().getScreen().getTerminalSize().getRows();
 
@@ -36,29 +32,27 @@ public class MainMenuViewer implements Viewer {
             }
         }
 
-        new StringViewer(gui, "#66503a", "#E3BF9A", WELCOME_MESSAGE, StringViewer.ALIGN.CENTER, 3, 1).draw();
+        new StringRenderer(WELCOME_MESSAGE, "#66503a", "#E3BF9A", StringRenderer.ALIGN.CENTER, 3, 1).placeElement(gui);
         List<String> formatedOptions = getFormatedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
-            if (i == model.getSelectedIndex()) {
-                new StringViewer(gui, "#FF0000", "#E3BF9A", formatedOptions.get(i), StringViewer.ALIGN.CENTER, 8 + i, 1).draw();
+            if (i == getModel().getSelectedIndex()) {
+                new StringRenderer(formatedOptions.get(i), "#FF0000", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);
             } else {
-                new StringViewer(gui, "#66503a", "#E3BF9A", formatedOptions.get(i), StringViewer.ALIGN.CENTER, 8 + i, 1).draw();
+                new StringRenderer(formatedOptions.get(i), "#66503a", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);
             }
         }
-
-        gui.draw();
     }
 
-    List<String> getFormatedOptions() {
+    private List<String> getFormatedOptions() {
         List<String> resList = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (MainMenuModel.OPTION option: MainMenuModel.OPTION.values()) {
             stringBuilder.append(option.label);
-            if (model.getValue(option) != -1) {
+            if (getModel().getValue(option) != -1) {
                 stringBuilder.append(" <");
-                stringBuilder.append(model.getValue(option));
+                stringBuilder.append(getModel().getValue(option));
                 stringBuilder.append(">");
             }
             resList.add(stringBuilder.toString());

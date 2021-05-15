@@ -26,13 +26,13 @@ class EnemyControllerTest {
         Mockito.when(movingEngine.move(Mockito.any(Position.class))).thenReturn(new Position(0, 0));
         model = Mockito.mock(WanderModel.class);
         Mockito.when(model.getArena()).thenReturn(arena);
-        controller = new EnemyController(model, movingEngine, 0);
+        controller = new EnemyController(model, movingEngine);
     }
 
     @Test
     void doesNotColideWithWall() {
         Mockito.when(arena.isSpaceEmpty(Mockito.any(Position.class))).thenReturn(true);
-        controller.moveEnemies();
+        controller.moveEnemies(1000);
         Assertions.assertEquals(new Position(0, 0), model.getArena().getEnemies().get(0).getPosition());
     }
 
@@ -40,7 +40,7 @@ class EnemyControllerTest {
     void collisionWithWall() {
         Mockito.when(arena.isSpaceEmpty(Mockito.any(Position.class))).thenReturn(false);
         Position originalPosition = model.getArena().getEnemies().get(0).getPosition();
-        controller.moveEnemies();
+        controller.moveEnemies(1000);
         Assertions.assertEquals(originalPosition, model.getArena().getEnemies().get(0).getPosition());
     }
 }

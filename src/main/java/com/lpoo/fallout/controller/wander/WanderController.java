@@ -2,47 +2,30 @@ package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.battle.BattleController;
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.model.filehandling.FileHandler;
+import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Enemy;
-import com.lpoo.fallout.view.wander.WanderViewer;
+import com.lpoo.fallout.states.BattleState;
 
-import java.io.IOException;
 import java.util.AbstractQueue;
 
-public class WanderController extends MainController {
-    private WanderModel model;
-    private WanderViewer viewer;
-
+public class WanderController extends MainController<WanderModel> {
     private final VaultBoyController vaultBoyController;
     private final EnemyController enemyController;
 
-
-    public WanderController(Game game) throws IOException, ClassNotFoundException {
-        this(game, FileHandler.createWanderModel("gamestat"));
-    }
-
-    public WanderController(Game game, Attributes vaultBoyAttributes) throws IOException, ClassNotFoundException {
-        this(game, FileHandler.createWanderModel("gamestat"));
-        model.getVaultBoy().setAttributes(vaultBoyAttributes);
-    }
-
-    public WanderController(Game game, WanderModel model)  {
-        super(game);
-        this.model = model;
-        this.enemyController = new EnemyController(model, new RandomMovingEngine(), Game.getFps());
-        this.viewer = new WanderViewer(game.getGui(), model);
-        this.vaultBoyController = new VaultBoyController(model);
+    public WanderController(WanderModel model) {
+        super(model);
+        vaultBoyController = new VaultBoyController(getModel());
+        enemyController = new EnemyController(getModel(), new RandomMovingEngine());
     }
 
     private Enemy checkFight() {
-        AbstractQueue<Enemy> enemies = model.getArena().getOrderedEnemies(model.getVaultBoy().getPosition());
+        AbstractQueue<Enemy> enemies = getModel().getArena().getOrderedEnemies(getModel().getVaultBoy().getPosition());
         while(!enemies.isEmpty()) {
             Enemy curEnemy = enemies.poll();
-            if (curEnemy.insideAttackRadius(model.getVaultBoy())) {
-                if (model.getArena().hasClearSight(model.getVaultBoy().getPosition(), curEnemy.getPosition()))
+            if (curEnemy.insideAttackRadius(getModel().getVaultBoy())) {
+                if (getModel().getArena().hasClearSight(getModel().getVaultBoy().getPosition(), curEnemy.getPosition()))
                     return curEnemy;
             } else {
                 return null;
@@ -52,30 +35,23 @@ public class WanderController extends MainController {
     }
 
     @Override
-    public void run() throws IOException {
-        this.react();
-        this.enemyController.moveEnemies();
-        Enemy fightingEnemy = checkFight();
-        if (fightingEnemy != null) {
-            this.getGame().pushController(new BattleController(this.getGame(), fightingEnemy));
-        }
-        this.viewer.draw();
-    }
-
-    @Override
-    public void react() throws IOException {
-        LanternaGUI.ACTION nextAction = this.getGame().getGui().getAction();
-        switch (nextAction) {
+    public void step(Game game, LanternaGUI.ACTION action, long time) {
+        switch (action) {
             case NONE: {
                 break;
             }
             case QUIT: {
-                this.getGame().clearControllers();
+                game.clearControllers();
                 break;
             }
             default: {
-                vaultBoyController.move(nextAction);
+                vaultBoyController.move(action);
             }
+        }
+        enemyController.moveEnemies(time);
+        Enemy fightingEnemy = checkFight();
+        if (fightingEnemy != null) {
+            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy)));
         }
     }
 }

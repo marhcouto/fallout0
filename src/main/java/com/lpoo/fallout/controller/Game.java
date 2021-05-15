@@ -1,39 +1,41 @@
 package com.lpoo.fallout.controller;
 
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
+import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+import com.lpoo.fallout.states.MainMenuState;
+import com.lpoo.fallout.states.State;
 
 import java.io.IOException;
 import java.util.Stack;
 
 public class Game {
-    private Stack<MainController> controllers;
+    private Stack<State> states;
     private static final Integer FPS = 24;
     private final long frameTime;
     private final LanternaGUI gui;
 
     public Game() throws IOException, ClassNotFoundException {
         // Stack for the controllers
-        controllers = new Stack<>();
+        states = new Stack<>();
 
         frameTime = 1000/60;
 
         this.gui = new LanternaGUI(new LanternaTerminal(25, 25));
-        this.pushController(new MainMenuController(this));
+        this.pushController(new MainMenuState(new MainMenuModel()));
     }
 
-    public void pushController(MainController newController) {
-        controllers.push(newController);
+    public void pushController(State newController) {
+        states.push(newController);
     }
     public void popController() {
-        controllers.pop();
+        states.pop();
     }
     public void clearControllers() {
-        controllers.clear();
+        states.clear();
     }
-    public MainController topController() {
-        return controllers.peek();
+    public State topController() {
+        return states.peek();
     }
     public LanternaGUI getGui() {
         return gui;
@@ -44,9 +46,9 @@ public class Game {
     }
 
     public void run() throws IOException, InterruptedException {
-        while (!controllers.empty()) {
+        while (!states.empty()) {
             long startTime = System.currentTimeMillis();
-            controllers.peek().run();
+            states.peek().step(this, startTime);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;

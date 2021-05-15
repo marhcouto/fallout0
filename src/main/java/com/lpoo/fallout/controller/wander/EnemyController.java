@@ -7,25 +7,24 @@ import com.lpoo.fallout.model.wander.WanderModel;
 public class EnemyController {
     private final WanderModel model;
     private final MovingEngine engine;
-    private int tickCounter;
-    private int framesPerSecond;
+    private long lastMovement;
+    private final long MOVE_TIME_MS = 800;
 
-    public EnemyController(WanderModel model, MovingEngine engine, Integer framesPerSecond) {
+    public EnemyController(WanderModel model, MovingEngine engine) {
         this.model = model;
         this.engine = engine;
-        this.framesPerSecond = framesPerSecond;
+        lastMovement = 0;
     }
 
-    public void moveEnemies() {
-        tickCounter++;
-        if (tickCounter >= framesPerSecond) {
+    public void moveEnemies(long time) {
+        if ((time - lastMovement) >= MOVE_TIME_MS) {
             for (Enemy enemy: model.getArena().getEnemies()) {
                 Position newPosition = engine.move(enemy.getPosition());
                 if (model.getArena().isSpaceEmpty(newPosition)) {
                     enemy.setPosition(newPosition);
                 }
             }
-            tickCounter = 0;
+            lastMovement = time;
         }
     }
 }

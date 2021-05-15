@@ -1,18 +1,17 @@
 package com.lpoo.fallout.controller;
 
-import java.io.IOException;
+import com.lpoo.fallout.gui.LanternaGUI;
 
-public abstract class MainController {
-    private final Game game;
+public abstract class MainController<T> {
+    private final T model;
 
-    public MainController(Game game)  {
-        this.game = game;
+    public MainController(T model) {
+        this.model = model;
     }
 
-    public Game getGame() {
-        return game;
+    public T getModel() {
+        return model;
     }
 
-    public abstract void run() throws IOException;
-    public abstract void react() throws IOException;
+    public abstract void step(Game game, LanternaGUI.ACTION action, long time);
 }

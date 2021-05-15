@@ -1,6 +1,7 @@
 package com.lpoo.fallout.model.filehandling;
 
 import com.lpoo.fallout.model.wander.Arena;
+import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +20,12 @@ public class FileHandler {
         ois.close();
 
         return arena;
+    }
+
+    public static WanderModel createWanderModel(String fileName, Attributes attributes) throws IOException, ClassNotFoundException {
+        WanderModel model = createWanderModel(fileName);
+        model.getVaultBoy().setAttributes(attributes);
+        return model;
     }
 
     public static WanderModel createWanderModel(String fileName) throws IOException, ClassNotFoundException {

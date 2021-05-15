@@ -1,7 +1,6 @@
 package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.battle.BattleMainController;
 import com.lpoo.fallout.model.wander.Arena;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.element.Enemy;
