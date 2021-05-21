@@ -16,7 +16,6 @@ import java.util.Arrays;
 class WanderViewerTest {
     WanderViewer viewer;
     LanternaGUI gui;
-    Arena arena;
 
     @BeforeEach
     void setUp() {
@@ -25,12 +24,12 @@ class WanderViewerTest {
         "Teste");
         WanderModel model = new WanderModel(new VaultBoy(new Position(1, 0)), arena);
         gui = Mockito.mock(LanternaGUI.class);
-        viewer = new WanderViewer(gui, model);
+        viewer = new WanderViewer(model);
     }
 
     @Test
     void countPlaceDrawable() throws IOException {
-        viewer.draw();
+        viewer.draw(gui);
         /*
             There are 3 elements in the model, so, placeDrawable must be called 3 times
          */
