@@ -2,14 +2,14 @@ package com.lpoo.fallout.model.battle;
 
 import com.lpoo.fallout.model.wander.element.Character;
 
-public class InGameStats {
+public class BattleStats {
     private Integer healthPoints;
     private Float dodgeChance;
     private Float missChance;
     private Integer baseDamage;
     private Float critRatio;
 
-    public InGameStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
+    public BattleStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
         this.healthPoints = healthPoints;
         this.dodgeChance = dodgeChance;
         this.missChance = missChange;
@@ -17,10 +17,10 @@ public class InGameStats {
         this.critRatio = critRatio;
     }
 
-    public InGameStats(Character character) {
+    public BattleStats(Character character) {
         this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
-        this.missChance = (float) ((100 - character.getAttributes().getLuck()) / 100);
+        this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
         this.baseDamage = character.getWeapon().getDamage();
         this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
     }
@@ -62,13 +62,4 @@ public class InGameStats {
     public void setCritRatio(Float critRatio) {
         this.critRatio = critRatio;
     }
-
-    /*public void caculateStats(Character character) {
-        this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
-        this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
-        this.missChance = (float) ((100 - character.getAttributes().getLuck()) / 100);
-        this.baseDamage = character.getWeapon().getDamage();
-        this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
-        return this;
-    }*/
 }

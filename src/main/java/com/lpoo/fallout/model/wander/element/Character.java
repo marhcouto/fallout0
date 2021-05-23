@@ -5,7 +5,11 @@ import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.Weapon;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+import java.util.UUID;
+
 public abstract class Character extends Element {
+    private UUID id;
     private Attributes attributes;
     private Weapon weapon;
     private Integer level;
@@ -13,6 +17,7 @@ public abstract class Character extends Element {
 
     public Character(@NotNull Position position, @NotNull Attributes attributes, @NotNull Weapon weapon, @NotNull Integer level, @NotNull Integer attackRadius) {
         super(position);
+        this.id = UUID.randomUUID();
         this.attributes = attributes;
         this.weapon = weapon;
         this.level = level;
@@ -37,6 +42,7 @@ public abstract class Character extends Element {
         return attackRadius;
     }
 
+
     public boolean insideAttackRadius(Character right) {
         double distanceBetweenPositions = this.getPosition().getDist(right.getPosition());
         return !(distanceBetweenPositions > (this.getAttackRadius() + right.getAttackRadius()));
@@ -46,15 +52,17 @@ public abstract class Character extends Element {
         return this.attributes.greaterThan(weapon.getRequiredAttributes());
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o.getClass() != this.getClass()) return false;
-        if (o == null) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Character character = (Character) o;
+        return id.equals(character.id);
+    }
 
-        Character e = (Character) o;
-        return this.getPosition().equals(e.getPosition()) && this.getLevel().equals(e.getLevel()) &&
-                this.getAttributes().equals(e.getAttributes()) && this.getWeapon().equals(e.getWeapon());
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
