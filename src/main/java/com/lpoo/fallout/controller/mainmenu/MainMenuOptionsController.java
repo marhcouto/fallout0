@@ -4,6 +4,7 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.OptionMenuController;
 import com.lpoo.fallout.controller.mainmenu.command.*;
 import com.lpoo.fallout.gui.GUI;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class MainMenuOptionsController extends OptionMenuController<MainMenuMode
         result.put(MainMenuModel.OPTION.AGILITY, new AgilityCommand(controller));
         result.put(MainMenuModel.OPTION.INTELLIGENCE, new IntelligenceCommand(controller));
         result.put(MainMenuModel.OPTION.LUCK, new LuckCommand(controller));
-        result.put(MainMenuModel.OPTION.NEXT, new NextCommand(controller));
+        result.put(MainMenuModel.OPTION.NEXT, new NextCommand(controller, new FileHandler()));
         return result;
     }
 

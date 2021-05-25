@@ -8,6 +8,7 @@ public class BattleStats {
     private Float missChance;
     private Integer baseDamage;
     private Float critRatio;
+    public static Float CRIT_MULTIPLIER = (float) 1.50;
 
     public BattleStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
         this.healthPoints = healthPoints;

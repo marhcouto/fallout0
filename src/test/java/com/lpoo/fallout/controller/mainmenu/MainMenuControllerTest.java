@@ -15,7 +15,7 @@ class MainMenuControllerTest {
     private Game game;
 
     @BeforeEach
-    void setUp() throws IOException, ClassNotFoundException {
+    void setUp() {
         controller = new MainMenuController(new MainMenuModel());
         game = Mockito.mock(Game.class);
     }

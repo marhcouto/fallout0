@@ -6,9 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class NullHandler extends CommandHandler {
-    NullHandler(@NotNull TurnModel model, @NotNull Random randomEngine) {
-        super(model, randomEngine);
-    }
+    public NullHandler(@NotNull TurnModel model, @NotNull Random randomEngine) { }
 
     @Override
     public void handle() { }

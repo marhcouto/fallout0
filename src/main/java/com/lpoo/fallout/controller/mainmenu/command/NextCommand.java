@@ -9,8 +9,11 @@ import com.lpoo.fallout.states.WanderState;
 import java.io.IOException;
 
 public class NextCommand extends MainMenuCommand {
-    public NextCommand(MainMenuOptionsController controller) {
+    FileHandler fileHandler;
+
+    public NextCommand(MainMenuOptionsController controller, FileHandler fileHandler) {
         super(controller);
+        this.fileHandler = fileHandler;
     }
 
     @Override
@@ -23,7 +26,7 @@ public class NextCommand extends MainMenuCommand {
     public void activate(Game requestData) {
         requestData.clearControllers();
         try {
-            requestData.pushController(new WanderState(FileHandler.createWanderModel("gamestat", controller.getModel().getAttributes())));
+            requestData.pushController(new WanderState(fileHandler.createWanderModel("gamestat", controller.getModel().getAttributes())));
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }

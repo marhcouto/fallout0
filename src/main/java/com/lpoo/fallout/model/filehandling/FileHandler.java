@@ -10,7 +10,7 @@ import java.io.*;
 
 public class FileHandler {
 
-    public static Arena createArena(@NotNull String fileName) throws IOException, ClassNotFoundException {
+    public Arena createArena(@NotNull String fileName) throws IOException, ClassNotFoundException {
 
         Arena arena;
         FileInputStream is = new FileInputStream("resources/arenas/" + fileName + ".bin");
@@ -22,13 +22,13 @@ public class FileHandler {
         return arena;
     }
 
-    public static WanderModel createWanderModel(String fileName, Attributes attributes) throws IOException, ClassNotFoundException {
+    public WanderModel createWanderModel(String fileName, Attributes attributes) throws IOException, ClassNotFoundException {
         WanderModel model = createWanderModel(fileName);
         model.getVaultBoy().setAttributes(attributes);
         return model;
     }
 
-    public static WanderModel createWanderModel(String fileName) throws IOException, ClassNotFoundException {
+    public WanderModel createWanderModel(String fileName) throws IOException, ClassNotFoundException {
 
         FileInputStream is = new FileInputStream("resources/" + fileName + ".bin");
         ObjectInputStream ois = new ObjectInputStream(is);

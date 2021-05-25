@@ -66,8 +66,8 @@ public class FileHandlingTest {
         //1
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls1, enemies1, arenaName));
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy1, gameStatFile));
-        Assertions.assertDoesNotThrow(() -> FileHandler.createWanderModel(gameStatFile)); // Simplest solution because of scopes
-        WanderModel wanderModel = FileHandler.createWanderModel(gameStatFile);
+        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile)); // Simplest solution because of scopes
+        WanderModel wanderModel = new FileHandler().createWanderModel(gameStatFile);
 
         for (int i = 0; i < wanderModel.getArena().getWallMap().size(); i++) // Test walls
             Assertions.assertTrue(wanderModel.getArena().getWallMap().containsValue(walls1.get(i)));
@@ -78,8 +78,8 @@ public class FileHandlingTest {
         //2
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls2, enemies2, arenaName));
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy2, gameStatFile));
-        Assertions.assertDoesNotThrow(() -> FileHandler.createWanderModel(gameStatFile));
-        wanderModel = FileHandler.createWanderModel(gameStatFile);
+        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile));
+        wanderModel = new FileHandler().createWanderModel(gameStatFile);
 
         for (int i = 0; i < wanderModel.getArena().getWallMap().size(); i++) // Test walls
             Assertions.assertTrue(wanderModel.getArena().getWallMap().containsValue(walls2.get(i)));
@@ -119,8 +119,8 @@ public class FileHandlingTest {
 
         //1
         Assertions.assertDoesNotThrow(() -> FileHandler.saveModel(gameStatFile, wanderModel1));
-        Assertions.assertDoesNotThrow(() -> FileHandler.createWanderModel(gameStatFile));
-        WanderModel wanderModel3 = FileHandler.createWanderModel(gameStatFile);
+        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile));
+        WanderModel wanderModel3 = new FileHandler().createWanderModel(gameStatFile);
 
         for (int i = 0; i < wanderModel3.getArena().getWallMap().size(); i++) // Test walls
             Assertions.assertTrue(wanderModel3.getArena().getWallMap().containsValue(walls1.get(i)));
@@ -130,8 +130,8 @@ public class FileHandlingTest {
 
         //2
         Assertions.assertDoesNotThrow(() -> FileHandler.saveModel(gameStatFile, wanderModel2));
-        Assertions.assertDoesNotThrow(() -> FileHandler.createWanderModel(gameStatFile));
-        WanderModel wanderModel4 = FileHandler.createWanderModel(gameStatFile);
+        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile));
+        WanderModel wanderModel4 = new FileHandler().createWanderModel(gameStatFile);
 
         for (int i = 0; i < wanderModel4.getArena().getWallMap().size(); i++) // Test walls
             Assertions.assertTrue(wanderModel4.getArena().getWallMap().containsValue(walls2.get(i)));

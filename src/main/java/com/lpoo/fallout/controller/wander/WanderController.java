@@ -25,11 +25,10 @@ public class WanderController extends MainController<WanderModel> {
         AbstractQueue<Enemy> enemies = getModel().getArena().getOrderedEnemies(getModel().getVaultBoy().getPosition());
         while(!enemies.isEmpty()) {
             Enemy curEnemy = enemies.poll();
-            if (curEnemy.insideAttackRadius(getModel().getVaultBoy())) {
-                if (getModel().getArena().hasClearSight(getModel().getVaultBoy().getPosition(), curEnemy.getPosition()))
-                    return curEnemy;
-            } else {
-                return null;
+            if (curEnemy.insideAttackRadius(getModel().getVaultBoy()) &&
+                getModel().getArena().hasClearSight(getModel().getVaultBoy().getPosition(), curEnemy.getPosition()))
+            {
+                return curEnemy;
             }
         }
         return null;
