@@ -1,6 +1,5 @@
 package com.lpoo.fallout.controller.battle;
 
-import com.lpoo.fallout.controller.battle.Attack.NullHandler;
 import com.lpoo.fallout.model.battle.TurnModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,7 +13,7 @@ public abstract class CommandHandler {
     public CommandHandler(@NotNull TurnModel model, @NotNull Random randomEngine) {
         this.model = model;
         this.randomEngine = randomEngine;
-        nextCommandHandler = new NullHandler();
+        nextCommandHandler = new NullHandler(model, randomEngine);
     }
 
     public void setNext(@NotNull CommandHandler commandHandler) {

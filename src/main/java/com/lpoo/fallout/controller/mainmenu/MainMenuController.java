@@ -3,7 +3,7 @@ package com.lpoo.fallout.controller.mainmenu;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.mainmenu.command.*;
-import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class MainMenuController extends MainController<MainMenuModel> {
     }
 
     @Override
-    public void step(Game game, LanternaGUI.ACTION action, long time) {
+    public void step(Game game, GUI.ACTION action, long time) {
         switch (action) {
             case UP: {
                 getModel().decrementOption();

@@ -9,12 +9,10 @@ public class BattleController extends MainController<BattleModel> {
 
     public BattleController(BattleModel model)  {
         super(model);
-
     }
 
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
-
         game.popController();
     }
 

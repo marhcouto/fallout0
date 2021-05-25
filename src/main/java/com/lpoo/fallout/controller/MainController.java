@@ -1,6 +1,6 @@
 package com.lpoo.fallout.controller;
 
-import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.GUI;
 
 public abstract class MainController<T> {
     private final T model;
@@ -13,5 +13,5 @@ public abstract class MainController<T> {
         return model;
     }
 
-    public abstract void step(Game game, LanternaGUI.ACTION action, long time);
+    public abstract void step(Game game, GUI.ACTION action, long time);
 }
