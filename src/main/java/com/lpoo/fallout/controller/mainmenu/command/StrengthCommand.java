@@ -1,10 +1,10 @@
 package com.lpoo.fallout.controller.mainmenu.command;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
+import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 
 public class StrengthCommand extends MainMenuCommand {
-    public StrengthCommand(MainMenuController controller) {
+    public StrengthCommand(MainMenuOptionsController controller) {
         super(controller);
     }
 
@@ -24,5 +24,5 @@ public class StrengthCommand extends MainMenuCommand {
     }
 
     @Override
-    public void activate(Game game) {}
+    public void activate(Game requestData) { }
 }

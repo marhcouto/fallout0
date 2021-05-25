@@ -9,6 +9,7 @@ import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
 
 import java.util.AbstractQueue;
+import java.util.Random;
 
 public class WanderController extends MainController<WanderModel> {
     private final VaultBoyController vaultBoyController;
@@ -51,7 +52,7 @@ public class WanderController extends MainController<WanderModel> {
         enemyController.moveEnemies(time);
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
-            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy)));
+            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy, new Random())));
         }
     }
 }

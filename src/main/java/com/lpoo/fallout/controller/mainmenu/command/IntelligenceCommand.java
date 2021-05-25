@@ -1,11 +1,10 @@
 package com.lpoo.fallout.controller.mainmenu.command;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
-import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 
 public class IntelligenceCommand extends MainMenuCommand {
-    public IntelligenceCommand(MainMenuController controller) {
+    public IntelligenceCommand(MainMenuOptionsController controller) {
         super(controller);
     }
 
@@ -25,5 +24,5 @@ public class IntelligenceCommand extends MainMenuCommand {
     }
 
     @Override
-    public void activate(Game game) {}
+    public void activate(Game requestData) { }
 }

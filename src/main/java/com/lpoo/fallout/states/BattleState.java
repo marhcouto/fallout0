@@ -6,6 +6,7 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.battle.BattleViewer;
+import org.jetbrains.annotations.NotNull;
 
 public class BattleState extends State <BattleModel> {
     public BattleState(BattleModel model) {
@@ -13,17 +14,17 @@ public class BattleState extends State <BattleModel> {
     }
 
     @Override
-    public BattleModel getModel() {
+    public @NotNull BattleModel getModel() {
         return super.getModel();
     }
 
     @Override
-    protected MainController<BattleModel> getController() {
+    protected @NotNull MainController<BattleModel> getController() {
         return new BattleController(getModel());
     }
 
     @Override
-    protected Viewer<BattleModel, LanternaGUI> getViewer() {
+    protected @NotNull Viewer<BattleModel, LanternaGUI> getViewer() {
         return new BattleViewer(getModel());
     }
 }

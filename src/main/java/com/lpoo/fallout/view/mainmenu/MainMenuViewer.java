@@ -36,7 +36,7 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
         List<String> formatedOptions = getFormatedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
-            if (i == getModel().getSelectedIndex()) {
+            if (i == getModel().getSelectedIdx()) {
                 new StringRenderer(formatedOptions.get(i), "#FF0000", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);
             } else {
                 new StringRenderer(formatedOptions.get(i), "#66503a", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);

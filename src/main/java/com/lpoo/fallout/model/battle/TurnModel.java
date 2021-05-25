@@ -1,5 +1,7 @@
 package com.lpoo.fallout.model.battle;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TurnModel {
     private BattleStats attackerStats;
     private BattleStats defenderStats;
@@ -9,11 +11,11 @@ public class TurnModel {
         this.defenderStats = defenderStats;
     }
 
-    public BattleStats getAttackerStats() {
+    public @NotNull BattleStats getAttackerStats() {
         return attackerStats;
     }
 
-    public BattleStats getDefenderStats() {
+    public @NotNull BattleStats getDefenderStats() {
         return defenderStats;
     }
 }

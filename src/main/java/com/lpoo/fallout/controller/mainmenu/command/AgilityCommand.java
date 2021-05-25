@@ -2,10 +2,10 @@ package com.lpoo.fallout.controller.mainmenu.command;
 
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
+import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 
 public class AgilityCommand extends MainMenuCommand {
-    public AgilityCommand(MainMenuController controller) {
+    public AgilityCommand(MainMenuOptionsController controller) {
         super(controller);
     }
 
@@ -25,5 +25,5 @@ public class AgilityCommand extends MainMenuCommand {
     }
 
     @Override
-    public void activate(Game game) {}
+    public void activate(Game requestData) { }
 }

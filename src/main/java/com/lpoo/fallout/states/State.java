@@ -5,6 +5,7 @@ import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.view.Viewer;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -19,10 +20,10 @@ public abstract class State<T> {
         this.controller = getController();
     }
 
-    protected abstract Viewer<T, LanternaGUI> getViewer();
-    protected abstract MainController<T> getController();
+    protected abstract @NotNull Viewer<T, LanternaGUI> getViewer();
+    protected abstract @NotNull MainController<T> getController();
 
-    public T getModel() {
+    public @NotNull T getModel() {
         return model;
     }
 
