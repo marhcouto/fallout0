@@ -2,16 +2,16 @@ package com.lpoo.fallout.controller.mainmenu.command;
 
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
+import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 
 public class AgilityCommand extends MainMenuCommand {
-    public AgilityCommand(MainMenuController controller) {
+    public AgilityCommand(MainMenuOptionsController controller) {
         super(controller);
     }
 
     @Override
     public void left() {
-        if (controller.getModel().getAttributes().getAgility() > 0) {
+        if (controller.getModel().getAttributes().getAgility() > 1) {
             controller.getModel().getAttributes().setAgility(controller.getModel().getAttributes().getAgility() - 1);
             controller.decrementUsedPoints();
         }
@@ -25,5 +25,5 @@ public class AgilityCommand extends MainMenuCommand {
     }
 
     @Override
-    public void activate(Game game) {}
+    public void activate(Game requestData) { }
 }

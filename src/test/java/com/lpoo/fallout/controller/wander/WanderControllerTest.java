@@ -9,10 +9,12 @@ import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
 import com.lpoo.fallout.states.BattleState;
+import com.lpoo.fallout.states.State;
 import com.lpoo.fallout.states.WanderState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.*;
@@ -21,8 +23,8 @@ class WanderControllerTest {
     Game game;
 
     @BeforeEach
-    void setUp() throws IOException, ClassNotFoundException {
-        game = new Game();
+    void setUp() {
+        game = Mockito.mock(Game.class);
     }
 
     @Test
@@ -35,7 +37,8 @@ class WanderControllerTest {
 
         controller.step(game, GUI.ACTION.NONE, 0);
 
-        Assertions.assertEquals(WanderState.class, game.topController().getClass());
+        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(WanderState.class));
+        Mockito.verify(game, Mockito.never()).pushController(Mockito.any(BattleState.class));
     }
 
     @Test
@@ -47,7 +50,7 @@ class WanderControllerTest {
         game.pushController(new WanderState(model));
 
         controller.step(game, GUI.ACTION.NONE, 0);
-
-        Assertions.assertEquals(BattleState.class, game.topController().getClass());
+        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(WanderState.class));
+        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(BattleState.class));
     }
 }

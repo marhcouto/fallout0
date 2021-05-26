@@ -3,34 +3,55 @@ package com.lpoo.fallout.model.battle;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Character;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class BattleModel {
-    private final VaultBoy vaultBoy;
-    private final Enemy fightingEnemy;
-    private Map<Character, BattleStats> characterStats;
+    private TurnModel curTurn;
+    private final BattleMenuModel menuModel;
+    private final VaultBoy vaultBoyModel;
+    private final Enemy enemy;
+    private boolean playerTurn;
+    private final Random randomEngine;
 
-    public BattleModel (VaultBoy vaultBoy, Enemy fightingEnemy) {
-        characterStats = new HashMap<>();
+    public BattleModel (@NotNull VaultBoy vaultBoy, @NotNull Enemy fightingEnemy, @NotNull Random randomEngine) {
+        this.vaultBoyModel = vaultBoy;
+        this.enemy = fightingEnemy;
+        this.randomEngine = randomEngine;
+        playerTurn = randomEngine.nextBoolean();
+        if (playerTurn) {
+            curTurn = new TurnModel(new BattleStats(vaultBoy, randomEngine), new BattleStats(enemy, randomEngine));
+        } else {
+            curTurn = new TurnModel(new BattleStats(enemy, randomEngine), new BattleStats(vaultBoy, randomEngine));
+        }
 
-        this.vaultBoy = vaultBoy;
-        this.fightingEnemy = fightingEnemy;
+        this.menuModel = new BattleMenuModel();
+    }
 
-        characterStats.put(vaultBoy, new BattleStats(vaultBoy));
-        characterStats.put(fightingEnemy, new BattleStats(fightingEnemy));
+    public BattleMenuModel getMenuModel() {
+        return this.menuModel;
+    }
+
+    public void changeTurn() {
+        playerTurn = !playerTurn;
+        curTurn = new TurnModel(curTurn.getDefenderStats(), curTurn.getAttackerStats());
+    }
+
+    public boolean isPlayerTurn() {
+        return playerTurn;
+    }
+
+    public @NotNull TurnModel getTurn() {
+        return curTurn;
     }
 
     public VaultBoy getVaultBoy() {
-        return vaultBoy;
+        return vaultBoyModel;
     }
 
     public Enemy getFightingEnemy() {
-        return fightingEnemy;
+        return enemy;
     }
 
-    public Map<Character, BattleStats> getCharacterStats() {
-        return characterStats;
-    }
 }

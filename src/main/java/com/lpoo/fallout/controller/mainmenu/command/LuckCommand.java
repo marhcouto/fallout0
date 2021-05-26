@@ -1,17 +1,16 @@
 package com.lpoo.fallout.controller.mainmenu.command;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.mainmenu.MainMenuController;
-import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 
 public class LuckCommand extends MainMenuCommand {
-    public LuckCommand(MainMenuController controller) {
+    public LuckCommand(MainMenuOptionsController controller) {
         super(controller);
     }
 
     @Override
     public void left() {
-        if (controller.getModel().getAttributes().getLuck() > 0) {
+        if (controller.getModel().getAttributes().getLuck() > 1) {
             controller.getModel().getAttributes().setLuck(controller.getModel().getAttributes().getLuck() - 1);
             controller.decrementUsedPoints();
         }
@@ -25,5 +24,5 @@ public class LuckCommand extends MainMenuCommand {
     }
 
     @Override
-    public void activate(Game game) {}
+    public void activate(Game requestData) { }
 }

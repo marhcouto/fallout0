@@ -1,13 +1,13 @@
 package com.lpoo.fallout.model.mainmenu;
 
+import com.lpoo.fallout.model.option.OptionMenuModel;
 import com.lpoo.fallout.model.wander.Attributes;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuModel {
-    private Attributes attributes;
-    private int selectedOption;
+public class MainMenuModel extends OptionMenuModel<MainMenuModel.OPTION> {
+    private final Attributes attributes;
 
     public enum OPTION {
         STRENGTH(0, "STRENGTH"),
@@ -44,32 +44,17 @@ public class MainMenuModel {
     }
 
     public MainMenuModel() {
-        attributes = new Attributes();
-        selectedOption = 0;
-    }
-
-    public OPTION getSelected() {
-        return OPTION.valueOfIndex(selectedOption);
-    }
-
-    public Integer getSelectedIndex() {
-        return selectedOption;
-    }
-
-    public void incrementOption() {
-        if (selectedOption < (OPTION.values().length - 1)) {
-            selectedOption++;
-        }
+        super(OPTION.values().length);
+        attributes = new Attributes(2, 2, 2, 2);
     }
 
     public Attributes getAttributes() {
         return attributes;
     }
 
-    public void decrementOption() {
-        if (selectedOption > 0) {
-            selectedOption--;
-        }
+    @Override
+    public OPTION getSelectedOption() {
+        return OPTION.valueOfIndex(getSelectedIdx());
     }
 
     public Integer getValue(OPTION option) {

@@ -1,41 +1,37 @@
 package com.lpoo.fallout.model.option;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
-public abstract class OptionMenuModel<T extends Option> {
-    private List<T> options;
+public abstract class OptionMenuModel<E extends Enum<E>> {
     private int selected;
+    private int numberOfOptions;
 
-    public OptionMenuModel(@NotNull List<T> options) {
-        if (options.isEmpty()) {
+    public OptionMenuModel(int numberOfOptions) {
+        if (numberOfOptions == 0) {
             throw new InvalidNumberOfOptions();
         }
-        this.options = options;
+        this.numberOfOptions = numberOfOptions;
     }
 
-    public T getSelectedOption() {
-        return options.get(selected);
-    }
+    public abstract E getSelectedOption();
 
     public int getSelectedIdx() {
         return selected;
     }
 
-    protected void increaseSelectedIdx() {
-        if (selected < (options.size() - 1)) {
+    public void increaseSelectedIdx() {
+        if (selected < ( numberOfOptions - 1 )) {
             selected++;
         }
     }
 
-    protected void decreseSelectedIdx() {
+    public void setSelectedIdx(int selectedIdx) {
+        if (selectedIdx >= 0 && selectedIdx < numberOfOptions) {
+            this.selected = selectedIdx;
+        }
+    }
+
+    public void decreaseSelectedIdx() {
         if (selected > 0) {
             selected--;
         }
     }
-
-    public abstract void move(DIRECTION direction);
-
-    public enum DIRECTION {UP, DOWN, LEFT, RIGHT}
 }

@@ -6,6 +6,7 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.wander.WanderModel;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.wander.WanderViewer;
+import org.jetbrains.annotations.NotNull;
 
 public class WanderState extends State<WanderModel> {
     public WanderState(WanderModel model) {
@@ -13,12 +14,12 @@ public class WanderState extends State<WanderModel> {
     }
 
     @Override
-    protected Viewer<WanderModel, LanternaGUI> getViewer() {
+    protected @NotNull Viewer<WanderModel, LanternaGUI> getViewer() {
         return new WanderViewer(getModel());
     }
 
     @Override
-    protected MainController<WanderModel> getController() {
+    protected @NotNull MainController<WanderModel> getController() {
         return new WanderController(getModel());
     }
 }

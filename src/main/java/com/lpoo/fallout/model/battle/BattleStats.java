@@ -1,6 +1,9 @@
 package com.lpoo.fallout.model.battle;
 
 import com.lpoo.fallout.model.wander.element.Character;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class BattleStats {
     private Integer healthPoints;
@@ -8,58 +11,68 @@ public class BattleStats {
     private Float missChance;
     private Integer baseDamage;
     private Float critRatio;
+    private Integer actions;
+    public static Float CRIT_MULTIPLIER = (float) 1.50;
 
-    public BattleStats(Integer healthPoints, Float dodgeChance, Float missChange, Integer baseDamage, Float critRatio) {
+    public BattleStats(@NotNull Integer healthPoints, @NotNull Float dodgeChance, @NotNull Float missChange, @NotNull Integer baseDamage, @NotNull Float critRatio, @NotNull Integer actions) {
         this.healthPoints = healthPoints;
         this.dodgeChance = dodgeChance;
         this.missChance = missChange;
         this.baseDamage = baseDamage;
         this.critRatio = critRatio;
+        this.actions = actions;
     }
 
-    public BattleStats(Character character) {
-        this.healthPoints = character.getAttributes().getStrength() * character.getLevel() + 10;
+    public BattleStats(@NotNull Character character, @NotNull Random randomEngine) {
+        this.healthPoints = 15 + character.getAttributes().getStrength() * character.getLevel();
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
         this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
         this.baseDamage = character.getWeapon().getDamage();
         this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
+        this.actions = (int) Math.ceil(2 + character.getAttributes().getAgility() * 0.15 + character.getAttributes().getIntelligence() * 0.05);
+        if (randomEngine.nextFloat() < character.getAttributes().getLuck() * 0.05) {
+            actions += (int) Math.floor(character.getAttributes().getLuck() * 0.1);
+        }
     }
 
-    public Integer getHealthPoints() {
+    public @NotNull Integer getHealthPoints() {
         return healthPoints;
     }
-
-    public void setHealthPoints(Integer healthPoints) {
+    public void setHealthPoints(@NotNull Integer healthPoints) {
         this.healthPoints = healthPoints;
     }
 
-    public Float getDodgeChance() {
+    public @NotNull Float getdodgeChance() {
         return dodgeChance;
     }
+    public @NotNull Float getMissChance() {
+        return missChance;
+    }
+    public @NotNull Integer getBaseDamage() {
+        return baseDamage;
+    }
+    public @NotNull Float getCritRatio() { return critRatio; }
+    public @NotNull Integer getActions() {
+        return actions;
+    }
 
-    public void setDodgeChance(Float dodgeChance) {
+    public void setDodgeChance(@NotNull Float dodgeChance) {
         this.dodgeChance = dodgeChance;
     }
 
-    public Float getMissChance() {
-        return missChance;
-    }
-
-    public void setMissChance(Float missChance) {
+    public void setMissChance(@NotNull Float missChance) {
         this.missChance = missChance;
     }
 
-    public Integer getBaseDamage() {
-        return baseDamage;
-    }
-
-    public void setBaseDamage(Integer baseDamage) {
+    public void setBaseDamage(@NotNull Integer baseDamage) {
         this.baseDamage = baseDamage;
     }
 
-    public Float getCritRatio() { return critRatio; }
-
-    public void setCritRatio(Float critRatio) {
+    public void setCritRatio(@NotNull Float critRatio) {
         this.critRatio = critRatio;
+    }
+
+    public void setActions(@NotNull Integer actions) {
+        this.actions = actions;
     }
 }

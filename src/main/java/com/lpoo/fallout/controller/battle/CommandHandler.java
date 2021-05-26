@@ -10,6 +10,8 @@ public abstract class CommandHandler {
     protected TurnModel model;
     protected Random randomEngine;
 
+    protected CommandHandler(){};
+
     public CommandHandler(@NotNull TurnModel model, @NotNull Random randomEngine) {
         this.model = model;
         this.randomEngine = randomEngine;

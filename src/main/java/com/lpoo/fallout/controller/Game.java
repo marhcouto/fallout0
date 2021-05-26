@@ -28,13 +28,13 @@ public class Game {
     public void pushController(State newController) {
         states.push(newController);
     }
-    public void popController() {
+    public void popState() {
         states.pop();
     }
-    public void clearControllers() {
+    public void clearStates() {
         states.clear();
     }
-    public State topController() {
+    public State topState() {
         return states.peek();
     }
     public LanternaGUI getGui() {

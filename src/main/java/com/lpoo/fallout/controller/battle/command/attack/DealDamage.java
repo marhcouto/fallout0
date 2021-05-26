@@ -1,6 +1,7 @@
-package com.lpoo.fallout.controller.battle.Attack;
+package com.lpoo.fallout.controller.battle.command.attack;
 
 import com.lpoo.fallout.controller.battle.CommandHandler;
+import com.lpoo.fallout.model.battle.BattleStats;
 import com.lpoo.fallout.model.battle.TurnModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,10 +16,10 @@ public class DealDamage extends CommandHandler {
     public void handle() {
         float chance = randomEngine.nextFloat();
         if (chance >= model.getAttackerStats().getCritRatio()) {
-            model.getDefenderStats().setHealthPoints(model.getAttackerStats().getBaseDamage());
+            model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - model.getAttackerStats().getBaseDamage());
         } else {
-            int damage = (int) Math.round(model.getAttackerStats().getBaseDamage() * 1.50);
-            model.getDefenderStats().setHealthPoints(damage);
+            int damage = (int) Math.round(model.getAttackerStats().getBaseDamage() * BattleStats.CRIT_MULTIPLIER);
+            model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - damage);
         }
     }
 }

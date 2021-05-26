@@ -1,19 +1,33 @@
 package com.lpoo.fallout.model.battle;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
+
 public class TurnModel {
     private BattleStats attackerStats;
     private BattleStats defenderStats;
+    private int actions;
 
-    public TurnModel (BattleStats attackerStats, BattleStats defenderStats) {
+    public TurnModel (@NotNull BattleStats attackerStats, @NotNull BattleStats defenderStats) {
         this.attackerStats = attackerStats;
         this.defenderStats = defenderStats;
+        this.actions = attackerStats.getActions();
     }
 
-    public BattleStats getAttackerStats() {
+    public void registerAction() {
+        this.actions--;
+    }
+
+    public int getActions() {
+        return actions;
+    }
+
+    public @NotNull BattleStats getAttackerStats() {
         return attackerStats;
     }
 
-    public BattleStats getDefenderStats() {
+    public @NotNull BattleStats getDefenderStats() {
         return defenderStats;
     }
 }

@@ -14,25 +14,25 @@ class MainMenuModelTest {
 
     @Test
     void testUpOnLimit() {
-        model.decrementOption();
-        Assertions.assertEquals(0, model.getSelectedIndex());
+        model.decreaseSelectedIdx();
+        Assertions.assertEquals(0, model.getSelectedIdx());
     }
 
     @Test
     void testNormalMovement() {
-        model.incrementOption();
-        Assertions.assertEquals(1, model.getSelectedIndex());
-        model.decrementOption();
-        Assertions.assertEquals(0, model.getSelectedIndex());
+        model.increaseSelectedIdx();
+        Assertions.assertEquals(1, model.getSelectedIdx());
+        model.decreaseSelectedIdx();
+        Assertions.assertEquals(0, model.getSelectedIdx());
     }
 
     @Test
     void testUnderLimit() {
         for (int i = 0; i <= MainMenuModel.OPTION.values().length; i++) {
-            model.incrementOption();
+            model.increaseSelectedIdx();
         }
-        int optionValue = model.getSelectedIndex();
-        model.incrementOption();
-        Assertions.assertEquals(optionValue, model.getSelectedIndex());
+        int optionValue = model.getSelectedIdx();
+        model.increaseSelectedIdx();
+        Assertions.assertEquals(optionValue, model.getSelectedIdx());
     }
 }
