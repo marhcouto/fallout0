@@ -41,7 +41,7 @@ public class WanderController extends MainController<WanderModel> {
                 break;
             }
             case QUIT: {
-                game.clearControllers();
+                game.clearStates();
                 break;
             }
             default: {

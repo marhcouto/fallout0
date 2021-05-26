@@ -3,28 +3,31 @@ package com.lpoo.fallout.controller.battle;
 import com.lpoo.fallout.controller.Command;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.OptionMenuController;
-import com.lpoo.fallout.controller.battle.Attack.AttackCommand;
+import com.lpoo.fallout.controller.battle.command.DefendCommand;
+import com.lpoo.fallout.controller.battle.command.IntimidateCommand;
+import com.lpoo.fallout.controller.battle.command.NullData;
+import com.lpoo.fallout.controller.battle.command.attack.AttackCommand;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.battle.BattleMenuModel;
-import com.lpoo.fallout.model.battle.TurnModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class BattleMenuController extends OptionMenuController<BattleMenuModel> {
-    private final Map<BattleMenuModel.OPTION, Command<TurnModel>> activationHandlers;
-    private final TurnModel currentTurn;
+    private final Map<BattleMenuModel.OPTION, Command<NullData>> activationHandlers;
 
-    public BattleMenuController(BattleMenuModel model, TurnModel currentTurn) {
+    public BattleMenuController(@NotNull BattleController owner, @NotNull BattleMenuModel model) {
         super(model);
-        activationHandlers = createCommands(this);
-        this.currentTurn = currentTurn;
+        activationHandlers = createCommands(owner);
     }
 
-    public static Map<BattleMenuModel.OPTION, Command<TurnModel>> createCommands(BattleMenuController controller) {
-        Map<BattleMenuModel.OPTION, Command<TurnModel>> result = new HashMap<>();
-        result.put(BattleMenuModel.OPTION.ATTACK, new AttackCommand(new Random()));
+    public static Map<BattleMenuModel.OPTION, Command<NullData>> createCommands(BattleController owner) {
+        Map<BattleMenuModel.OPTION, Command<NullData>> result = new HashMap<>();
+        result.put(BattleMenuModel.OPTION.ATTACK, new AttackCommand(owner.getModel().getTurn(), new Random()));
+        result.put(BattleMenuModel.OPTION.DEFEND, new DefendCommand(owner, owner.getModel().getTurn()));
+        result.put(BattleMenuModel.OPTION.INTIMIDATE, new IntimidateCommand(owner, owner.getModel().getTurn()));
         return result;
     }
 
@@ -48,7 +51,7 @@ public class BattleMenuController extends OptionMenuController<BattleMenuModel> 
                 break;
             }
             case ENTER: {
-                activationHandlers.get(getModel().getSelectedOption()).activate(currentTurn);
+                activationHandlers.get(getModel().getSelectedOption()).activate(new NullData());
             }
         }
     }

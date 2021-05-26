@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-
 class MainMenuControllerTest {
     private MainMenuController controller;
     private Game game;
@@ -35,6 +33,6 @@ class MainMenuControllerTest {
     @Test
     void checkQuit() {
         controller.step(game, GUI.ACTION.QUIT, 0);
-        Mockito.verify(game, Mockito.times(1)).clearControllers();
+        Mockito.verify(game, Mockito.times(1)).clearStates();
     }
 }

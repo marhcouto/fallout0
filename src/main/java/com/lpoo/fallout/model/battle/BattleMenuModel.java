@@ -8,8 +8,9 @@ import java.util.Map;
 public class BattleMenuModel extends OptionMenuModel<BattleMenuModel.OPTION> {
     public enum OPTION {
         ATTACK (0, "ATTACK"),
-        USE_STIMPACK (1, "USE_STIMPACK"),
-        GIVE_TURN (2, "GIVE_TURN");
+        DEFEND(1, "DEFEND"),
+        INTIMIDATE(2, "INTIMIDATE"),
+        USE_STIMPACK (3, "USE_STIMPACK");
 
         private static final Map<Integer, BattleMenuModel.OPTION> BY_INDEX = new HashMap<>();
         private static final Map<String, BattleMenuModel.OPTION> BY_LABEL = new HashMap<>();

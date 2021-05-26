@@ -16,7 +16,7 @@ public class MainMenuController extends MainController<MainMenuModel> {
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.QUIT) {
-            game.clearControllers();
+            game.clearStates();
         } else {
             optionsController.step(game, action);
         }

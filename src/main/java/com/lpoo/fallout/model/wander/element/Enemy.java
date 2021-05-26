@@ -1,6 +1,5 @@
 package com.lpoo.fallout.model.wander.element;
 
-import com.lpoo.fallout.controller.wander.MovingEngine;
 import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.Weapon;
@@ -16,7 +15,7 @@ public class Enemy extends Character implements Serializable {
         this.enemyType = enemyType;
     }
 
-    public Enemy(Position position, TYPE enemyType) {
+    public Enemy(@NotNull Position position, @NotNull TYPE enemyType) {
         super(position);
         this.enemyType = enemyType;
     }

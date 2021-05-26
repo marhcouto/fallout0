@@ -1,4 +1,4 @@
-package com.lpoo.fallout.controller.battle.Attack;
+package com.lpoo.fallout.controller.battle.command.attack;
 
 import com.lpoo.fallout.controller.battle.CommandHandler;
 import com.lpoo.fallout.model.battle.BattleStats;
