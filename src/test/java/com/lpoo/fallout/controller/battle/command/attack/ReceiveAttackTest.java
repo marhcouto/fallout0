@@ -19,7 +19,7 @@ class ReceiveAttackTest {
         attackerStats = Mockito.mock(BattleStats.class, Mockito.CALLS_REAL_METHODS);
         Mockito.when(attackerStats.getActions()).thenReturn(0);
         defenderStats = Mockito.mock(BattleStats.class);
-        Mockito.when(defenderStats.getdodgeChance()).thenReturn((float) 0.20);
+        Mockito.when(defenderStats.getDodgeChance()).thenReturn((float) 0.20);
         mockedHandler = Mockito.mock(CommandHandler.class);
     }
 

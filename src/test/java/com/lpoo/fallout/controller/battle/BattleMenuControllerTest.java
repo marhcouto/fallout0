@@ -22,7 +22,7 @@ class BattleMenuControllerTest {
         enemyStats = Mockito.mock(BattleStats.class);
         mockedGame = Mockito.mock(Game.class);
 
-        controller = new BattleMenuController(new BattleMenuModel(), new TurnModel(attackerStats, enemyStats));
+        // controller = new BattleMenuController(new BattleMenuModel(), new TurnModel(attackerStats, enemyStats));
     }
 
     @Test

@@ -17,7 +17,7 @@ public class FortifyDefenseObserver extends TurnEffect {
         this.statsChanged = statsChanged;
         this.observable = observable;
 
-        statsChanged.setDodgeChance(statsChanged.getdodgeChance() + defenseBoost);
+        statsChanged.setDodgeChance(statsChanged.getDodgeChance() + defenseBoost);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class FortifyDefenseObserver extends TurnEffect {
         if (getNumberOfTurnsAffected() > 0) {
             decrementTurnCounter();
         } else {
-            statsChanged.setDodgeChance(statsChanged.getdodgeChance() - defenseBoost);
+            statsChanged.setDodgeChance(statsChanged.getDodgeChance() - defenseBoost);
             observable.unsubscribe(this);
         }
     }

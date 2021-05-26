@@ -29,6 +29,7 @@ public class BattleController extends MainController<BattleModel> implements Obs
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
+
         if (action == GUI.ACTION.QUIT) {
             game.clearStates();
         } else if (getModel().isPlayerTurn()) {

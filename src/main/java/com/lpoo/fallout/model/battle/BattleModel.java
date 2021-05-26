@@ -11,19 +11,23 @@ public class BattleModel {
     private TurnModel curTurn;
     private final BattleMenuModel menuModel;
     private final VaultBoy vaultBoyModel;
-    private final Enemy enemy;
+    private final Enemy enemyModel;
+    private final Map<Character, BattleStats> characterStats;
     private boolean playerTurn;
     private final Random randomEngine;
 
     public BattleModel (@NotNull VaultBoy vaultBoy, @NotNull Enemy fightingEnemy, @NotNull Random randomEngine) {
         this.vaultBoyModel = vaultBoy;
-        this.enemy = fightingEnemy;
+        this.enemyModel = fightingEnemy;
         this.randomEngine = randomEngine;
+        this.characterStats = new HashMap<>();
+        this.characterStats.put(vaultBoyModel, new BattleStats(vaultBoyModel, randomEngine));
+        this.characterStats.put(vaultBoyModel, new BattleStats(enemyModel, randomEngine));
         playerTurn = randomEngine.nextBoolean();
         if (playerTurn) {
-            curTurn = new TurnModel(new BattleStats(vaultBoy, randomEngine), new BattleStats(enemy, randomEngine));
+            curTurn = new TurnModel(characterStats.get(this.vaultBoyModel), characterStats.get(this.enemyModel));
         } else {
-            curTurn = new TurnModel(new BattleStats(enemy, randomEngine), new BattleStats(vaultBoy, randomEngine));
+            curTurn = new TurnModel(characterStats.get(this.enemyModel), characterStats.get(this.vaultBoyModel));
         }
 
         this.menuModel = new BattleMenuModel();
@@ -51,7 +55,10 @@ public class BattleModel {
     }
 
     public Enemy getFightingEnemy() {
-        return enemy;
+        return enemyModel;
     }
 
+    public Map<Character, BattleStats> getCharacterStats() {
+        return characterStats;
+    }
 }

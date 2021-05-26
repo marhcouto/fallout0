@@ -21,7 +21,7 @@ public class DefendCommand implements Command<NullData> {
     public void activate(NullData requestData) {
         BattleStats changedStats = turn.getAttackerStats();
 
-        float defenseBuff = (float) 0.50 * turn.getAttackerStats().getdodgeChance();
+        float defenseBuff = (float) 0.50 * turn.getAttackerStats().getDodgeChance();
         observable.subscribe(new FortifyDefenseObserver(observable, 2, changedStats, defenseBuff));
     }
 }

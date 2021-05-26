@@ -42,7 +42,7 @@ public class BattleStats {
         this.healthPoints = healthPoints;
     }
 
-    public @NotNull Float getdodgeChance() {
+    public @NotNull Float getDodgeChance() {
         return dodgeChance;
     }
     public @NotNull Float getMissChance() {
