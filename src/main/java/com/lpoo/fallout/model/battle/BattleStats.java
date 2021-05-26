@@ -24,7 +24,7 @@ public class BattleStats {
     }
 
     public BattleStats(@NotNull Character character, @NotNull Random randomEngine) {
-        this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
+        this.healthPoints = 15 + character.getAttributes().getStrength() * character.getLevel();
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
         this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
         this.baseDamage = character.getWeapon().getDamage();

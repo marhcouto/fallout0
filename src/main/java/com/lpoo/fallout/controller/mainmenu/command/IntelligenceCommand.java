@@ -10,7 +10,7 @@ public class IntelligenceCommand extends MainMenuCommand {
 
     @Override
     public void left() {
-        if (controller.getModel().getAttributes().getIntelligence() > 0) {
+        if (controller.getModel().getAttributes().getIntelligence() > 1) {
             controller.getModel().getAttributes().setIntelligence(controller.getModel().getAttributes().getIntelligence() - 1);
             controller.decrementUsedPoints();
         }

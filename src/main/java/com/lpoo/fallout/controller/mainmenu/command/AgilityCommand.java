@@ -11,7 +11,7 @@ public class AgilityCommand extends MainMenuCommand {
 
     @Override
     public void left() {
-        if (controller.getModel().getAttributes().getAgility() > 0) {
+        if (controller.getModel().getAttributes().getAgility() > 1) {
             controller.getModel().getAttributes().setAgility(controller.getModel().getAttributes().getAgility() - 1);
             controller.decrementUsedPoints();
         }

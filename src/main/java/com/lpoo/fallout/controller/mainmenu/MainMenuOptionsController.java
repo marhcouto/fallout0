@@ -12,12 +12,13 @@ import java.util.Map;
 
 public class MainMenuOptionsController extends OptionMenuController<MainMenuModel> {
     private int usedPoints;
-    private static final int MAX_AVAILABLE_POINTS = 8;
+    private static final int MAX_AVAILABLE_POINTS = 16;
     private Map<MainMenuModel.OPTION, MainMenuCommand> commandMap;
 
     public MainMenuOptionsController(MainMenuModel model) {
         super(model);
         this.commandMap = createCommands(this);
+        this.usedPoints = 8;
     }
 
     public static Map<MainMenuModel.OPTION, MainMenuCommand> createCommands(MainMenuOptionsController controller) {

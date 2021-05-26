@@ -45,7 +45,7 @@ public class MainMenuModel extends OptionMenuModel<MainMenuModel.OPTION> {
 
     public MainMenuModel() {
         super(OPTION.values().length);
-        attributes = new Attributes();
+        attributes = new Attributes(2, 2, 2, 2);
     }
 
     public Attributes getAttributes() {

@@ -9,7 +9,7 @@ public class Attributes implements Serializable {
     private Integer luck;
 
     public Attributes() {
-        this(0, 0, 0, 0);
+        this(1, 1, 1, 1);
     }
 
     public Attributes(Integer strength, Integer agility, Integer intelligence, Integer luck) {
@@ -52,8 +52,8 @@ public class Attributes implements Serializable {
     }
 
     public boolean validChange(Attributes attributes) {
-        return this.agility + attributes.agility > 0 && this.strength + attributes.strength > 0
-                 && this.intelligence + attributes.intelligence > 0 && this.luck + attributes.luck > 0;
+        return this.agility + attributes.agility > 1 && this.strength + attributes.strength > 1
+                 && this.intelligence + attributes.intelligence > 1 && this.luck + attributes.luck > 1;
     }
 
     public boolean greaterThan(Attributes attributes) {

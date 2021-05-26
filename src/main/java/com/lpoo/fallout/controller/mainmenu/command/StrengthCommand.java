@@ -10,7 +10,7 @@ public class StrengthCommand extends MainMenuCommand {
 
     @Override
     public void left() {
-        if (controller.getModel().getAttributes().getStrength() > 0) {
+        if (controller.getModel().getAttributes().getStrength() > 1) {
             controller.getModel().getAttributes().setStrength(controller.getModel().getAttributes().getStrength() - 1);
             controller.decrementUsedPoints();
         }
