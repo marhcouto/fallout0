@@ -62,10 +62,10 @@ public class BattleMenuModel extends OptionMenuModel<BattleMenuModel.OPTION> {
     }
 
     public void leftSelectedIdx() {
-        super.setSelectedIdx(getSelectedIdx() + 2);
+        super.setSelectedIdx(getSelectedIdx() - 2);
     }
 
     public void rightSelectedIdx() {
-        super.setSelectedIdx(getSelectedIdx() - 2);
+        super.setSelectedIdx(getSelectedIdx() + 2);
     }
 }
