@@ -18,7 +18,7 @@ public class BattleStats {
     }
 
     public BattleStats(Character character) {
-        this.healthPoints = character.getAttributes().getStrength() * character.getLevel();
+        this.healthPoints = character.getAttributes().getStrength() * character.getLevel() + 10;
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
         this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
         this.baseDamage = character.getWeapon().getDamage();
@@ -33,11 +33,11 @@ public class BattleStats {
         this.healthPoints = healthPoints;
     }
 
-    public Float getdodgeChance() {
+    public Float getDodgeChance() {
         return dodgeChance;
     }
 
-    public void setdodgeChance(Float dodgeChance) {
+    public void setDodgeChance(Float dodgeChance) {
         this.dodgeChance = dodgeChance;
     }
 

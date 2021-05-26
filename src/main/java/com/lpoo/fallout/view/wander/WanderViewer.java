@@ -15,8 +15,8 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     private static final Map<Enemy.TYPE, LanternaDrawable> drawableMap = new HashMap<>();
 
     static {
-        drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#00FF00", "#FF00FF", "R"));
-        drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#FF00FF", "#00FF00", "S"));
+        drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#00FF00", "#000000", "g"));
+        drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#FF00FF", "#000000", "h"));
     }
 
     public WanderViewer(WanderModel model) {
@@ -26,12 +26,12 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     @Override
     protected void drawElements(LanternaGUI gui) {
         for (Map.Entry<Position, Wall> wall: getModel().getArena().getWallMap().entrySet())
-            gui.placeDrawable(new LanternaDrawable( "#000000", "#00FF00", "#"), wall.getValue().getPosition());
+            gui.placeDrawable(new LanternaDrawable( "#00FF00", "#000000", "#"), wall.getValue().getPosition());
 
         for (Enemy enemy: getModel().getArena().getEnemies())
             gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
 
-        gui.placeDrawable(new LanternaDrawable( "#000000", "#0000FF", "W"), getModel().getVaultBoy().getPosition());
+        gui.placeDrawable(new LanternaDrawable( "#FFFFFF", "#000000", "k"), getModel().getVaultBoy().getPosition());
     }
 
 }

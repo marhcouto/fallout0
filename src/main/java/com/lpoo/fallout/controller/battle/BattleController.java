@@ -13,7 +13,19 @@ public class BattleController extends MainController<BattleModel> {
 
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
-        game.popController();
+        switch (action) {
+            case NONE: {
+                break;
+            }
+            case QUIT: {
+                game.clearControllers();
+                break;
+            }
+            default: {
+                //DO SOMETHING
+                break;
+            }
+        }
     }
 
 }

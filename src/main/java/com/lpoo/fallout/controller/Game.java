@@ -13,7 +13,7 @@ public class Game {
     private Stack<State> states;
     private static final Integer FPS = 24;
     private final long frameTime;
-    private final LanternaGUI gui;
+    private LanternaGUI gui;
 
     public Game() throws IOException, ClassNotFoundException {
         // Stack for the controllers
@@ -21,7 +21,7 @@ public class Game {
 
         frameTime = 1000/60;
 
-        this.gui = new LanternaGUI(new LanternaTerminal(25, 25));
+        this.gui = new LanternaGUI(new LanternaTerminal(30, 18, 40));
         this.pushController(new MainMenuState(new MainMenuModel()));
     }
 
@@ -61,5 +61,10 @@ public class Game {
             }
         }
         gui.getTerminal().getScreen().close();
+    }
+
+    public void changeGui (LanternaGUI newGUI) throws IOException {
+        gui.getTerminal().getScreen().close();
+        this.gui = newGUI;
     }
 }

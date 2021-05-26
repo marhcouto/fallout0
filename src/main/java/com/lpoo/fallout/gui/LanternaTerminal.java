@@ -16,15 +16,14 @@ import java.io.File;
 import java.io.IOException;
 
 public class LanternaTerminal {
-    private static final Integer FONT_SIZE = 15;
     private Screen screen;
     private TextGraphics graphics;
 
     public LanternaTerminal() throws IOException {
-        this(40, 20);
+        this(40, 20, 15);
     }
 
-    public LanternaTerminal(Integer nColumns, Integer nRows) throws IOException {
+    public LanternaTerminal(Integer nColumns, Integer nRows, Integer fontSize) throws IOException {
         try {
             // Load Font
             File fontFile = new File("resources/square.ttf");
@@ -33,7 +32,7 @@ public class LanternaTerminal {
             GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
             graphicsEnvironment.registerFont(font);
 
-            Font loadedFont = font.deriveFont(Font.PLAIN, FONT_SIZE);
+            Font loadedFont = font.deriveFont(Font.PLAIN, fontSize);
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
 
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()

@@ -3,11 +3,13 @@ package com.lpoo.fallout.controller.wander;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
 
+import java.io.IOException;
 import java.util.AbstractQueue;
 
 public class WanderController extends MainController<WanderModel> {
@@ -24,11 +26,9 @@ public class WanderController extends MainController<WanderModel> {
         AbstractQueue<Enemy> enemies = getModel().getArena().getOrderedEnemies(getModel().getVaultBoy().getPosition());
         while(!enemies.isEmpty()) {
             Enemy curEnemy = enemies.poll();
-            if (curEnemy.insideAttackRadius(getModel().getVaultBoy())) {
-                if (getModel().getArena().hasClearSight(getModel().getVaultBoy().getPosition(), curEnemy.getPosition()))
-                    return curEnemy;
-            } else {
-                return null;
+            if (curEnemy.insideAttackRadius(getModel().getVaultBoy()) &&
+                    getModel().getArena().hasClearSight(getModel().getVaultBoy().getPosition(), curEnemy.getPosition())) {
+                return curEnemy;
             }
         }
         return null;
@@ -36,6 +36,16 @@ public class WanderController extends MainController<WanderModel> {
 
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
+        Enemy fightingEnemy = checkFight();
+        if (fightingEnemy != null) {
+            try {
+                game.changeGui(new LanternaGUI(new LanternaTerminal(600, 300, 2)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy)));
+        }
+
         switch (action) {
             case NONE: {
                 break;
@@ -49,9 +59,5 @@ public class WanderController extends MainController<WanderModel> {
             }
         }
         enemyController.moveEnemies(time);
-        Enemy fightingEnemy = checkFight();
-        if (fightingEnemy != null) {
-            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy)));
-        }
     }
 }

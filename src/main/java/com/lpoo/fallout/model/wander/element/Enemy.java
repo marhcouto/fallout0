@@ -34,5 +34,5 @@ public class Enemy extends Character implements Serializable {
         Enemy e = (Enemy) o;
         return super.equals(e) && e.getType() == this.getType();
     }
-    public enum TYPE { SCORPION, RAT }
+    public enum TYPE { SCORPION, RAT, SNAKE }
 }

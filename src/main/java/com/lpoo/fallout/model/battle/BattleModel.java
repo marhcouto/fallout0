@@ -21,4 +21,16 @@ public class BattleModel {
         characterStats.put(vaultBoy, new BattleStats(vaultBoy));
         characterStats.put(fightingEnemy, new BattleStats(fightingEnemy));
     }
+
+    public VaultBoy getVaultBoy() {
+        return vaultBoy;
+    }
+
+    public Enemy getFightingEnemy() {
+        return fightingEnemy;
+    }
+
+    public Map<Character, BattleStats> getCharacterStats() {
+        return characterStats;
+    }
 }
