@@ -1,6 +1,5 @@
 package com.lpoo.fallout.controller.battle;
 
-import com.lpoo.fallout.controller.battle.command.CureCommand;
 import com.lpoo.fallout.controller.battle.command.DefendCommand;
 import com.lpoo.fallout.controller.battle.command.IntimidateCommand;
 import com.lpoo.fallout.controller.battle.command.attack.AttackCommand;

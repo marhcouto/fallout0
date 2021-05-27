@@ -30,16 +30,16 @@ public class BattleController extends MainController<BattleModel> {
             waitForMessage();
             getModel().changeTurn();
         }
-        if (getModel().isPlayerTurn())
-            new BattleMenuController(this.getModel(), getModel().getMenuModel()).step(game, action);
-        else
-            new BattleMonsterController(getModel().getTurn(), this.getModel()).step(new Random());
-
-        addCharacterInfoToMessage();
-        processDeath(game);
+        if (!processDeath(game)) {
+            if (getModel().isPlayerTurn())
+                new BattleMenuController(this.getModel(), getModel().getMenuModel()).step(game, action);
+            else
+                new BattleMonsterController(getModel().getTurn(), this.getModel()).step(new Random());
+            addCharacterInfoToMessage();
+        }
     }
 
-    private void processDeath(Game game) {
+    private boolean processDeath(Game game) {
         Enemy deadCharacter = null;
         for (Map.Entry<Character, BattleStats> curElement: getModel().getAllCharacterStats().entrySet()) {
             if (curElement.getValue().getHealthPoints() <= 0) {
@@ -60,7 +60,9 @@ public class BattleController extends MainController<BattleModel> {
 
         if (deadCharacter != null) {
             getModel().getArena().removeEnemy(deadCharacter);
+            return true;
         }
+        return false;
     }
 
     private void waitForMessage() {

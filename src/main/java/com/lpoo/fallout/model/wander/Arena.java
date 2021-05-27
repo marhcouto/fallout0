@@ -63,6 +63,7 @@ public class Arena implements Serializable {
         for (Enemy enemy: enemies) {
             if (enemy.equals(oldEnemy)) {
                 enemies.remove(oldEnemy);
+                break;
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.lpoo.fallout.controller.battle.command.attack;
 
-import com.lpoo.fallout.model.battle.BattleMenuModel;
 import com.lpoo.fallout.model.battle.BattleStats;
 import com.lpoo.fallout.model.battle.Message;
 import com.lpoo.fallout.model.battle.TurnModel;
@@ -23,7 +22,6 @@ public class DealDamage extends CommandHandler {
             damageDealt = Math.round(model.getAttackerStats().getBaseDamage() * BattleStats.CRIT_MULTIPLIER);
         }
         model.setOutcome(new Message("Dealt " + damageDealt, true, true));
-        System.out.println("Defender Health: " + model.getDefenderStats().getHealthPoints());
         model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - damageDealt);
     }
 }
