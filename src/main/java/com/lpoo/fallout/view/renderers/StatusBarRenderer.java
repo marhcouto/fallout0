@@ -15,9 +15,10 @@ public class StatusBarRenderer extends Renderer<BattleStats, LanternaGUI> {
 
     @Override
     public void placeElement(LanternaGUI gui, String foregroundColour, String backgroundColour) {
-        healthBarRenderer.placeElement(gui, foregroundColour, backgroundColour);
+        updateHealthBar();
+        healthBarRenderer.placeElement(gui, "#00FF00", "#000000");
         hpWord.placeElement(gui, "#FFFFFF", "#000000");
-        frame.placeElement(gui, "#FFFFFF", "#000000");
+        frame.placeElement(gui, foregroundColour, backgroundColour);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class StatusBarRenderer extends Renderer<BattleStats, LanternaGUI> {
         this.healthBarRenderer.buildImage();
     }
 
-    public void updateHealthBar(Integer hp) {
-        this.healthBarRenderer.updateHP(hp);
+    private void updateHealthBar() {
+        this.healthBarRenderer.updateHP(getModel().getHealthPoints());
     }
 }

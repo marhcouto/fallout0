@@ -23,7 +23,7 @@ public class SpriteRendererTest {
     @Test
     void testRenderer() {
         Assertions.assertDoesNotThrow(() -> renderer.buildImage());
-        renderer.placeElement(gui);
+        renderer.placeElement(gui,"#FF0000", "#000000");
         Mockito.verify(gui, Mockito.atLeast(10)).placeDrawable(Mockito.any(LanternaDrawable.class), Mockito.any(Position.class));
     }
 }

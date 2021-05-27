@@ -24,7 +24,7 @@ public class HealthBarRendererTest {
         hp = new HealthBarRenderer(10, new Position(10, 10));
         hp.buildImage();
         Assertions.assertDoesNotThrow(() -> hp.updateHP(0));
-        hp.placeElement(gui);
+        hp.placeElement(gui,"#FF0000", "#000000");
         Mockito.verify(gui, Mockito.atLeast(1)).placeDrawable(Mockito.any(LanternaDrawable.class), Mockito.any(Position.class));
     }
 }

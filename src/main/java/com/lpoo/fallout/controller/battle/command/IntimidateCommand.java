@@ -21,7 +21,7 @@ public class IntimidateCommand implements Command<NullData> {
 
     @Override
     public void activate(NullData requestData) {
-        turn.setOutcome(new Message("Intimidate applied", BattleMenuModel.OPTION.INTIMIDATE, true));
+        turn.setOutcome(new Message("intimidate\napplied", BattleMenuModel.OPTION.INTIMIDATE, true, true));
         BattleStats changedStats = turn.getDefenderStats();
 
         float missChanceBuff = (float) 0.10 * turn.getAttackerStats().getBaseDamage();
