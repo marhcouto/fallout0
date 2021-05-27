@@ -56,7 +56,7 @@ public class BattleModel {
         return enemyModel;
     }
 
-    public Map<Character, BattleStats> getCharacterStats() {
-        return characterStats;
+    public BattleStats getCharacterStats(@NotNull Character character) {
+        return characterStats.get(character);
     }
 }

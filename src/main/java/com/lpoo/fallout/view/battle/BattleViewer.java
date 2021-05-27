@@ -32,10 +32,9 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
         this.rendererList = new ArrayList<>();
         this.rendererList.add(new FileSpriteRenderer(drawableMap.get(this.getModel().getFightingEnemy().getType()), new Position(390, 50)));
         this.rendererList.add(new FileSpriteRenderer("VAULTBOY3.txt", new Position(20, 50)));
-        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats().get(this.getModel().getVaultBoy()),
+        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats(getModel().getVaultBoy()),
                 new Position(5, 5)));
-        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats().get(this.getModel().getVaultBoy()),
-                new Position(435, 5)));
+        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats(getModel().getFightingEnemy()), new Position(435, 5)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(370, 70), new Position(5, 220)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(215, 70), new Position(380, 220)));
         this.message = new WordRenderer(getModel().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230)); // Message

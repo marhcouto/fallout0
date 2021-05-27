@@ -28,13 +28,22 @@ public class BattleController extends MainController<BattleModel> implements Obs
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.QUIT) {
             game.clearStates();
-        } else if (getModel().isPlayerTurn()) {
-            new BattleMenuController(this, getModel().getMenuModel()).step(game, action);
-        }
+        } else {
+            if (getModel().getTurn().getOutcome().succeeded()) {
+                if (System.currentTimeMillis() < getModel().getTurn().getOutcome().getEndTime()) {
+                    try {
+                        Thread.sleep(getModel().getTurn().getOutcome().getEndTime() - System.currentTimeMillis());
+                    } catch (InterruptedException exception) {
 
-        if (getModel().getTurn().getOutcome().succeeded() && System.currentTimeMillis() > getModel().getTurn().getOutcome().getEndTime()) {
-            notifyTurnChange();
-            getModel().changeTurn();
+                    }
+                }
+                notifyTurnChange();
+                getModel().changeTurn();
+            } else {
+                if (getModel().isPlayerTurn()) {
+                    new BattleMenuController(this, getModel().getMenuModel()).step(game, action);
+                }
+            }
         }
     }
 

@@ -20,11 +20,11 @@ public class DealDamage extends CommandHandler {
         Integer damageDealt;
         if (chance >= model.getAttackerStats().getCritRatio()) {
             damageDealt = model.getAttackerStats().getBaseDamage();
-            model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - model.getAttackerStats().getBaseDamage());
         } else {
             damageDealt = Math.round(model.getAttackerStats().getBaseDamage() * BattleStats.CRIT_MULTIPLIER);
         }
         model.setOutcome(new Message("Dealt " + damageDealt, BattleMenuModel.OPTION.ATTACK, true, true));
+        System.out.println("Defender Healt: " + model.getDefenderStats().getHealthPoints());
         model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - damageDealt);
     }
 }

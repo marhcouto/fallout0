@@ -47,6 +47,11 @@ public class HealthBarRenderer extends SpriteRenderer<Integer> {
 
     public void updateHP(Integer currentHP) {
         // Health Points
+        for (int i = 4; i < 104 && startingHP != 0; i++) {
+            removeCharacter(new Position(i, 5));
+            removeCharacter(new Position(i, 6));
+        }
+
         for (int i = 4; i < Math.round(Double.valueOf(currentHP) / startingHP * 100) + 4 && startingHP != 0; i++) {
             addCharacter(new Position(i, 5), 'O');
             addCharacter(new Position(i, 6), 'O');

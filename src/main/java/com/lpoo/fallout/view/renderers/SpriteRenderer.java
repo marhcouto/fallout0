@@ -32,4 +32,8 @@ public abstract class SpriteRenderer<M> extends Renderer<M, LanternaGUI> {
     protected void addCharacter(Position position, Character character) {
         image.put(position, character);
     }
+
+    protected void removeCharacter(Position position) {
+        image.remove(position);
+    }
 }
