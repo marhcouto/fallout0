@@ -44,7 +44,7 @@ public class WanderController extends MainController<WanderModel> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy, new Random())));
+            game.pushController(new BattleState(new BattleModel(getModel().getVaultBoy(), fightingEnemy)));
         }
 
         switch (action) {

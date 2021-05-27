@@ -1,48 +1,44 @@
 package com.lpoo.fallout.view.renderers;
 
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.screen.TerminalScreen;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.wander.Position;
 
 public class StringRenderer extends Renderer<String, LanternaGUI> {
-    private String foregroundColour;
-    private String backgroundColour;
-    private StringRenderer.ALIGN alignment;
-    private Integer row;
-    private Integer frameWidth;
-
-    public StringRenderer(String model, String foregroundColour, String backgroundColour, StringRenderer.ALIGN alignment, Integer row, Integer frameWidth) {
-        super(model);
-        this.foregroundColour = foregroundColour;
-        this.backgroundColour = backgroundColour;
-        this.row = row;
-        this.alignment = alignment;
-        this.frameWidth = frameWidth;
+    public StringRenderer(String model, StringRenderer.ALIGN alignment, Integer row, Integer frameWidth, TerminalSize size) {
+        super(model, new Position(0, 0));
+        super.setPosition(getCenterPosition(row, alignment, frameWidth, size));
     }
 
     @Override
-    public void placeElement(LanternaGUI gui) {
-        int curColumn = getCenterPosition(gui);
+    public void placeElement(LanternaGUI gui, String foregroundColour, String backgroundColour) {
+        int curColumn = getPosition().getColumn();
 
         for (char c: getModel().toCharArray()) {
-            gui.placeDrawable(new LanternaDrawable(foregroundColour, backgroundColour, Character.toString(c)), new Position(curColumn, row));
+            gui.placeDrawable(new LanternaDrawable(foregroundColour, backgroundColour, Character.toString(c)), new Position(curColumn, getPosition().getRow()));
             curColumn++;
         }
     }
 
-    private int getCenterPosition(LanternaGUI gui) {
+    private Position getCenterPosition(Integer row, ALIGN alignment, Integer frameWidth, TerminalSize terminalSize) {
         switch (alignment) {
             case CENTER: {
-                return ((gui.getTerminal().getScreen().getTerminalSize().getColumns() - (frameWidth * 2)) / 2) - (getModel().length() / 2);
+                return new Position((terminalSize.getColumns() - (frameWidth * 2)) / 2 - (getModel().length() / 2), row);
             }
             case LEFT: {
-                return frameWidth;
+                return new Position(frameWidth, row);
             }
             case RIGHT:
-                return (gui.getTerminal().getScreen().getTerminalSize().getColumns() - frameWidth) - getModel().length();
+                return new Position((terminalSize.getColumns() - frameWidth) - getModel().length(), row);
+            default:
+                return new Position(frameWidth, row);
         }
-        return 0;
     }
+
+    @Override
+    public void buildImage() {}
 
     public enum ALIGN {CENTER, LEFT, RIGHT}
 }

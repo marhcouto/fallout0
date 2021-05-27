@@ -2,7 +2,7 @@ package com.lpoo.fallout.model.option;
 
 public abstract class OptionMenuModel<E extends Enum<E>> {
     private int selected;
-    private int numberOfOptions;
+    private final int numberOfOptions;
 
     public OptionMenuModel(int numberOfOptions) {
         if (numberOfOptions == 0) {

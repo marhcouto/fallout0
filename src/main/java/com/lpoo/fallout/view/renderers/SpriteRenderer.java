@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class SpriteRenderer<M> extends ImageRenderer<M> {
+public abstract class SpriteRenderer<M> extends Renderer<M, LanternaGUI> {
     private final Map<Position, Character> image;
 
     public SpriteRenderer(M model, Position position) {
@@ -18,10 +18,10 @@ public abstract class SpriteRenderer<M> extends ImageRenderer<M> {
     }
 
     @Override
-    public void placeElement(LanternaGUI gui) {
+    public void placeElement(LanternaGUI gui, String foregroundColour, String backgroundColour) {
         for (Map.Entry<Position, Character> pixel : image.entrySet()) {
             Position actualPosition = new Position(pixel.getKey().getColumn() + getPosition().getColumn(), pixel.getKey().getRow() + getPosition().getRow());
-            gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", pixel.getValue().toString()), actualPosition);
+            gui.placeDrawable(new LanternaDrawable(foregroundColour, backgroundColour, pixel.getValue().toString()), actualPosition);
         }
     }
 

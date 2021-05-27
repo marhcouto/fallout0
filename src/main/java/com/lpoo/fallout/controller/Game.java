@@ -11,7 +11,7 @@ import java.util.Stack;
 
 public class Game {
     private Stack<State> states;
-    private static final Integer FPS = 24;
+    private static final Integer FPS = 20;
     private final long frameTime;
     private LanternaGUI gui;
 

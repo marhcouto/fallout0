@@ -17,8 +17,6 @@ public class AttackCommand implements Command<NullData> {
 
     @Override
     public void activate(NullData requestData) {
-        turn.registerAction();
-
         SendAttack sendAttack = new SendAttack(turn, randomEngine);
         ReceiveAttack receiveAttack = new ReceiveAttack(turn, randomEngine);
         DealDamage dealDamage = new DealDamage(turn, randomEngine);

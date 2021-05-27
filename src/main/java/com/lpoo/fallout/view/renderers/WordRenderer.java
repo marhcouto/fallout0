@@ -10,8 +10,8 @@ public class WordRenderer extends GroupRenderer<String>  {
 
     @Override
     public void buildImage() {
-        for(int i = 0; i < model.length(); i++) {
-            Character tempChar = model.charAt(i);
+        for(int i = 0; i < getModel().length(); i++) {
+            Character tempChar = getModel().charAt(i);
             addRenderer(new FileSpriteRenderer("characters/" + tempChar.toString() + ".txt",
                     new Position(i * 20 + getPosition().getColumn(), getPosition().getRow())));
             getRendererList().get(i).buildImage();

@@ -20,6 +20,7 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
     private final FileSpriteRenderer vaultBoyRenderer;
     private final StatusBarRenderer statusBarRendererVB;
     private final StatusBarRenderer statusBarRendererEN;
+    public final BattleMenuViewer battleMenuViewer;
 
     static {
         drawableMap.put(Enemy.TYPE.SCORPION, "SCORPION2.txt");
@@ -40,15 +41,18 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
         this.vaultBoyRenderer.buildImage();
         this.statusBarRendererVB.buildImage();
         this.statusBarRendererEN.buildImage();
+        battleMenuViewer = new BattleMenuViewer(model.getMenuModel());
     }
 
     @Override
     protected void drawElements(LanternaGUI gui) {
         statusBarRendererVB.updateHealthBar(getModel().getCharacterStats().get(getModel().getVaultBoy()).getHealthPoints());
         statusBarRendererEN.updateHealthBar(getModel().getCharacterStats().get(getModel().getFightingEnemy()).getHealthPoints());
-        enemyRenderer.placeElement(gui);
-        vaultBoyRenderer.placeElement(gui);
-        statusBarRendererVB.placeElement(gui);
-        statusBarRendererEN.placeElement(gui);
+        enemyRenderer.placeElement(gui, "#FFFFFF", "#000000");
+        vaultBoyRenderer.placeElement(gui, "#FFFFFF", "#000000");
+        statusBarRendererVB.placeElement(gui, "#00FF00", "#000000");
+        statusBarRendererEN.placeElement(gui, "#FF0000", "#000000");
+
+        battleMenuViewer.drawElements(gui);
     }
 }

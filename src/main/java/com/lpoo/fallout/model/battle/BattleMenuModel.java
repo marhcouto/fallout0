@@ -10,7 +10,7 @@ public class BattleMenuModel extends OptionMenuModel<BattleMenuModel.OPTION> {
         ATTACK (0, "ATTACK"),
         DEFEND(1, "DEFEND"),
         INTIMIDATE(2, "INTIMIDATE"),
-        USE_STIMPACK (3, "USE_STIMPACK");
+        USE_STIMPACK (3, "STIMPACK");
 
         private static final Map<Integer, BattleMenuModel.OPTION> BY_INDEX = new HashMap<>();
         private static final Map<String, BattleMenuModel.OPTION> BY_LABEL = new HashMap<>();
@@ -51,14 +51,14 @@ public class BattleMenuModel extends OptionMenuModel<BattleMenuModel.OPTION> {
     @Override
     public void increaseSelectedIdx() {
         if ((getSelectedIdx() % 2) == 0) {
-            super.increaseSelectedIdx();
+            setSelectedIdx(getSelectedIdx() + 1);
         }
     }
 
     @Override
     public void decreaseSelectedIdx() {
         if ((getSelectedIdx() % 2) == 1) {
-            super.decreaseSelectedIdx();
+            setSelectedIdx(getSelectedIdx() - 1);
         }
     }
 

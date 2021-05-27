@@ -11,12 +11,10 @@ import java.util.HashSet;
 
 public class BattleController extends MainController<BattleModel> implements Observable<TurnObserver>{
     private final HashSet<TurnObserver> observers;
-    private BattleMenuModel battleMenuModel;
 
     public BattleController(BattleModel model)  {
         super(model);
         observers = new HashSet<>();
-        battleMenuModel = new BattleMenuModel();
     }
 
     public void subscribe(@NotNull TurnObserver newObserver) {
@@ -29,18 +27,14 @@ public class BattleController extends MainController<BattleModel> implements Obs
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-
         if (action == GUI.ACTION.QUIT) {
             game.clearStates();
         } else if (getModel().isPlayerTurn()) {
-            new BattleMenuController(this, battleMenuModel).step(game, action);
+            new BattleMenuController(this, getModel().getMenuModel()).step(game, action);
         }
 
-        if (getModel().getTurn().getActions() == 0) {
-            notifyTurnChange();
-            getModel().changeTurn();
-
-        }
+        notifyTurnChange();
+        getModel().changeTurn();
     }
 
     private void notifyTurnChange() {

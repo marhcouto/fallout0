@@ -14,7 +14,7 @@ public class FileSpriteRenderer extends SpriteRenderer<String> {
     public void buildImage() {
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/Images/" + model)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("resources/Images/" + getModel())));
 
             int letter;
             int column = 0;

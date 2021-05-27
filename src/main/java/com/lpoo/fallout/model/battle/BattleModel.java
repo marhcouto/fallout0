@@ -14,16 +14,14 @@ public class BattleModel {
     private final Enemy enemyModel;
     private final Map<Character, BattleStats> characterStats;
     private boolean playerTurn;
-    private final Random randomEngine;
 
-    public BattleModel (@NotNull VaultBoy vaultBoy, @NotNull Enemy fightingEnemy, @NotNull Random randomEngine) {
+    public BattleModel (@NotNull VaultBoy vaultBoy, @NotNull Enemy fightingEnemy) {
         this.vaultBoyModel = vaultBoy;
         this.enemyModel = fightingEnemy;
-        this.randomEngine = randomEngine;
         this.characterStats = new HashMap<>();
-        this.characterStats.put(vaultBoyModel, new BattleStats(vaultBoyModel, randomEngine));
-        this.characterStats.put(enemyModel, new BattleStats(enemyModel, randomEngine));
-        playerTurn = randomEngine.nextBoolean();
+        this.characterStats.put(vaultBoyModel, new BattleStats(vaultBoyModel));
+        this.characterStats.put(enemyModel, new BattleStats(enemyModel));
+        playerTurn = true;
         if (playerTurn) {
             curTurn = new TurnModel(characterStats.get(this.vaultBoyModel), characterStats.get(this.enemyModel));
         } else {

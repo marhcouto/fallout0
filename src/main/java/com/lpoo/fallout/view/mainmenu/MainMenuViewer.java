@@ -1,5 +1,6 @@
 package com.lpoo.fallout.view.mainmenu;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
@@ -8,10 +9,12 @@ import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.renderers.StringRenderer;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
     private static String WELCOME_MESSAGE = "WELCOME TO FALLOUT!";
+    private List<StringRenderer> optionRenders;
 
     public MainMenuViewer(MainMenuModel model) {
         super(model);
@@ -32,14 +35,16 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
             }
         }
 
-        new StringRenderer(WELCOME_MESSAGE, "#66503a", "#E3BF9A", StringRenderer.ALIGN.CENTER, 3, 1).placeElement(gui);
+        TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
+
+        new StringRenderer(WELCOME_MESSAGE, StringRenderer.ALIGN.CENTER, 3, 1, terminalSize).placeElement(gui, "#66503a", "#E3BF9A");
         List<String> formatedOptions = getFormatedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                new StringRenderer(formatedOptions.get(i), "#FF0000", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);
+                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#FF0000", "#E3BF9A");
             } else {
-                new StringRenderer(formatedOptions.get(i), "#66503a", "#E3BF9A", StringRenderer.ALIGN.CENTER, 8 + i, 1).placeElement(gui);
+                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#66503a", "#E3BF9A");
             }
         }
     }
