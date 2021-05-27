@@ -1,12 +1,49 @@
 package com.lpoo.fallout.model.wander;
 
+import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Attributes implements Serializable {
     private Integer strength;
     private Integer agility;
     private Integer intelligence;
     private Integer luck;
+
+    public enum OPTION {
+        STRENGTH(0, "STRENGTH"),
+        AGILITY (1, "AGILITY"),
+        INTELLIGENCE(2, "INTELLIGENCE"),
+        LUCK (3, "LUCK");
+
+        private static final Map<Integer, Attributes.OPTION> BY_INDEX = new HashMap<>();
+        private static final Map<String, Attributes.OPTION> BY_LABEL = new HashMap<>();
+
+        static {
+            for (Attributes.OPTION o: values()) {
+                BY_INDEX.put(o.index, o);
+                BY_LABEL.put(o.label, o);
+            }
+        }
+
+        public final String label;
+        public final Integer index;
+
+        OPTION(Integer index, String label) {
+            this.index = index;
+            this.label = label;
+        }
+
+        public static Attributes.OPTION valueOfLabel(String label) {
+            return BY_LABEL.get(label);
+        }
+
+        public static Attributes.OPTION valueOfIndex(Integer index) {
+            return BY_INDEX.get(index);
+        }
+    }
 
     public Attributes() {
         this(1, 1, 1, 1);
@@ -92,4 +129,5 @@ public class Attributes implements Serializable {
             return message;
         }
     }
+
 }

@@ -28,23 +28,23 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
                 if ((i == 0) || (i == columns - 1) || (j == 0) || (j == rows - 1)) {
-                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", "X"), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#000000", "#808080", "X"), new Position(i, j));
                 } else {
-                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", " "), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#808080", "#808080", " "), new Position(i, j));
                 }
             }
         }
 
         TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
 
-        new StringRenderer(WELCOME_MESSAGE, StringRenderer.ALIGN.CENTER, 3, 1, terminalSize).placeElement(gui, "#66503a", "#E3BF9A");
+        new StringRenderer(WELCOME_MESSAGE, StringRenderer.ALIGN.CENTER, 3, 1, terminalSize).placeElement(gui, "#000000", "#808080");
         List<String> formatedOptions = getFormatedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#FF0000", "#E3BF9A");
+                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#666633", "#808080");
             } else {
-                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#66503a", "#E3BF9A");
+                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#000000", "#808080");
             }
         }
     }

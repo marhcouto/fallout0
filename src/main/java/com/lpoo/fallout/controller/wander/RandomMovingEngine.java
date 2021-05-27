@@ -13,7 +13,7 @@ public class RandomMovingEngine implements MovingEngine {
 
     @Override
     public Position move(Position oldPosition) {
-        int pickedDirection = random.nextInt() % 4;
+        int pickedDirection = random.nextInt(4);
         switch (pickedDirection) {
             case 0: {
                 return oldPosition.up();

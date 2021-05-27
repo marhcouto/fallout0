@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class VaultBoy extends Character {
     private Integer expPoints;
+    private Integer unusedLevelPoints;
 
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
         super(position, attributes, new Inventory(5, new Weapon(8, "Lincolns Repeater", new Attributes())),1,2);
@@ -18,6 +19,18 @@ public class VaultBoy extends Character {
         this.expPoints = expPoints;
     }
 
+    public Integer calculateExpGain(Integer enemyLevel) {
+        Integer levelGain = 0;
+        Integer expGain = (int) ((float) enemyLevel / getLevel() * 50);
+        Integer resultExp = expGain + getExpPoints();
+        while(resultExp >= 100) {
+            levelGain++;
+            resultExp -= 100;
+        }
+        unusedLevelPoints = getLevel() + levelGain;
+        return expGain;
+    }
+
     public VaultBoy(Position position) {
         super(position);
     }
@@ -26,8 +39,8 @@ public class VaultBoy extends Character {
         return expPoints;
     }
 
-    public void setExpPoints(Integer expPoints) {
-        this.expPoints = expPoints;
+    public Integer getUnusedLevelPoints() {
+        return unusedLevelPoints;
     }
 
     @Override

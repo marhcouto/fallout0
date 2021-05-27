@@ -5,9 +5,11 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
+import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
+import com.lpoo.fallout.states.StatsMenuState;
 
 import java.io.IOException;
 import java.util.AbstractQueue;
@@ -53,6 +55,9 @@ public class WanderController extends MainController<WanderModel> {
             case QUIT: {
                 game.clearStates();
                 break;
+            }
+            case UTIL_E: {
+                game.pushState(new StatsMenuState(new StatsMenuModel(getModel().getVaultBoy())));
             }
             default: {
                 vaultBoyController.move(action);
