@@ -1,7 +1,6 @@
 package com.lpoo.fallout.model.battle;
 
 public class Message {
-    private BattleMenuModel.OPTION option;
     private final boolean succeeded;
     private boolean unseen;
     private final String messageDescriptor;
@@ -10,18 +9,13 @@ public class Message {
 
 
     public Message() {
-        this("WAITING FOR\nCOMMANDS", BattleMenuModel.OPTION.ATTACK, false, false);
+        this("WAITING FOR\nCOMMANDS", false, false);
     }
-    public Message(String messageDescriptor, BattleMenuModel.OPTION option, boolean succeeded, boolean unseen) {
+    public Message(String messageDescriptor, boolean succeeded, boolean unseen) {
         this.succeeded = succeeded;
         this.unseen = unseen;
-        this.option = option;
         this.messageDescriptor = messageDescriptor;
         this.endTime = System.currentTimeMillis() + MAX_DISPLAY_TIME;
-    }
-
-    public BattleMenuModel.OPTION getOption() {
-        return option;
     }
 
     public boolean succeeded() {

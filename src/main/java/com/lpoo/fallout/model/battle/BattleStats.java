@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class BattleStats {
+    private final Integer startingHealthPoints;
     private Integer healthPoints;
     private Float dodgeChance;
     private Float missChance;
@@ -14,6 +15,7 @@ public class BattleStats {
     public static Float CRIT_MULTIPLIER = (float) 1.50;
 
     public BattleStats(@NotNull Integer healthPoints, @NotNull Float dodgeChance, @NotNull Float missChange, @NotNull Integer baseDamage, @NotNull Float critRatio) {
+        this.startingHealthPoints = healthPoints;
         this.healthPoints = healthPoints;
         this.dodgeChance = dodgeChance;
         this.missChance = missChange;
@@ -23,19 +25,19 @@ public class BattleStats {
 
     public BattleStats(@NotNull Character character) {
         this.healthPoints = 15 + character.getAttributes().getStrength() * character.getLevel();
+        this.startingHealthPoints = this.healthPoints;
         this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
         this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
-        this.baseDamage = character.getWeapon().getDamage();
+        this.baseDamage = character.getInventory().getWeapon().getDamage();
         this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
     }
 
     public @NotNull Integer getHealthPoints() {
         return healthPoints;
     }
-    public void setHealthPoints(@NotNull Integer healthPoints) {
-        this.healthPoints = healthPoints;
+    public @NotNull Integer getStartingHealthPoints() {
+        return startingHealthPoints;
     }
-
     public @NotNull Float getDodgeChance() {
         return dodgeChance;
     }
@@ -47,6 +49,10 @@ public class BattleStats {
     }
     public @NotNull Float getCritRatio() { return critRatio; }
 
+
+    public void setHealthPoints(@NotNull Integer healthPoints) {
+        this.healthPoints = healthPoints;
+    }
     public void setDodgeChance(@NotNull Float dodgeChance) {
         this.dodgeChance = dodgeChance;
     }
