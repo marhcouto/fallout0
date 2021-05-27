@@ -2,8 +2,6 @@ package com.lpoo.fallout.model.battle;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
 public class TurnModel {
     private BattleStats attackerStats;
     private BattleStats defenderStats;

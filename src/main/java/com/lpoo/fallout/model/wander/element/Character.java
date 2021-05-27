@@ -5,11 +5,10 @@ import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.Weapon;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Character extends Element {
-    private UUID id;
+    private final UUID id;
     private Attributes attributes;
     private Weapon weapon;
     private Integer level;

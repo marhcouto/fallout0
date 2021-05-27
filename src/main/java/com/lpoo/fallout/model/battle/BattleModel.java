@@ -22,7 +22,7 @@ public class BattleModel {
         this.randomEngine = randomEngine;
         this.characterStats = new HashMap<>();
         this.characterStats.put(vaultBoyModel, new BattleStats(vaultBoyModel, randomEngine));
-        this.characterStats.put(vaultBoyModel, new BattleStats(enemyModel, randomEngine));
+        this.characterStats.put(enemyModel, new BattleStats(enemyModel, randomEngine));
         playerTurn = randomEngine.nextBoolean();
         if (playerTurn) {
             curTurn = new TurnModel(characterStats.get(this.vaultBoyModel), characterStats.get(this.enemyModel));
