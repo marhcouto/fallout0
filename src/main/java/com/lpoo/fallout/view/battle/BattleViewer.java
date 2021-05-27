@@ -44,7 +44,6 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
 
     @Override
     protected void drawElements(LanternaGUI gui) {
-
         statusBarRendererVB.updateHealthBar(getModel().getCharacterStats().get(getModel().getVaultBoy()).getHealthPoints());
         statusBarRendererEN.updateHealthBar(getModel().getCharacterStats().get(getModel().getFightingEnemy()).getHealthPoints());
         enemyRenderer.placeElement(gui);
