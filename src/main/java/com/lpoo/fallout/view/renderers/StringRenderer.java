@@ -25,7 +25,7 @@ public class StringRenderer extends Renderer<String, LanternaGUI> {
     private Position getCenterPosition(Integer row, ALIGN alignment, Integer frameWidth, TerminalSize terminalSize) {
         switch (alignment) {
             case CENTER: {
-                return new Position((int)Math.ceil(((float)terminalSize.getColumns() - (frameWidth * 2)) / 2 - ((float)getModel().length() / 2)), row);
+                return new Position((int)Math.ceil(((float)terminalSize.getColumns() - (frameWidth * 2)) / 2 - ((float)getModel().length() / 2)) + frameWidth, row);
             }
             case LEFT: {
                 return new Position(frameWidth, row);
