@@ -3,7 +3,6 @@ package com.lpoo.fallout.controller.battle;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.battle.BattleMenuModel;
 import com.lpoo.fallout.model.battle.BattleModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,8 +32,10 @@ public class BattleController extends MainController<BattleModel> implements Obs
             new BattleMenuController(this, getModel().getMenuModel()).step(game, action);
         }
 
-        notifyTurnChange();
-        getModel().changeTurn();
+        if (getModel().getTurn().getOutcome().succeeded() && System.currentTimeMillis() > getModel().getTurn().getOutcome().getEndTime()) {
+            notifyTurnChange();
+            getModel().changeTurn();
+        }
     }
 
     private void notifyTurnChange() {

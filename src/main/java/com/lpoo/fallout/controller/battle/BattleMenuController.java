@@ -52,6 +52,7 @@ public class BattleMenuController extends OptionMenuController<BattleMenuModel> 
             }
             case ENTER: {
                 activationHandlers.get(getModel().getSelectedOption()).activate(new NullData());
+                break;
             }
         }
     }

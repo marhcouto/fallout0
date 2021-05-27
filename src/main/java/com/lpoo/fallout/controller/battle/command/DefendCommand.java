@@ -4,7 +4,9 @@ import com.lpoo.fallout.controller.Command;
 import com.lpoo.fallout.controller.battle.Observable;
 import com.lpoo.fallout.controller.battle.TurnObserver;
 import com.lpoo.fallout.controller.battle.effects.FortifyDefenseObserver;
+import com.lpoo.fallout.model.battle.BattleMenuModel;
 import com.lpoo.fallout.model.battle.BattleStats;
+import com.lpoo.fallout.model.battle.Message;
 import com.lpoo.fallout.model.battle.TurnModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,6 +21,7 @@ public class DefendCommand implements Command<NullData> {
 
     @Override
     public void activate(NullData requestData) {
+        turn.setOutcome(new Message("Defend applied", BattleMenuModel.OPTION.DEFEND, true));
         BattleStats changedStats = turn.getAttackerStats();
 
         float defenseBuff = (float) 0.50 * turn.getAttackerStats().getDodgeChance();
