@@ -9,14 +9,11 @@ import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
 import com.lpoo.fallout.states.BattleState;
-import com.lpoo.fallout.states.State;
 import com.lpoo.fallout.states.WanderState;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
 import java.util.*;
 
 class WanderControllerTest {
@@ -33,12 +30,12 @@ class WanderControllerTest {
         WanderModel model = new WanderModel(new VaultBoy(new Position(0, 0)), arena);
         WanderController controller = new WanderController(model);
 
-        game.pushController(new WanderState(model));
+        game.pushState(new WanderState(model));
 
         controller.step(game, GUI.ACTION.NONE, 0);
 
-        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(WanderState.class));
-        Mockito.verify(game, Mockito.never()).pushController(Mockito.any(BattleState.class));
+        Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(WanderState.class));
+        Mockito.verify(game, Mockito.never()).pushState(Mockito.any(BattleState.class));
     }
 
     @Test
@@ -47,10 +44,10 @@ class WanderControllerTest {
         WanderModel model = new WanderModel(new VaultBoy(new Position(0, 0)), arena);
         WanderController controller = new WanderController(model);
 
-        game.pushController(new WanderState(model));
+        game.pushState(new WanderState(model));
 
         controller.step(game, GUI.ACTION.NONE, 0);
-        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(WanderState.class));
-        Mockito.verify(game, Mockito.times(1)).pushController(Mockito.any(BattleState.class));
+        Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(WanderState.class));
+        Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(BattleState.class));
     }
 }

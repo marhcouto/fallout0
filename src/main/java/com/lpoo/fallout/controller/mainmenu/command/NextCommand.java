@@ -25,7 +25,7 @@ public class NextCommand extends MainMenuCommand {
     public void activate(Game requestData) {
         requestData.clearStates();
         try {
-            requestData.pushController(new WanderState(fileHandler.createWanderModel("gamestat", controller.getModel().getAttributes())));
+            requestData.pushState(new WanderState(fileHandler.createWanderModel("gamestat", controller.getModel().getAttributes())));
         } catch (IOException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
