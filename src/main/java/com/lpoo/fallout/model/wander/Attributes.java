@@ -1,7 +1,5 @@
 package com.lpoo.fallout.model.wander;
 
-import com.lpoo.fallout.model.mainmenu.MainMenuModel;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +32,10 @@ public class Attributes implements Serializable {
         OPTION(Integer index, String label) {
             this.index = index;
             this.label = label;
+        }
+
+        public static boolean contains(String label) {
+            return BY_LABEL.get(label) != null;
         }
 
         public static Attributes.OPTION valueOfLabel(String label) {
@@ -127,6 +129,21 @@ public class Attributes implements Serializable {
         @Override
         public String getMessage() {
             return message;
+        }
+    }
+
+    public Integer getValue(OPTION option) {
+        switch (option) {
+            case STRENGTH:
+                return getStrength();
+            case AGILITY:
+                return getAgility();
+            case LUCK:
+                return getLuck();
+            case INTELLIGENCE:
+                return getIntelligence();
+            default:
+                return -1;
         }
     }
 

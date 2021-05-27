@@ -4,12 +4,12 @@ import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.renderers.StringRenderer;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
@@ -38,7 +38,7 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
         TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
 
         new StringRenderer(WELCOME_MESSAGE, StringRenderer.ALIGN.CENTER, 3, 1, terminalSize).placeElement(gui, "#000000", "#808080");
-        List<String> formatedOptions = getFormatedOptions();
+        List<String> formatedOptions = getFormattedOptions();
 
         for (int i = 0; i < formatedOptions.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
@@ -49,15 +49,15 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
         }
     }
 
-    private List<String> getFormatedOptions() {
+    private List<String> getFormattedOptions() {
         List<String> resList = new ArrayList<>();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (MainMenuModel.OPTION option: MainMenuModel.OPTION.values()) {
             stringBuilder.append(option.label);
-            if (getModel().getValue(option) != -1) {
+            if (Attributes.OPTION.contains(option.label)) {
                 stringBuilder.append(" <");
-                stringBuilder.append(getModel().getValue(option));
+                stringBuilder.append(getModel().getAttributes().getValue(Attributes.OPTION.valueOf(option.label)));
                 stringBuilder.append(">");
             }
             resList.add(stringBuilder.toString());

@@ -10,10 +10,10 @@ public class MainMenuModel extends OptionMenuModel<MainMenuModel.OPTION> {
     private final Attributes attributes;
 
     public enum OPTION {
-        STRENGTH(0, "STRENGTH"),
-        AGILITY (1, "AGILITY"),
-        INTELLIGENCE(2, "INTELLIGENCE"),
-        LUCK (3, "LUCK"),
+        STRENGTH(0, Attributes.OPTION.STRENGTH.label),
+        AGILITY (1, Attributes.OPTION.AGILITY.label),
+        INTELLIGENCE(2, Attributes.OPTION.INTELLIGENCE.label),
+        LUCK (3, Attributes.OPTION.LUCK.label),
         NEXT (4, "NEXT");
 
         private static final Map<Integer, OPTION> BY_INDEX = new HashMap<>();
@@ -55,20 +55,5 @@ public class MainMenuModel extends OptionMenuModel<MainMenuModel.OPTION> {
     @Override
     public OPTION getSelectedOption() {
         return OPTION.valueOfIndex(getSelectedIdx());
-    }
-
-    public Integer getValue(OPTION option) {
-        switch (option) {
-            case STRENGTH:
-                return attributes.getStrength();
-            case AGILITY:
-                return attributes.getAgility();
-            case LUCK:
-                return attributes.getLuck();
-            case INTELLIGENCE:
-                return attributes.getIntelligence();
-            default:
-                return -1;
-        }
     }
 }
