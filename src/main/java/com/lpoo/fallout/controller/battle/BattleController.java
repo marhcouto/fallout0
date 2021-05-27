@@ -5,14 +5,13 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.battle.BattleStats;
-import com.lpoo.fallout.model.wander.Arena;
+import com.lpoo.fallout.model.battleoutcome.BattleOutcomeModel;
 import com.lpoo.fallout.model.wander.element.Character;
 import com.lpoo.fallout.model.wander.element.Enemy;
-import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.states.BattleOutcomeState;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
@@ -45,6 +44,7 @@ public class BattleController extends MainController<BattleModel> {
             if (curElement.getValue().getHealthPoints() <= 0) {
                 if (curElement.getKey().equals(getModel().getVaultBoy())) {
                     game.clearStates();
+                    game.pushState(new BattleOutcomeState(new BattleOutcomeModel("VAULT BOY DIED!")));
                 } else {
                     deadCharacter = (Enemy) curElement.getKey();
                     calculateExpGain(deadCharacter);
@@ -54,6 +54,7 @@ public class BattleController extends MainController<BattleModel> {
                         exception.printStackTrace();
                     } finally {
                         game.popState();
+                        game.pushState(new BattleOutcomeState(new BattleOutcomeModel("ENEMY DIED!")));
                     }
                 }
             }

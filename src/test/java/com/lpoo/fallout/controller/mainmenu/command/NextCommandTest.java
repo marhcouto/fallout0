@@ -37,7 +37,7 @@ class NextCommandTest {
         ArgumentCaptor<Attributes> attributeArgumentCaptor = ArgumentCaptor.forClass(Attributes.class);
 
         command.activate(mockedGame);
-        Mockito.verify(mockedGame, Mockito.times(1)).pushController(Mockito.any(WanderState.class));
+        Mockito.verify(mockedGame, Mockito.times(1)).pushState(Mockito.any(WanderState.class));
         Mockito.verify(fileHandlerMock).createWanderModel(Mockito.any(String.class), attributeArgumentCaptor.capture());
 
         Assertions.assertEquals(attributes, attributeArgumentCaptor.getValue());

@@ -10,7 +10,7 @@ public class VaultBoy extends Character {
     private Integer expPoints;
 
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
-        super(position, attributes, new Inventory(5, new Weapon(8, "Lincoln’s Repeater", new Attributes())),1,2);
+        super(position, attributes, new Inventory(5, new Weapon(8, "Lincolns Repeater", new Attributes())),1,2);
     }
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius) {
         super(position, attributes, inventory, level, attackRadius);

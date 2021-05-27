@@ -11,7 +11,6 @@ import com.lpoo.fallout.states.BattleState;
 
 import java.io.IOException;
 import java.util.AbstractQueue;
-import java.util.Random;
 
 public class WanderController extends MainController<WanderModel> {
     private final VaultBoyController vaultBoyController;
@@ -44,7 +43,7 @@ public class WanderController extends MainController<WanderModel> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            game.pushController(new BattleState(new BattleModel(getModel().getArena(), getModel().getVaultBoy(), fightingEnemy)));
+            game.pushState(new BattleState(new BattleModel(getModel().getArena(), getModel().getVaultBoy(), fightingEnemy)));
         }
 
         switch (action) {
