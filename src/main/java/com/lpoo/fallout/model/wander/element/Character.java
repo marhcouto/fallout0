@@ -13,7 +13,7 @@ public abstract class Character extends Element {
     private Attributes attributes;
     private final Inventory inventory;
     private Integer level;
-    private Integer attackRadius;
+    private final Integer attackRadius;
 
     public Character(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius) {
         super(position);
