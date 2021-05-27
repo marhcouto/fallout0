@@ -51,6 +51,7 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
     protected void drawElements(LanternaGUI gui) {
 
         if (getModel().getTurn().getOutcome().isUnseen()) {
+            getModel().getTurn().getOutcome().setUnseen(false);
             message = new WordRenderer(getModel().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230));
             message.buildImage();
         }

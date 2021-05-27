@@ -1,27 +1,30 @@
 package com.lpoo.fallout.controller.battle.command.attack;
 
-import com.lpoo.fallout.controller.Command;
-import com.lpoo.fallout.controller.battle.command.NullData;
+import com.lpoo.fallout.controller.battle.command.BattleCommand;
 import com.lpoo.fallout.model.battle.TurnModel;
 
 import java.util.Random;
 
-public class AttackCommand implements Command<NullData> {
+public class AttackCommand extends BattleCommand {
     private Random randomEngine;
-    private TurnModel turn;
 
     public AttackCommand(TurnModel turn, Random randomEngine) {
+        super(turn);
         this.randomEngine = randomEngine;
-        this.turn = turn;
     }
 
     @Override
-    public void activate(NullData requestData) {
-        SendAttack sendAttack = new SendAttack(turn, randomEngine);
-        ReceiveAttack receiveAttack = new ReceiveAttack(turn, randomEngine);
-        DealDamage dealDamage = new DealDamage(turn, randomEngine);
+    public void activate() {
+        SendAttack sendAttack = new SendAttack(getTurn(), randomEngine);
+        ReceiveAttack receiveAttack = new ReceiveAttack(getTurn(), randomEngine);
+        DealDamage dealDamage = new DealDamage(getTurn(), randomEngine);
         sendAttack.setNext(receiveAttack);
         receiveAttack.setNext(dealDamage);
         sendAttack.handle();
+    }
+
+    @Override
+    public void deactivate() {
+
     }
 }

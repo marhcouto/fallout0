@@ -1,30 +1,27 @@
 package com.lpoo.fallout.controller.battle.command;
 
-import com.lpoo.fallout.controller.Command;
-import com.lpoo.fallout.controller.battle.Observable;
-import com.lpoo.fallout.controller.battle.TurnObserver;
-import com.lpoo.fallout.controller.battle.effects.FortifyDefenseObserver;
 import com.lpoo.fallout.model.battle.BattleMenuModel;
-import com.lpoo.fallout.model.battle.BattleStats;
 import com.lpoo.fallout.model.battle.Message;
 import com.lpoo.fallout.model.battle.TurnModel;
 import org.jetbrains.annotations.NotNull;
 
-public class DefendCommand implements Command<NullData> {
-    private Observable<TurnObserver> observable;
-    TurnModel turn;
+public class DefendCommand extends BattleCommand {
 
-    public DefendCommand(@NotNull Observable<TurnObserver> observable, @NotNull TurnModel turn) {
-        this.turn = turn;
-        this.observable = observable;
+    public DefendCommand(@NotNull TurnModel turn) {
+        super(turn);
     }
 
     @Override
-    public void activate(NullData requestData) {
-        turn.setOutcome(new Message("defend\napplied", BattleMenuModel.OPTION.DEFEND, true, true));
-        BattleStats changedStats = turn.getAttackerStats();
+    public void activate() {
+        getTurn().setOutcome(new Message("defend\napplied", true, true));
 
-        float defenseBuff = (float) 0.50 * turn.getAttackerStats().getDodgeChance();
-        observable.subscribe(new FortifyDefenseObserver(observable, 2, changedStats, defenseBuff));
+        float newDodgeChance = (float) Math.min(getTurn().getAttackerStats().getDodgeChance() * 1.5, 1.0);
+        getTurn().getAttackerStats().setDodgeChance(newDodgeChance);
+    }
+
+    @Override
+    public void deactivate() {
+        float newDodgeChance = (float) Math.max(getTurn().getAttackerStats().getDodgeChance() * 0.75, 0.0);
+        getTurn().getAttackerStats().setDodgeChance(newDodgeChance);
     }
 }

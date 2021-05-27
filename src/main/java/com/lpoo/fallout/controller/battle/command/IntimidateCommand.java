@@ -1,30 +1,28 @@
 package com.lpoo.fallout.controller.battle.command;
 
-import com.lpoo.fallout.controller.Command;
-import com.lpoo.fallout.controller.battle.BattleController;
-import com.lpoo.fallout.controller.battle.Observable;
-import com.lpoo.fallout.controller.battle.TurnObserver;
-import com.lpoo.fallout.controller.battle.effects.IntimidateObserver;
 import com.lpoo.fallout.model.battle.BattleMenuModel;
-import com.lpoo.fallout.model.battle.BattleStats;
 import com.lpoo.fallout.model.battle.Message;
 import com.lpoo.fallout.model.battle.TurnModel;
 
-public class IntimidateCommand implements Command<NullData> {
-    private Observable<TurnObserver> observable;
-    TurnModel turn;
+public class IntimidateCommand extends BattleCommand {
 
-    public IntimidateCommand(Observable<TurnObserver> observable, TurnModel turn) {
-        this.turn = turn;
-        this.observable = observable;
+    public IntimidateCommand(TurnModel turn) {
+        super(turn);
     }
 
     @Override
-    public void activate(NullData requestData) {
-        turn.setOutcome(new Message("intimidate\napplied", BattleMenuModel.OPTION.INTIMIDATE, true, true));
-        BattleStats changedStats = turn.getDefenderStats();
+    public void activate() {
 
-        float missChanceBuff = (float) 0.10 * turn.getAttackerStats().getBaseDamage();
-        observable.subscribe(new IntimidateObserver(observable, 2, changedStats, missChanceBuff));
+        // Register message
+        getTurn().setOutcome(new Message("intimidate\napplied", true, true));
+
+        float newMissChance = (float) Math.min( 0.10 * getTurn().getAttackerStats().getBaseDamage() + getTurn().getDefenderStats().getMissChance(), 0.5);
+        getTurn().getDefenderStats().setMissChance(newMissChance);
+    }
+
+    @Override
+    public void deactivate() {
+        float newMissChance = (float) Math.max( getTurn().getDefenderStats().getMissChance() - 0.10 * getTurn().getAttackerStats().getBaseDamage(), 0.0);
+        getTurn().getDefenderStats().setMissChance(newMissChance);
     }
 }

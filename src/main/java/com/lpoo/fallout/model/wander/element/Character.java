@@ -1,6 +1,7 @@
 package com.lpoo.fallout.model.wander.element;
 
 import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.Inventory;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.Weapon;
 import org.jetbrains.annotations.NotNull;
@@ -10,32 +11,31 @@ import java.util.UUID;
 public abstract class Character extends Element {
     private final UUID id;
     private Attributes attributes;
-    private Weapon weapon;
+    private final Inventory inventory;
     private Integer level;
     private Integer attackRadius;
 
-    public Character(@NotNull Position position, @NotNull Attributes attributes, @NotNull Weapon weapon, @NotNull Integer level, @NotNull Integer attackRadius) {
+    public Character(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius) {
         super(position);
         this.id = UUID.randomUUID();
         this.attributes = attributes;
-        this.weapon = weapon;
+        this.inventory = inventory;
         this.level = level;
         this.attackRadius = attackRadius;
     }
 
     public Character(Position position) {
-        this(position, new Attributes(), new Weapon(), 0, 5);
+        this(position, new Attributes(), new Inventory(5, new Weapon()), 0, 5);
     }
 
     public void setLevel(Integer level) { this.level = level; }
-    public void setWeapon(Weapon weapon) { this.weapon = weapon; }
     public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
     }
-    public Weapon getWeapon() {
-        return weapon;
-    }
     public Attributes getAttributes() { return attributes; }
+    public Inventory getInventory() {
+        return inventory;
+    }
     public Integer getLevel() { return level; }
     public Integer getAttackRadius() {
         return attackRadius;

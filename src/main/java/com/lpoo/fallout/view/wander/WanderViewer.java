@@ -17,6 +17,7 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     static {
         drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#00FF00", "#000000", "g"));
         drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#FF00FF", "#000000", "h"));
+        drawableMap.put(Enemy.TYPE.SNAKE, new LanternaDrawable("#FF00FF", "#000000", "i"));
     }
 
     public WanderViewer(WanderModel model) {

@@ -16,39 +16,25 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Random;
 
-public class BattleController extends MainController<BattleModel> implements Observable<TurnObserver>{
-    private final HashSet<TurnObserver> observers;
+public class BattleController extends MainController<BattleModel> {
 
     public BattleController(@NotNull BattleModel model)  {
         super(model);
-        observers = new HashSet<>();
-    }
-
-    public void subscribe(@NotNull TurnObserver newObserver) {
-        observers.add(newObserver);
-    }
-
-    public void unsubscribe(@NotNull TurnObserver oldObserver) {
-        observers.remove(oldObserver);
     }
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.QUIT) {
+        if (action == GUI.ACTION.QUIT)
             game.clearStates();
-        } else {
-            if (getModel().getTurn().getOutcome().succeeded()) {
-                waitForMessage();
-                notifyTurnChange();
-                getModel().changeTurn();
-            } else {
-                if (getModel().isPlayerTurn()) {
-                    new BattleMenuController(this, getModel().getMenuModel()).step(game, action);
-                } else {
-                    new BattleMonsterController(getModel().getTurn()).step(new Random());
-                }
-            }
+        if (getModel().getTurn().getOutcome().succeeded()) {
+            waitForMessage();
+            getModel().changeTurn();
         }
+        if (getModel().isPlayerTurn())
+            new BattleMenuController(this.getModel(), getModel().getMenuModel()).step(game, action);
+        else
+            new BattleMonsterController(getModel().getTurn(), this.getModel()).step(new Random());
+
         addCharacterInfoToMessage();
         processDeath(game);
     }
@@ -92,12 +78,6 @@ public class BattleController extends MainController<BattleModel> implements Obs
             getModel().getTurn().getOutcome().setMessageDescriptor("Player\n" + getModel().getTurn().getOutcome().getMessageDescriptor());
         } else {
             getModel().getTurn().getOutcome().setMessageDescriptor("Enemy\n" + getModel().getTurn().getOutcome().getMessageDescriptor());
-        }
-    }
-
-    private void notifyTurnChange() {
-        for (TurnObserver observer: observers) {
-            observer.notifyTurnChange();
         }
     }
 }
