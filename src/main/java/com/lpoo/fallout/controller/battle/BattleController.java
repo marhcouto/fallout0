@@ -47,14 +47,14 @@ public class BattleController extends MainController<BattleModel> {
                     game.pushState(new BattleOutcomeState(new BattleOutcomeModel("VAULT BOY DIED!")));
                 } else {
                     deadCharacter = (Enemy) curElement.getKey();
-                    calculateExpGain(deadCharacter);
+                    Integer expGain = calculateExpGain(deadCharacter);
                     try {
                         game.changeGui(Game.getDefaultGUI());
                     } catch (IOException exception) {
                         exception.printStackTrace();
                     } finally {
                         game.popState();
-                        game.pushState(new BattleOutcomeState(new BattleOutcomeModel("ENEMY DIED!")));
+                        game.pushState(new BattleOutcomeState(new BattleOutcomeModel("ENEMY DIED! " + expGain + " EXP GAINED")));
                     }
                 }
             }
@@ -67,15 +67,16 @@ public class BattleController extends MainController<BattleModel> {
         return false;
     }
 
-    public void calculateExpGain(Enemy enemy) {
+    public Integer calculateExpGain(Enemy enemy) {
         Integer levelGain = 0;
-        Integer resultExp = (int) ((float) enemy.getLevel() / getModel().getVaultBoy().getLevel() * 50) +
-                getModel().getVaultBoy().getExpPoints();
+        Integer expGain = (int) ((float) enemy.getLevel() / getModel().getVaultBoy().getLevel() * 50);
+        Integer resultExp = expGain + getModel().getVaultBoy().getExpPoints();
         while(resultExp >= 100) {
             levelGain++;
             resultExp -= 100;
         }
         getModel().getVaultBoy().setLevel(getModel().getVaultBoy().getLevel() + levelGain);
+        return expGain;
     }
 
     private void waitForMessage() {

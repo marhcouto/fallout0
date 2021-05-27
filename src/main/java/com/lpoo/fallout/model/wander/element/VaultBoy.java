@@ -11,9 +11,11 @@ public class VaultBoy extends Character {
 
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
         super(position, attributes, new Inventory(5, new Weapon(8, "Lincolns Repeater", new Attributes())),1,2);
+        this.expPoints = 0;
     }
-    public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius) {
+    public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius, Integer expPoints) {
         super(position, attributes, inventory, level, attackRadius);
+        this.expPoints = expPoints;
     }
 
     public VaultBoy(Position position) {
