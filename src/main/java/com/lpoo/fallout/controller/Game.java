@@ -21,10 +21,13 @@ public class Game {
 
         frameTime = 1000/60;
 
-        this.gui = new LanternaGUI(new LanternaTerminal(30, 18, 40));
+        this.gui = getDefaultGUI();
         this.pushController(new MainMenuState(new MainMenuModel()));
     }
 
+    public static LanternaGUI getDefaultGUI() throws IOException {
+        return new LanternaGUI(new LanternaTerminal(30, 18, 40));
+    }
     public void pushController(State newController) {
         states.push(newController);
     }

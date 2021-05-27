@@ -3,8 +3,6 @@ package com.lpoo.fallout.model.battle;
 import com.lpoo.fallout.model.wander.element.Character;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
 public class BattleStats {
     private Integer healthPoints;
     private Float dodgeChance;
@@ -23,10 +21,10 @@ public class BattleStats {
 
     public BattleStats(@NotNull Character character) {
         this.healthPoints = 15 + character.getAttributes().getStrength() * character.getLevel();
-        this.dodgeChance = (float) (character.getAttributes().getIntelligence() / 100);
-        this.missChance = (float) ((80 - character.getAttributes().getLuck()) / 100);
+        this.dodgeChance = (float) 0.15 + (float) character.getAttributes().getIntelligence() / 100;
+        this.missChance = 1 - (float) (80 - character.getAttributes().getLuck()) / 100;
         this.baseDamage = character.getWeapon().getDamage();
-        this.critRatio = (float) (character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100);
+        this.critRatio = (float) 0.10 + (float) character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100;
     }
 
     public @NotNull Integer getHealthPoints() {

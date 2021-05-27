@@ -24,7 +24,7 @@ public class DealDamage extends CommandHandler {
             damageDealt = Math.round(model.getAttackerStats().getBaseDamage() * BattleStats.CRIT_MULTIPLIER);
         }
         model.setOutcome(new Message("Dealt " + damageDealt, BattleMenuModel.OPTION.ATTACK, true, true));
-        System.out.println("Defender Healt: " + model.getDefenderStats().getHealthPoints());
+        System.out.println("Defender Health: " + model.getDefenderStats().getHealthPoints());
         model.getDefenderStats().setHealthPoints(model.getDefenderStats().getHealthPoints() - damageDealt);
     }
 }

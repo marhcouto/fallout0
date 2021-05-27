@@ -59,6 +59,14 @@ public class Arena implements Serializable {
         return true;
     }
 
+    public void removeEnemy(Enemy oldEnemy) {
+        for (Enemy enemy: enemies) {
+            if (enemy.equals(oldEnemy)) {
+                enemies.remove(oldEnemy);
+            }
+        }
+    }
+
     public AbstractQueue<Enemy> getOrderedEnemies(Position position) {
         EnemyComparator comparator = new EnemyComparator(position);
         AbstractQueue<Enemy> sortedEnemies = new PriorityQueue<>(comparator);
@@ -71,6 +79,14 @@ public class Arena implements Serializable {
     }
     public List<Enemy> getEnemies() {
         return enemies;
+    }
+    public boolean hasEnemy(Enemy character) {
+        for (Enemy enemy: enemies) {
+            if (enemy.equals(character)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getName() {

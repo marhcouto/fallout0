@@ -4,7 +4,7 @@ public class Message {
     private BattleMenuModel.OPTION option;
     private final boolean succeeded;
     private boolean unseen;
-    private final String messageDescriptor;
+    private String messageDescriptor;
     private final long endTime;
     public final long MAX_DISPLAY_TIME = 3000; //Milliseconds
 
@@ -26,6 +26,10 @@ public class Message {
 
     public boolean succeeded() {
         return succeeded;
+    }
+
+    public void setMessageDescriptor(String messageDescriptor) {
+        this.messageDescriptor = messageDescriptor;
     }
 
     public boolean isUnseen() {
