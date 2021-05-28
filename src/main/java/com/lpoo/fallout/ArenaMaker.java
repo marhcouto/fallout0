@@ -143,7 +143,6 @@ public class ArenaMaker {
         walls.add(new Wall(new Position(11, 15)));
         walls.add(new Wall(new Position(12, 15)));
         walls.add(new Wall(new Position(13, 15)));
-        walls.add(new Wall(new Position(26, 12)));
         walls.add(new Wall(new Position(14, 15)));
         walls.add(new Wall(new Position(15, 15)));
         walls.add(new Wall(new Position(16, 15)));
@@ -298,6 +297,7 @@ public class ArenaMaker {
         List<Wall> walls = new ArrayList<>();
 
         // 1
+        walls.add(new Wall(new Position(26, 12)));
         walls.add(new Wall(new Position(2, 2)));
         walls.add(new Wall(new Position(3, 1)));
         walls.add(new Wall(new Position(4, 1)));
