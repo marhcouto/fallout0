@@ -1,9 +1,10 @@
-package com.lpoo.fallout.view.mainmenu;
+package com.lpoo.fallout.view.statsmenu.levelup;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
+import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.view.Viewer;
@@ -12,11 +13,8 @@ import com.lpoo.fallout.view.renderers.StringRenderer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
-    private static String WELCOME_MESSAGE = "WELCOME TO FALLOUT!";
-    private List<StringRenderer> optionRenders;
-
-    public MainMenuViewer(MainMenuModel model) {
+public class LevelUpMenuView extends Viewer<LevelUpModel, LanternaGUI> {
+    public LevelUpMenuView(LevelUpModel model) {
         super(model);
     }
 
@@ -37,14 +35,15 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
 
         TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
 
-        new StringRenderer(WELCOME_MESSAGE, StringRenderer.ALIGN.CENTER, 3, 1, terminalSize).placeElement(gui, "#000000", "#808080");
-        List<String> formatedOptions = getFormattedOptions();
+        new StringRenderer("REMAINING LEVELS: " + (getModel().getVaultBoy().getUnusedLevelPoints() - getModel().getUsedLevel()), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#000000", "#808080");
 
-        for (int i = 0; i < formatedOptions.size(); i++) {
+        List<String> formattedOptions = getFormattedOptions();
+
+        for (int i = 0; i < formattedOptions.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#666633", "#808080");
+                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#666633", "#808080");
             } else {
-                new StringRenderer(formatedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#000000", "#808080");
             }
         }
     }
@@ -57,7 +56,8 @@ public class MainMenuViewer extends Viewer<MainMenuModel, LanternaGUI> {
             stringBuilder.append(option.label);
             if (Attributes.OPTION.contains(option.label)) {
                 stringBuilder.append(" <");
-                stringBuilder.append(getModel().getAttributes().getValue(Attributes.OPTION.valueOf(option.label)));
+                int attributeValue = getModel().getNewAttributes().getValue(Attributes.OPTION.valueOf(option.label)) + getModel().getVaultBoy().getAttributes().getValue(Attributes.OPTION.valueOf(option.label));
+                stringBuilder.append(attributeValue);
                 stringBuilder.append(">");
             }
             resList.add(stringBuilder.toString());

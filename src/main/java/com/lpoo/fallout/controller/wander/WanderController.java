@@ -6,12 +6,16 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.filehandling.FileHandler;
+import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
+import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
+import com.lpoo.fallout.states.LevelUpState;
+import com.lpoo.fallout.states.StatsMenuState;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.AbstractQueue;
 
@@ -55,10 +59,21 @@ public class WanderController extends MainController<WanderModel> {
 
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
+        if (getModel().getVaultBoy().isGameStarting()) {
+            getModel().getVaultBoy().setGameStarting(false);
+            getModel().getVaultBoy().setUnusedLevelPoints(5);
+            try {
+                FileHandler.saveModel("gamestat", getModel());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            game.pushState(new LevelUpState(new LevelUpModel(getModel().getVaultBoy())));
+        }
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
             try {
                 game.changeGui(new LanternaGUI(new LanternaTerminal(600, 300, 2)));
+                FileHandler.saveModel("gamestat", getModel());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -70,8 +85,16 @@ public class WanderController extends MainController<WanderModel> {
                 break;
             }
             case QUIT: {
+                try {
+                    FileHandler.saveModel("gamestat", getModel());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 game.clearStates();
                 break;
+            }
+            case UTIL_E: {
+                game.pushState(new StatsMenuState(new StatsMenuModel(getModel().getVaultBoy())));
             }
             default: {
                 this.justEntered = false;

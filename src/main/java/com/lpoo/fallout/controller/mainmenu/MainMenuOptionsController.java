@@ -62,9 +62,11 @@ public class MainMenuOptionsController extends OptionMenuController<MainMenuMode
             }
             case RIGHT: {
                 commandMap.get(getModel().getSelectedOption()).right();
+                break;
             }
             case ENTER: {
                 commandMap.get(getModel().getSelectedOption()).activate(game);
+                break;
             }
         }
     }

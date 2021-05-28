@@ -24,6 +24,9 @@ public abstract class OptionMenuController <T extends OptionMenuModel<? extends 
                 model.increaseSelectedIdx();
                 break;
             }
+            default: {
+                break;
+            }
         }
     }
 }
