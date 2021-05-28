@@ -1,13 +1,17 @@
 package com.lpoo.fallout.model.battle;
 
+import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.battle.Observable;
 import com.lpoo.fallout.controller.battle.TurnObserver;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.Arena;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Character;
+import com.lpoo.fallout.states.MessageDisplayState;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.*;
 
 public class BattleModel implements Observable<TurnObserver> {

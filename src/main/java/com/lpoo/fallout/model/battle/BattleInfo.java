@@ -1,10 +1,14 @@
 package com.lpoo.fallout.model.battle;
 
+import com.lpoo.fallout.controller.Game;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.element.Character;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.states.MessageDisplayState;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,5 +60,13 @@ public class BattleInfo {
 
     public @NotNull BattleStats getCharacterStats(@NotNull Character character) {
         return characterStats.get(character);
+    }
+
+    public Character checkDeath() {
+        for (Map.Entry<Character, BattleStats> curElement: characterStats.entrySet()) {
+            if (curElement.getValue().getHealthPoints() <= 0)
+                return curElement.getKey();
+        }
+        return null;
     }
 }
