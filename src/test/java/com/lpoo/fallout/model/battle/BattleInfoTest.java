@@ -43,4 +43,21 @@ class BattleInfoTest {
         Assertions.assertSame(origAttackerStats, info.getTurn().getDefenderStats());
         Assertions.assertSame(origDefenderStats, info.getTurn().getAttackerStats());
     }
+
+    @Test
+    void checkSuccessfulEnemyDeath() {
+        info.getTurn().getDefenderStats().setHealthPoints(0);
+        Assertions.assertSame(info.checkDeath(), mockedEnemy);
+    }
+
+    @Test
+    void checkSuccessfulVaultBoyDeath() {
+        info.getTurn().getAttackerStats().setHealthPoints(0);
+        Assertions.assertSame(info.checkDeath(), mockedVaultBoy);
+    }
+
+    @Test
+    void noOneDies() {
+        Assertions.assertNull(info.checkDeath());
+    }
 }
