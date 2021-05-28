@@ -10,16 +10,16 @@ public class LuckCommand extends LevelUpCommand {
 
     @Override
     public void left() {
-        if (model.getNewAttributes().getLuck() > 0) {
-            model.getNewAttributes().setLuck(model.getNewAttributes().getLuck() - 1);
-            model.freeLevel();
+        if (getModel().getNewAttributes().getLuck() > 0) {
+            getModel().getNewAttributes().setLuck(getModel().getNewAttributes().getLuck() - 1);
+            getModel().freeLevel();
         }
     }
 
     @Override
     public void right() {
-        if (model.useLevel()) {
-            model.getNewAttributes().setLuck(model.getNewAttributes().getLuck() + 1);
+        if (getModel().useLevel()) {
+            getModel().getNewAttributes().setLuck(getModel().getNewAttributes().getLuck() + 1);
         }
     }
 

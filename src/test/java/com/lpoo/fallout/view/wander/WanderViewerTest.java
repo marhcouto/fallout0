@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 class WanderViewerTest {
-    WanderViewer viewer;
+    /*WanderViewer viewer;
     LanternaGUI gui;
 
     @BeforeEach
@@ -33,10 +33,10 @@ class WanderViewerTest {
         /*
             There are 3 elements in the model, so, placeDrawable must be called 3 times
          */
-        Mockito.verify(gui, Mockito.times(5)).placeDrawable(Mockito.any(LanternaDrawable.class), Mockito.any(Position.class));
+        //Mockito.verify(gui, Mockito.times(5)).placeDrawable(Mockito.any(LanternaDrawable.class), Mockito.any(Position.class));
         /*
             The commit function must be called just once. It's only called at the end of all placements
          */
-        Mockito.verify(gui, Mockito.times(1)).draw();
-    }
+        //Mockito.verify(gui, Mockito.times(1)).draw();
+    //}
 }

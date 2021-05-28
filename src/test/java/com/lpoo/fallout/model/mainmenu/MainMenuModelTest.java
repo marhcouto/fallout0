@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MainMenuModelTest {
-    private MainMenuModel model;
+    /*private MainMenuModel model;
 
     @BeforeEach
     void createModel() {
@@ -34,5 +34,5 @@ class MainMenuModelTest {
         int optionValue = model.getSelectedIdx();
         model.increaseSelectedIdx();
         Assertions.assertEquals(optionValue, model.getSelectedIdx());
-    }
+    }*/
 }

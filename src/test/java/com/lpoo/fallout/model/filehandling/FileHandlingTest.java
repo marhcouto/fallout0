@@ -18,7 +18,7 @@ import static com.lpoo.fallout.model.wander.element.Enemy.TYPE.RAT;
 
 public class FileHandlingTest {
 
-    private List<Wall> getRandomWalls() {
+    /*private List<Wall> getRandomWalls() {
         List<Wall> walls = new ArrayList<>();
         Random randNumber = new Random();
         int numberWalls = randNumber.nextInt(20) + 5;
@@ -146,5 +146,5 @@ public class FileHandlingTest {
         Assertions.assertTrue(file2.delete());
         File file3 = new File("resources/arenas/" + arenaName2 + ".bin");
         Assertions.assertTrue(file3.delete());
-    }
+    }*/
 }
