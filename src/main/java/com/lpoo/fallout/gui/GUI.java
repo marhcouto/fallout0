@@ -9,5 +9,5 @@ public interface GUI<T> {
     void placeDrawable(T drawable, Position position);
     ACTION getAction() throws IOException;
 
-    enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, UTIL2, UTIL3, NONE, ENTER}
+    enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, NONE, ENTER, ESCAPE}
 }

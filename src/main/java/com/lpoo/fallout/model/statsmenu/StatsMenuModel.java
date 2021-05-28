@@ -1,7 +1,5 @@
 package com.lpoo.fallout.model.statsmenu;
 
-import com.lpoo.fallout.controller.statsmenu.StatsMenuController;
-import com.lpoo.fallout.model.battle.BattleMenuModel;
 import com.lpoo.fallout.model.option.OptionMenuModel;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import org.jetbrains.annotations.NotNull;
@@ -13,7 +11,7 @@ public class StatsMenuModel extends OptionMenuModel<StatsMenuModel.OPTION> {
     private VaultBoy vaultBoy;
 
     public enum OPTION {
-        SPEND_POINTS(0, "SPEND POINTS"),
+        SPEND_POINTS(0, "LEVEL UP"),
         SAVE(1, "SAVE");
 
         private static final Map<Integer, StatsMenuModel.OPTION> BY_INDEX = new HashMap<>();
@@ -45,6 +43,11 @@ public class StatsMenuModel extends OptionMenuModel<StatsMenuModel.OPTION> {
 
     public StatsMenuModel(@NotNull VaultBoy vaultBoy) {
         super(OPTION.values().length);
+        if (vaultBoy.getUnusedLevelPoints() == 0) {
+            setSelectedIdx(1);
+            setLowerLimit(1);
+            setNumberOfOptions(OPTION.values().length - 1);
+        }
         this.vaultBoy = vaultBoy;
     }
 

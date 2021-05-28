@@ -2,13 +2,35 @@ package com.lpoo.fallout.model.option;
 
 public abstract class OptionMenuModel<E extends Enum<E>> {
     private int selected;
-    private final int numberOfOptions;
+    private int numberOfOptions;
+    private int lowerLimit;
 
-    public OptionMenuModel(int numberOfOptions) {
+    public OptionMenuModel(int numberOfOptions, int lowerLimit) {
         if (numberOfOptions == 0) {
             throw new InvalidNumberOfOptions();
         }
+        this.lowerLimit = lowerLimit;
         this.numberOfOptions = numberOfOptions;
+    }
+
+    protected void setNumberOfOptions(int numberOfOptions) {
+        this.numberOfOptions = numberOfOptions;
+    }
+
+    protected void setLowerLimit(int lowerLimit) {
+        this.lowerLimit = lowerLimit;
+    }
+
+    public int getNumberOfOptions() {
+        return numberOfOptions;
+    }
+
+    public int getLowerLimit() {
+        return lowerLimit;
+    }
+
+    public OptionMenuModel(int numberOfOptions) {
+        this(numberOfOptions, 0);
     }
 
     public abstract E getSelectedOption();
@@ -30,7 +52,7 @@ public abstract class OptionMenuModel<E extends Enum<E>> {
     }
 
     public void decreaseSelectedIdx() {
-        if (selected > 0) {
+        if (selected > lowerLimit) {
             selected--;
         }
     }

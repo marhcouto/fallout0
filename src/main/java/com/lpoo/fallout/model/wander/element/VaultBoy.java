@@ -13,10 +13,12 @@ public class VaultBoy extends Character {
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
         super(position, attributes, new Inventory(5, new Weapon(8, "Lincolns Repeater", new Attributes())),1,2);
         this.expPoints = 0;
+        this.unusedLevelPoints = 1;
     }
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius, Integer expPoints) {
         super(position, attributes, inventory, level, attackRadius);
         this.expPoints = expPoints;
+        this.unusedLevelPoints = 1;
     }
 
     public Integer calculateExpGain(Integer enemyLevel) {
@@ -41,6 +43,12 @@ public class VaultBoy extends Character {
 
     public Integer getUnusedLevelPoints() {
         return unusedLevelPoints;
+    }
+
+    public void setUnusedLevelPoints(Integer unusedLevelPoints) {
+        if (unusedLevelPoints >= 0) {
+            this.unusedLevelPoints = unusedLevelPoints;
+        }
     }
 
     @Override

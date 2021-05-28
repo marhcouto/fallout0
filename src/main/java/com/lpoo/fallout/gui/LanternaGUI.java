@@ -46,6 +46,7 @@ public class LanternaGUI implements GUI<LanternaDrawable> {
         if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'e') return GUI.ACTION.UTIL_E;
         if (keyStroke.getKeyType() == KeyType.Enter) return GUI.ACTION.ENTER;
         if (keyStroke.getKeyType() == KeyType.EOF) return GUI.ACTION.QUIT;
+        if (keyStroke.getKeyType() == KeyType.Escape) return GUI.ACTION.ESCAPE;
 
         return GUI.ACTION.NONE;
     }

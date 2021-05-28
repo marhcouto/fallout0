@@ -1,15 +1,14 @@
-package com.lpoo.fallout.controller.statsmenu;
+package com.lpoo.fallout.controller.statsmenu.levelup;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
+import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
 
-public class StatsMenuController extends MainController<StatsMenuModel> {
-    public StatsMenuController(StatsMenuModel model) {
+public class LevelUpController extends MainController<LevelUpModel> {
+    public LevelUpController(LevelUpModel model) {
         super(model);
     }
-
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
@@ -23,7 +22,7 @@ public class StatsMenuController extends MainController<StatsMenuModel> {
                 break;
             }
             default: {
-                new StatsMenuOptionController(getModel()).step(game, action);
+                new LevelUpMenuController(getModel()).step(game, action);
                 break;
             }
         }

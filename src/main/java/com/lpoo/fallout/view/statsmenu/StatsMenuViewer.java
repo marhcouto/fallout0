@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
+import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.renderers.StringRenderer;
@@ -30,7 +31,26 @@ public class StatsMenuViewer extends Viewer<StatsMenuModel, LanternaGUI> {
         }
 
         new StringRenderer("LEVEL: " + getModel().getVaultBoy().getLevel(), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+        StringBuilder stringBuilder = new StringBuilder();
+        int curRow = 2;
+        for (Attributes.OPTION option: Attributes.OPTION.values()) {
+            stringBuilder.append(option.label);
+            stringBuilder.append(": ");
+            stringBuilder.append(getModel().getVaultBoy().getAttributes().getValue(option));
+            new StringRenderer(stringBuilder.toString(), StringRenderer.ALIGN.LEFT, curRow, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+            curRow++;
+            stringBuilder.setLength(0);
+        }
+        new StringRenderer("HEALTH POTIONS: " + getModel().getVaultBoy().getInventory().getNoPotions(), StringRenderer.ALIGN.LEFT, 7, 1, terminalSize).placeElement(gui, "#000000", "#808080");
 
-        new StringRenderer("HEALTH POTIONS: " + getModel().getVaultBoy().getInventory().getNoPotions(), StringRenderer.ALIGN.LEFT, 2, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+        int curN = 0;
+        for (int i = getModel().getLowerLimit(); i < getModel().getLowerLimit() + getModel().getNumberOfOptions(); i++) {
+            if (i == getModel().getSelectedIdx()) {
+                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#666633", "#808080");
+            } else {
+                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+            }
+            curN++;
+        }
     }
 }
