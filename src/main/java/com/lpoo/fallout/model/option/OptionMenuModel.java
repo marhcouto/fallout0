@@ -40,19 +40,19 @@ public abstract class OptionMenuModel<E extends Enum<E>> {
     }
 
     public void increaseSelectedIdx() {
-        if (selected < ( numberOfOptions - 1 )) {
+        if (getSelectedIdx() < ( getNumberOfOptions() - 1 )) {
             selected++;
         }
     }
 
     public void setSelectedIdx(int selectedIdx) {
-        if (selectedIdx >= 0 && selectedIdx < numberOfOptions) {
+        if (selectedIdx >= 0 && selectedIdx < getNumberOfOptions()) {
             this.selected = selectedIdx;
         }
     }
 
     public void decreaseSelectedIdx() {
-        if (selected > lowerLimit) {
+        if (getSelectedIdx() > getLowerLimit()) {
             selected--;
         }
     }
