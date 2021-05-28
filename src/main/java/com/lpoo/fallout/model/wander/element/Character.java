@@ -1,42 +1,37 @@
 package com.lpoo.fallout.model.wander.element;
 
 import com.lpoo.fallout.model.wander.Attributes;
-import com.lpoo.fallout.model.wander.Inventory;
+import com.lpoo.fallout.model.wander.CharacterInfo;
 import com.lpoo.fallout.model.wander.Position;
-import com.lpoo.fallout.model.wander.Weapon;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
 public abstract class Character extends Element {
     private final UUID id;
-    private Attributes attributes;
-    private final Inventory inventory;
+    private final CharacterInfo characterInfo;
     private Integer level;
     private final Integer attackRadius;
 
-    public Character(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius) {
+    public Character(@NotNull Position position, @NotNull CharacterInfo characterInfo, @NotNull Integer level, @NotNull Integer attackRadius) {
         super(position);
         this.id = UUID.randomUUID();
-        this.attributes = attributes;
-        this.inventory = inventory;
+        this.characterInfo = characterInfo;
         this.level = level;
         this.attackRadius = attackRadius;
     }
 
     public Character(Position position) {
-        this(position, new Attributes(), new Inventory(5, new Weapon()), 0, 5);
+        this(position, new CharacterInfo(new Attributes(), 5, 4), 1, 2);
     }
 
     public void setLevel(Integer level) { this.level = level; }
-    public void setAttributes(Attributes attributes) {
-        this.attributes = attributes;
+    public @NotNull CharacterInfo getCharacterInfo() {
+        return characterInfo;
     }
-    public Attributes getAttributes() { return attributes; }
-    public Inventory getInventory() {
-        return inventory;
+    public Integer getLevel() {
+        return level;
     }
-    public Integer getLevel() { return level; }
     public Integer getAttackRadius() {
         return attackRadius;
     }
@@ -45,10 +40,6 @@ public abstract class Character extends Element {
     public boolean insideAttackRadius(Character right) {
         double distanceBetweenPositions = this.getPosition().getDist(right.getPosition());
         return !(distanceBetweenPositions > (this.getAttackRadius() + right.getAttackRadius()));
-    }
-
-    public boolean canUseWeapon(Weapon weapon) {
-        return this.attributes.greaterThan(weapon.getRequiredAttributes());
     }
 
     @Override

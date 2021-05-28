@@ -1,8 +1,6 @@
 package com.lpoo.fallout.model.wander.element;
 
-import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
-import com.lpoo.fallout.model.wander.Weapon;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
