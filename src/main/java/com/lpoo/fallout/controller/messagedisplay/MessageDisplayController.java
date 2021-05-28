@@ -1,12 +1,12 @@
-package com.lpoo.fallout.controller.battleoutcome;
+package com.lpoo.fallout.controller.messagedisplay;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.battleoutcome.BattleOutcomeModel;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 
-public class BattleOutcomeController extends MainController<BattleOutcomeModel> {
-    public BattleOutcomeController(BattleOutcomeModel model) {
+public class MessageDisplayController extends MainController<MessageDisplayModel> {
+    public MessageDisplayController(MessageDisplayModel model) {
         super(model);
     }
 

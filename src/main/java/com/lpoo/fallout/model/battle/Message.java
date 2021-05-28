@@ -5,7 +5,7 @@ public class Message {
     private boolean unseen;
     private String messageDescriptor;
     private final long endTime;
-    public final long MAX_DISPLAY_TIME = 3000; //Milliseconds
+    public final long MAX_DISPLAY_TIME = 1600; //Milliseconds
 
 
     public Message() {
