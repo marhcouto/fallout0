@@ -39,7 +39,7 @@ public class BattleController extends MainController<BattleModel> {
         }
     }
 
-    private boolean processDeath(Game game) {
+    public boolean processDeath(Game game) {
         Character deadCharacter = getModel().getBattleInfo().checkDeath();
         if (deadCharacter == getModel().getBattleInfo().getVaultBoy()) {
             game.clearStates();

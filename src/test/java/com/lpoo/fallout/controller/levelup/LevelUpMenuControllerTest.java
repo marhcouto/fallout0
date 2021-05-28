@@ -21,7 +21,7 @@ class LevelUpMenuControllerTest {
         Mockito.when(vaultBoy.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
         LevelUpModel mockedModel = Mockito.mock(LevelUpModel.class);
         Mockito.when(mockedModel.getVaultBoy()).thenReturn(vaultBoy);
-        Mockito.when(mockedModel.increaseSelectedIdx()).thenCallRealMethod();
+        // Mockito.when(mockedModel.increaseSelectedIdx()).thenCallRealMethod();
 
         controller = new LevelUpController(mockedModel);
         game = Mockito.mock(Game.class);
