@@ -28,10 +28,10 @@ public class BattleMenuController extends OptionMenuController<BattleMenuModel> 
 
     public static Map<BattleMenuModel.OPTION, BattleCommand> createCommands(BattleModel model) {
         Map<BattleMenuModel.OPTION, BattleCommand> result = new HashMap<>();
-        result.put(BattleMenuModel.OPTION.ATTACK, new AttackCommand(model.getTurn(), new Random()));
-        result.put(BattleMenuModel.OPTION.DEFEND, new DefendCommand(model.getTurn()));
-        result.put(BattleMenuModel.OPTION.INTIMIDATE, new IntimidateCommand(model.getTurn()));
-        result.put(BattleMenuModel.OPTION.CURE, new CureCommand(model.getTurn(), model.getVaultBoy()));
+        result.put(BattleMenuModel.OPTION.ATTACK, new AttackCommand(model.getBattleInfo().getTurn(), new Random()));
+        result.put(BattleMenuModel.OPTION.DEFEND, new DefendCommand(model.getBattleInfo().getTurn()));
+        result.put(BattleMenuModel.OPTION.INTIMIDATE, new IntimidateCommand(model.getBattleInfo().getTurn()));
+        result.put(BattleMenuModel.OPTION.CURE, new CureCommand(model.getBattleInfo().getTurn(), model.getBattleInfo().getVaultBoy()));
         return result;
     }
 

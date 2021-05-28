@@ -20,7 +20,7 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
     private WordRenderer message;
 
     static {
-        drawableMap.put(Enemy.TYPE.SCORPION, "SCORPION2.txt");
+        drawableMap.put(Enemy.TYPE.SCORPION, "SCORPION.txt");
         drawableMap.put(Enemy.TYPE.SNAKE, "SNAKE.txt");
         drawableMap.put(Enemy.TYPE.RAT, "RAT.txt");
     }
@@ -30,31 +30,37 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
 
         // Add renderers
         this.rendererList = new ArrayList<>();
-        this.rendererList.add(new FileSpriteRenderer(drawableMap.get(this.getModel().getFightingEnemy().getType()), new Position(390, 50)));
+        this.rendererList.add(new FileSpriteRenderer(drawableMap.get(this.getModel().getBattleInfo().getFightingEnemy().getType()), new Position(390, 50)));
         this.rendererList.add(new FileSpriteRenderer("VAULTBOY3.txt", new Position(20, 50)));
-        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats(getModel().getVaultBoy()),
+        this.rendererList.add(new StatusBarRenderer(this.getModel().getBattleInfo().getCharacterStats(getModel().getBattleInfo().getVaultBoy()),
                 new Position(5, 5)));
-        this.rendererList.add(new StatusBarRenderer(this.getModel().getCharacterStats(getModel().getFightingEnemy()), new Position(435, 5)));
+        this.rendererList.add(new StatusBarRenderer(this.getModel().getBattleInfo().getCharacterStats(getModel().getBattleInfo().getFightingEnemy()), new Position(435, 5)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(370, 70), new Position(5, 220)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(215, 70), new Position(380, 220)));
-        this.message = new WordRenderer(getModel().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230)); // Message
+        this.message = new WordRenderer(getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230)); // Message
 
         // Build renderers image
         for (Renderer<?, LanternaGUI> renderer : rendererList)
             renderer.buildImage();
-
         this.message.buildImage();
+
+        // Option menu
         battleMenuViewer = new BattleMenuViewer(model.getMenuModel());
+    }
+
+    private void changeMessage() {
+        if (getModel().getBattleInfo().getTurn().getOutcome().isUnseen()) {
+            getModel().getBattleInfo().getTurn().getOutcome().setUnseen(false);
+            message = new WordRenderer(getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230));
+            message.buildImage();
+        }
     }
 
     @Override
     protected void drawElements(LanternaGUI gui) {
 
-        if (getModel().getTurn().getOutcome().isUnseen()) {
-            getModel().getTurn().getOutcome().setUnseen(false);
-            message = new WordRenderer(getModel().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230));
-            message.buildImage();
-        }
+        // Change the message
+        changeMessage();
 
         // Draw renderers
         for (Renderer<?, LanternaGUI> renderer : rendererList)

@@ -25,24 +25,25 @@ public class BattleController extends MainController<BattleModel> {
     public void step(Game game, GUI.ACTION action, long time) {
         if (action == GUI.ACTION.QUIT)
             game.clearStates();
-        if (getModel().getTurn().getOutcome().succeeded()) {
+        if (getModel().getBattleInfo().getTurn().getOutcome().succeeded()) {
             waitForMessage();
-            getModel().changeTurn();
+            getModel().getBattleInfo().changeTurn();
+            getModel().notifyTurnChange();
         }
         if (!processDeath(game)) {
-            if (getModel().isPlayerTurn())
+            if (getModel().getBattleInfo().isPlayerTurn())
                 new BattleMenuController(this.getModel(), getModel().getMenuModel()).step(game, action);
             else
-                new BattleMonsterController(getModel().getTurn(), this.getModel()).step(new Random());
+                new BattleMonsterController(getModel().getBattleInfo().getTurn(), this.getModel()).step(new Random());
             addCharacterInfoToMessage();
         }
     }
 
     private boolean processDeath(Game game) {
         Enemy deadCharacter = null;
-        for (Map.Entry<Character, BattleStats> curElement: getModel().getAllCharacterStats().entrySet()) {
+        for (Map.Entry<Character, BattleStats> curElement: getModel().getBattleInfo().getAllCharacterStats().entrySet()) {
             if (curElement.getValue().getHealthPoints() <= 0) {
-                if (curElement.getKey().equals(getModel().getVaultBoy())) {
+                if (curElement.getKey().equals(getModel().getBattleInfo().getVaultBoy())) {
                     game.clearStates();
                     game.pushState(new BattleOutcomeState(new BattleOutcomeModel("VAULT BOY DIED!")));
                 } else {
@@ -69,20 +70,20 @@ public class BattleController extends MainController<BattleModel> {
 
     public Integer calculateExpGain(Enemy enemy) {
         Integer levelGain = 0;
-        Integer expGain = (int) ((float) enemy.getLevel() / getModel().getVaultBoy().getLevel() * 50);
-        Integer resultExp = expGain + getModel().getVaultBoy().getExpPoints();
+        Integer expGain = (int) ((float) enemy.getLevel() / getModel().getBattleInfo().getVaultBoy().getLevel() * 50);
+        Integer resultExp = expGain + getModel().getBattleInfo().getVaultBoy().getExpPoints();
         while(resultExp >= 100) {
             levelGain++;
             resultExp -= 100;
         }
-        getModel().getVaultBoy().setLevel(getModel().getVaultBoy().getLevel() + levelGain);
+        getModel().getBattleInfo().getVaultBoy().setLevel(getModel().getBattleInfo().getVaultBoy().getLevel() + levelGain);
         return expGain;
     }
 
     private void waitForMessage() {
-        if (System.currentTimeMillis() < getModel().getTurn().getOutcome().getEndTime()) {
+        if (System.currentTimeMillis() < getModel().getBattleInfo().getTurn().getOutcome().getEndTime()) {
             try {
-                Thread.sleep(getModel().getTurn().getOutcome().getEndTime() - System.currentTimeMillis());
+                Thread.sleep(getModel().getBattleInfo().getTurn().getOutcome().getEndTime() - System.currentTimeMillis());
             } catch (InterruptedException exception) {
                 throw new RuntimeException("This thread should never be interrupted", exception);
             }
@@ -90,10 +91,10 @@ public class BattleController extends MainController<BattleModel> {
     }
 
     private void addCharacterInfoToMessage() {
-        if (getModel().isPlayerTurn()) {
-            getModel().getTurn().getOutcome().setMessageDescriptor("Player\n" + getModel().getTurn().getOutcome().getMessageDescriptor());
+        if (getModel().getBattleInfo().isPlayerTurn()) {
+            getModel().getBattleInfo().getTurn().getOutcome().setMessageDescriptor("Player\n" + getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor());
         } else {
-            getModel().getTurn().getOutcome().setMessageDescriptor("Enemy\n" + getModel().getTurn().getOutcome().getMessageDescriptor());
+            getModel().getBattleInfo().getTurn().getOutcome().setMessageDescriptor("Enemy\n" + getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor());
         }
     }
 }
