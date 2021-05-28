@@ -42,6 +42,10 @@ public class LevelUpMenuController extends OptionMenuController<LevelUpModel> {
                 commandMap.get(getModel().getSelectedOption()).right();
                 break;
             }
+            case ESCAPE: {
+                game.popState();
+                break;
+            }
             default: {
                 super.step(game, action);
                 break;

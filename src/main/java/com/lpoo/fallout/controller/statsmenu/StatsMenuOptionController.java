@@ -5,6 +5,7 @@ import com.lpoo.fallout.controller.OptionMenuController;
 import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
 import com.lpoo.fallout.controller.mainmenu.command.*;
 import com.lpoo.fallout.controller.statsmenu.command.LevelUpCommand;
+import com.lpoo.fallout.controller.statsmenu.command.ResetCommand;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
@@ -24,6 +25,7 @@ public class StatsMenuOptionController extends OptionMenuController<StatsMenuMod
     public static Map<StatsMenuModel.OPTION, StatsMenuCommand> createCommands(StatsMenuModel model) {
         Map<StatsMenuModel.OPTION, StatsMenuCommand> result = new HashMap<>();
         result.put(StatsMenuModel.OPTION.SPEND_POINTS, new LevelUpCommand(model));
+        result.put(StatsMenuModel.OPTION.RESET, new ResetCommand(model));
         return result;
     }
 

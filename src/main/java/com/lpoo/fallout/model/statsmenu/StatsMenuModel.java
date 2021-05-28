@@ -12,7 +12,7 @@ public class StatsMenuModel extends OptionMenuModel<StatsMenuModel.OPTION> {
 
     public enum OPTION {
         SPEND_POINTS(0, "LEVEL UP"),
-        SAVE(1, "SAVE");
+        RESET(1, "RESET");
 
         private static final Map<Integer, StatsMenuModel.OPTION> BY_INDEX = new HashMap<>();
         private static final Map<String, StatsMenuModel.OPTION> BY_LABEL = new HashMap<>();
