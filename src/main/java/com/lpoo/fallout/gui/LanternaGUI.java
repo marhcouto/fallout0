@@ -18,6 +18,7 @@ public class LanternaGUI implements GUI<LanternaDrawable> {
     }
 
     public void draw() throws IOException {
+        terminal.getScreen().doResizeIfNecessary();
         terminal.getScreen().refresh();
         currentStatus = DRAW_STATUS.DIRTY;
     }
