@@ -24,14 +24,14 @@ public class StatsMenuViewer extends Viewer<StatsMenuModel, LanternaGUI> {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
                 if ((i == 0) || (i == columns - 1) || (j == 0) || (j == rows - 1)) {
-                    gui.placeDrawable(new LanternaDrawable("#999999", "#808080", "X"), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#008744", "#E3BF9A", "l"), new Position(i, j));
                 } else {
-                    gui.placeDrawable(new LanternaDrawable("#808080", "#808080", " "), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", " "), new Position(i, j));
                 }
             }
         }
 
-        new StringRenderer("LEVEL: " + getModel().getVaultBoy().getLevel(), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+        new StringRenderer("LEVEL: " + getModel().getVaultBoy().getLevel(), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#FFE34C", "#E3BF9A");
         StringBuilder stringBuilder = new StringBuilder();
         int curRow = 2;
         for (LevelUpModel.OPTION option: LevelUpModel.OPTION.values()) {
@@ -39,19 +39,19 @@ public class StatsMenuViewer extends Viewer<StatsMenuModel, LanternaGUI> {
                 stringBuilder.append(option.label);
                 stringBuilder.append(": ");
                 stringBuilder.append(LevelUpModel.getValue(getModel().getVaultBoy().getAttributes(), option));
-                new StringRenderer(stringBuilder.toString(), StringRenderer.ALIGN.LEFT, curRow, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+                new StringRenderer(stringBuilder.toString(), StringRenderer.ALIGN.LEFT, curRow, 1, terminalSize).placeElement(gui, "#FFE34C", "#E3BF9A");
                 curRow++;
                 stringBuilder.setLength(0);
             }
         }
-        new StringRenderer("HEALTH POTIONS: " + getModel().getVaultBoy().getInventory().getNoPotions(), StringRenderer.ALIGN.LEFT, 7, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+        new StringRenderer("HEALTH POTIONS: " + getModel().getVaultBoy().getInventory().getNoPotions(), StringRenderer.ALIGN.LEFT, 7, 1, terminalSize).placeElement(gui, "#FFE34C", "#E3BF9A");
 
         int curN = 0;
         for (int i = getModel().getLowerLimit(); i < getModel().getLowerLimit() + getModel().getNumberOfOptions(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#666633", "#808080");
+                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#c21628", "#E3BF9A");
             } else {
-                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+                new StringRenderer(StatsMenuModel.OPTION.valueOfIndex(i).label, StringRenderer.ALIGN.CENTER, 12 + curN, 1, terminalSize).placeElement(gui, "#FF8100", "#E3BF9A");
             }
             curN++;
         }
