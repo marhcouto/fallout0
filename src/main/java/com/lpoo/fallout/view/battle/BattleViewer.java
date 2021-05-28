@@ -66,7 +66,7 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
         for (Renderer<?, LanternaGUI> renderer : rendererList)
             renderer.placeElement(gui, "#FFFFFF", "#000000");
 
-        message.placeElement(gui, "#FFFFFF", "#000000");
+        message.placeElement(gui, "#FFE34C", "#000000");
 
         battleMenuViewer.drawElements(gui);
     }

@@ -40,9 +40,9 @@ public class BattleMenuViewer extends Viewer<BattleMenuModel, LanternaGUI> {
     protected void drawElements(LanternaGUI gui) {
         for (int i = 0; i < optionRendererList.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                optionRendererList.get(i).placeElement(gui, "#FF0000", "#000000");
+                optionRendererList.get(i).placeElement(gui, "#c21628", "#000000");
             } else {
-                optionRendererList.get(i).placeElement(gui, "#FFFFFF", "#000000");
+                optionRendererList.get(i).placeElement(gui, "#FF8100", "#000000");
             }
         }
     }

@@ -17,7 +17,7 @@ public class StatusBarRenderer extends Renderer<BattleStats, LanternaGUI> {
     public void placeElement(LanternaGUI gui, String foregroundColour, String backgroundColour) {
         updateHealthBar();
         healthBarRenderer.placeElement(gui, "#00FF00", "#000000");
-        hpWord.placeElement(gui, "#FFFFFF", "#000000");
+        hpWord.placeElement(gui, "#FFE34C", "#000000");
         frame.placeElement(gui, foregroundColour, backgroundColour);
     }
 
