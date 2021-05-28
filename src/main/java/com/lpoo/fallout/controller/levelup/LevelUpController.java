@@ -1,9 +1,9 @@
-package com.lpoo.fallout.controller.statsmenu.levelup;
+package com.lpoo.fallout.controller.levelup;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
+import com.lpoo.fallout.model.levelup.LevelUpModel;
 
 public class LevelUpController extends MainController<LevelUpModel> {
     public LevelUpController(LevelUpModel model) {

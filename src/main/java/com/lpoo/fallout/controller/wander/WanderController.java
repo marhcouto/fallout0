@@ -7,7 +7,7 @@ import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
-import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
+import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.*;
 import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;

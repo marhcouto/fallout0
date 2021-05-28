@@ -3,8 +3,6 @@ package com.lpoo.fallout.controller;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.filehandling.FileHandler;
-import com.lpoo.fallout.model.mainmenu.MainMenuModel;
-import com.lpoo.fallout.states.MainMenuState;
 import com.lpoo.fallout.states.State;
 import com.lpoo.fallout.states.WanderState;
 

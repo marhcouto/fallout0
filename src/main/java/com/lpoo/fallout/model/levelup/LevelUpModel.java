@@ -1,4 +1,4 @@
-package com.lpoo.fallout.model.statsmenu.levelup;
+package com.lpoo.fallout.model.levelup;
 
 import com.lpoo.fallout.model.option.OptionMenuModel;
 import com.lpoo.fallout.model.wander.Attributes;
@@ -14,11 +14,11 @@ public class LevelUpModel extends OptionMenuModel<LevelUpModel.OPTION> {
     private int usedLevel;
 
     public enum OPTION {
-        STRENGTH(0, Attributes.OPTION.STRENGTH.label),
-        AGILITY (1, Attributes.OPTION.AGILITY.label),
-        INTELLIGENCE(2, Attributes.OPTION.INTELLIGENCE.label),
-        LUCK (3, Attributes.OPTION.LUCK.label),
-        NEXT (4, "COMMIT");
+        STRENGTH(0, "STRENGTH"),
+        AGILITY (1, "AGILITY"),
+        INTELLIGENCE(2, "INTELLIGENCE"),
+        LUCK (3, "LUCK"),
+        NEXT(4, "NEXT");
 
         private static final Map<Integer, LevelUpModel.OPTION> BY_INDEX = new HashMap<>();
         private static final Map<String, LevelUpModel.OPTION> BY_LABEL = new HashMap<>();
@@ -83,5 +83,20 @@ public class LevelUpModel extends OptionMenuModel<LevelUpModel.OPTION> {
 
     public Attributes getNewAttributes() {
         return newAttributes;
+    }
+
+    public static Integer getValue(Attributes attributes, OPTION option) {
+        switch (option) {
+            case STRENGTH:
+                return attributes.getStrength();
+            case AGILITY:
+                return attributes.getAgility();
+            case LUCK:
+                return attributes.getLuck();
+            case INTELLIGENCE:
+                return attributes.getIntelligence();
+            default:
+                return -1;
+        }
     }
 }

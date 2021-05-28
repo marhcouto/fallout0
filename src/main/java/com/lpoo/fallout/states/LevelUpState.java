@@ -1,11 +1,11 @@
 package com.lpoo.fallout.states;
 
 import com.lpoo.fallout.controller.MainController;
-import com.lpoo.fallout.controller.statsmenu.levelup.LevelUpController;
+import com.lpoo.fallout.controller.levelup.LevelUpController;
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
+import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.view.Viewer;
-import com.lpoo.fallout.view.statsmenu.levelup.LevelUpMenuView;
+import com.lpoo.fallout.view.levelup.LevelUpMenuView;
 import org.jetbrains.annotations.NotNull;
 
 public class LevelUpState extends State<LevelUpModel> {
