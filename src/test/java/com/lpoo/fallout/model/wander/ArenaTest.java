@@ -1,5 +1,6 @@
 package com.lpoo.fallout.model.wander;
 
+import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
@@ -10,7 +11,8 @@ import org.junit.jupiter.api.Test;
 import java.util.*;
 
 class ArenaTest {
-    /*private Arena arena;
+    private Arena arena;
+    private Enemy enemyAdded;
 
     @BeforeEach
     void setUp() {
@@ -21,9 +23,10 @@ class ArenaTest {
         walls.put(new Position(4,4), new Wall(new Position(4, 4)));
 
         List<Enemy> enemies = new ArrayList<>();
-        enemies.add(new Enemy(new Position(2, 2), Enemy.TYPE.RAT));
+        enemyAdded = new Enemy(new Position(2, 2), Enemy.TYPE.RAT);
+        enemies.add(enemyAdded);
 
-        this.arena = new Arena(walls, enemies, "Arena111");
+        this.arena = new Arena(walls, new HashMap<Position, Door>(), enemies, "Arena111", new Position(0, 0));
     }
 
     @Test
@@ -44,5 +47,13 @@ class ArenaTest {
         Assertions.assertFalse(arena.hasClearSight(new Position(5, 4), new Position(3, 4)));
 
         Assertions.assertFalse(arena.hasClearSight(new Position(5, 3), new Position(3, 5)));
-    }*/
+    }
+
+    @Test
+    void removeEnemy() {
+        arena.removeEnemy(enemyAdded);
+        for (Enemy enemy: arena.getEnemies()) {
+            Assertions.assertNotEquals(enemy, enemyAdded);
+        }
+    }
 }

@@ -26,11 +26,7 @@ public class BattleInfo {
         this.characterStats.put(vaultBoy, new BattleStats(vaultBoy));
         this.characterStats.put(fightingEnemy, new BattleStats(fightingEnemy));
         this.playerTurn = true;
-        if (this.playerTurn) {
-            curTurn = new TurnModel(characterStats.get(this.vaultBoy), characterStats.get(this.fightingEnemy));
-        } else {
-            curTurn = new TurnModel(characterStats.get(this.fightingEnemy), characterStats.get(this.vaultBoy));
-        }
+        curTurn = new TurnModel(characterStats.get(this.vaultBoy), characterStats.get(this.fightingEnemy));
     }
 
     public void changeTurn() {

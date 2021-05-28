@@ -5,7 +5,6 @@ import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,15 +12,15 @@ import org.mockito.Mockito;
 class LevelUpMenuControllerTest {
     private LevelUpController controller;
     private Game game;
+    private LevelUpModel mockedModel;
 
     @BeforeEach
     void setUp() {
         VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
         Mockito.when(vaultBoy.getUnusedLevelPoints()).thenReturn(1);
         Mockito.when(vaultBoy.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
-        LevelUpModel mockedModel = Mockito.mock(LevelUpModel.class);
+        mockedModel = Mockito.mock(LevelUpModel.class);
         Mockito.when(mockedModel.getVaultBoy()).thenReturn(vaultBoy);
-        // Mockito.when(mockedModel.increaseSelectedIdx()).thenCallRealMethod();
 
         controller = new LevelUpController(mockedModel);
         game = Mockito.mock(Game.class);
@@ -30,13 +29,13 @@ class LevelUpMenuControllerTest {
     @Test
     void sendOrderDown() {
         controller.step(game, GUI.ACTION.DOWN, 0);
-        Assertions.assertEquals(1, controller.getModel().getSelectedIdx());
+        Mockito.verify(mockedModel, Mockito.times(1)).increaseSelectedIdx();
     }
 
     @Test
     void sendUpAlreadyTopSelected() {
         controller.step(game, GUI.ACTION.UP, 0);
-        Assertions.assertEquals(0, controller.getModel().getSelectedIdx());
+        Mockito.verify(mockedModel, Mockito.times(1)).decreaseSelectedIdx();
     }
 
     @Test

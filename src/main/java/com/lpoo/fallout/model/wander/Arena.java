@@ -15,7 +15,7 @@ public class Arena implements Serializable {
     private final String name;
     private final Position shrine;
 
-    public Arena(Map<Position, Wall> wallMap, Map<Position, Door> doorMap, List<Enemy> enemies, String name, Position shrine) {
+    public Arena(@NotNull Map<Position, Wall> wallMap, @NotNull Map<Position, Door> doorMap, @NotNull List<Enemy> enemies, @NotNull String name, @NotNull Position shrine) {
         this.wallMap = wallMap;
         this.doorMap = doorMap;
         this.enemies = enemies;
