@@ -39,30 +39,29 @@ public class BattleController extends MainController<BattleModel> {
         }
     }
 
-    private boolean processDeath(Game game) {
-        Enemy deadCharacter = null;
-        for (Map.Entry<Character, BattleStats> curElement: getModel().getBattleInfo().getAllCharacterStats().entrySet()) {
-            if (curElement.getValue().getHealthPoints() <= 0) {
-                if (curElement.getKey().equals(getModel().getBattleInfo().getVaultBoy())) {
-                    game.clearStates();
-                    game.pushState(new MessageDisplayState(new MessageDisplayModel("VAULT BOY DIED!")));
-                } else {
-                    deadCharacter = (Enemy) curElement.getKey();
-                    Integer expGain = getModel().getBattleInfo().getVaultBoy().calculateExpGain(deadCharacter.getLevel());
-                    try {
-                        game.changeGui(Game.getDefaultGUI());
-                    } catch (IOException exception) {
-                        exception.printStackTrace();
-                    } finally {
-                        game.popState();
-                        game.pushState(new MessageDisplayState(new MessageDisplayModel("ENEMY DIED! " + expGain + " EXP GAINED")));
-                    }
-                }
+    public boolean processDeath(Game game) {
+        Character deadCharacter = getModel().getBattleInfo().checkDeath();
+        if (deadCharacter == getModel().getBattleInfo().getVaultBoy()) {
+            game.clearStates();
+            try {
+                game.changeGui(Game.getDefaultGUI());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            } finally {
+                game.pushState(new MessageDisplayState(new MessageDisplayModel("VAULT BOY DIED!")));
             }
-        }
-
-        if (deadCharacter != null) {
-            getModel().getArena().removeEnemy(deadCharacter);
+            return true;
+        } else if (deadCharacter == getModel().getBattleInfo().getFightingEnemy()) {
+            Integer expGain = getModel().getBattleInfo().getVaultBoy().calculateExpGain(deadCharacter.getLevel());
+            try {
+                game.changeGui(Game.getDefaultGUI());
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            } finally {
+                game.popState();
+                game.pushState(new MessageDisplayState(new MessageDisplayModel("ENEMY DIED! " + expGain + " EXP GAINED")));
+            }
+            getModel().getArena().removeEnemy((Enemy) deadCharacter);
             return true;
         }
         return false;

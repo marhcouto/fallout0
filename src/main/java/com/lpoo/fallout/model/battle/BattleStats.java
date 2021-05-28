@@ -25,8 +25,8 @@ public class BattleStats {
         this.healthPoints = 15 + character.getAttributes().getStrength() * character.getLevel();
         this.startingHealthPoints = this.healthPoints;
         this.dodgeChance = (float) 0.15 + (float) character.getAttributes().getIntelligence() / 100;
-        this.missChance = 1 - (float) (80 - character.getAttributes().getLuck()) / 100;
-        this.baseDamage = character.getInventory().getWeapon().getDamage();
+        this.missChance = 1 - (float) Math.min((85 + character.getAttributes().getLuck()), 95) / 100;
+        this.baseDamage = character.getInventory().getWeapon().getDamage() + character.getAttributes().getStrength() / 2;
         this.critRatio = (float) 0.10 + (float) character.getAttributes().getIntelligence() / 100 + character.getAttributes().getLuck() / 100;
     }
 
