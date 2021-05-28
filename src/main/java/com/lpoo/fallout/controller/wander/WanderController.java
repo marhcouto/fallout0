@@ -6,6 +6,7 @@ import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.filehandling.FileHandler;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
 import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.*;
@@ -13,6 +14,7 @@ import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
 import com.lpoo.fallout.states.LevelUpState;
+import com.lpoo.fallout.states.MessageDisplayState;
 import com.lpoo.fallout.states.StatsMenuState;
 
 
@@ -57,18 +59,22 @@ public class WanderController extends MainController<WanderModel> {
         }
     }
 
-    private void checkShrine() {
+    private boolean checkShrine() {
         Position shrine = getModel().getArena().getShrine();
         if (shrine != null) {
             if (shrine.equals(getModel().getVaultBoy().getPosition()) && !getModel().getVaultBoy().isGameWon()) {
-                // Push the thing
-                getModel().getVaultBoy().setGameWon(true);
+                return true;
             }
         }
+        return false;
     }
 
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
+        if (this.checkShrine() && !getModel().getVaultBoy().isGameWon()) {
+            game.pushState(new MessageDisplayState(new MessageDisplayModel("GAME WON")));
+            getModel().getVaultBoy().setGameWon(true);
+        }
         if (getModel().getVaultBoy().isGameStarting()) {
             getModel().getVaultBoy().setGameStarting(false);
             getModel().getVaultBoy().setUnusedLevelPoints(5);
@@ -112,6 +118,7 @@ public class WanderController extends MainController<WanderModel> {
             }
         }
         this.tryOpenDoor();
+
         enemyController.moveEnemies(time);
     }
 }

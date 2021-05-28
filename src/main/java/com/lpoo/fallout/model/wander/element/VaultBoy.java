@@ -35,7 +35,7 @@ public class VaultBoy extends Character {
             levelGain++;
             resultExp -= 100;
         }
-        unusedLevelPoints = getLevel() + levelGain;
+        unusedLevelPoints = getUnusedLevelPoints() + levelGain;
         return expGain;
     }
 

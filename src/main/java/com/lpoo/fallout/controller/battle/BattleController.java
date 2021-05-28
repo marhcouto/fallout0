@@ -5,10 +5,10 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.battle.BattleStats;
-import com.lpoo.fallout.model.battleoutcome.BattleOutcomeModel;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.element.Character;
 import com.lpoo.fallout.model.wander.element.Enemy;
-import com.lpoo.fallout.states.BattleOutcomeState;
+import com.lpoo.fallout.states.MessageDisplayState;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class BattleController extends MainController<BattleModel> {
             if (curElement.getValue().getHealthPoints() <= 0) {
                 if (curElement.getKey().equals(getModel().getBattleInfo().getVaultBoy())) {
                     game.clearStates();
-                    game.pushState(new BattleOutcomeState(new BattleOutcomeModel("VAULT BOY DIED!")));
+                    game.pushState(new MessageDisplayState(new MessageDisplayModel("VAULT BOY DIED!")));
                 } else {
                     deadCharacter = (Enemy) curElement.getKey();
                     Integer expGain = getModel().getBattleInfo().getVaultBoy().calculateExpGain(deadCharacter.getLevel());
@@ -55,7 +55,7 @@ public class BattleController extends MainController<BattleModel> {
                         exception.printStackTrace();
                     } finally {
                         game.popState();
-                        game.pushState(new BattleOutcomeState(new BattleOutcomeModel("ENEMY DIED! " + expGain + " EXP GAINED")));
+                        game.pushState(new MessageDisplayState(new MessageDisplayModel("ENEMY DIED! " + expGain + " EXP GAINED")));
                     }
                 }
             }

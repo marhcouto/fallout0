@@ -1,15 +1,17 @@
-package com.lpoo.fallout.view.battleoutcome;
+package com.lpoo.fallout.view.messagedisplay;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
-import com.lpoo.fallout.model.battleoutcome.BattleOutcomeModel;
+import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.view.Viewer;
 import com.lpoo.fallout.view.renderers.StringRenderer;
 
-public class BattleOutcomeViewer extends Viewer<BattleOutcomeModel, LanternaGUI> {
-    public BattleOutcomeViewer(BattleOutcomeModel model) {
+public class MessageDisplayViewer extends Viewer<MessageDisplayModel, LanternaGUI> {
+    private final int INITIAL_MESSAGE_ROW = 5;
+
+    public MessageDisplayViewer(MessageDisplayModel model) {
         super(model);
     }
 
@@ -24,7 +26,12 @@ public class BattleOutcomeViewer extends Viewer<BattleOutcomeModel, LanternaGUI>
             gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(i, 0));
             gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(i, terminalSize.getRows() - 1));
         }
-        new StringRenderer(getModel().getMessage(), StringRenderer.ALIGN.CENTER, 5, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
-        new StringRenderer("PRESS <ENTER> TO CONTINUE!", StringRenderer.ALIGN.CENTER, 7, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
+
+        int curRow = INITIAL_MESSAGE_ROW;
+        for (String message: getModel().getMessages()) {
+            new StringRenderer(message, StringRenderer.ALIGN.CENTER, curRow, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
+            curRow++;
+        }
+        new StringRenderer("PRESS <ENTER> TO CONTINUE!", StringRenderer.ALIGN.CENTER, curRow + 2, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
     }
 }

@@ -16,9 +16,9 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     private static final Map<Enemy.TYPE, LanternaDrawable> drawableMap = new HashMap<>();
 
     static {
-        drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#00FF00", "#000000", "g"));
-        drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#FF00FF", "#000000", "h"));
-        drawableMap.put(Enemy.TYPE.SNAKE, new LanternaDrawable("#FF00FF", "#000000", "i"));
+        drawableMap.put(Enemy.TYPE.RAT, new LanternaDrawable("#645887", "#000000", "g"));
+        drawableMap.put(Enemy.TYPE.SCORPION, new LanternaDrawable("#a24c54", "#000000", "h"));
+        drawableMap.put(Enemy.TYPE.SNAKE, new LanternaDrawable("#a2fe54", "#000000", "i"));
     }
 
     public WanderViewer(WanderModel model) {
@@ -28,17 +28,18 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     @Override
     protected void drawElements(LanternaGUI gui) {
         for (Map.Entry<Position, Wall> wall: getModel().getArena().getWallMap().entrySet())
-            gui.placeDrawable(new LanternaDrawable( "#00FF00", "#000000", "l"), wall.getValue().getPosition());
+            gui.placeDrawable(new LanternaDrawable( "#008744", "#000000", "l"), wall.getValue().getPosition());
 
         for (Enemy enemy: getModel().getArena().getEnemies())
             gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
 
         for (Map.Entry<Position, Door> door : getModel().getArena().getDoorMap().entrySet())
-            gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "m"), door.getValue().getPosition());
+            gui.placeDrawable(new LanternaDrawable("#6458e1", "#000000", "m"), door.getValue().getPosition());
 
-        gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "n"), getModel().getArena().getShrine());
+        if (getModel().getArena().getShrine() != null)
+            gui.placeDrawable(new LanternaDrawable("#000000", "#88b9e4", "n"), getModel().getArena().getShrine());
 
-        gui.placeDrawable(new LanternaDrawable( "#FFFFFF", "#000000", "k"), getModel().getVaultBoy().getPosition());
+        gui.placeDrawable(new LanternaDrawable( "#FFE34C", "#000000", "k"), getModel().getVaultBoy().getPosition());
     }
 
 }
