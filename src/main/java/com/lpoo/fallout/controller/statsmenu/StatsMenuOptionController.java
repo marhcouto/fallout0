@@ -2,13 +2,9 @@ package com.lpoo.fallout.controller.statsmenu;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.controller.OptionMenuController;
-import com.lpoo.fallout.controller.mainmenu.MainMenuOptionsController;
-import com.lpoo.fallout.controller.mainmenu.command.*;
 import com.lpoo.fallout.controller.statsmenu.command.LevelUpCommand;
 import com.lpoo.fallout.controller.statsmenu.command.ResetCommand;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.filehandling.FileHandler;
-import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
 
 import java.util.HashMap;

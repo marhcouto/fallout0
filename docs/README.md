@@ -27,14 +27,23 @@
     - [Design Pattern](#design-pattern-3)
     - [Implementação](#implementação-3)
     - [Consequências](#consequências-3)
-  - [Desenho dos personagens](#desenho-dos-personagens)
+  - [Escolha do desenho das personagens](#escolha-do-desenho-das-personagens)
     - [Contexto do problema](#contexto-do-problema-4)
     - [Design pattern](#design-pattern-4)
     - [Implementação](#implementação-4)
     - [Consequências](#consequências-4)
+  - [Estados distintos - Gráficos diferentes](#estados-distintos---gráficos-diferentes)
+    - [Contexto do problema](#contexto-do-problema-5)
+    - [Solução](#solução)
+  - [Group Renderers](#group-renderers)
+    - [Contexto do problema](#contexto-do-problema-6)
+    - [Design Pattern](#design-pattern-5)
+    - [Implementação](#implementação-5)
+    - [Consequeências](#consequeências)
+  - [](#)
 
 # Funcionalidades
-
+  
 ## Implementadas
 - Movimento do herói: o herói move-se pela arena e o seu movimento é controlado através de teclas do teclado
 - Desenho do herói e da arena: a arena e os seus componentes (monstros e paredes), bem como o herói (Vault Boy), são desenhados no terminal do Lanterna
@@ -112,7 +121,7 @@ Para resolver este problema decidimos utilizar o *Strategy Pattern*, para que o 
 O nosso jogo estará dividido em vários estados, cujo comportamento e aspeto deverá ser diferente. Há, portanto, necessidade do jogo se comportar manifestamente diferente consoante o estado, sendo que este se altera durante o funcionamento do jogo.
 
 ### Design Pattern
-Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alterações: dada a necessidade de voltar a estados anteriores, implementámos uma *stack* no Game com os diferentes estados, sendo assim o state ativo aquele que se encontra no topo da mesma. O state na nossa implementação equivale ao controller.
+Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alterações: dada a necessidade de voltar a estados anteriores, implementámos uma *stack* no Game com os diferentes estados, sendo assim o state ativo aquele que se encontra no topo da mesma. Para podermos implementar os diferentes states, usámos generics, de modo a que estes suportem diferentes models.
 
 ### Implementação
 <p align = "center">
@@ -126,7 +135,7 @@ Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alt
 
 <br>
 
-## Desenho dos personagens
+## Escolha do desenho das personagens
 ### Contexto do problema
 Apesar do nosso jogo não utilizar uma framework de gráficos complexa, existe a necessidade de diferenciar os inimigos para perceber, por exemplo, que arma utiliazam ou quão fortes são.
 Foram estudadas várias soluções para o problema, como por exemplo utilizar uma variação do MVC, o HMVC.
@@ -144,3 +153,32 @@ Para suportar esta forma de desenhar os inimigos cada **Viewer** terá um mapa q
 ### Consequências
 - Existe uma pequena violação do Open-Closed Principle, porque ao criar novos tipos de inimigos teriamos de alterar os viewers para os conseguir desenhar. No entanto, esta alternativa revelou ser a melhor entre todas as outras que considerámos
 - Permite ter diferentes formas de desenhar os inimigos consoante o viewer que está a ser chamado
+
+
+## Estados distintos - Gráficos diferentes
+### Contexto do problema
+O nosso jogo, como foi explicado anteriormente, pode ser dividido em vários estados. Em alguns, os requerimentos para a qualidade dos gráficos são diferentes: no estado Wander, semelhante à arena do hero, o tamanho dos componentes da cena permite que sejam representados apenas por simples carateres (chamemos a gráficos como estes **monocarater**); no entanto, no estado de batalha, consideramos que existe a necessidade de formar imagens de maior qualidade e formadas por vários carateres (designaremos estes gráficos como **multicarater**). Também havia a questão de como tornar estes dois estilos de gráficos diferentes minimamente agradáveis. 
+
+### Solução
+Decidimos que a melhor opção seria que o tamanho da letra e a resolução do terminal não poderiam ser as mesmas. Por esta razão, optámos por gerar um novo terminal no caso de entrada num modo que assim o necessite, com resolução e tamanho diferentes. Quanto à segunda fase do problema, e devido às limitações impostas pelo terminal a utilizar optámos por:
+- recorrer ao uso de custom fonts para melhorar os gráficos **monocarater**
+- formular imagens em formato ascii art através de conversores online no que toca aos gráficos **multicarater**. Escolhemos esta opção tendo em conta a sua relativa simplicidade mas decente qualidade.
+
+
+## Group Renderers
+### Contexto do problema
+No modo de batalha, o desenho dos elementos da cena é mais complicado, dado que cada compomente é prefeito por múltiplos carateres. Para isto, foi criada a familia de classes **Renderer**. Um **SpriteRenderer** constrói um mapa de carateres e posições. Existem vezes em que queremos que o elemento represente apenas uma imagem, mas outras em que pretendemos que o elemento represente várias imagens. No entanto, seria desejável que o viwer responsável por desenhar os componentes da cena não tivesse que distinguir entre estes. 
+
+### Design Pattern
+Como solução para este problema foi implementado um Composite. Existe, então, uma classe **GroupRenderer** que contém uma list de renderers.
+
+### Implementação
+<p align = "center">
+  <img width = 650 src = "images/rendererComposite.svg">
+</p>
+
+### Consequeências
+- Simplifica o cliente, neste caso, o battleviewer
+
+
+## 

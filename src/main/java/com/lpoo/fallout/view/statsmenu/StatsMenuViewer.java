@@ -3,6 +3,7 @@ package com.lpoo.fallout.view.statsmenu;
 import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.LanternaDrawable;
+import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.model.statsmenu.StatsMenuModel;
 import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.Position;
@@ -33,13 +34,15 @@ public class StatsMenuViewer extends Viewer<StatsMenuModel, LanternaGUI> {
         new StringRenderer("LEVEL: " + getModel().getVaultBoy().getLevel(), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#000000", "#808080");
         StringBuilder stringBuilder = new StringBuilder();
         int curRow = 2;
-        for (Attributes.OPTION option: Attributes.OPTION.values()) {
-            stringBuilder.append(option.label);
-            stringBuilder.append(": ");
-            stringBuilder.append(getModel().getVaultBoy().getAttributes().getValue(option));
-            new StringRenderer(stringBuilder.toString(), StringRenderer.ALIGN.LEFT, curRow, 1, terminalSize).placeElement(gui, "#000000", "#808080");
-            curRow++;
-            stringBuilder.setLength(0);
+        for (LevelUpModel.OPTION option: LevelUpModel.OPTION.values()) {
+            if (option != LevelUpModel.OPTION.NEXT) {
+                stringBuilder.append(option.label);
+                stringBuilder.append(": ");
+                stringBuilder.append(LevelUpModel.getValue(getModel().getVaultBoy().getAttributes(), option));
+                new StringRenderer(stringBuilder.toString(), StringRenderer.ALIGN.LEFT, curRow, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+                curRow++;
+                stringBuilder.setLength(0);
+            }
         }
         new StringRenderer("HEALTH POTIONS: " + getModel().getVaultBoy().getInventory().getNoPotions(), StringRenderer.ALIGN.LEFT, 7, 1, terminalSize).placeElement(gui, "#000000", "#808080");
 

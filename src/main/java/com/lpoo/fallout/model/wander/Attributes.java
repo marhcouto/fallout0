@@ -10,43 +10,6 @@ public class Attributes implements Serializable {
     private Integer intelligence;
     private Integer luck;
 
-    public enum OPTION {
-        STRENGTH(0, "STRENGTH"),
-        AGILITY (1, "AGILITY"),
-        INTELLIGENCE(2, "INTELLIGENCE"),
-        LUCK (3, "LUCK");
-
-        private static final Map<Integer, Attributes.OPTION> BY_INDEX = new HashMap<>();
-        private static final Map<String, Attributes.OPTION> BY_LABEL = new HashMap<>();
-
-        static {
-            for (Attributes.OPTION o: values()) {
-                BY_INDEX.put(o.index, o);
-                BY_LABEL.put(o.label, o);
-            }
-        }
-
-        public final String label;
-        public final Integer index;
-
-        OPTION(Integer index, String label) {
-            this.index = index;
-            this.label = label;
-        }
-
-        public static boolean contains(String label) {
-            return BY_LABEL.get(label) != null;
-        }
-
-        public static Attributes.OPTION valueOfLabel(String label) {
-            return BY_LABEL.get(label);
-        }
-
-        public static Attributes.OPTION valueOfIndex(Integer index) {
-            return BY_INDEX.get(index);
-        }
-    }
-
     public Attributes() {
         this(1, 1, 1, 1);
     }
@@ -112,20 +75,4 @@ public class Attributes implements Serializable {
         return a.getAgility().equals(this.agility) && a.getIntelligence().equals(this.getIntelligence()) &&
                 a.getStrength().equals(this.getStrength()) && a.getLuck().equals(this.getLuck());
     }
-
-    public Integer getValue(OPTION option) {
-        switch (option) {
-            case STRENGTH:
-                return getStrength();
-            case AGILITY:
-                return getAgility();
-            case LUCK:
-                return getLuck();
-            case INTELLIGENCE:
-                return getIntelligence();
-            default:
-                return -1;
-        }
-    }
-
 }

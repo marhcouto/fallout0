@@ -14,9 +14,9 @@ public class ReceiveAttack extends CommandHandler {
     @Override
     public void handle() {
         float chance = randomEngine.nextFloat();
-        if (chance >= model.getDefenderStats().getDodgeChance()) {
+        if (chance >= model.getDefenderStats().getDodgeChance())
             nextCommandHandler.handle();
-        }
-        model.setOutcome(new Message("atack\ndodged", true, true));
+        else
+            model.setOutcome(new Message("atack\ndodged", true, true));
     }
 }

@@ -1,8 +1,7 @@
-package com.lpoo.fallout.controller.statsmenu.levelup.command;
+package com.lpoo.fallout.controller.levelup.command;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.model.statsmenu.levelup.LevelUpModel;
-import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.levelup.LevelUpModel;
 
 public class CommitCommand extends LevelUpCommand {
     public CommitCommand(LevelUpModel model) {

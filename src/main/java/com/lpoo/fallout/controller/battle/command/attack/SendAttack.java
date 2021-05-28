@@ -14,9 +14,9 @@ public class SendAttack extends CommandHandler {
     @Override
     public void handle() {
         float chance = randomEngine.nextFloat();
-        if (chance >= model.getAttackerStats().getMissChance()) {
+        if (chance >= model.getAttackerStats().getMissChance())
             nextCommandHandler.handle();
-        }
-        model.setOutcome(new Message("atack\nmissed", true, true));
+        else
+            model.setOutcome(new Message("atack\nmissed", true, true));
     }
 }
