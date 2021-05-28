@@ -16,9 +16,9 @@ public class CommitCommand extends LevelUpCommand {
 
     @Override
     public void activate(Game requestData) {
-        model.getVaultBoy().getAttributes().changeAttributes(model.getNewAttributes());
-        model.getVaultBoy().setUnusedLevelPoints(model.getVaultBoy().getUnusedLevelPoints() - model.getUsedLevel());
-        model.getVaultBoy().setLevel(model.getVaultBoy().getLevel() + model.getUsedLevel());
+        getModel().getVaultBoy().getAttributes().changeAttributes(getModel().getNewAttributes());
+        getModel().getVaultBoy().setUnusedLevelPoints(getModel().getVaultBoy().getUnusedLevelPoints() - getModel().getUsedLevel());
+        getModel().getVaultBoy().setLevel(getModel().getVaultBoy().getLevel() + getModel().getUsedLevel());
         requestData.popState();
     }
 }

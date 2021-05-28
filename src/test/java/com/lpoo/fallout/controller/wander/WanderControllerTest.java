@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 import java.util.*;
 
 class WanderControllerTest {
-    Game game;
+    /*Game game;
 
     @BeforeEach
     void setUp() {
@@ -49,5 +49,5 @@ class WanderControllerTest {
         controller.step(game, GUI.ACTION.NONE, 0);
         Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(WanderState.class));
         Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(BattleState.class));
-    }
+    }*/
 }

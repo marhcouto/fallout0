@@ -10,16 +10,16 @@ public class StrengthCommand extends LevelUpCommand {
 
     @Override
     public void left() {
-        if (model.getNewAttributes().getStrength() > 0) {
-            model.getNewAttributes().setStrength(model.getNewAttributes().getStrength() - 1);
-            model.freeLevel();
+        if (getModel().getNewAttributes().getStrength() > 0) {
+            getModel().getNewAttributes().setStrength(getModel().getNewAttributes().getStrength() - 1);
+            getModel().freeLevel();
         }
     }
 
     @Override
     public void right() {
-        if (model.useLevel()) {
-            model.getNewAttributes().setStrength(model.getNewAttributes().getStrength() + 1);
+        if (getModel().useLevel()) {
+            getModel().getNewAttributes().setStrength(getModel().getNewAttributes().getStrength() + 1);
         }
     }
 

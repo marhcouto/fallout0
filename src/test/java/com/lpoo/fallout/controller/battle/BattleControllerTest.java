@@ -24,13 +24,13 @@ public class BattleControllerTest {
 
     @Test
     void testCalculateExpGain() {
-        VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
+        /*VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
         Enemy enemy = Mockito.mock(Enemy.class);
         // Mockito.when(vaultBoy)
         BattleModel battleModel = new BattleModel(Mockito.mock(Arena.class), vaultBoy, enemy);
         BattleController battleController = new BattleController(battleModel);
 
 
-        battleController.calculateExpGain(enemy);
+        battleController.calculateExpGain(enemy);*/
     }
 }

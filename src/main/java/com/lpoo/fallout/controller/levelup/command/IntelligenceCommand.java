@@ -10,16 +10,16 @@ public class IntelligenceCommand extends LevelUpCommand {
 
     @Override
     public void left() {
-        if (model.getNewAttributes().getIntelligence() > 0) {
-            model.getNewAttributes().setIntelligence(model.getNewAttributes().getIntelligence() - 1);
-            model.freeLevel();
+        if (getModel().getNewAttributes().getIntelligence() > 0) {
+            getModel().getNewAttributes().setIntelligence(getModel().getNewAttributes().getIntelligence() - 1);
+            getModel().freeLevel();
         }
     }
 
     @Override
     public void right() {
-        if (model.useLevel()) {
-            model.getNewAttributes().setIntelligence(model.getNewAttributes().getIntelligence() + 1);
+        if (getModel().useLevel()) {
+            getModel().getNewAttributes().setIntelligence(getModel().getNewAttributes().getIntelligence() + 1);
         }
     }
 

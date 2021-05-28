@@ -10,16 +10,16 @@ public class AgilityCommand extends LevelUpCommand {
 
     @Override
     public void left() {
-        if (model.getNewAttributes().getAgility() > 0) {
-            model.getNewAttributes().setAgility(model.getNewAttributes().getAgility() - 1);
-            model.freeLevel();
+        if (getModel().getNewAttributes().getAgility() > 0) {
+            getModel().getNewAttributes().setAgility(getModel().getNewAttributes().getAgility() - 1);
+            getModel().freeLevel();
         }
     }
 
     @Override
     public void right() {
-        if (model.useLevel()) {
-            model.getNewAttributes().setAgility(model.getNewAttributes().getAgility() + 1);
+        if (getModel().useLevel()) {
+            getModel().getNewAttributes().setAgility(getModel().getNewAttributes().getAgility() + 1);
         }
     }
 

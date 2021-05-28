@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class AttributesTest {
-    private Attributes baseAttributes;
+    /*private Attributes baseAttributes;
 
     @BeforeEach
     public void setUpAttributes() {
@@ -38,5 +38,5 @@ class AttributesTest {
 
         Assertions.assertTrue(baseAttributes.greaterThan(a2));
         Assertions.assertFalse(baseAttributes.greaterThan(a1));
-    }
+    }*/
 }
