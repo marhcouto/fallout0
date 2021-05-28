@@ -25,24 +25,24 @@ public class LevelUpMenuView extends Viewer<LevelUpModel, LanternaGUI> {
         for (int i = 0; i < columns; i++) {
             for (int j = 0; j < rows; j++) {
                 if ((i == 0) || (i == columns - 1) || (j == 0) || (j == rows - 1)) {
-                    gui.placeDrawable(new LanternaDrawable("#000000", "#808080", "X"), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", "X"), new Position(i, j));
                 } else {
-                    gui.placeDrawable(new LanternaDrawable("#808080", "#808080", " "), new Position(i, j));
+                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", " "), new Position(i, j));
                 }
             }
         }
 
         TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
 
-        new StringRenderer("REMAINING LEVELS: " + (getModel().getVaultBoy().getUnusedLevelPoints() - getModel().getUsedLevel()), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+        new StringRenderer("REMAINING LEVELS: " + (getModel().getVaultBoy().getUnusedLevelPoints() - getModel().getUsedLevel()), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, "#8f1628", "#E3BF9A");
 
         List<String> formattedOptions = getFormattedOptions();
 
         for (int i = 0; i < formattedOptions.size(); i++) {
             if (i == getModel().getSelectedIdx()) {
-                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#666633", "#808080");
+                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#c21628", "#E3BF9A");
             } else {
-                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#000000", "#808080");
+                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, "#FF8100", "#E3BF9A");
             }
         }
     }

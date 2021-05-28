@@ -18,20 +18,24 @@ public class MessageDisplayViewer extends Viewer<MessageDisplayModel, LanternaGU
     @Override
     protected void drawElements(LanternaGUI gui) {
         TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();
-        for (int i = 0; i < terminalSize.getRows(); i++) {
-            gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(0, i));
-            gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(terminalSize.getColumns() - 1, i));
-        }
-        for (int i = 1; i < terminalSize.getColumns() - 1; i++) {
-            gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(i, 0));
-            gui.placeDrawable(new LanternaDrawable("#FFFFFF", "#000000", "X"), new Position(i, terminalSize.getRows() - 1));
+        int columns = terminalSize.getColumns();
+        int rows = terminalSize.getRows();
+
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                if ((i == 0) || (i == columns - 1) || (j == 0) || (j == rows - 1)) {
+                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", "X"), new Position(i, j));
+                } else {
+                    gui.placeDrawable(new LanternaDrawable("#FF8100", "#E3BF9A", " "), new Position(i, j));
+                }
+            }
         }
 
         int curRow = INITIAL_MESSAGE_ROW;
         for (String message: getModel().getMessages()) {
-            new StringRenderer(message, StringRenderer.ALIGN.CENTER, curRow, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
+            new StringRenderer(message, StringRenderer.ALIGN.CENTER, curRow, 1, terminalSize).placeElement(gui, "#8f1628", "#E3BF9A");
             curRow++;
         }
-        new StringRenderer("PRESS <ENTER> TO CONTINUE!", StringRenderer.ALIGN.CENTER, curRow + 2, 1, terminalSize).placeElement(gui, "#FFFFFF", "#000000");
+        new StringRenderer("PRESS <ENTER> TO CONTINUE!", StringRenderer.ALIGN.CENTER, curRow + 2, 1, terminalSize).placeElement(gui, "#c21628", "#E3BF9A");
     }
 }

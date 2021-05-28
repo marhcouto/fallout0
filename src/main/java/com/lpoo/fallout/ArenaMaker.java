@@ -406,12 +406,12 @@ public class ArenaMaker {
     public static List<Enemy> createEnemies3() {
         List<Enemy> enemies = new ArrayList<>();
 
-        /*// 3
+        // 3
         enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.SNAKE, new Position(20, 8)));
         enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.SNAKE, new Position(20, 7)));
         enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.RAT, new Position(2, 3)));
         enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.SNAKE, new Position(20, 5)));
-        enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.SNAKE, new Position(20, 6)));*/
+        enemies.add(new EnemyDefaultFactory().createEnemy(Enemy.TYPE.SNAKE, new Position(20, 6)));
 
         return enemies;
     }

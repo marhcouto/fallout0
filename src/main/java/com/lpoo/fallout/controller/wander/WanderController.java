@@ -72,6 +72,11 @@ public class WanderController extends MainController<WanderModel> {
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
         if (this.checkShrine() && !getModel().getVaultBoy().isGameWon()) {
+            try {
+                FileHandler.saveModel("gamestat", getModel());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             game.pushState(new MessageDisplayState(new MessageDisplayModel("GAME WON")));
             getModel().getVaultBoy().setGameWon(true);
         }
