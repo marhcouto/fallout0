@@ -9,18 +9,21 @@ import org.jetbrains.annotations.NotNull;
 public class VaultBoy extends Character {
     private Integer expPoints;
     private boolean gameStarting;
+    private boolean gameWon;
     private Integer unusedLevelPoints;
 
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
         super(position, attributes, new Inventory(5, new Weapon(8, "Lincolns Repeater", new Attributes())),1,2);
         this.expPoints = 0;
         this.gameStarting = true;
+        this.gameWon = false;
         this.unusedLevelPoints = 1;
     }
     public VaultBoy(@NotNull Position position, @NotNull Attributes attributes, @NotNull Inventory inventory, @NotNull Integer level, @NotNull Integer attackRadius, Integer expPoints) {
         super(position, attributes, inventory, level, attackRadius);
         this.expPoints = expPoints;
         this.gameStarting = true;
+        this.gameWon = false;
         this.unusedLevelPoints = 1;
     }
 
@@ -60,6 +63,14 @@ public class VaultBoy extends Character {
 
     public void setGameStarting(boolean gameStarting) {
         this.gameStarting = gameStarting;
+    }
+
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
+    public void setGameWon(boolean gameWon) {
+        this.gameWon = gameWon;
     }
 
     @Override

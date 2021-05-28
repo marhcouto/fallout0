@@ -57,6 +57,16 @@ public class WanderController extends MainController<WanderModel> {
         }
     }
 
+    private void checkShrine() {
+        Position shrine = getModel().getArena().getShrine();
+        if (shrine != null) {
+            if (shrine.equals(getModel().getVaultBoy().getPosition()) && !getModel().getVaultBoy().isGameWon()) {
+                // Push the thing
+                getModel().getVaultBoy().setGameWon(true);
+            }
+        }
+    }
+
     @Override
     public void step(Game game, LanternaGUI.ACTION action, long time) {
         if (getModel().getVaultBoy().isGameStarting()) {

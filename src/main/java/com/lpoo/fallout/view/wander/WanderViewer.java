@@ -28,13 +28,15 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
     @Override
     protected void drawElements(LanternaGUI gui) {
         for (Map.Entry<Position, Wall> wall: getModel().getArena().getWallMap().entrySet())
-            gui.placeDrawable(new LanternaDrawable( "#00FF00", "#000000", "#"), wall.getValue().getPosition());
+            gui.placeDrawable(new LanternaDrawable( "#00FF00", "#000000", "l"), wall.getValue().getPosition());
 
         for (Enemy enemy: getModel().getArena().getEnemies())
             gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
 
         for (Map.Entry<Position, Door> door : getModel().getArena().getDoorMap().entrySet())
-            gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "0"), door.getValue().getPosition());
+            gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "m"), door.getValue().getPosition());
+
+        gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "n"), getModel().getArena().getShrine());
 
         gui.placeDrawable(new LanternaDrawable( "#FFFFFF", "#000000", "k"), getModel().getVaultBoy().getPosition());
     }

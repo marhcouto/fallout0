@@ -13,15 +13,17 @@ public class Arena implements Serializable {
     private final Map<Position, Door> doorMap;
     private final List<Enemy> enemies;
     private final String name;
+    private final Position shrine;
 
-    public Arena(Map<Position, Wall> wallMap, Map<Position, Door> doorMap, List<Enemy> enemies, String name) {
+    public Arena(Map<Position, Wall> wallMap, Map<Position, Door> doorMap, List<Enemy> enemies, String name, Position shrine) {
         this.wallMap = wallMap;
         this.doorMap = doorMap;
         this.enemies = enemies;
         this.name = name;
+        this.shrine = shrine;
     }
 
-    public Arena(List<Wall> walls, List<Door> doors, List<Enemy> enemies, String name) {
+    public Arena(List<Wall> walls, List<Door> doors, List<Enemy> enemies, String name, Position shrine) {
         this.wallMap = new HashMap<>();
         this.doorMap = new HashMap<>();
         for (Wall wall: walls)
@@ -30,6 +32,7 @@ public class Arena implements Serializable {
             doorMap.put(door.getPosition(), door);
         this.enemies = enemies;
         this.name = name;
+        this.shrine = shrine;
     }
 
     public boolean hasClearSight(Position pos1, Position pos2) {
@@ -80,6 +83,9 @@ public class Arena implements Serializable {
         return sortedEnemies;
     }
 
+    public Position getShrine() {
+        return shrine;
+    }
     public Map<Position, Wall> getWallMap() {
         return wallMap;
     }
