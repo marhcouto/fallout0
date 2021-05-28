@@ -2,9 +2,11 @@ package com.lpoo.fallout.controller;
 
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.mainmenu.MainMenuModel;
 import com.lpoo.fallout.states.MainMenuState;
 import com.lpoo.fallout.states.State;
+import com.lpoo.fallout.states.WanderState;
 
 import java.io.IOException;
 import java.util.Stack;
@@ -22,7 +24,7 @@ public class Game {
         frameTime = 1000/60;
 
         this.gui = getDefaultGUI();
-        this.pushState(new MainMenuState(new MainMenuModel()));
+        this.pushState(new WanderState(new FileHandler().createWanderModel("gamestat")));
     }
 
     public static LanternaGUI getDefaultGUI() throws IOException {

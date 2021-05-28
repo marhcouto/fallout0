@@ -21,8 +21,8 @@ public class EnemyDefaultFactory implements EnemyFactory {
     }
 
     private static @NotNull Enemy createSnake(@NotNull Position enemyPosition) {
-        Weapon defaultSnakeWeapon = new Weapon(5, "Stinger", new Attributes());
-        Attributes defaultSnakeAttributes = new Attributes(5, 8, 5, 5);
+        Weapon defaultSnakeWeapon = new Weapon(8, "Fang", new Attributes());
+        Attributes defaultSnakeAttributes = new Attributes(5, 8, 5, 6);
         return new Enemy(enemyPosition, defaultSnakeAttributes, new Inventory(0, defaultSnakeWeapon), 12, 2, Enemy.TYPE.SNAKE);
     }
 

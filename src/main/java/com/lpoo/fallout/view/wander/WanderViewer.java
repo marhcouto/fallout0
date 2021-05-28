@@ -1,6 +1,7 @@
 package com.lpoo.fallout.view.wander;
 
 import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.LanternaDrawable;
 import com.lpoo.fallout.model.wander.Position;
@@ -31,6 +32,9 @@ public class WanderViewer extends Viewer<WanderModel, LanternaGUI> {
 
         for (Enemy enemy: getModel().getArena().getEnemies())
             gui.placeDrawable(drawableMap.get(enemy.getType()), enemy.getPosition());
+
+        for (Map.Entry<Position, Door> door : getModel().getArena().getDoorMap().entrySet())
+            gui.placeDrawable(new LanternaDrawable("#00FF00", "#000000", "0"), door.getValue().getPosition());
 
         gui.placeDrawable(new LanternaDrawable( "#FFFFFF", "#000000", "k"), getModel().getVaultBoy().getPosition());
     }

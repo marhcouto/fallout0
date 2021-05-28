@@ -1,5 +1,6 @@
 package com.lpoo.fallout.model.wander;
 
+import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.Wall;
 import org.jetbrains.annotations.NotNull;
@@ -9,20 +10,24 @@ import java.util.*;
 
 public class Arena implements Serializable {
     private final Map<Position, Wall> wallMap;
+    private final Map<Position, Door> doorMap;
     private final List<Enemy> enemies;
     private final String name;
 
-    public Arena(Map<Position, Wall> wallMap, List<Enemy> enemies, String name) {
+    public Arena(Map<Position, Wall> wallMap, Map<Position, Door> doorMap, List<Enemy> enemies, String name) {
         this.wallMap = wallMap;
+        this.doorMap = doorMap;
         this.enemies = enemies;
         this.name = name;
     }
 
-    public Arena(List<Wall> walls, List<Enemy> enemies, String name) {
-        wallMap = new HashMap<>();
-        for (Wall wall: walls) {
+    public Arena(List<Wall> walls, List<Door> doors, List<Enemy> enemies, String name) {
+        this.wallMap = new HashMap<>();
+        this.doorMap = new HashMap<>();
+        for (Wall wall: walls)
             wallMap.put(wall.getPosition(), wall);
-        }
+        for (Door door : doors)
+            doorMap.put(door.getPosition(), door);
         this.enemies = enemies;
         this.name = name;
     }
@@ -81,15 +86,9 @@ public class Arena implements Serializable {
     public List<Enemy> getEnemies() {
         return enemies;
     }
-    public boolean hasEnemy(Enemy character) {
-        for (Enemy enemy: enemies) {
-            if (enemy.equals(character)) {
-                return true;
-            }
-        }
-        return false;
+    public Map<Position, Door> getDoorMap() {
+        return doorMap;
     }
-
     public String getName() {
         return name;
     }

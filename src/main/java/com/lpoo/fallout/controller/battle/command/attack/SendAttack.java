@@ -1,5 +1,6 @@
 package com.lpoo.fallout.controller.battle.command.attack;
 
+import com.lpoo.fallout.model.battle.Message;
 import com.lpoo.fallout.model.battle.TurnModel;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,5 +17,6 @@ public class SendAttack extends CommandHandler {
         if (chance >= model.getAttackerStats().getMissChance()) {
             nextCommandHandler.handle();
         }
+        model.setOutcome(new Message("atack\nmissed", true, true));
     }
 }

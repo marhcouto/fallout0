@@ -15,7 +15,8 @@ public class DefendCommand extends BattleCommand {
     public void activate() {
         getTurn().setOutcome(new Message("defend\napplied", true, true));
 
-        float newDodgeChance = (float) Math.min(getTurn().getAttackerStats().getDodgeChance() * 1.5, 1.0);
+        float newDodgeChance = (float) Math.min(getTurn().getAttackerStats().getDodgeChance() * 5.0, 1.0);
+        System.out.println("NEW DODGE CHANCE:" + newDodgeChance);
         getTurn().getAttackerStats().setDodgeChance(newDodgeChance);
     }
 

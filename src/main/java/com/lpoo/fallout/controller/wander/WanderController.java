@@ -5,19 +5,24 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.wander.*;
+import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.states.BattleState;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.AbstractQueue;
 
 public class WanderController extends MainController<WanderModel> {
     private final VaultBoyController vaultBoyController;
     private final EnemyController enemyController;
+    private boolean justEntered;
 
     public WanderController(WanderModel model) {
         super(model);
+        this.justEntered = true;
         vaultBoyController = new VaultBoyController(getModel());
         enemyController = new EnemyController(getModel(), new RandomMovingEngine());
     }
@@ -32,6 +37,20 @@ public class WanderController extends MainController<WanderModel> {
             }
         }
         return null;
+    }
+
+    private void tryOpenDoor() {
+        Door door = getModel().getArena().getDoorMap().get(getModel().getVaultBoy().getPosition());
+        if (door != null && !this.justEntered) {
+            try {
+                FileHandler.saveArena(getModel().getArena().getName(), getModel().getArena());
+                getModel().setArena(new FileHandler().createArena(door.getArenaFileName()));
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            getModel().getVaultBoy().setPosition(door.getCorrespondingPosition());
+            this.justEntered = true;
+        }
     }
 
     @Override
@@ -55,9 +74,11 @@ public class WanderController extends MainController<WanderModel> {
                 break;
             }
             default: {
+                this.justEntered = false;
                 vaultBoyController.move(action);
             }
         }
+        this.tryOpenDoor();
         enemyController.moveEnemies(time);
     }
 }
