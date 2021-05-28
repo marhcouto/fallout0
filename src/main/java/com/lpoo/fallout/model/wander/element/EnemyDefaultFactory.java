@@ -8,21 +8,18 @@ import org.jetbrains.annotations.NotNull;
 public class EnemyDefaultFactory implements EnemyFactory {
 
     private static @NotNull Enemy createRat(@NotNull Position enemyPosition) {
-        Weapon defaultRatWeapon = new Weapon(2, "Teeth", new Attributes());
         Attributes ratDefaultAttributes = new Attributes(2, 2, 2, 2);
-        return new Enemy(enemyPosition, ratDefaultAttributes, new CharacterInfo(0, defaultRatWeapon), 5, 1, Enemy.TYPE.RAT);
+        return new Enemy(enemyPosition, new CharacterInfo(ratDefaultAttributes, 0, 2), 5, 1, Enemy.TYPE.RAT);
     }
 
     private static @NotNull Enemy createScorpion(@NotNull Position enemyPosition) {
-        Weapon defaultScorpWeapon = new Weapon(5, "Stinger", new Attributes());
         Attributes defaultScorpAttributes = new Attributes(5, 5, 5, 5);
-        return new Enemy(enemyPosition, defaultScorpAttributes, new CharacterInfo(0, defaultScorpWeapon), 8, 1, Enemy.TYPE.SCORPION);
+        return new Enemy(enemyPosition, new CharacterInfo(defaultScorpAttributes, 0, 5), 8, 1, Enemy.TYPE.SCORPION);
     }
 
     private static @NotNull Enemy createSnake(@NotNull Position enemyPosition) {
-        Weapon defaultSnakeWeapon = new Weapon(8, "Fang", new Attributes());
         Attributes defaultSnakeAttributes = new Attributes(5, 8, 5, 6);
-        return new Enemy(enemyPosition, defaultSnakeAttributes, new CharacterInfo(0, defaultSnakeWeapon), 12, 2, Enemy.TYPE.SNAKE);
+        return new Enemy(enemyPosition, new CharacterInfo(defaultSnakeAttributes, 0, 8), 12, 2, Enemy.TYPE.SNAKE);
     }
 
     @Override

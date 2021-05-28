@@ -1,8 +1,10 @@
 package com.lpoo.fallout.controller.wander;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
+import com.lpoo.fallout.gui.LanternaGUIFactory;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.filehandling.FileHandler;
@@ -93,7 +95,7 @@ public class WanderController extends MainController<WanderModel> {
         Enemy fightingEnemy = checkFight();
         if (fightingEnemy != null) {
             try {
-                game.changeGui(new LanternaGUI(new LanternaTerminal(600, 300, 2)));
+                game.changeTerminalProperty(new TerminalSize(600, 300), 3);
                 FileHandler.saveModel("gamestat", getModel());
             } catch (IOException e) {
                 e.printStackTrace();

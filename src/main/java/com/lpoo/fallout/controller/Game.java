@@ -1,5 +1,7 @@
 package com.lpoo.fallout.controller;
 
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.terminal.Terminal;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.filehandling.FileHandler;
@@ -14,6 +16,8 @@ public class Game {
     private static final Integer FPS = 20;
     private final long frameTime;
     private LanternaGUI gui;
+    public static final TerminalSize DEFAULT_TERMINAL_SIZE = new TerminalSize(30, 18);
+    public static final int DEFAULT_FONT_SIZE = 40;
 
     public Game() throws IOException, ClassNotFoundException {
         // Stack for the controllers
@@ -21,13 +25,10 @@ public class Game {
 
         frameTime = 1000/60;
 
-        this.gui = getDefaultGUI();
+        changeTerminalProperty(DEFAULT_TERMINAL_SIZE, DEFAULT_FONT_SIZE);
         this.pushState(new WanderState(new FileHandler().createWanderModel("gamestat")));
     }
 
-    public static LanternaGUI getDefaultGUI() throws IOException {
-        return new LanternaGUI(new LanternaTerminal(30, 18, 40));
-    }
     public void pushState(State newController) {
         try {
             while(gui.getTerminal().getScreen().pollInput() != null) { }
@@ -72,8 +73,14 @@ public class Game {
         gui.getTerminal().getScreen().close();
     }
 
-    public void changeGui (LanternaGUI newGUI) throws IOException {
-        gui.getTerminal().getScreen().close();
+    public void changeTerminalProperty(TerminalSize size, int fontSize) throws IOException {
+        changeGui(new LanternaGUI(new LanternaTerminal(size.getColumns(), size.getRows(), fontSize)));
+    }
+
+    private void changeGui (LanternaGUI newGUI) throws IOException {
+        if (gui != null) {
+            gui.getTerminal().getScreen().close();
+        }
         this.gui = newGUI;
     }
 }

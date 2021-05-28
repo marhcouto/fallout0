@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class Enemy extends Character implements Serializable {
     private TYPE enemyType;
 
-    public Enemy(@NotNull Position position, @NotNull Attributes attributes, @NotNull CharacterInfo characterInfo, @NotNull Integer level, @NotNull Integer attackRadius, TYPE enemyType) {
-        super(position, attributes, characterInfo, level, attackRadius);
+    public Enemy(@NotNull Position position, @NotNull CharacterInfo characterInfo, @NotNull Integer level, @NotNull Integer attackRadius, TYPE enemyType) {
+        super(position, characterInfo, level, attackRadius);
         this.enemyType = enemyType;
     }
 

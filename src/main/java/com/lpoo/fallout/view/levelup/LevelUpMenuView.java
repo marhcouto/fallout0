@@ -56,7 +56,7 @@ public class LevelUpMenuView extends Viewer<LevelUpModel, LanternaGUI> {
             if (option != LevelUpModel.OPTION.NEXT) {
                 stringBuilder.append(" <");
                 int attributeValue = LevelUpModel.getValue(getModel().getNewAttributes(), option) +
-                        LevelUpModel.getValue(getModel().getVaultBoy().getAttributes(), option);
+                        LevelUpModel.getValue(getModel().getVaultBoy().getCharacterInfo().getAttributes(), option);
                 stringBuilder.append(attributeValue);
                 stringBuilder.append(">");
             }

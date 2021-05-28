@@ -16,18 +16,21 @@ class BattleInfoTest {
 
     @BeforeEach
     void setUp() {
-        CharacterInfo mockedCharacterInfo = Mockito.mock(CharacterInfo.class);
-        Mockito.when(mockedCharacterInfo.getWeapon()).thenReturn(new Weapon());
+        CharacterInfo mockedVaultBoyInfo = Mockito.mock(CharacterInfo.class);
+        Mockito.when(mockedVaultBoyInfo.getWeaponDamage()).thenReturn(1);
+        Mockito.when(mockedVaultBoyInfo.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
 
         mockedVaultBoy = Mockito.mock(VaultBoy.class);
-        Mockito.when(mockedVaultBoy.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
         Mockito.when(mockedVaultBoy.getLevel()).thenReturn(1);
-        Mockito.when(mockedVaultBoy.getInventory()).thenReturn(mockedCharacterInfo);
+        Mockito.when(mockedVaultBoy.getCharacterInfo()).thenReturn(mockedVaultBoyInfo);
+
+        CharacterInfo mockedEnemyInfo = Mockito.mock(CharacterInfo.class);
+        Mockito.when(mockedEnemyInfo.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
 
         mockedEnemy = Mockito.mock(Enemy.class);
-        Mockito.when(mockedEnemy.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
-        Mockito.when(mockedEnemy.getInventory()).thenReturn(mockedCharacterInfo);
+        Mockito.when(mockedEnemy.getCharacterInfo()).thenReturn(mockedEnemyInfo);
         Mockito.when(mockedEnemy.getLevel()).thenReturn(1);
+
         info = new BattleInfo(mockedVaultBoy, mockedEnemy);
     }
 

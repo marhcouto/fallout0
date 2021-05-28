@@ -16,13 +16,13 @@ public class CureCommand extends BattleCommand {
     @Override
     public void activate() {
 
-        if (vaultBoy.getInventory().getNoPotions() > 0) {
+        if (vaultBoy.getCharacterInfo().getNoPotions() > 0) {
             getTurn().setOutcome(new Message("cure\napplied", true, true));
 
             Integer newHP = (int) ((double) getTurn().getAttackerStats().getStartingHealthPoints() * 0.2) + getTurn().getAttackerStats().getHealthPoints();
             newHP = Math.min(getTurn().getAttackerStats().getStartingHealthPoints(), newHP);
             getTurn().getAttackerStats().setHealthPoints(newHP);
-            vaultBoy.getInventory().setNoPotions(vaultBoy.getInventory().getNoPotions() - 1);
+            vaultBoy.getCharacterInfo().setNoPotions(vaultBoy.getCharacterInfo().getNoPotions() - 1);
         } else {
             getTurn().setOutcome(new Message("you have\nno potions", false, true));
         }

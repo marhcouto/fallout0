@@ -2,16 +2,15 @@ package com.lpoo.fallout.controller.battle;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
-import com.lpoo.fallout.model.battle.BattleMenuModel;
-import com.lpoo.fallout.model.battle.BattleStats;
-import com.lpoo.fallout.model.battle.TurnModel;
+import com.lpoo.fallout.model.battle.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 class BattleMenuControllerTest {
-    /*private BattleMenuController controller;
+    private BattleMenuController controller;
     private BattleStats attackerStats;
     private BattleStats enemyStats;
     private Game mockedGame;
@@ -22,7 +21,12 @@ class BattleMenuControllerTest {
         enemyStats = Mockito.mock(BattleStats.class);
         mockedGame = Mockito.mock(Game.class);
 
-        // controller = new BattleMenuController(new BattleMenuModel(), new TurnModel(attackerStats, enemyStats));
+        BattleModel mockedModel = Mockito.mock(BattleModel.class);
+        BattleInfo mockedBattleInfo = Mockito.mock(BattleInfo.class);
+        Mockito.when(mockedBattleInfo.getTurn()).thenReturn(new TurnModel(attackerStats, enemyStats));
+        Mockito.when(mockedModel.getBattleInfo()).thenReturn(mockedBattleInfo);
+
+        controller = new BattleMenuController(mockedModel, new BattleMenuModel());
     }
 
     @Test
@@ -65,5 +69,5 @@ class BattleMenuControllerTest {
         controller.step(mockedGame, GUI.ACTION.LEFT);
 
         Assertions.assertEquals(0, controller.getModel().getSelectedIdx());
-    }*/
+    }
 }

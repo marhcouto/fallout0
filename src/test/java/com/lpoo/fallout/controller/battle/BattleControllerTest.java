@@ -20,10 +20,10 @@ public class BattleControllerTest {
     void setUp() {
         VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
         Enemy enemy = Mockito.mock(Enemy.class);
-        // Mockito.when(vaultBoy)
+        Mockito.when(vaultBoy)
         this.battleModel = new BattleModel(Mockito.mock(Arena.class), vaultBoy, enemy);
         this.battleController = new BattleController(this.battleModel);
-    }*/
+    }
 
     @Test
     void testCalculateExpGain() {
@@ -41,5 +41,5 @@ public class BattleControllerTest {
         Mockito.verify(game, Mockito.times(1)).clearStates();
 
         Mockito.when(battleModel.getBattleInfo().checkDeath()).thenReturn(enemy);
-    }
+    }*/
 }
