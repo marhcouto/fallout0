@@ -1,5 +1,6 @@
-package com.lpoo.fallout.controller;
+package com.lpoo.fallout.controller.option;
 
+import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.option.OptionMenuModel;
 

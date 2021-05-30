@@ -1,7 +1,7 @@
 package com.lpoo.fallout.controller.levelup;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.OptionMenuController;
+import com.lpoo.fallout.controller.option.OptionMenuController;
 import com.lpoo.fallout.controller.levelup.command.*;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.levelup.LevelUpModel;
