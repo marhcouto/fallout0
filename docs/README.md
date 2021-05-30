@@ -1,22 +1,13 @@
 # **LPOO - Fallout: A post pandemic RPG**
 
-## Introduction
-The game with developped assimilates to the original Fallout: a classic RPG, where the main charachter, Vault Boy, fights enemies in a turn based combat mode, levels up, explores arenas and beats the game. 
-
-## Description
-The charachter is dropped in a space full of enemies. It must fight, and win, to move on with the game. A battle starts when he gets too close to a monster. The battle is formatted in a turn based combat style. Every turn, the user is presented with a multitude of options like intimidating it's enemies or defend attacks. But beware, enemies can use this tools too.
-
-## Small Demonstration
-<p align = "center">
-  <img width = 650 src = "docs/images/features/gameDemo.gif">
-</p>
-
 # Tabela de Conteúdos
 - [**LPOO - Fallout: A post pandemic RPG**](#lpoo---fallout-a-post-pandemic-rpg)
-  - [Introduction](#introduction)
-  - [Description](#description)
-  - [Small Demonstration](#small-demonstration)
 - [Tabela de Conteúdos](#tabela-de-conteúdos)
+- [Introdução](#introdução)
+- [Descrição](#descrição)
+- [Autores](#autores)
+- [Comandos](#comandos)
+- [Demonstração](#demonstração)
 - [Funcionalidades](#funcionalidades)
   - [Implementadas](#implementadas)
   - [Por implementar](#por-implementar)
@@ -43,7 +34,7 @@ The charachter is dropped in a space full of enemies. It must fight, and win, to
     - [Contexto do problema](#contexto-do-problema-4)
     - [Design Pattern](#design-pattern-3)
     - [Implementação](#implementação-3)
-    - [Consequeências](#consequeências)
+    - [Consequências](#consequências-3)
   - [Menu - Opções disponíveis para o utilizador](#menu---opções-disponíveis-para-o-utilizador)
     - [Contexto do problema](#contexto-do-problema-5)
     - [Design Pattern](#design-pattern-4)
@@ -53,17 +44,48 @@ The charachter is dropped in a space full of enemies. It must fight, and win, to
     - [Contextualização do Problema](#contextualização-do-problema)
     - [Desing Pattern](#desing-pattern)
     - [Implementação](#implementação-5)
-    - [Consequências](#consequências-3)
+    - [Consequências](#consequências-4)
   - [Attack e Probabilidades](#attack-e-probabilidades)
     - [Contextualização do Problema](#contextualização-do-problema-1)
     - [Desing Pattern](#desing-pattern-1)
     - [Implementação](#implementação-6)
-    - [Consequências](#consequências-4)
+    - [Consequências](#consequências-5)
 - [Code Smells](#code-smells)
   - [Dispensables - Data Class](#dispensables---data-class)
   - [Object-Orientation Abusers - Switch Statements](#object-orientation-abusers---switch-statements)
   - [Change Preventers - Divergent Change](#change-preventers---divergent-change)
   - [Couplers - Middle Man](#couplers---middle-man)
+- [Testing](#testing)
+  - [Coverage Prints](#coverage-prints)
+- [Notas](#notas)
+- [Auto-avaliação](#auto-avaliação)
+
+# Introdução
+O jogo que desenvolvemos assimilação ao jogo orinal da série de jogos *Fallout*: um RPG clássico, onde o personagem principal, *Vault Boy*, luta contra inimigos num estilo de combate por turnos, explora arenas e ganha o jogo.
+
+# Descrição
+O *Vault Boy* surge num espaço repleto de monstros. Para progredir, deve combater e vencer os monstros, ou evitar a batalha. Um combate é desencadeado quando o vaultboy se encontra demasiado perto de um inimigo e na sua linha de vista, em linha reta. A batalha é em formato de combate por turnos. Em todas as rondas, é apresentado ao utilizador uma multitude de opções, com diferentes efeitos e que o ajudarão a vencer a batalha, como intimidar ou atacar o inimigo. A cada vitória, o *Vault Boy* ganha experiência e sobe niveis, que lhe possibilitarão aumentar os seus atributos, de modo a se tornar mais forte. Isto pode ser feito no menu de atributos, acessivel através do modo arena. De modo a vencer o jogo, o *Vault Boy* deve atingir a *Vault Door*, que se encontra na última arena. Se o utilizador desejar recomeçar o jogo, deverá executar o comando de **Reset**, executado através de uma opção no menu de atributos ou através do teclado.
+
+# Autores
+Este projeto foi realizado por: 
+ - Francisco Oliveira (up201907361@edu.fe.pt)
+ - Marcelo Couto (up201906086@edu.fe.up.pt)
+
+# Comandos
+ - **R**: Reset
+ - **Setas do teclado**:
+   - Exploração: andar
+   - Batlha e Menus: permitem escolher as diferentes opções
+ - **E**: Em modo exploração permite aceder ao menu onde são mostrados os dados sobre o personagem.
+ - **Q**: Permite sair do jogo
+ - **ESC**: Permite sair de alguns menus
+ - **ENTER**: Permite selecionar opções em menus
+
+
+# Demonstração
+<p align = "center">
+  <img width = 650 src = "images/features/gameDemo.gif">
+</p>
 
 # Funcionalidades
   
@@ -106,7 +128,7 @@ The charachter is dropped in a space full of enemies. It must fight, and win, to
 ## Por implementar
 - Menu de Wander: menu onde o jogador poderá editar o seu equipamento e arma, percorrer o seu inventário e obter outro tipo de informações
 - Loot: Sistema de *loot* para que o jogador possa apanhar diferentes armas (e possivelmente equipamento) para lutar com os inimigos que encontrará
-- Equipamentos: sistema de armaduras e outros equipamente que darão atributos bónus ao personagem (e possivelmente aos monstros)
+- Equipamentos: sistema de armaduras e outros equipamentos que darão atributos bónus ao personagem (e possivelmente aos inimigos)
 - NPCs: o jogador poderá interagir com um personagem não jogável para trocar o dinheiro ganho em batalha por novas armas e armaduras
 
 # Design
@@ -121,6 +143,18 @@ Apenas foi apresentado um estado do jogo para simplificar o diagrama de classes.
 <p align="center">
   <img width=650 src="images/uml/MVC.svg">
 </p>
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+ - [Game](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/Game.java#L14)
+ - [GUI](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/gui/GUI.java#L7)
+ - [LanternaGUI](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/gui/LanternaGUI.java#L11)
+ - [MainController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/MainController.java#L5)
+ - [State](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/states/State.java#L12)
+ - [Viewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/Viewer.java#L7)
+ - [WanderState](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/states/WanderState.java#L11)
+ - [WanderViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/wander/WanderViewer.java#L15)
+ - [WanderController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/wander/WanderController.java#L24)
+ - [WanderModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/model/wander/WanderModel.java#L8)
 
 ### Consequências
  - É mais fácil expandir o programa
@@ -142,6 +176,11 @@ Para resolver este problema decidimos utilizar o *Strategy Pattern*, para que o 
 <p align="center">
   <img width=650 src="images/uml/movement.svg">
 </p>
+
+Estas classes podem ser encontradas nos seguintes ficheiros:
+ - [MovingEngine](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/wander/MovingEngine.java#L5)
+ - [RandomMovingEngine](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/wander/RandomMovingEngine.java#L7)
+ - [EnemyController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/wander/EnemyController.java#L7)
 
 ### Consequências
  - Respeito do Open closed principle. Para adicionar uma estratégia de movimento basta criar uma nova subclasse.
@@ -172,6 +211,11 @@ Para suportar esta forma de desenhar os inimigos cada *viewer* terá um mapa que
   <img width = 650 src = "images/uml/draw.svg">
 </p>
 
+Estas classes podem ser encontradas nos seguintes ficheiros:
+ - [Arena](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/model/wander/Arena.java#L11)
+ - [WanderModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/model/wander/WanderModel.java#L8)
+ - [WanderViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/wander/WanderViewer.java#L15)
+ - [Enemy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/model/wander/element/Enemy.java#L10)
 
 ### Consequências
 - Existe uma pequena violação do Open-Closed Principle, porque ao criar novos tipos de inimigos teriamos de alterar os viewers para os conseguir desenhar. No entanto, esta alternativa revelou ser a melhor entre todas as outras que considerámos
@@ -189,7 +233,13 @@ Como solução para este problema foi implementado um *Composite*. Existe, entã
   <img width = 650 src = "images/uml/rendererComposite.svg">
 </p>
 
-### Consequeências
+Estas classes podem ser encontradas nos seguintes ficheiros:
+ - [BattleViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/battle/BattleViewer.java#L16)
+ - [Renderer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/renderers/Renderer.java#L6)
+ - [SpriteRenderer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/renderers/SpriteRenderer.java#L12)
+ - [GroupRenderer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/renderers/GroupRenderer.java#L9)
+
+### Consequências
 - Simplifica o cliente, neste caso, a classe **BattleViewer**
 
 ## Menu - Opções disponíveis para o utilizador
@@ -205,15 +255,23 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
   <img width = 650 src = "images/uml/optionMenu.svg">
 </p>
 
-Estas classes podem ser encontradas nos ficheiros seguintes:
-- 
+Estas classes podem ser encontradas nos seguintes ficheiros:
+ - [MainController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/MainController.java#L5)
+ - [StatsMenuController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuController.java#L11)
+ - [StatsMenuViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/view/statsmenu/StatsMenuViewer.java#L12)
+ - [StatsMenuCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuCommand.java#L6)
+ - [StatsMenuOptionController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuOptionController.java#L13)
+ - [LevelUpCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/statsmenu/command/LevelUpCommand.java#L9)
+ - [ResetCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/statsmenu/command/ResetCommand.java#L11)
+ - [OptionMenuModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/model/option/OptionMenuModel.java#L8)
+ - [OptionMenuController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/controller/option/OptionMenuController.java#L7)
 
 O *Command pattern* utilizado no menu de batalha utiliza classes diferentes, dado ser ligeiramente mais complexo e não beneficiando da estrutura exata dos outros.
 <p align = "center">
   <img width = 650 src = "images/uml/battleCommand.svg">
 </p>
 
-Estas classes podem ser encontradas nos ficheiros seguintes:
+Estas classes podem ser encontradas nos seguintes ficheiros:
 - [BattleCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/BattleCommand.java)
 - [AttackCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/AttackCommand.java)
 - [DefendCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/DefendCommand.java)
@@ -240,7 +298,7 @@ Para resolver esta situação implementámos um *Observer pattern*. A classe *ob
   <img width = 650 src = "images/uml/ObserverPattern.svg">
 </p>
 
-Estas classes podem ser encontradas nos ficheiros seguintes:
+Estas classes podem ser encontradas nos seguintes ficheiros:
 - [TurnObserver](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/TurnObserver.java)
 - [TurnEffect](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/TurnEffect.java)
 - [Observable](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/Observable.java)
@@ -265,7 +323,7 @@ Para a solução deste problema utilizámos o *Chain of Responsability pattern*,
   <img width = 650 src = "images/uml/ChainOfResponsability.svg">
 </p>
 
- Estas classes podem ser encontradas nos ficheiros seguintes:
+Estas classes podem ser encontradas nos seguintes ficheiros:
  - [AttackCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/AttackCommand.java)
  - [CommandHandler](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/CommandHandler.java)
  - [NullHandler](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/NullHandler.java)
@@ -290,3 +348,21 @@ O nosso design de menu, utilizando enumerações, permite que as opções sejam 
 
 ## Couplers - Middle Man
 Em todos os nossos menus este *code* *smell* está presente mas a classe onde é mais evidente é a [StatsMenuController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuController.java#L11) em conjunto com a [StatsMenuOptionController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuOptionController.java#L13). A classe [StatsMenuController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuController.java#L11) existe apenas para ser utilizada como uma classe derivada de [MainController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/MainController.java#L5) e poder ser utilizada no *State* *pattern*. A classe [StatsMenuOptionController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/statsmenu/StatsMenuOptionController.java#L13) existe para ser utilizada como classe derivada de [OptionMenuController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/OptionMenuController.java#L6) que contém operações importates de verificação da validade das instruções mandadas pelo utilizador aos menus. Poderiamos utilizar o *refactoring* *Remove Middle Man*, mas como, em Java, uma classe apenas pode derivar uma outra classe, uma das classes teria de ser implementada como interface e os métodos teriam de ser implementados nas classes filhas. Como os métodos em questão são gerais, deste refactoring resultaria muito código duplicado pelo que perferimos não o resolver. 
+
+# Testing
+
+- [Mutation Testing Report](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/docs/202105301826/index.html)
+
+## Coverage Prints
+<p align = "center">
+  <img width = 650 src = "images/coverageprints/fullcoverage.png">
+</p>
+
+# Notas
+ - As classes [ArenaMaker](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/ArenaMaker.java#L12) e [MakeLevels](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/MakeLevels.java#L5) são apenas ferramentas utilizadas para a geração dos binários que servem como savefiles do programa, não sendo pretendido que sejam avaliados
+ - No caso de corrupção de binários, compilar e correr **MakeLevels**
+
+# Auto-avaliação
+ - **Francisco Oliveira**: 50%
+ - **João Sousa**: 0%
+ - **Marcelo Couto**: 50%
