@@ -48,7 +48,7 @@
 - [Code Smells](#code-smells)
   - [Dispensables - Data Class](#dispensables---data-class)
   - [Object-Orientation Abusers - Switch Statements](#object-orientation-abusers---switch-statements)
-  - [Change Preventers - Parallel Inheritance Hierarchies](#change-preventers---parallel-inheritance-hierarchies)
+  - [Change Preventers - Divergent Change](#change-preventers---divergent-change)
   - [Couplers - Middle Man](#couplers---middle-man)
 
 # Funcionalidades
@@ -191,6 +191,10 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
   <img width = 650 src = "images/uml/optionMenu.svg">
 </p>
 
+O *Command pattern* utilizado no menu de batalha utiliza classes diferentes, dado ser ligeiramente mais complexo e não beneficiando da estrutura exata dos outros.
+
+
+
 ### Consequencias
  - Permite manter facilmente a integridade dos menus do jogo, uma vez que, toda a informação sobre cada opção se encontra centralizada
  - Ao testar o OptionMenuController testamos a generalidade dos menus do jogo
@@ -200,7 +204,7 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
 ## Efeitos de Batalha
 
 ### Contextualização do Problema
-No modo de batalha por turnos, tanto o jogador como o adversário têm à sua escolha 4 hipóteses: *Attack*, *Defend*, *Intimidate* e *Cure* (este último está apenas disponivel ao jogador). Tendo em conta que a escolha destas opções é governada por um mecanismo do mesmo estilo, estes efeitos seguem o desing pattern apresentado para os menus. No entanto, alguns destes efeitos têm uma duração em rondas (caso do *defend* e do *intimidate*). Após esta duração, os efeitos deverão desparecer. Por esta razão, seria necessários que alguma classe estivesse ciente tanto da contagem das rondas como dos commands ativos.
+No modo de batalha por turnos, tanto o jogador como o adversário têm à sua escolha 4 hipóteses: *Attack*, *Defend*, *Intimidate* e *Cure* (este último está apenas disponivel ao jogador). Como já foi referido acima, estes efeitos representam um *Command pattern* e as opções são organizadas em menus. No entanto, alguns destes efeitos têm uma duração em rondas (caso do *defend* e do *intimidate*). Após esta duração, os efeitos deverão desparecer. Por esta razão, seria necessários que alguma classe estivesse ciente tanto da contagem das rondas como dos commands ativos.
 
 ### Desing Pattern
 Para resolver esta situação implementámos um *Observer pattern*. A classe *observer*, **TurnEffect** (implementa **TurnObserver**), será responsável por ativar e desativar os commandos. Esta observa uma classe *observable*, **BattleModel** (implementa **Observable de TurnObservers**), que notifica os seus observers a cada ronda passada. 
@@ -234,7 +238,7 @@ Ao longo do nosso código, para manter a separação entre algumas partes do pro
 ## Object-Orientation Abusers - Switch Statements
 A classe [VaultBoyController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/wander/VaultBoyController.java#L19) no seu método [move](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/wander/VaultBoyController.java#L19) possui um *switch statement* que chama o método [moveVaultBoy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/wander/VaultBoyController.java#L14) com argumentos diferentes. Poderiamos resolver este *smell* neste caso utilizando o *refactoring* ***Replace Parameter with Explicit Methods***. Não realizamos este refactor porque o método [moveVaultBoy](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/7c9acddc695167f7efa691700040e7adff59b4e0/src/main/java/com/lpoo/fallout/controller/wander/VaultBoyController.java#L14) não é trivial e criar vários métodos distintos implicaria a duplicação do código.
 
-## Change Preventers - Parallel Inheritance Hierarchies
+## Change Preventers - Divergent Change
 O nosso design de menu, utilizando enumerações, permite que as opções sejam identificadas por um tipo constante não por uma *string* que pode ser escrita com erros ou um id que torna o código ilegível. No entanto como na linguagem Java cada *enum* deriva da classe *Enum* não podemos criar uma classe abstrata que implementem os *getters* da *string* descritora e do índice. Utilizando uma linguagem que permitisse extender mais do que uma classe poderiamos resolver este *code smell* com um *extract class* movendo as opções do menu para uma nova classe utilizando em seguida o *extract superclass* que implementaria os *getters* referidos.
 
 ## Couplers - Middle Man
