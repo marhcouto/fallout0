@@ -1,7 +1,7 @@
 package com.lpoo.fallout.controller.statsmenu;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.OptionMenuController;
+import com.lpoo.fallout.controller.option.OptionMenuController;
 import com.lpoo.fallout.controller.statsmenu.command.LevelUpCommand;
 import com.lpoo.fallout.controller.statsmenu.command.ResetCommand;
 import com.lpoo.fallout.gui.GUI;

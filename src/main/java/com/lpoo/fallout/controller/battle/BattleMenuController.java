@@ -1,7 +1,7 @@
 package com.lpoo.fallout.controller.battle;
 
 import com.lpoo.fallout.controller.Game;
-import com.lpoo.fallout.controller.OptionMenuController;
+import com.lpoo.fallout.controller.option.OptionMenuController;
 import com.lpoo.fallout.controller.battle.command.BattleCommand;
 import com.lpoo.fallout.controller.battle.command.CureCommand;
 import com.lpoo.fallout.controller.battle.command.DefendCommand;

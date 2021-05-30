@@ -192,7 +192,8 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
 </p>
 
 Estas classes podem ser encontradas nos ficheiros seguintes:
-- 
+- [OptionMenuModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/model/option/OptionMenuModel.java)
+- [OptionMenuController]()
 
 O *Command pattern* utilizado no menu de batalha utiliza classes diferentes, dado ser ligeiramente mais complexo e não beneficiando da estrutura exata dos outros.
 <p align = "center">
