@@ -22,28 +22,23 @@
     - [Design Pattern](#design-pattern-2)
     - [Implementação](#implementação-2)
     - [Consequências](#consequências-2)
-  - [Diferentes Estados de Jogo](#diferentes-estados-de-jogo)
+  - [Escolha do desenho das personagens](#escolha-do-desenho-das-personagens)
     - [Contexto do problema](#contexto-do-problema-3)
-    - [Design Pattern](#design-pattern-3)
+    - [Design pattern](#design-pattern-3)
     - [Implementação](#implementação-3)
     - [Consequências](#consequências-3)
-  - [Escolha do desenho das personagens](#escolha-do-desenho-das-personagens)
-    - [Contexto do problema](#contexto-do-problema-4)
-    - [Design pattern](#design-pattern-4)
-    - [Implementação](#implementação-4)
-    - [Consequências](#consequências-4)
   - [Estados distintos - Gráficos diferentes](#estados-distintos---gráficos-diferentes)
-    - [Contexto do problema](#contexto-do-problema-5)
+    - [Contexto do problema](#contexto-do-problema-4)
     - [Solução](#solução)
   - [Group Renderers](#group-renderers)
+    - [Contexto do problema](#contexto-do-problema-5)
+    - [Design Pattern](#design-pattern-4)
+    - [Implementação](#implementação-4)
+    - [Consequeências](#consequeências)
+  - [Menu - Opções disponíveis para o utilizador](#menu---opções-disponíveis-para-o-utilizador)
     - [Contexto do problema](#contexto-do-problema-6)
     - [Design Pattern](#design-pattern-5)
     - [Implementação](#implementação-5)
-    - [Consequeências](#consequeências)
-  - [Menu - Opções disponíveis para o utilizador](#menu---opções-disponíveis-para-o-utilizador)
-    - [Contexto do problema](#contexto-do-problema-7)
-    - [Design Pattern](#design-pattern-6)
-    - [Implementação](#implementação-6)
     - [Consequencias](#consequencias)
 
 # Funcionalidades
@@ -103,10 +98,13 @@ Apenas foi apresentado um estado do jogo para simplificar o diagrama de classes.
  - Cada estado funciona isolado dos outros estados.
  - É mais fácil testar os componenetes individuais. Por exemplo textar o model de forma isolada do controller.
  - O mais simples menu necessita de pelo menos quatro classes para ser representado.
+ - Preservação do Single Responsability Principle: cada state tem a sua classe
+ - Preservação o Open-Closed Principle: a adição de novos states não afeta os states já existentes
+ - Evita a utilização de máquinas de estados com condicionais complexos
 
 ## Atributos
 ### Contexto do Problema
-Tanto o nosso personagem quanto os monstros que enfrentará terão atributos que governarão a aptidão para o combate, a capacide de auto-cura, etc.
+Tanto o nosso personagem quanto os monstros que enfrentará terão atributos que governarão a aptidão para o combate.
 Estes atributos também serão partilhados com as armas, que poderão exigir um valor mínimo para serem manuseadas, e com os equipamentos, que terão os seus próprios atributos e funcionarão como boost aos atributos base das personagens.
 
 ### Design Pattern
@@ -137,28 +135,9 @@ Para resolver este problema decidimos utilizar o *Strategy Pattern*, para que o 
 
 ### Consequências
  - Respeito do Open closed principle. Para adicionar uma estratégia de movimento basta criar uma nova subclasse.
- - Respeito do Dependency inversion principle. O nosso EnemyController depende de uma interface que define MovingEngine.
+ - Respeito do Dependency inversion principle. A nossa classe EnemyController depende de uma interface que define MovingEngine.
  - Código mais fácil de testar. Podemos criar mocks deterministicos de MovingEngine para realizar testes.
  
-<br>
-
-## Diferentes Estados de Jogo
-### Contexto do problema
-O nosso jogo estará dividido em vários estados, cujo comportamento e aspeto deverá ser diferente. Há, portanto, necessidade do jogo se comportar manifestamente diferente consoante o estado, sendo que este se altera durante o funcionamento do jogo.
-
-### Design Pattern
-Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alterações: dada a necessidade de voltar a estados anteriores, implementámos uma *stack* no Game com os diferentes estados, sendo assim o state ativo aquele que se encontra no topo da mesma. Para podermos implementar os diferentes states, usámos generics, de modo a que estes suportem diferentes models.
-
-### Implementação
-<p align = "center">
-  <img width = 650 src = "images/uml/stateGame.svg">
-</p>
-
-### Consequências
-- preservação do Single Responsability Principle: cada state tem a sua classe
-- preservação o Open-Closed Principle: a adição de novos states não afeta os states já existentes
-- evasão a *state machines* com condicionais complexos
-
 <br>
 
 ## Escolha do desenho das personagens
@@ -190,7 +169,6 @@ O nosso jogo, como foi explicado anteriormente, pode ser dividido em vários est
 Decidimos que a melhor opção seria que o tamanho da letra e a resolução do terminal não poderiam ser as mesmas. Por esta razão, optámos por gerar um novo terminal no caso de entrada num modo que assim o necessite, com resolução e tamanho diferentes. Quanto à segunda fase do problema, e devido às limitações impostas pelo terminal a utilizar optámos por:
 - recorrer ao uso de custom fonts para melhorar os gráficos **monocarater**
 - formular imagens em formato ascii art através de conversores online no que toca aos gráficos **multicarater**. Escolhemos esta opção tendo em conta a sua relativa simplicidade mas decente qualidade.
-
 
 ## Group Renderers
 ### Contexto do problema
