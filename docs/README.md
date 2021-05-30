@@ -355,7 +355,7 @@ Em todos os nossos menus este *code* *smell* está presente mas a classe onde é
 
 ## Coverage Prints
 <p align = "center">
-  <img width = 650 src = "images/coverageprints/fullcoverage.png">
+  <img width = 650 src = "images/coverageprints/fullcoverage.PNG">
 </p>
 
 # Notas
