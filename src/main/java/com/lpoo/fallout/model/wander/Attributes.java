@@ -15,10 +15,10 @@ public class Attributes implements Serializable {
     }
 
     public Attributes(Integer strength, Integer agility, Integer intelligence, Integer luck) {
-        this.strength = strength;
-        this.agility = agility;
-        this.intelligence = intelligence;
-        this.luck = luck;
+        this.strength = Math.max(strength, 0);
+        this.agility = Math.max(agility, 0);
+        this.intelligence = Math.max(intelligence, 0);
+        this.luck = Math.max(luck, 0);
     }
 
     public Integer getStrength() {
@@ -26,7 +26,7 @@ public class Attributes implements Serializable {
     }
 
     public void setStrength(Integer strength) {
-        this.strength = strength;
+        this.strength = Math.max(strength, 0);
     }
 
     public Integer getAgility() {
@@ -34,7 +34,7 @@ public class Attributes implements Serializable {
     }
 
     public void setAgility(Integer agility) {
-        this.agility = agility;
+        this.agility = Math.max(agility, 0);
     }
 
     public Integer getIntelligence() {
@@ -42,7 +42,7 @@ public class Attributes implements Serializable {
     }
 
     public void setIntelligence(Integer intelligence) {
-        this.intelligence = intelligence;
+        this.intelligence = Math.max(intelligence, 0);
     }
 
     public Integer getLuck() {
@@ -50,7 +50,7 @@ public class Attributes implements Serializable {
     }
 
     public void setLuck(Integer luck) {
-        this.luck = luck;
+        this.luck = Math.max(luck, 0);
     }
 
     public boolean greaterThan(Attributes attributes) {

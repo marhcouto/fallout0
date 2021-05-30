@@ -14,6 +14,7 @@ import com.lpoo.fallout.states.BattleState;
 import com.lpoo.fallout.states.WanderState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.*;

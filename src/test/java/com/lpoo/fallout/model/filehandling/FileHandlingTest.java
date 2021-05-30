@@ -53,56 +53,17 @@ public class FileHandlingTest {
 
     private VaultBoy getRandomVaultBoy() {
         Random randNumber = new Random();
-        return new VaultBoy(new Position(randNumber.nextInt(5) + 2, randNumber.nextInt(5) + 2),
-                new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10)));
+        return new VaultBoy(new Position(randNumber.nextInt(5) + 2, randNumber.nextInt(5) + 2));
     }
 
     @Test
-    public void getModelFromFilesTest1() throws IOException, ClassNotFoundException {
-
-        List<Enemy> enemies1, enemies2;
-        List<Wall> walls1, walls2;
-        VaultBoy vaultBoy1, vaultBoy2;
-        enemies1 = getRandomEnemies(); enemies2 = getRandomEnemies();
-        walls1 = getRandomWalls(); walls2 = getRandomWalls();
-        vaultBoy1 = getRandomVaultBoy(); vaultBoy2 = getRandomVaultBoy();
-
-        String arenaName = "arenatest";
-        String gameStatFile = "testgamestat";
-
-        //1
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls1, enemies1, new ArrayList<Door>(), arenaName));
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy1, gameStatFile));
-        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile)); // Simplest solution because of scopes
-        WanderModel wanderModel = new FileHandler().createWanderModel(gameStatFile);
-
-        for (int i = 0; i < wanderModel.getArena().getWallMap().size(); i++) // Test walls
-            Assertions.assertTrue(wanderModel.getArena().getWallMap().containsValue(walls1.get(i)));
-        for (int i = 0; i < wanderModel.getArena().getEnemies().size(); i++) // Test enemies
-            Assertions.assertTrue(wanderModel.getArena().getEnemies().contains(enemies1.get(i)));
-        Assertions.assertEquals(vaultBoy1, wanderModel.getVaultBoy()); // Test vaultBoy
-
-        //2
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls2, enemies2, new ArrayList<Door>(), arenaName));
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy2, gameStatFile));
-        Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile));
-        wanderModel = new FileHandler().createWanderModel(gameStatFile);
-
-        for (int i = 0; i < wanderModel.getArena().getWallMap().size(); i++) // Test walls
-            Assertions.assertTrue(wanderModel.getArena().getWallMap().containsValue(walls2.get(i)));
-        for (int i = 0; i < wanderModel.getArena().getEnemies().size(); i++) // Test enemies
-            Assertions.assertTrue(wanderModel.getArena().getEnemies().contains(enemies2.get(i)));
-        Assertions.assertEquals(vaultBoy2, wanderModel.getVaultBoy()); // Test vaultBoy
-
-        // Delete test files
-        File file1 = new File("resources/" + gameStatFile + ".bin");
-        Assertions.assertTrue(file1.delete());
-        File file2 = new File("resources/arenas/" + arenaName + ".bin");
-        Assertions.assertTrue(file2.delete());
+    void resetNoThrow() {
+        FileHandler fileHandler = new FileHandler();
+        Assertions.assertDoesNotThrow(fileHandler::resetSavedGame);
     }
 
     @Test
-    public void getModelFromFilesTest2() throws IOException, ClassNotFoundException {
+    public void getModelFromFilesTest() throws IOException, ClassNotFoundException {
         String arenaName1 = "arenatest1";
         String arenaName2 = "arenatest2";
         String gameStatFile = "testgamestat";
@@ -146,11 +107,11 @@ public class FileHandlingTest {
         Assertions.assertEquals(wanderModel2.getVaultBoy(), wanderModel4.getVaultBoy()); // Test vaultBoy
 
         // Delete test files
-        File file1 = new File("resources/" + gameStatFile + ".bin");
+        File file1 = new File("savefiles/" + gameStatFile + ".bin");
         Assertions.assertTrue(file1.delete());
-        File file2 = new File("resources/arenas/" + arenaName1 + ".bin");
+        File file2 = new File("savefiles/arenas/" + arenaName1 + ".bin");
         Assertions.assertTrue(file2.delete());
-        File file3 = new File("resources/arenas/" + arenaName2 + ".bin");
+        File file3 = new File("savefiles/arenas/" + arenaName2 + ".bin");
         Assertions.assertTrue(file3.delete());
     }
 }

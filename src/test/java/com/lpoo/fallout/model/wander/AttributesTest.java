@@ -1,5 +1,7 @@
 package com.lpoo.fallout.model.wander;
 
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,5 +22,15 @@ class AttributesTest {
 
         Assertions.assertTrue(baseAttributes.greaterThan(a2));
         Assertions.assertFalse(baseAttributes.greaterThan(a1));
+    }
+
+    @Property
+    void testInvalidValues(@ForAll Integer strenth, @ForAll Integer agility, @ForAll Integer luck, @ForAll Integer inteligence) {
+        Attributes attributes = new Attributes(strenth, agility, inteligence, luck);
+
+        Assertions.assertTrue(attributes.getAgility() >= 0);
+        Assertions.assertTrue(attributes.getLuck() >= 0);
+        Assertions.assertTrue(attributes.getIntelligence() >= 0);
+        Assertions.assertTrue(attributes.getStrength() >= 0);
     }
 }

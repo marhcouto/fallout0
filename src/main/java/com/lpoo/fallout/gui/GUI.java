@@ -10,5 +10,5 @@ public interface GUI<T> {
 
     ACTION getAction() throws IOException;
 
-    enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, NONE, ENTER, ESCAPE}
+    enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, NONE, ENTER, ESCAPE, RESET}
 }

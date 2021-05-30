@@ -26,6 +26,6 @@ public class AttackCommand extends BattleCommand {
 
     @Override
     public void deactivate() {
-
+        // Not needed
     }
 }

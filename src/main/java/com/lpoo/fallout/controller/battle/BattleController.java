@@ -4,6 +4,7 @@ import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.battle.BattleModel;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.element.Character;
 import com.lpoo.fallout.model.wander.element.Enemy;
@@ -22,8 +23,16 @@ public class BattleController extends MainController<BattleModel> {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
-        if (action == GUI.ACTION.QUIT)
+        if (action == GUI.ACTION.QUIT) {
             game.clearStates();
+        } else if (action == GUI.ACTION.RESET) {
+            try {
+                new FileHandler().resetSavedGame();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            game.clearStates();
+        }
         if (getModel().getBattleInfo().getTurn().getOutcome().succeeded()) {
             waitForMessage();
             getModel().getBattleInfo().changeTurn();
@@ -31,7 +40,7 @@ public class BattleController extends MainController<BattleModel> {
         }
         if (!processDeath(game)) {
             if (getModel().getBattleInfo().isPlayerTurn())
-                new BattleMenuController(this.getModel(), getModel().getMenuModel()).step(game, action);
+                new BattleMenuController(getModel(), getModel().getMenuModel()).step(game, action);
             else
                 new BattleMonsterController(getModel().getBattleInfo().getTurn(), this.getModel()).step(new Random());
             addCharacterInfoToMessage();

@@ -5,13 +5,11 @@ import com.lpoo.fallout.controller.battle.command.BattleCommand;
 import java.util.*;
 
 public class TurnEffect implements TurnObserver {
-    private Observable<TurnObserver> observable;
     private final BattleCommand command;
     private final UUID uniqueID;
     private int numberOfTurnsAffected;
 
-    public TurnEffect(int numberOfTurnsAffected, BattleCommand command, Observable<TurnObserver> observable) {
-        this.observable = observable;
+    public TurnEffect(int numberOfTurnsAffected, BattleCommand command) {
         this.uniqueID = UUID.randomUUID();
         this.numberOfTurnsAffected = numberOfTurnsAffected;
         this.command = command;

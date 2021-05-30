@@ -121,12 +121,23 @@ public class WanderController extends MainController<WanderModel> {
                 game.clearStates();
                 break;
             }
+            case RESET: {
+                try {
+                    new FileHandler().resetSavedGame();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                game.clearStates();
+                break;
+            }
             case UTIL_E: {
                 game.pushState(new StatsMenuState(new StatsMenuModel(getModel().getVaultBoy())));
+                break;
             }
             default: {
                 this.justEntered = false;
                 vaultBoyController.move(action);
+                break;
             }
         }
         this.tryOpenDoor();

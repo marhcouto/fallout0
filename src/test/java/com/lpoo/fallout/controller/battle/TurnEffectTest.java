@@ -11,15 +11,8 @@ class TurnEffectTest {
 
     @Test
     void testEffectDeactivation() {
-
-        Observable<TurnObserver> mockedObservable = Mockito.mock(new Observable<TurnObserver>(){
-            @Override
-            public void subscribe(@NotNull TurnObserver newObserver) {}
-            @Override
-            public void unsubscribe(@NotNull TurnObserver oldObserver) {}
-        }.getClass());
         BattleCommand mockedCommand = Mockito.mock(BattleCommand.class);
-        TurnEffect effect = new TurnEffect(2, mockedCommand, mockedObservable);
+        TurnEffect effect = new TurnEffect(2, mockedCommand);
 
         for (int i = 0; i < 2; i++) {
             effect.notifyTurnChange();
@@ -28,5 +21,4 @@ class TurnEffectTest {
         effect.notifyTurnChange();
         Mockito.verify(mockedCommand, Mockito.times(1)).deactivate();
     }
-
 }

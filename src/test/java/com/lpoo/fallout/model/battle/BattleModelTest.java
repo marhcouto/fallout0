@@ -6,6 +6,7 @@ import com.lpoo.fallout.model.wander.Attributes;
 import com.lpoo.fallout.model.wander.CharacterInfo;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -67,5 +68,29 @@ class BattleModelTest {
 
         Mockito.verify(observer1, Mockito.times(1)).notifyTurnChange();
         Mockito.verify(observer2, Mockito.times(2)).notifyTurnChange();
+    }
+
+    @Test
+    void checkNotifyTurnChange() {
+        TurnObserver observer1 = Mockito.mock(TurnObserver.class);
+        TurnObserver observer2 = Mockito.mock(TurnObserver.class);
+        TurnObserver observer3 = Mockito.mock(TurnObserver.class);
+        Mockito.when(observer1.notifyTurnChange()).thenReturn(false);
+        Mockito.when(observer2.notifyTurnChange()).thenReturn(true);
+        Mockito.when(observer3.notifyTurnChange()).thenReturn(false);
+
+        model.subscribe(observer1);
+        model.subscribe(observer2);
+        model.subscribe(observer3);
+
+        Assertions.assertEquals(model.getObservers().size(), 3);
+        model.notifyTurnChange();
+
+        Mockito.verify(observer1, Mockito.times(1)).notifyTurnChange();
+        Mockito.verify(observer2, Mockito.times(1)).notifyTurnChange();
+        Mockito.verify(observer3, Mockito.times(1)).notifyTurnChange();
+
+        Assertions.assertEquals(model.getObservers().size(), 2);
+
     }
 }
