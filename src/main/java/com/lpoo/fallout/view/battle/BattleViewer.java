@@ -28,7 +28,6 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
     public BattleViewer(BattleModel model) {
         super(model);
 
-        // Add renderers
         this.rendererList = new ArrayList<>();
         this.rendererList.add(new FileSpriteRenderer(drawableMap.get(this.getModel().getBattleInfo().getFightingEnemy().getType()), new Position(390, 50)));
         this.rendererList.add(new FileSpriteRenderer("VAULTBOY3.txt", new Position(20, 50)));
@@ -37,14 +36,12 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
         this.rendererList.add(new StatusBarRenderer(this.getModel().getBattleInfo().getCharacterStats(getModel().getBattleInfo().getFightingEnemy()), new Position(435, 5)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(370, 70), new Position(5, 220)));
         this.rendererList.add(new FrameSpriteRenderer(new Position(215, 70), new Position(380, 220)));
-        this.message = new WordRenderer(getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230)); // Message
+        this.message = new WordRenderer(getModel().getBattleInfo().getTurn().getOutcome().getMessageDescriptor(), new Position(385, 230));
 
-        // Build renderers image
         for (Renderer<?, LanternaGUI> renderer : rendererList)
             renderer.buildImage();
         this.message.buildImage();
 
-        // Option menu
         battleMenuViewer = new BattleMenuViewer(model.getMenuModel());
     }
 
@@ -59,10 +56,8 @@ public class BattleViewer extends Viewer<BattleModel, LanternaGUI> {
     @Override
     protected void drawElements(LanternaGUI gui) {
 
-        // Change the message
         changeMessage();
 
-        // Draw renderers
         for (Renderer<?, LanternaGUI> renderer : rendererList)
             renderer.placeElement(gui, "#FFFFFF", "#000000");
 

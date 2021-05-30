@@ -7,7 +7,7 @@ public abstract class OptionMenuModel<E extends Enum<E>> {
 
     public OptionMenuModel(int numberOfOptions, int lowerLimit) {
         if (numberOfOptions == 0) {
-            throw new InvalidNumberOfOptions();
+            throw new RuntimeException();
         }
         this.lowerLimit = lowerLimit;
         this.numberOfOptions = numberOfOptions;

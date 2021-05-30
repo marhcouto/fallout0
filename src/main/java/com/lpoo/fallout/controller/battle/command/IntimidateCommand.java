@@ -13,8 +13,6 @@ public class IntimidateCommand extends BattleCommand {
 
     @Override
     public void activate() {
-
-        // Register message
         getTurn().setOutcome(new Message("intimidate\napplied", true, true));
 
         originalMissChance = getTurn().getDefenderStats().getMissChance();

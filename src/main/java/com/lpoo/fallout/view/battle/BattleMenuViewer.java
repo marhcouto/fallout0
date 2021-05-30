@@ -20,9 +20,8 @@ public class BattleMenuViewer extends Viewer<BattleMenuModel, LanternaGUI> {
         super(menuModel);
         this.optionRendererList = new ArrayList<>();
 
-        Position curPosition = new Position(10, 230); // Position of first option
+        Position curPosition = new Position(10, 230);
 
-        // Create renderers
         for (int i = 0; i < BattleMenuModel.OPTION.values().length; i++) {
             optionRendererList.add(new WordRenderer(BattleMenuModel.OPTION.valueOfIndex(i).label, curPosition));
             if (i % OPTIONS_PER_COLUMN == OPTIONS_PER_COLUMN - 1) {
@@ -31,7 +30,7 @@ public class BattleMenuViewer extends Viewer<BattleMenuModel, LanternaGUI> {
                 curPosition = new Position(curPosition.getColumn(), curPosition.getRow() + 35);
             }
         }
-        // Build renderers image
+
         for (Renderer<?, LanternaGUI> renderer : optionRendererList)
             renderer.buildImage();
     }
