@@ -8,7 +8,6 @@ public interface GUI<T> {
     void draw() throws IOException;
     void placeDrawable(T drawable, Position position);
 
-
     ACTION getAction() throws IOException;
 
     enum ACTION {UP, DOWN, LEFT, RIGHT, QUIT, UTIL_E, NONE, ENTER, ESCAPE, RESET}
