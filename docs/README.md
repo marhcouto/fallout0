@@ -230,7 +230,7 @@ Como solução para este problema foi implementado um *Composite*. Existe, entã
 
 ### Implementação
 <p align = "center">
-  <img width = 650 src = "images/uml/rendererComposite.svg">
+  <img width = 650 src = "images/uml/RendererComposite.svg">
 </p>
 
 Estas classes podem ser encontradas nos seguintes ficheiros:
@@ -360,7 +360,8 @@ Em todos os nossos menus este *code* *smell* está presente mas a classe onde é
 
 # Notas
  - As classes [ArenaMaker](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/ArenaMaker.java#L12) e [MakeLevels](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/f3035f408114fa01f72dd7e44e898348d4b1e3ca/src/main/java/com/lpoo/fallout/MakeLevels.java#L5) são apenas ferramentas utilizadas para a geração dos binários que servem como savefiles do programa, não sendo pretendido que sejam avaliados
- - No caso de corrupção de binários, compilar e correr **MakeLevels**
+ - No caso de corrupção de binários, compilar e correr **MakeLevels**.
+ - O git parece corromper of ficheiros binários, depois de um pull deve correr-se **MakeLevels**.
  - Infelizmente só nos apercebemos disto no fim do trabalho, mas o terminal no modo de batalha é muito grande, e corta em ecrãs com menos de menor dimensão
 
 # Auto-avaliação
