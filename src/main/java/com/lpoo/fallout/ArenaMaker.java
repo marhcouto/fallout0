@@ -13,7 +13,10 @@ public class ArenaMaker {
 
     public static void createFile(List<Wall> wallsList, List<Enemy> enemies, List<Door> doors, String arenaName) throws IOException {
 
-        Arena arena = new Arena(wallsList, doors, enemies, arenaName, new Position(23, 13));
+        Position position = null;
+        if (arenaName.equals("arena3")) position = new Position(23, 13);
+
+        Arena arena = new Arena(wallsList, doors, enemies, arenaName, position);
 
         File file = new File("resources/arenas/" + arenaName + ".bin");
         if (!file.exists())
