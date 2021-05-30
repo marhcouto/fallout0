@@ -1,19 +1,18 @@
 package com.lpoo.fallout.controller.battle;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.terminal.Terminal;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.model.battle.BattleInfo;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.wander.Arena;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
+import com.lpoo.fallout.states.State;
 import com.lpoo.fallout.states.MessageDisplayState;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
 
 import java.io.IOException;
