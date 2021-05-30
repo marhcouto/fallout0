@@ -3,8 +3,8 @@ package com.lpoo.fallout.model.battle;
 import org.jetbrains.annotations.NotNull;
 
 public class TurnModel {
-    private BattleStats attackerStats;
-    private BattleStats defenderStats;
+    private final BattleStats attackerStats;
+    private final BattleStats defenderStats;
     private Message outcome;
 
     public TurnModel (@NotNull BattleStats attackerStats, @NotNull BattleStats defenderStats) {
