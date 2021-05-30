@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 class WanderViewerTest {
-    /*WanderViewer viewer;
+    WanderViewer viewer;
     LanternaGUI gui;
 
     @BeforeEach
@@ -38,5 +38,5 @@ class WanderViewerTest {
             The commit function must be called just once. It's only called at the end of all placements
          */
         //Mockito.verify(gui, Mockito.times(1)).draw();
-    //}
+    }
 }

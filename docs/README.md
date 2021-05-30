@@ -40,26 +40,30 @@
     - [Design Pattern](#design-pattern-5)
     - [Implementação](#implementação-5)
     - [Consequeências](#consequeências)
-  - [](#)
+  - [Menu - Opções disponíveis para o utilizador](#menu---opções-disponíveis-para-o-utilizador)
+    - [Contexto do problema](#contexto-do-problema-7)
+    - [Design Pattern](#design-pattern-6)
+    - [Implementação](#implementação-6)
+    - [Consequencias](#consequencias)
 
 # Funcionalidades
   
 ## Implementadas
+- Ecrã inicial: menu onde o jogador terá 5 pontos para distribuir pelos 4 atributos para poder criar o seu personagem
+- Modo de batalha: modo onde é efetuada uma batalha por turnos contra um monstro.
 - Movimento do herói: o herói move-se pela arena e o seu movimento é controlado através de teclas do teclado
 - Desenho do herói e da arena: a arena e os seus componentes (monstros e paredes), bem como o herói (Vault Boy), são desenhados no terminal do Lanterna
 - Movimento dos monstros: os monstros movem-se na arena
 - Deteção do inicio de batalha: quando o range do Vault Boy colide com o range de um monstro que esteja no seu campo de visão (sem paredes entre estes), a batalha inicia
 - Ficheiros de jogo: carregamento da arena e outras informações através de ficheiros de jogo
+- Transição entre arenas: existem mais do que uma arena e o jogador viaja entre elas através das suas portas
+- Gravação de dados: o jogador pode guardar os dados da partida (em ficheiros) para que o jogo guarde o progresso
 
 ## Por implementar
-- Ecrã inicial: menu onde o jogador terá 6 pontos para distribuir pelos 4 atributos para poder criar o seu personagem
 - Menu de Wander: menu onde o jogador poderá editar o seu equipamento e arma, percorrer o seu inventário e obter outro tipo de informações
-- Modo de batalha: modo onde é efetuada uma batalha por turnos contra um (ou talvez mais) monstro.
 - Loot: Sistema de *loot* para que o jogador possa apanhar diferentes armas (e possivelmente equipamento) para lutar com os inimigos que encontrará
 - Equipamentos: sistema de armaduras e outros equipamente que darão atributos bónus ao personagem (e possivelmente aos monstros)
 - NPCs: o jogador poderá interagir com um personagem não jogável para trocar o dinheiro ganho em batalha por novas armas e armaduras
-- Transição entre arenas: existem mais do que uma arena e o jogador viaja entre elas através das suas portas
-- Gravação de dados: o jogador pode guardar os dados da partida (em ficheiros) para que o jogo guarde o progresso
 
 # Design
 
@@ -67,16 +71,18 @@
 ### Contexto do problema
 O padrão arquitetural foi a primeira escolha feita no desenvolvimento do programa. A escolha do padrão arquitetural é de extrema importância porque dita a estrutura básica do programa.
 ### Design Pattern
-Como padrão arquitetural decidimos seguir a recomendação e utilizar o MVC básico.
+Como padrão arquitetural foi utilizado uma combinação de MVC com ***State Pattern***. Cada ***State Pattern*** contém um ***MVC***. A classe ***Game*** contém uma *stack* de estados e cada vez que queremos trocar de estado basta mudar o topo da *stack*. O controller é uma classe genérica que recebe um *model*. O *viewer* recebe um *model* e uma interface do tipo *GUI* e o state apenas necessita do *model* porque a partir deste tanto o *viewer* como o *controller* podem ser gerados. 
 ### Implementação
+Apenas foi apresentado um estado do jogo para simplificar o diagrama de classes. 
 <p align="center">
   <img width=650 src="images/MVC.svg">
 </p>
 
 ### Consequências
  - É mais fácil expandir o programa
+ - Cada estado funciona isolado dos outros estados.
  - É mais fácil testar os componenetes individuais. Por exemplo textar o model de forma isolada do controller.
- - É por vezes dificil compreender qual a responsabilidade de cada componente do MVC.
+ - O mais simples menu necessita de pelo menos quatro classes para ser representado.
 
 ## Atributos
 ### Contexto do Problema
@@ -137,8 +143,9 @@ Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alt
 
 ## Escolha do desenho das personagens
 ### Contexto do problema
+No nosso jogo, tanto no modo **monocarater** quanto no **multicarater** existe a necessidade de diferenciar os personagens
 Apesar do nosso jogo não utilizar uma framework de gráficos complexa, existe a necessidade de diferenciar os inimigos para perceber, por exemplo, que arma utiliazam ou quão fortes são.
-Foram estudadas várias soluções para o problema, como por exemplo utilizar uma variação do MVC, o HMVC.
+Foram estudadas várias soluções para o problema, como por exemplo utilizar uma subclasse para cada personagem.
 
 ### Design pattern
 Para este problema decidimos utilizar uma solução própria. Criámos uma enumeração que contem os tipos de inimigos que podem existir esta enumeração está armazenada na classe **Enemy**. 
@@ -146,7 +153,7 @@ Para suportar esta forma de desenhar os inimigos cada **Viewer** terá um mapa q
 
 ### Implementação 
 <p align = "center">
-  <img width = 650 src = "images/Draw.svg">
+  <img width = 650 src = "images/draw.svg">
 </p>
 
 
@@ -178,7 +185,22 @@ Como solução para este problema foi implementado um Composite. Existe, então,
 </p>
 
 ### Consequeências
-- Simplifica o cliente, neste caso, o battleviewer
+- Simplifica o cliente, neste caso, a classe **BattleViewer**
 
+## Menu - Opções disponíveis para o utilizador
+### Contexto do problema
+No nosso programa, cada opção deve conter um índice, uma palavra ou frase curta a descrever a opção e ainda uma ação associada se estiver disponível.
 
-## 
+### Design Pattern
+Para resolver este problema cada model do menu deve ter um *enum* com as opções válidas para esse menu. No entanto um simples *enum* de Java não se mostrou suficiente porque um enum não contém indice nem a string para armazenar a pequena descrição de cada opção. Para colmatar essa limitação extendemos a classe *enum* para que contenha a string e indice necessários. <br>Para representar uma ação a cada opção foi utilizado o ***Command Pattern***. Cada controller tem, consoante a sua necessidade, a sua própria interface que representa o *command*. Para associar um *command* a uma opção foi utilizado um mapa que faz a correspondencia entre a opção e o seu command. <br>Por fim, do ponto de vista do viewer, apenas é necessario consultar o *model* para obter a opção selecionada e cada opção contém como foi dito anteriormente a sua descrição.
+
+### Implementação
+O Java não permite o *override* de métodos *static* portanto não foi possivel generalizar a interface dos *enums* utilizados, uma vez que, os métodos adicionados devem ser static. Por isso apenas foi apresentado o UML de um menu que é bastante semelhante a todos os outros menus.
+<p align = "center">
+  <img width = 650 src = "images/optionMenu.svg">
+</p>
+
+### Consequencias
+ - Permite manter facilmente a integridade dos menus do jogo, uma vez que, toda a informação sobre cada opção se encontra centralizada
+ - Ao testar o OptionMenuController testamos a generalidade dos menus do jogo
+ - Os comandos são representados por classes o que simplifica os métodos de execução de comandos e permite evitar o code smell ***Switch Statements***
