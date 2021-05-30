@@ -57,12 +57,6 @@ public class FileHandlingTest {
     }
 
     @Test
-    void resetNoThrow() {
-        FileHandler fileHandler = new FileHandler();
-        Assertions.assertDoesNotThrow(fileHandler::resetSavedGame);
-    }
-
-    @Test
     public void getModelFromFilesTest() throws IOException, ClassNotFoundException {
         String arenaName1 = "arenatest1";
         String arenaName2 = "arenatest2";

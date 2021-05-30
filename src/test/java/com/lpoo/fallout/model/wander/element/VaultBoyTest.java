@@ -11,13 +11,13 @@ public class VaultBoyTest {
 
     @Property
     void testExperienceGain(@ForAll @Positive Integer enemyLevel) {
-        VaultBoy vaultBoy = new VaultBoy(Mockito.any(Position.class));
+        Position mockedPosition = Mockito.mock(Position.class);
+        VaultBoy vaultBoy = new VaultBoy(mockedPosition);
         Integer unusedLevelPoints = vaultBoy.getUnusedLevelPoints();
         Integer resultExp = (int) ((float) enemyLevel / vaultBoy.getLevel() * 50) + vaultBoy.getExpPoints();
         Assertions.assertTrue(vaultBoy.calculateExpGain(enemyLevel) > 0);
         if ( resultExp >= 100)
             Assertions.assertTrue(unusedLevelPoints < vaultBoy.getUnusedLevelPoints());
         Assertions.assertTrue(unusedLevelPoints <= vaultBoy.getUnusedLevelPoints());
-
     }
 }

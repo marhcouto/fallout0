@@ -74,6 +74,11 @@
   <img width = 450 src = "images/features/levelUP.gif">
 </p>
 
+ - Jogo termina quando o jogador chega a um checkpoint: Se o jogador pisar a Vault Door na ultima sala é apresentada uma menssagem que anuncia a vitória
+<p align = "center">
+  <img width = 450 src = "images/features/winScreen.gif">
+</p>
+
 ## Por implementar
 - Menu de Wander: menu onde o jogador poderá editar o seu equipamento e arma, percorrer o seu inventário e obter outro tipo de informações
 - Loot: Sistema de *loot* para que o jogador possa apanhar diferentes armas (e possivelmente equipamento) para lutar com os inimigos que encontrará

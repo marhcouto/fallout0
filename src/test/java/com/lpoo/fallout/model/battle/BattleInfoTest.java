@@ -60,4 +60,22 @@ class BattleInfoTest {
     void noOneDies() {
         Assertions.assertNull(info.checkDeath());
     }
+
+    @Test
+    void turnChangeBoolean() {
+        Assertions.assertTrue(info.isPlayerTurn());
+        info.changeTurn();
+        Assertions.assertFalse(info.isPlayerTurn());
+    }
+
+    @Test
+    void turnChange() {
+        BattleStats formerAttacker = info.getTurn().getAttackerStats();
+        BattleStats formerDefender = info.getTurn().getDefenderStats();
+
+        info.changeTurn();
+
+        Assertions.assertSame(formerAttacker, info.getTurn().getDefenderStats());
+        Assertions.assertSame(formerDefender, info.getTurn().getAttackerStats());
+    }
 }
