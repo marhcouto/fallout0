@@ -2,13 +2,14 @@ package com.lpoo.fallout.controller.battle.command.attack;
 
 import com.lpoo.fallout.controller.battle.command.BattleCommand;
 import com.lpoo.fallout.model.battle.TurnModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 public class AttackCommand extends BattleCommand {
     private Random randomEngine;
 
-    public AttackCommand(TurnModel turn, Random randomEngine) {
+    public AttackCommand(@NotNull TurnModel turn, @NotNull Random randomEngine) {
         super(turn);
         this.randomEngine = randomEngine;
     }

@@ -24,7 +24,7 @@ public class FileHandler {
 
     public WanderModel createWanderModel(String fileName, Attributes attributes) throws IOException, ClassNotFoundException {
         WanderModel model = createWanderModel(fileName);
-        model.getVaultBoy().setAttributes(attributes);
+        model.getVaultBoy().getCharacterInfo().setAttributes(attributes);
         return model;
     }
 

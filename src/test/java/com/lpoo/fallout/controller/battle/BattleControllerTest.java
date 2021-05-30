@@ -1,5 +1,6 @@
 package com.lpoo.fallout.controller.battle;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
 import com.lpoo.fallout.model.battle.BattleInfo;
@@ -17,20 +18,16 @@ import org.mockito.Mockito;
 import java.io.IOException;
 
 public class BattleControllerTest {
-    /*BattleController battleController;
+    BattleController battleController;
     BattleModel battleModel;
 
     @BeforeEach
     void setUp() {
-        VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
-        Enemy enemy = Mockito.mock(Enemy.class);
-        // Mockito.when(vaultBoy)
-        this.battleModel = new BattleModel(Mockito.mock(Arena.class), vaultBoy, enemy);
-        this.battleController = new BattleController(this.battleModel);
-    }*/
+
+    }
 
     @Test
-    void testCalculateExpGain() throws IOException {
+    void testDeath() throws IOException {
         Game game = Mockito.mock(Game.class);
         VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
         Enemy enemy = Mockito.mock(Enemy.class);
@@ -45,13 +42,16 @@ public class BattleControllerTest {
         Mockito.when(battleModel.getBattleInfo().checkDeath()).thenReturn(vaultBoy);
         Assertions.assertTrue(battleController.processDeath(game));
         Mockito.verify(game, Mockito.times(1)).clearStates();
-        Mockito.verify(game, Mockito.times(1)).changeGui(Mockito.any(LanternaGUI.class));
+        Mockito.verify(game, Mockito.times(1)).changeTerminalProperty(Mockito.any(TerminalSize.class),
+                Mockito.any(Integer.class));
         Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(State.class));
 
         Mockito.when(battleModel.getBattleInfo().checkDeath()).thenReturn(enemy);
+
         Assertions.assertTrue(battleController.processDeath(game));
         Mockito.verify(game, Mockito.times(1)).popState();
-        Mockito.verify(game, Mockito.times(1)).changeGui(Mockito.any(LanternaGUI.class));
+        Mockito.verify(game, Mockito.times(1)).changeTerminalProperty(Mockito.any(TerminalSize.class),
+                Mockito.any(Integer.class));
         Mockito.verify(game, Mockito.times(1)).pushState(Mockito.any(State.class));
         Mockito.verify(vaultBoy, Mockito.times(1)).calculateExpGain(Mockito.any(Integer.class));
         Mockito.verify(arena, Mockito.times(1)).removeEnemy(enemy);

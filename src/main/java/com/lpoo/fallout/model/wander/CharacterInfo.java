@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class CharacterInfo implements Serializable {
     private Integer noPotions;
     private final Integer weaponDamage;
-    private final Attributes attributes;
+    private Attributes attributes;
 
     public CharacterInfo(@NotNull Attributes attributes, @NotNull Integer noPotions, @NotNull Integer weaponDamage) {
         this.noPotions = noPotions;
@@ -29,5 +29,9 @@ public class CharacterInfo implements Serializable {
 
     public Attributes getAttributes() {
         return attributes;
+    }
+
+    public void setAttributes(Attributes attributes) {
+        this.attributes = attributes;
     }
 }

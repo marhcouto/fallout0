@@ -4,7 +4,6 @@ import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.battle.BattleModel;
-import com.lpoo.fallout.model.battle.BattleStats;
 import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
 import com.lpoo.fallout.model.wander.element.Character;
 import com.lpoo.fallout.model.wander.element.Enemy;
@@ -44,7 +43,7 @@ public class BattleController extends MainController<BattleModel> {
         if (deadCharacter == getModel().getBattleInfo().getVaultBoy()) {
             game.clearStates();
             try {
-                game.changeGui(Game.getDefaultGUI());
+                game.changeTerminalProperty(Game.DEFAULT_TERMINAL_SIZE, Game.DEFAULT_FONT_SIZE);
             } catch (IOException exception) {
                 exception.printStackTrace();
             } finally {
@@ -54,7 +53,7 @@ public class BattleController extends MainController<BattleModel> {
         } else if (deadCharacter == getModel().getBattleInfo().getFightingEnemy()) {
             Integer expGain = getModel().getBattleInfo().getVaultBoy().calculateExpGain(deadCharacter.getLevel());
             try {
-                game.changeGui(Game.getDefaultGUI());
+                game.changeTerminalProperty(Game.DEFAULT_TERMINAL_SIZE, Game.DEFAULT_FONT_SIZE);
             } catch (IOException exception) {
                 exception.printStackTrace();
             } finally {

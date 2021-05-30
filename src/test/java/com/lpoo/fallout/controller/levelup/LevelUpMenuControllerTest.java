@@ -4,6 +4,7 @@ import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
 import com.lpoo.fallout.model.levelup.LevelUpModel;
 import com.lpoo.fallout.model.wander.Attributes;
+import com.lpoo.fallout.model.wander.CharacterInfo;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,10 @@ class LevelUpMenuControllerTest {
     @BeforeEach
     void setUp() {
         VaultBoy vaultBoy = Mockito.mock(VaultBoy.class);
+        CharacterInfo mockedInfo = Mockito.mock(CharacterInfo.class);
+        Mockito.when(mockedInfo.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
         Mockito.when(vaultBoy.getUnusedLevelPoints()).thenReturn(1);
-        Mockito.when(vaultBoy.getAttributes()).thenReturn(new Attributes(1, 1, 1, 1));
+        Mockito.when(vaultBoy.getCharacterInfo()).thenReturn(mockedInfo);
         mockedModel = Mockito.mock(LevelUpModel.class);
         Mockito.when(mockedModel.getVaultBoy()).thenReturn(vaultBoy);
 

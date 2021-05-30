@@ -2,6 +2,7 @@ package com.lpoo.fallout.model.filehandling;
 
 import com.lpoo.fallout.ArenaMaker;
 import com.lpoo.fallout.model.wander.*;
+import com.lpoo.fallout.model.wander.element.Door;
 import com.lpoo.fallout.model.wander.element.Enemy;
 import com.lpoo.fallout.model.wander.element.VaultBoy;
 import com.lpoo.fallout.model.wander.element.Wall;
@@ -35,10 +36,9 @@ public class FileHandlingTest {
         int numberEnemies = randNumber.nextInt(5) + 2;
 
         for (int i = 0; i < numberEnemies; i++) {
+            CharacterInfo enemyInfo = new CharacterInfo(new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10)), randNumber.nextInt(40), 4);
             enemies.add(new Enemy(new Position(randNumber.nextInt(20) + 2, randNumber.nextInt(20) + 2),
-                    new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10)),
-                    new Weapon(randNumber.nextInt(40), "Alakazam",
-                            new Attributes(randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10), randNumber.nextInt(10))),
+                    enemyInfo,
                     randNumber.nextInt(30), 4, RAT));
         }
         return enemies;
@@ -64,7 +64,7 @@ public class FileHandlingTest {
         String gameStatFile = "testgamestat";
 
         //1
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls1, enemies1, arenaName));
+        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls1, enemies1, new ArrayList<Door>(), arenaName));
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy1, gameStatFile));
         Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile)); // Simplest solution because of scopes
         WanderModel wanderModel = new FileHandler().createWanderModel(gameStatFile);
@@ -76,7 +76,7 @@ public class FileHandlingTest {
         Assertions.assertEquals(vaultBoy1, wanderModel.getVaultBoy()); // Test vaultBoy
 
         //2
-        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls2, enemies2, arenaName));
+        Assertions.assertDoesNotThrow(() -> ArenaMaker.createFile(walls2, enemies2, new ArrayList<Door>(), arenaName));
         Assertions.assertDoesNotThrow(() -> ArenaMaker.createGameFile(arenaName, vaultBoy2, gameStatFile));
         Assertions.assertDoesNotThrow(() -> new FileHandler().createWanderModel(gameStatFile));
         wanderModel = new FileHandler().createWanderModel(gameStatFile);
@@ -114,8 +114,8 @@ public class FileHandlingTest {
         for (Wall wall : walls2)
             wallMap2.put(wall.getPosition(), wall);
 
-        WanderModel wanderModel1 = new WanderModel(vaultBoy1, new Arena(wallMap1, enemies1, arenaName1));
-        WanderModel wanderModel2 = new WanderModel(vaultBoy2, new Arena(wallMap2, enemies2, arenaName2));
+        WanderModel wanderModel1 = new WanderModel(vaultBoy1, new Arena(wallMap1, new HashMap<Position, Door>(), enemies1, arenaName1, new Position(0, 0)));
+        WanderModel wanderModel2 = new WanderModel(vaultBoy2, new Arena(wallMap2, new HashMap<Position, Door>(), enemies2, arenaName2, new Position(0, 0)));
 
         //1
         Assertions.assertDoesNotThrow(() -> FileHandler.saveModel(gameStatFile, wanderModel1));
