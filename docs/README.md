@@ -58,6 +58,7 @@
 <p align = "center">
   <img width = 450 src = "images/features/battle.gif">
 </p>
+
 - Movimento do herói: o herói move-se pela arena e o seu movimento é controlado através de teclas do teclado
 - Desenho do herói e da arena: a arena e os seus componentes (monstros e paredes), bem como o herói (Vault Boy), são desenhados no terminal do Lanterna
 - Movimento dos monstros: os monstros movem-se na arena
@@ -65,12 +66,18 @@
 <p align = "center">
   <img width = 450 src = "images/features/battleStart.gif">
 </p>
-- Ficheiros de jogo: carregamento da arena e outras informações através de ficheiros de jogo
-- Transição entre arenas: existem mais do que uma arena e o jogador viaja entre elas através das suas portas
+
+ - Ficheiros de jogo: carregamento da arena e outras informações através de ficheiros de jogo
+ - Transição entre arenas: existem mais do que uma arena e o jogador viaja entre elas através das suas portas
 <p align = "center">
   <img width = 450 src = "images/features/arenaTransition.gif">
 </p>
+
 - Gravação de dados: o jogador pode guardar os dados da partida (em ficheiros) para que o jogo guarde o progresso
+- Progressão do personagem: à medida que os inimigos são derrotados o nosso personagem acumula experiência que pode ser usada para melhorar os seus atributos
+<p align = "center">
+  <img width = 450 src = "images/features/levelUP.gif">
+</p>
 
 ## Por implementar
 - Menu de Wander: menu onde o jogador poderá editar o seu equipamento e arma, percorrer o seu inventário e obter outro tipo de informações
