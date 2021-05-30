@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Attributes</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.model.wander</a>
+</div>
+
+<h1>Coverage Summary for Class: Attributes (com.lpoo.fallout.model.wander)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Attributes</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (12/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (27/33)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$4oHOpZrA</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$cpjuAWvH</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$ejSshxHU</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$gmvr1Rgq</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$hRhn6GyD</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$JhEzJqgP</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$pmzEuw8r</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$qd3cyBJM</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$riNDNhyl</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$vxXwKTnJ</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$WA8GDwB0</td>
+  </tr>
+  <tr>
+    <td class="name">Attributes$MockitoMock$1193913782$auxiliary$ZP30y8fz</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (12/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (27/33)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.model.wander;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">4</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">5</i>&nbsp;import java.util.Map;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;public class Attributes implements Serializable {
+<i class="no-highlight">8</i>&nbsp;    private Integer strength;
+<i class="no-highlight">9</i>&nbsp;    private Integer agility;
+<i class="no-highlight">10</i>&nbsp;    private Integer intelligence;
+<i class="no-highlight">11</i>&nbsp;    private Integer luck;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    public Attributes() {
+<b class="fc"><i class="no-highlight">14</i>&nbsp;        this(1, 1, 1, 1);</b>
+<b class="fc"><i class="no-highlight">15</i>&nbsp;    }</b>
+<i class="no-highlight">16</i>&nbsp;
+<b class="fc"><i class="no-highlight">17</i>&nbsp;    public Attributes(Integer strength, Integer agility, Integer intelligence, Integer luck) {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;        this.strength = Math.max(strength, 0);</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        this.agility = Math.max(agility, 0);</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        this.intelligence = Math.max(intelligence, 0);</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        this.luck = Math.max(luck, 0);</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;    }</b>
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    public Integer getStrength() {
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        return strength;</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    public void setStrength(Integer strength) {
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        this.strength = Math.max(strength, 0);</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;    }</b>
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    public Integer getAgility() {
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        return agility;</b>
+<i class="no-highlight">34</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;    public void setAgility(Integer agility) {
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        this.agility = Math.max(agility, 0);</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;    }</b>
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    public Integer getIntelligence() {
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        return intelligence;</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    public void setIntelligence(Integer intelligence) {
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        this.intelligence = Math.max(intelligence, 0);</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;    }</b>
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    public Integer getLuck() {
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        return luck;</b>
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    public void setLuck(Integer luck) {
+<b class="fc"><i class="no-highlight">53</i>&nbsp;        this.luck = Math.max(luck, 0);</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;    }</b>
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    public boolean greaterThan(Attributes attributes) {
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        return this.agility &gt;= attributes.agility &amp;&amp; this.strength &gt;= attributes.strength</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;                &amp;&amp; this.intelligence &gt;= attributes.intelligence &amp;&amp; this.luck &gt;= attributes.luck;</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;    public void changeAttributes(Attributes attributes)  {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        this.strength += attributes.getStrength();</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        this.agility += attributes.getAgility();</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        this.intelligence += attributes.getIntelligence();</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;        this.luck += attributes.getLuck();</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;    }</b>
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    @Override
+<i class="no-highlight">69</i>&nbsp;    public boolean equals(Object o) {
+<b class="nc"><i class="no-highlight">70</i>&nbsp;        if (o == this) return true;</b>
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        if (o.getClass() != this.getClass()) return false;</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        if (o == null) return false;</b>
+<i class="no-highlight">73</i>&nbsp;
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        Attributes a = (Attributes) o;</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        return a.getAgility().equals(this.agility) &amp;&amp; a.getIntelligence().equals(this.getIntelligence()) &amp;&amp;</b>
+<b class="nc"><i class="no-highlight">76</i>&nbsp;                a.getStrength().equals(this.getStrength()) &amp;&amp; a.getLuck().equals(this.getLuck());</b>
+<i class="no-highlight">77</i>&nbsp;    }
+<i class="no-highlight">78</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

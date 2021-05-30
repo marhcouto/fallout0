@@ -1,0 +1,249 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Arena</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.model.wander</a>
+</div>
+
+<h1>Coverage Summary for Class: Arena (com.lpoo.fallout.model.wander)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Arena</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.4%
+  </span>
+  <span class="absValue">
+    (53/55)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$0xxPA5le</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$74ENmf93</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$9KhU2wgs</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$9NHUR3xC</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$bpQLrx5V</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$DQXbi4gS</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$fQN6095Q</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$KIYFHj6f</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$KQYnc3i3</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$pumPazqO</td>
+  </tr>
+  <tr>
+    <td class="name">Arena$MockitoMock$2049319403$auxiliary$VJd7wGnl</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.4%
+  </span>
+  <span class="absValue">
+    (53/55)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.model.wander;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.wander.element.Door;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.model.wander.element.Enemy;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.model.wander.element.Wall;
+<i class="no-highlight">6</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import java.io.Serializable;
+<i class="no-highlight">9</i>&nbsp;import java.util.*;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;public class Arena implements Serializable {
+<i class="no-highlight">12</i>&nbsp;    private final Map&lt;Position, Wall&gt; wallMap;
+<i class="no-highlight">13</i>&nbsp;    private final Map&lt;Position, Door&gt; doorMap;
+<i class="no-highlight">14</i>&nbsp;    private final List&lt;Enemy&gt; enemies;
+<i class="no-highlight">15</i>&nbsp;    private final String name;
+<i class="no-highlight">16</i>&nbsp;    private final Position shrine;
+<i class="no-highlight">17</i>&nbsp;
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    public Arena(@NotNull Map&lt;Position, Wall&gt; wallMap, @NotNull Map&lt;Position, Door&gt; doorMap, @NotNull List&lt;Enemy&gt; enemies, @NotNull String name, @NotNull Position shrine) {</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        this.wallMap = wallMap;</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        this.doorMap = doorMap;</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        this.enemies = enemies;</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        this.shrine = shrine;</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;    }</b>
+<i class="no-highlight">25</i>&nbsp;
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    public Arena(List&lt;Wall&gt; walls, List&lt;Door&gt; doors, List&lt;Enemy&gt; enemies, String name, Position shrine) {</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        this.wallMap = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        this.doorMap = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        for (Wall wall: walls)</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;            wallMap.put(wall.getPosition(), wall);</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        for (Door door : doors)</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;            doorMap.put(door.getPosition(), door);</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        this.enemies = enemies;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        this.shrine = shrine;</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;    }</b>
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    public boolean hasClearSight(Position pos1, Position pos2) {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        if (pos1.getRow() != pos2.getRow() &amp;&amp; pos1.getColumn() != pos2.getColumn()) {</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;            return false;</b>
+<i class="no-highlight">41</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        if (pos1.getRow() == pos2.getRow()) {</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;            int from = Math.min(pos1.getColumn(), pos2.getColumn());</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;            int to = Math.max(pos1.getColumn(), pos2.getColumn());</b>
+<b class="fc"><i class="no-highlight">45</i>&nbsp;            for (int i = from; i &lt; to; i++) {</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;                if (wallMap.containsKey(new Position(i, pos1.getRow())))</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;                    return false;</b>
+<i class="no-highlight">48</i>&nbsp;            }
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        } else {</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;            int from = Math.min(pos1.getRow(), pos2.getRow());</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;            int to = Math.max(pos1.getRow(), pos2.getRow());</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            for (int i = from; i &lt; to; i++) {</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;                if (wallMap.containsKey(new Position(pos1.getColumn(), i)))</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;                    return false;</b>
+<i class="no-highlight">55</i>&nbsp;            }
+<i class="no-highlight">56</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        return true;</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    public boolean isSpaceEmpty(@NotNull Position position) {
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        if (wallMap.containsKey(position))</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;            return false;</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        for (Enemy enemy: enemies) {</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;            if (enemy.getPosition().equals(position))</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;                return false;</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        }</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;        return true;</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    public void removeEnemy(Enemy oldEnemy) {
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        for (Enemy enemy: enemies) {</b>
+<b class="fc"><i class="no-highlight">72</i>&nbsp;            if (enemy.equals(oldEnemy)) {</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;                enemies.remove(oldEnemy);</b>
+<b class="fc"><i class="no-highlight">74</i>&nbsp;                break;</b>
+<i class="no-highlight">75</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">76</i>&nbsp;        }</b>
+<b class="fc"><i class="no-highlight">77</i>&nbsp;    }</b>
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;    public AbstractQueue&lt;Enemy&gt; getOrderedEnemies(Position position) {
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        EnemyComparator comparator = new EnemyComparator(position);</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        AbstractQueue&lt;Enemy&gt; sortedEnemies = new PriorityQueue&lt;&gt;(comparator);</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        sortedEnemies.addAll(enemies);</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        return sortedEnemies;</b>
+<i class="no-highlight">84</i>&nbsp;    }
+<i class="no-highlight">85</i>&nbsp;
+<i class="no-highlight">86</i>&nbsp;    public Position getShrine() {
+<b class="fc"><i class="no-highlight">87</i>&nbsp;        return shrine;</b>
+<i class="no-highlight">88</i>&nbsp;    }
+<i class="no-highlight">89</i>&nbsp;    public Map&lt;Position, Wall&gt; getWallMap() {
+<b class="fc"><i class="no-highlight">90</i>&nbsp;        return wallMap;</b>
+<i class="no-highlight">91</i>&nbsp;    }
+<i class="no-highlight">92</i>&nbsp;    public List&lt;Enemy&gt; getEnemies() {
+<b class="fc"><i class="no-highlight">93</i>&nbsp;        return enemies;</b>
+<i class="no-highlight">94</i>&nbsp;    }
+<i class="no-highlight">95</i>&nbsp;    public Map&lt;Position, Door&gt; getDoorMap() {
+<b class="fc"><i class="no-highlight">96</i>&nbsp;        return doorMap;</b>
+<i class="no-highlight">97</i>&nbsp;    }
+<i class="no-highlight">98</i>&nbsp;    public String getName() {
+<b class="fc"><i class="no-highlight">99</i>&nbsp;        return name;</b>
+<i class="no-highlight">100</i>&nbsp;    }
+<i class="no-highlight">101</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Game</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: Game (com.lpoo.fallout.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Game</td>
+<td class="coverageStat">
+  <span class="percent">
+    9.1%
+  </span>
+  <span class="absValue">
+    (1/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.9%
+  </span>
+  <span class="absValue">
+    (2/41)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$6fms6tHG</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$Gy7XNFK7</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$pqHHXeO8</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$QNU2vcSc</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$SGb3xn9m</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$xM547iix</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$Yn8wufMx</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$yqvc4uol</td>
+  </tr>
+  <tr>
+    <td class="name">Game$MockitoMock$1409194742$auxiliary$ZS8eFQjC</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    9.1%
+  </span>
+  <span class="absValue">
+    (1/11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.9%
+  </span>
+  <span class="absValue">
+    (2/41)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.controller;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.googlecode.lanterna.TerminalSize;
+<i class="no-highlight">4</i>&nbsp;import com.googlecode.lanterna.terminal.Terminal;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.gui.LanternaGUI;
+<i class="no-highlight">6</i>&nbsp;import com.lpoo.fallout.gui.LanternaTerminal;
+<i class="no-highlight">7</i>&nbsp;import com.lpoo.fallout.model.filehandling.FileHandler;
+<i class="no-highlight">8</i>&nbsp;import com.lpoo.fallout.states.State;
+<i class="no-highlight">9</i>&nbsp;import com.lpoo.fallout.states.WanderState;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">12</i>&nbsp;import java.util.Stack;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;public class Game {
+<i class="no-highlight">15</i>&nbsp;    private Stack&lt;State&gt; states;
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    private static final Integer FPS = 20;</b>
+<i class="no-highlight">17</i>&nbsp;    private final long frameTime;
+<i class="no-highlight">18</i>&nbsp;    private LanternaGUI gui;
+<b class="fc"><i class="no-highlight">19</i>&nbsp;    public static final TerminalSize DEFAULT_TERMINAL_SIZE = new TerminalSize(30, 18);</b>
+<i class="no-highlight">20</i>&nbsp;    public static final int DEFAULT_FONT_SIZE = 40;
+<i class="no-highlight">21</i>&nbsp;
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    public Game() throws IOException, ClassNotFoundException {</b>
+<i class="no-highlight">23</i>&nbsp;        // Stack for the controllers
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        states = new Stack&lt;&gt;();</b>
+<i class="no-highlight">25</i>&nbsp;
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        frameTime = 1000/60;</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        changeTerminalProperty(DEFAULT_TERMINAL_SIZE, DEFAULT_FONT_SIZE);</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        this.pushState(new WanderState(new FileHandler().createWanderModel(&quot;gamestat&quot;)));</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;    }</b>
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    public void pushState(State newController) {
+<i class="no-highlight">33</i>&nbsp;        try {
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            while(gui.getTerminal().getScreen().pollInput() != null) { }</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        } catch (IOException exception) {</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            exception.printStackTrace();</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            clearStates();</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        }</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        states.push(newController);</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;    }</b>
+<i class="no-highlight">41</i>&nbsp;    public void popState() {
+<b class="nc"><i class="no-highlight">42</i>&nbsp;        states.pop();</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;    }</b>
+<i class="no-highlight">44</i>&nbsp;    public void clearStates() {
+<b class="nc"><i class="no-highlight">45</i>&nbsp;        states.clear();</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;    }</b>
+<i class="no-highlight">47</i>&nbsp;    public State topState() {
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        return states.peek();</b>
+<i class="no-highlight">49</i>&nbsp;    }
+<i class="no-highlight">50</i>&nbsp;    public LanternaGUI getGui() {
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        return gui;</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    public static Integer getFps() {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        return FPS;</b>
+<i class="no-highlight">56</i>&nbsp;    }
+<i class="no-highlight">57</i>&nbsp;
+<i class="no-highlight">58</i>&nbsp;    public void run() throws IOException, InterruptedException {
+<b class="nc"><i class="no-highlight">59</i>&nbsp;        while (!states.empty()) {</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;            long startTime = System.currentTimeMillis();</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            states.peek().step(this, startTime);</b>
+<i class="no-highlight">62</i>&nbsp;
+<b class="nc"><i class="no-highlight">63</i>&nbsp;            long elapsedTime = System.currentTimeMillis() - startTime;</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;            long sleepTime = frameTime - elapsedTime;</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;            if (sleepTime &gt; 0) {</b>
+<i class="no-highlight">66</i>&nbsp;                try {
+<b class="nc"><i class="no-highlight">67</i>&nbsp;                    Thread.sleep(sleepTime);</b>
+<b class="nc"><i class="no-highlight">68</i>&nbsp;                } catch (InterruptedException e) {</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;                    e.printStackTrace();</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;                }</b>
+<i class="no-highlight">71</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        }</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        gui.getTerminal().getScreen().close();</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;    }</b>
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    public void changeTerminalProperty(TerminalSize size, int fontSize) throws IOException {
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        changeGui(new LanternaGUI(new LanternaTerminal(size.getColumns(), size.getRows(), fontSize)));</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;    }</b>
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;    private void changeGui (LanternaGUI newGUI) throws IOException {
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        if (gui != null) {</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;            gui.getTerminal().getScreen().close();</b>
+<i class="no-highlight">83</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        this.gui = newGUI;</b>
+<b class="nc"><i class="no-highlight">85</i>&nbsp;    }</b>
+<i class="no-highlight">86</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

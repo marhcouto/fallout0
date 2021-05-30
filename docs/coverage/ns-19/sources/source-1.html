@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LevelUpMenuView</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.view.levelup</a>
+</div>
+
+<h1>Coverage Summary for Class: LevelUpMenuView (com.lpoo.fallout.view.levelup)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LevelUpMenuView</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    6.7%
+  </span>
+  <span class="absValue">
+    (2/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.view.levelup;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.googlecode.lanterna.TerminalSize;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.gui.LanternaGUI;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.model.LanternaDrawable;
+<i class="no-highlight">6</i>&nbsp;import com.lpoo.fallout.model.levelup.LevelUpModel;
+<i class="no-highlight">7</i>&nbsp;import com.lpoo.fallout.model.wander.Attributes;
+<i class="no-highlight">8</i>&nbsp;import com.lpoo.fallout.model.wander.Position;
+<i class="no-highlight">9</i>&nbsp;import com.lpoo.fallout.view.Viewer;
+<i class="no-highlight">10</i>&nbsp;import com.lpoo.fallout.view.renderers.StringRenderer;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">13</i>&nbsp;import java.util.List;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;public class LevelUpMenuView extends Viewer&lt;LevelUpModel, LanternaGUI&gt; {
+<i class="no-highlight">16</i>&nbsp;    public LevelUpMenuView(LevelUpModel model) {
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        super(model);</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    }</b>
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    @Override
+<i class="no-highlight">21</i>&nbsp;    protected void drawElements(LanternaGUI gui) {
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        int columns = gui.getTerminal().getScreen().getTerminalSize().getColumns();</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        int rows = gui.getTerminal().getScreen().getTerminalSize().getRows();</b>
+<i class="no-highlight">24</i>&nbsp;
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        for (int i = 0; i &lt; columns; i++) {</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;            for (int j = 0; j &lt; rows; j++) {</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;                if ((i == 0) || (i == columns - 1) || (j == 0) || (j == rows - 1)) {</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;                    gui.placeDrawable(new LanternaDrawable(&quot;#FF8100&quot;, &quot;#E3BF9A&quot;, &quot;X&quot;), new Position(i, j));</b>
+<i class="no-highlight">29</i>&nbsp;                } else {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;                    gui.placeDrawable(new LanternaDrawable(&quot;#FF8100&quot;, &quot;#E3BF9A&quot;, &quot; &quot;), new Position(i, j));</b>
+<i class="no-highlight">31</i>&nbsp;                }
+<i class="no-highlight">32</i>&nbsp;            }
+<i class="no-highlight">33</i>&nbsp;        }
+<i class="no-highlight">34</i>&nbsp;
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        TerminalSize terminalSize = gui.getTerminal().getScreen().getTerminalSize();</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        new StringRenderer(&quot;REMAINING LEVELS: &quot; + (getModel().getVaultBoy().getUnusedLevelPoints() - getModel().getUsedLevel()), StringRenderer.ALIGN.LEFT, 1, 1, terminalSize).placeElement(gui, &quot;#8f1628&quot;, &quot;#E3BF9A&quot;);</b>
+<i class="no-highlight">38</i>&nbsp;
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        List&lt;String&gt; formattedOptions = getFormattedOptions();</b>
+<i class="no-highlight">40</i>&nbsp;
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        for (int i = 0; i &lt; formattedOptions.size(); i++) {</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            if (i == getModel().getSelectedIdx()) {</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, &quot;#c21628&quot;, &quot;#E3BF9A&quot;);</b>
+<i class="no-highlight">44</i>&nbsp;            } else {
+<b class="nc"><i class="no-highlight">45</i>&nbsp;                new StringRenderer(formattedOptions.get(i), StringRenderer.ALIGN.CENTER, 8 + i, 1, terminalSize).placeElement(gui, &quot;#FF8100&quot;, &quot;#E3BF9A&quot;);</b>
+<i class="no-highlight">46</i>&nbsp;            }
+<i class="no-highlight">47</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">48</i>&nbsp;    }</b>
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;    private List&lt;String&gt; getFormattedOptions() {
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        List&lt;String&gt; resList = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;        StringBuilder stringBuilder = new StringBuilder();</b>
+<i class="no-highlight">53</i>&nbsp;
+<b class="nc"><i class="no-highlight">54</i>&nbsp;        for (LevelUpModel.OPTION option: LevelUpModel.OPTION.values()) {</b>
+<b class="nc"><i class="no-highlight">55</i>&nbsp;            stringBuilder.append(option.label);</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;            if (option != LevelUpModel.OPTION.NEXT) {</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;                stringBuilder.append(&quot; &lt;&quot;);</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                int attributeValue = LevelUpModel.getValue(getModel().getNewAttributes(), option) +</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                        LevelUpModel.getValue(getModel().getVaultBoy().getCharacterInfo().getAttributes(), option);</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                stringBuilder.append(attributeValue);</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;                stringBuilder.append(&quot;&gt;&quot;);</b>
+<i class="no-highlight">62</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">63</i>&nbsp;            resList.add(stringBuilder.toString());</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;            stringBuilder.setLength(0);</b>
+<i class="no-highlight">65</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">66</i>&nbsp;        return resList;</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:41</div>
+</div>
+</body>
+</html>

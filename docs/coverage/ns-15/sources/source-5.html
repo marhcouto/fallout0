@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EnemyDefaultFactory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.model.wander.element</a>
+</div>
+
+<h1>Coverage Summary for Class: EnemyDefaultFactory (com.lpoo.fallout.model.wander.element)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EnemyDefaultFactory</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">EnemyDefaultFactory$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.model.wander.element;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.wander.Attributes;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.model.wander.CharacterInfo;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.model.wander.Position;
+<i class="no-highlight">6</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i class="no-highlight">7</i>&nbsp;
+<b class="nc"><i class="no-highlight">8</i>&nbsp;public class EnemyDefaultFactory implements EnemyFactory {</b>
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    private static @NotNull Enemy createRat(@NotNull Position enemyPosition) {
+<b class="nc"><i class="no-highlight">11</i>&nbsp;        Attributes ratDefaultAttributes = new Attributes(2, 2, 2, 2);</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;        return new Enemy(enemyPosition, new CharacterInfo(ratDefaultAttributes, 0, 2), 5, 1, Enemy.TYPE.RAT);</b>
+<i class="no-highlight">13</i>&nbsp;    }
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    private static @NotNull Enemy createScorpion(@NotNull Position enemyPosition) {
+<b class="nc"><i class="no-highlight">16</i>&nbsp;        Attributes defaultScorpAttributes = new Attributes(5, 5, 5, 5);</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        return new Enemy(enemyPosition, new CharacterInfo(defaultScorpAttributes, 0, 5), 8, 1, Enemy.TYPE.SCORPION);</b>
+<i class="no-highlight">18</i>&nbsp;    }
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    private static @NotNull Enemy createSnake(@NotNull Position enemyPosition) {
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        Attributes defaultSnakeAttributes = new Attributes(5, 8, 5, 6);</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        return new Enemy(enemyPosition, new CharacterInfo(defaultSnakeAttributes, 0, 8), 12, 2, Enemy.TYPE.SNAKE);</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    @Override
+<i class="no-highlight">26</i>&nbsp;    public @NotNull Enemy createEnemy(@NotNull Enemy.TYPE enemyType, @NotNull Position enemyPosition) {
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        switch (enemyType) {</b>
+<i class="no-highlight">28</i>&nbsp;            case RAT: {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;                return createRat(enemyPosition);</b>
+<i class="no-highlight">30</i>&nbsp;            }
+<i class="no-highlight">31</i>&nbsp;            case SCORPION: {
+<b class="nc"><i class="no-highlight">32</i>&nbsp;                return createScorpion(enemyPosition);</b>
+<i class="no-highlight">33</i>&nbsp;            }
+<i class="no-highlight">34</i>&nbsp;            case SNAKE: {
+<b class="nc"><i class="no-highlight">35</i>&nbsp;                return createSnake(enemyPosition);</b>
+<i class="no-highlight">36</i>&nbsp;            }
+<i class="no-highlight">37</i>&nbsp;            default: {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;                return null; //Explodes app</b>
+<i class="no-highlight">39</i>&nbsp;            }
+<i class="no-highlight">40</i>&nbsp;        }
+<i class="no-highlight">41</i>&nbsp;    }
+<i class="no-highlight">42</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

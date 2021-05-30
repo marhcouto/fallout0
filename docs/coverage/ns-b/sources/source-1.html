@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > EnemyController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.controller.wander</a>
+</div>
+
+<h1>Coverage Summary for Class: EnemyController (com.lpoo.fallout.controller.wander)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">EnemyController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.controller.wander;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.wander.element.Enemy;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.model.wander.Position;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.model.wander.WanderModel;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;public class EnemyController {
+<i class="no-highlight">8</i>&nbsp;    private final WanderModel model;
+<i class="no-highlight">9</i>&nbsp;    private final MovingEngine engine;
+<i class="no-highlight">10</i>&nbsp;    private long lastMovement;
+<b class="fc"><i class="no-highlight">11</i>&nbsp;    private final long MOVE_TIME_MS = 800;</b>
+<i class="no-highlight">12</i>&nbsp;
+<b class="fc"><i class="no-highlight">13</i>&nbsp;    public EnemyController(WanderModel model, MovingEngine engine) {</b>
+<b class="fc"><i class="no-highlight">14</i>&nbsp;        this.model = model;</b>
+<b class="fc"><i class="no-highlight">15</i>&nbsp;        this.engine = engine;</b>
+<b class="fc"><i class="no-highlight">16</i>&nbsp;        lastMovement = 0;</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;    }</b>
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    public void moveEnemies(long time) {
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        if ((time - lastMovement) &gt;= MOVE_TIME_MS) {</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;            for (Enemy enemy: model.getArena().getEnemies()) {</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;                Position newPosition = engine.move(enemy.getPosition());</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;                if (model.getArena().isSpaceEmpty(newPosition)) {</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;                    enemy.setPosition(newPosition);</b>
+<i class="no-highlight">25</i>&nbsp;                }
+<b class="fc"><i class="no-highlight">26</i>&nbsp;            }</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;            lastMovement = time;</b>
+<i class="no-highlight">28</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">29</i>&nbsp;    }</b>
+<i class="no-highlight">30</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:41</div>
+</div>
+</body>
+</html>

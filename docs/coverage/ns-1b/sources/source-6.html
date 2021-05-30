@@ -1,0 +1,144 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SpriteRenderer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.view.renderers</a>
+</div>
+
+<h1>Coverage Summary for Class: SpriteRenderer (com.lpoo.fallout.view.renderers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SpriteRenderer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (12/13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.view.renderers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.gui.GUI;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.gui.LanternaGUI;
+<i class="no-highlight">5</i>&nbsp;import com.lpoo.fallout.model.LanternaDrawable;
+<i class="no-highlight">6</i>&nbsp;import com.lpoo.fallout.model.wander.Position;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">9</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">10</i>&nbsp;import java.util.Map;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;public abstract class SpriteRenderer&lt;M&gt; extends Renderer&lt;M, LanternaGUI&gt; {
+<i class="no-highlight">13</i>&nbsp;    private final Map&lt;Position, Character&gt; image;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    public SpriteRenderer(M model, Position position) {
+<b class="fc"><i class="no-highlight">16</i>&nbsp;        super(model, position);</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        this.image = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    }</b>
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    @Override
+<i class="no-highlight">21</i>&nbsp;    public void placeElement(LanternaGUI gui, String foregroundColour, String backgroundColour) {
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        for (Map.Entry&lt;Position, Character&gt; pixel : image.entrySet()) {</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;            Position actualPosition = new Position(pixel.getKey().getColumn() + getPosition().getColumn(), pixel.getKey().getRow() + getPosition().getRow());</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;            gui.placeDrawable(new LanternaDrawable(foregroundColour, backgroundColour, pixel.getValue().toString()), actualPosition);</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        }</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    }</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    public Map&lt;Position, Character&gt; getImage() {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        return image;</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    protected void addCharacter(Position position, Character character) {
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        image.put(position, character);</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;    }</b>
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;    protected void removeCharacter(Position position) {
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        image.remove(position);</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;    }</b>
+<i class="no-highlight">39</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

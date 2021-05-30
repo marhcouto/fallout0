@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ReceiveAttack</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.controller.battle.command.attack</a>
+</div>
+
+<h1>Coverage Summary for Class: ReceiveAttack (com.lpoo.fallout.controller.battle.command.attack)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReceiveAttack</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.controller.battle.command.attack;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.battle.Message;
+<i class="no-highlight">4</i>&nbsp;import com.lpoo.fallout.model.battle.TurnModel;
+<i class="no-highlight">5</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.util.Random;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;public class ReceiveAttack extends CommandHandler {
+<i class="no-highlight">10</i>&nbsp;    ReceiveAttack(@NotNull TurnModel model, @NotNull Random randomEngine) {
+<b class="fc"><i class="no-highlight">11</i>&nbsp;        super(model, randomEngine);</b>
+<b class="fc"><i class="no-highlight">12</i>&nbsp;    }</b>
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    @Override
+<i class="no-highlight">15</i>&nbsp;    public void handle() {
+<b class="fc"><i class="no-highlight">16</i>&nbsp;        float chance = randomEngine.nextFloat();</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        if (chance &gt;= model.getDefenderStats().getDodgeChance())</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;            nextCommandHandler.handle();</b>
+<i class="no-highlight">19</i>&nbsp;        else
+<b class="fc"><i class="no-highlight">20</i>&nbsp;            model.setOutcome(new Message(&quot;atack\ndodged&quot;, true, true));</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;    }</b>
+<i class="no-highlight">22</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>

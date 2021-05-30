@@ -40,6 +40,8 @@
     - [Design Pattern](#design-pattern-5)
     - [Implementação](#implementação-5)
     - [Consequencias](#consequencias)
+- [Code Smells](#code-smells)
+  - [Dispensables - Data Class](#dispensables---data-class)
 
 # Funcionalidades
   
@@ -207,3 +209,9 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
  - Permite manter facilmente a integridade dos menus do jogo, uma vez que, toda a informação sobre cada opção se encontra centralizada
  - Ao testar o OptionMenuController testamos a generalidade dos menus do jogo
  - Os comandos são representados por classes o que simplifica os métodos de execução de comandos e permite evitar o code smell ***Switch Statements***
+
+# Code Smells
+## Dispensables - Data Class
+Ao longo do nosso código, para manter a separação entre algumas partes do programa foi necessário introduzir *data* *classes*. Uma dessas classes é a [MessageDisplayModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/5e37fd85061b4e9c3049c2aeae4ecf155d7a4c94/src/main/java/com/lpoo/fallout/model/messagedisplay/MessageDisplayModel.java#L8) que apenas armazena uma lista de *string* e possui *getters* para essa estrutura de dados. Poderiamos resolver este *code* *smell* fazendo com que a classe [MessageDisplayController](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/5e37fd85061b4e9c3049c2aeae4ecf155d7a4c94/src/main/java/com/lpoo/fallout/controller/messagedisplay/MessageDisplayController.java#L8) e a classe [MessageDisplayViewer](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/5e37fd85061b4e9c3049c2aeae4ecf155d7a4c94/src/main/java/com/lpoo/fallout/view/messagedisplay/MessageDisplayViewer.java#L11) fossem genéricos de listas de *string* no entanto, na nossa visão, esta alteração tornaria a estrutura MVC do nosso programa menos evidente.
+
+##

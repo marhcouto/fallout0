@@ -1,0 +1,220 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BattleStats</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.model.battle</a>
+</div>
+
+<h1>Coverage Summary for Class: BattleStats (com.lpoo.fallout.model.battle)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BattleStats</td>
+<td class="coverageStat">
+  <span class="percent">
+    57.1%
+  </span>
+  <span class="absValue">
+    (8/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    48.5%
+  </span>
+  <span class="absValue">
+    (16/33)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$Bc6OvSk8</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$bEYvqygv</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$bRZuEzwR</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$BzGcmlvW</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$dEzRWNxX</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$fCzrP3Zw</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$gN4xUeOM</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$IFsWCOJo</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$mPjQVexO</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$N6Wq9Eda</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$VCv7l9Zf</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$WeTNmTcA</td>
+  </tr>
+  <tr>
+    <td class="name">BattleStats$MockitoMock$226741060$auxiliary$Z3lWY5so</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    57.1%
+  </span>
+  <span class="absValue">
+    (8/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    48.5%
+  </span>
+  <span class="absValue">
+    (16/33)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.model.battle;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.wander.element.Character;
+<i class="no-highlight">4</i>&nbsp;import org.jetbrains.annotations.NotNull;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public class BattleStats {
+<i class="no-highlight">7</i>&nbsp;    private final Integer startingHealthPoints;
+<i class="no-highlight">8</i>&nbsp;    private Integer healthPoints;
+<i class="no-highlight">9</i>&nbsp;    private Float dodgeChance;
+<i class="no-highlight">10</i>&nbsp;    private Float missChance;
+<i class="no-highlight">11</i>&nbsp;    private Integer baseDamage;
+<i class="no-highlight">12</i>&nbsp;    private Float critRatio;
+<b class="fc"><i class="no-highlight">13</i>&nbsp;    public static Float CRIT_MULTIPLIER = (float) 1.50;</b>
+<i class="no-highlight">14</i>&nbsp;
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    public BattleStats(@NotNull Integer healthPoints, @NotNull Float dodgeChance, @NotNull Float missChange, @NotNull Integer baseDamage, @NotNull Float critRatio) {</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;        this.startingHealthPoints = healthPoints;</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        this.healthPoints = healthPoints;</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        this.dodgeChance = dodgeChance;</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;        this.missChance = missChange;</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        this.baseDamage = baseDamage;</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        this.critRatio = critRatio;</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    }</b>
+<i class="no-highlight">23</i>&nbsp;
+<b class="fc"><i class="no-highlight">24</i>&nbsp;    public BattleStats(@NotNull Character character) {</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        this.healthPoints = 15 + character.getCharacterInfo().getAttributes().getStrength() * character.getLevel();</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        this.startingHealthPoints = this.healthPoints;</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        this.dodgeChance = (float) Math.min(0.15 + (float) character.getCharacterInfo().getAttributes().getIntelligence() / 100, 0.75);</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        this.missChance = 1 - (float) Math.min((75 + character.getCharacterInfo().getAttributes().getLuck()), 95) / 100;</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        this.baseDamage = character.getCharacterInfo().getWeaponDamage() + character.getCharacterInfo().getAttributes().getStrength() / 2;</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        this.critRatio = (float) Math.min(0.10 + (float) character.getCharacterInfo().getAttributes().getIntelligence() / 100 + character.getCharacterInfo().getAttributes().getLuck() / 100, 0.75);</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;    }</b>
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    public @NotNull Integer getHealthPoints() {
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        return healthPoints;</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;    public @NotNull Integer getStartingHealthPoints() {
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        return startingHealthPoints;</b>
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;    public @NotNull Float getDodgeChance() {
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        return dodgeChance;</b>
+<i class="no-highlight">41</i>&nbsp;    }
+<i class="no-highlight">42</i>&nbsp;    public @NotNull Float getMissChance() {
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        return missChance;</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;    public @NotNull Integer getBaseDamage() {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        return baseDamage;</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<b class="fc"><i class="no-highlight">48</i>&nbsp;    public @NotNull Float getCritRatio() { return critRatio; }</b>
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;    public void setHealthPoints(@NotNull Integer healthPoints) {
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        this.healthPoints = healthPoints;</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;    }</b>
+<i class="no-highlight">54</i>&nbsp;    public void setDodgeChance(@NotNull Float dodgeChance) {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        this.dodgeChance = dodgeChance;</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;    }</b>
+<i class="no-highlight">57</i>&nbsp;    public void setMissChance(@NotNull Float missChance) {
+<b class="nc"><i class="no-highlight">58</i>&nbsp;        this.missChance = missChance;</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;    }</b>
+<i class="no-highlight">60</i>&nbsp;    public void setBaseDamage(@NotNull Integer baseDamage) {
+<b class="nc"><i class="no-highlight">61</i>&nbsp;        this.baseDamage = baseDamage;</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;    }</b>
+<i class="no-highlight">63</i>&nbsp;    public void setCritRatio(@NotNull Float critRatio) {
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        this.critRatio = critRatio;</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;    }</b>
+<i class="no-highlight">66</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:41</div>
+</div>
+</body>
+</html>

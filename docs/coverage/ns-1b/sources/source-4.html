@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HealthBarRenderer</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.lpoo.fallout.view.renderers</a>
+</div>
+
+<h1>Coverage Summary for Class: HealthBarRenderer (com.lpoo.fallout.view.renderers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HealthBarRenderer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.4%
+  </span>
+  <span class="absValue">
+    (34/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.lpoo.fallout.view.renderers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.lpoo.fallout.model.wander.Position;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;public class HealthBarRenderer extends SpriteRenderer&lt;Integer&gt; {
+<i class="no-highlight">6</i>&nbsp;    private final Integer startingHP;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;    public HealthBarRenderer(Integer model, Position referencePosition) {
+<b class="fc"><i class="no-highlight">9</i>&nbsp;        super(model, referencePosition);</b>
+<b class="fc"><i class="no-highlight">10</i>&nbsp;        this.startingHP = model;</b>
+<b class="fc"><i class="no-highlight">11</i>&nbsp;    }</b>
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    @Override
+<i class="no-highlight">14</i>&nbsp;    public void buildImage() {
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;        // Health bar
+<b class="fc"><i class="no-highlight">17</i>&nbsp;        for (int j = 0; j &lt; 3; j++) {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;            for (int i = 3 - j; i &lt; 105 + j; i++)</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;                addCharacter(new Position(i, j), &#39;#&#39;);</b>
+<i class="no-highlight">20</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        addCharacter(new Position(1, 3), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        addCharacter(new Position(2, 3), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        for (int i = 3; i &lt; 105; i++)</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;            addCharacter(new Position(i, 3), &#39;-&#39;);</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        addCharacter(new Position(105, 3), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        addCharacter(new Position(106, 3), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        for (int j = 4; j &lt; 8; j++) {</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;            addCharacter(new Position(0, j), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;            addCharacter(new Position(1, j), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;            addCharacter(new Position(2, j), &#39;|&#39;);</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;            addCharacter(new Position(105, j), &#39;|&#39;);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;            addCharacter(new Position(106, j), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;            addCharacter(new Position(107, j), &#39;#&#39;);</b>
+<i class="no-highlight">34</i>&nbsp;        }
+<i class="no-highlight">35</i>&nbsp;
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        addCharacter(new Position(1, 8), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        addCharacter(new Position(2, 8), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        for (int i = 3; i &lt; 105; i++)</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;            addCharacter(new Position(i, 8), &#39;-&#39;);</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        addCharacter(new Position(105, 8), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        addCharacter(new Position(106, 8), &#39;#&#39;);</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        for (int j = 2; j &gt;= 0; j--) {</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;            for (int i = 3 - j; i &lt; 105 + j; i++)</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;                addCharacter(new Position(i, 11 - j), &#39;#&#39;);</b>
+<i class="no-highlight">45</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">46</i>&nbsp;    }</b>
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    public void updateHP(Integer currentHP) {
+<i class="no-highlight">49</i>&nbsp;        // Health Points
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        for (int i = 4; i &lt; 104 &amp;&amp; startingHP != 0; i++) {</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;            removeCharacter(new Position(i, 5));</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            removeCharacter(new Position(i, 6));</b>
+<i class="no-highlight">53</i>&nbsp;        }
+<i class="no-highlight">54</i>&nbsp;
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        for (int i = 4; i &lt; Math.round(Double.valueOf(currentHP) / startingHP * 100) + 4 &amp;&amp; startingHP != 0; i++) {</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;            addCharacter(new Position(i, 5), &#39;O&#39;);</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            addCharacter(new Position(i, 6), &#39;O&#39;);</b>
+<i class="no-highlight">58</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">59</i>&nbsp;    }</b>
+<i class="no-highlight">60</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-05-30 18:42</div>
+</div>
+</body>
+</html>
