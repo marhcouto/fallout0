@@ -29,10 +29,10 @@ public class VaultBoy extends Character {
     public Integer calculateExpGain(Integer enemyLevel) {
         Integer levelGain = 0;
         Integer expGain = (int) ((float) enemyLevel / getLevel() * 50);
-        Integer resultExp = expGain + getExpPoints();
-        while(resultExp >= 100) {
+        expPoints += expGain;
+        while(expPoints >= 100) {
             levelGain++;
-            resultExp -= 100;
+            expPoints -= 100;
         }
         unusedLevelPoints = getUnusedLevelPoints() + levelGain;
         return expGain;
