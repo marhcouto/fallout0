@@ -191,9 +191,21 @@ O Java não permite o *override* de métodos *static* portanto não foi possivel
   <img width = 650 src = "images/uml/optionMenu.svg">
 </p>
 
+Estas classes podem ser encontradas nos ficheiros seguintes:
+- 
+
 O *Command pattern* utilizado no menu de batalha utiliza classes diferentes, dado ser ligeiramente mais complexo e não beneficiando da estrutura exata dos outros.
+<p align = "center">
+  <img width = 650 src = "images/uml/battleCommand.svg">
+</p>
 
-
+Estas classes podem ser encontradas nos ficheiros seguintes:
+- [BattleCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/BattleCommand.java)
+- [AttackCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/AttackCommand.java)
+- [DefendCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/DefendCommand.java)
+- [CureCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/DefendCommand.java)
+- [IntimidateCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/IntimidateCommand.java)
+- [TurnModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/model/battle/TurnModel.java)
 
 ### Consequencias
  - Permite manter facilmente a integridade dos menus do jogo, uma vez que, toda a informação sobre cada opção se encontra centralizada
@@ -210,6 +222,16 @@ No modo de batalha por turnos, tanto o jogador como o adversário têm à sua es
 Para resolver esta situação implementámos um *Observer pattern*. A classe *observer*, **TurnEffect** (implementa **TurnObserver**), será responsável por ativar e desativar os commandos. Esta observa uma classe *observable*, **BattleModel** (implementa **Observable de TurnObservers**), que notifica os seus observers a cada ronda passada. 
 
 ### Implementação
+<p align = "center">
+  <img width = 650 src = "images/uml/ObserverPattern.svg">
+</p>
+
+Estas classes podem ser encontradas nos ficheiros seguintes:
+- [TurnObserver](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/TurnObserver.java)
+- [TurnEffect](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/TurnEffect.java)
+- [Observable](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/Observable.java)
+- [BattleModel](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/model/battle/BattleModel.java)
+- [BattleCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/BattleCommand.java)
 
 ### Consequências
  - Permite a comunicação e o estabelecimento de relações em *runtime*
@@ -222,9 +244,20 @@ Para resolver esta situação implementámos um *Observer pattern*. A classe *ob
 Uma das opções de batalha é o ataque. No entanto este ataque tem múltiplas probabilidades associadas. Este ataque depende, primariamente, do atributo *missChance* do usuário, que retrata a probabilidade de este falhar um ataque só por si. No caso de ele acertar, existe ainda a possibilidade do inimigo se desviar, associada ao atributo *dodgeChance* do inimigo. Por último há ainda a possibilidade do usuário acertar um golpe crítico, infligindo mais dano que o normal, estando esta possibilidade também relacionada com o atributo *critRatio* do usuário.
 
 ### Desing Pattern
-Para a solução deset problema utilizámos o *Chain of Responsability pattern*, que nos permite criar handlers para cada fase do processamento do ataque, que são chamados por ordem e decidem independentemente se o próximo deverá ser chamado ou não.
+Para a solução deste problema utilizámos o *Chain of Responsability pattern*, que nos permite criar handlers para cada fase do processamento do ataque, que são chamados por ordem e decidem independentemente se o próximo deverá ser chamado ou não.
 
 ### Implementação
+<p align = "center">
+  <img width = 650 src = "images/uml/ChainOfResponsability.svg">
+</p>
+
+ Estas classes podem ser encontradas nos ficheiros seguintes:
+ - [AttackCommand](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/AttackCommand.java)
+ - [CommandHandler](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/CommandHandler.java)
+ - [NullHandler](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/NullHandler.java)
+ - [SendAttack](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/SendAttack.java)
+ - [ReceiveAttack](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/ReceiveAttack.java)
+ - [DealDamage](https://github.com/FEUP-LPOO-2021/lpoo-2021-g32/blob/master/src/main/java/com/lpoo/fallout/controller/battle/command/attack/DealDamage.java)
 
 ### Consequências
  - Possibilita o controlo da ordem das fases do ataque
