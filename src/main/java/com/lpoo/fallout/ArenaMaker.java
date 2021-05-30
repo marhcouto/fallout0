@@ -14,7 +14,7 @@ public class ArenaMaker {
     public static void createFile(List<Wall> wallsList, List<Enemy> enemies, List<Door> doors, String arenaName) throws IOException {
 
         Position position = null;
-        if (arenaName.equals("arena3")) position = new Position(23, 13);
+        if (arenaName.equals("arena3") || arenaName.equals("arena3init")) position = new Position(23, 13);
 
         Arena arena = new Arena(wallsList, doors, enemies, arenaName, position);
 
