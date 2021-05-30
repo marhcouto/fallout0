@@ -42,6 +42,8 @@ public class BattleModel implements Observable<TurnObserver> {
         return battleInfo;
     }
 
+    public @NotNull HashSet<TurnObserver> getObservers() { return observers; }
+
     public void notifyTurnChange() {
         List<TurnObserver> toRemoveList = new ArrayList<>();
         for (TurnObserver observer: observers) {

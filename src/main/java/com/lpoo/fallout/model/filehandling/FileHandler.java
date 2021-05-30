@@ -13,7 +13,7 @@ public class FileHandler {
     public Arena createArena(@NotNull String fileName) throws IOException, ClassNotFoundException {
 
         Arena arena;
-        FileInputStream is = new FileInputStream("resources/arenas/" + fileName + ".bin");
+        FileInputStream is = new FileInputStream("savefiles/arenas/" + fileName + ".bin");
         ObjectInputStream ois = new ObjectInputStream(is);
 
         arena = (Arena) ois.readObject();
@@ -22,15 +22,9 @@ public class FileHandler {
         return arena;
     }
 
-    public WanderModel createWanderModel(String fileName, Attributes attributes) throws IOException, ClassNotFoundException {
-        WanderModel model = createWanderModel(fileName);
-        model.getVaultBoy().getCharacterInfo().setAttributes(attributes);
-        return model;
-    }
-
     public WanderModel createWanderModel(String fileName) throws IOException, ClassNotFoundException {
 
-        FileInputStream is = new FileInputStream("resources/" + fileName + ".bin");
+        FileInputStream is = new FileInputStream("savefiles/" + fileName + ".bin");
         ObjectInputStream ois = new ObjectInputStream(is);
 
         String arenaName = (String) ois.readObject();
@@ -42,14 +36,14 @@ public class FileHandler {
     }
 
     public void saveArena(String fileName, Arena arena) throws IOException {
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("resources/arenas/" + fileName + ".bin",false));
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("savefiles/arenas/" + fileName + ".bin",false));
         os.writeObject(arena);
         os.close();
     }
 
     public void saveModel(String fileName, WanderModel wanderModel) throws IOException {
         saveArena(wanderModel.getArena().getName(), wanderModel.getArena());
-        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("resources/" + fileName + ".bin", false));
+        ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("savefiles/" + fileName + ".bin", false));
         os.writeObject(wanderModel.getArena().getName());
         os.writeObject(wanderModel.getVaultBoy());
         os.close();

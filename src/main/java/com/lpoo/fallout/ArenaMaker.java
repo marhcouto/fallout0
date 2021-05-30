@@ -18,7 +18,7 @@ public class ArenaMaker {
 
         Arena arena = new Arena(wallsList, doors, enemies, arenaName, position);
 
-        File file = new File("resources/arenas/" + arenaName + ".bin");
+        File file = new File("savefiles/arenas/" + arenaName + ".bin");
         if (!file.exists())
             file.createNewFile();
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(file, false));
@@ -27,12 +27,12 @@ public class ArenaMaker {
     }
 
     public static VaultBoy createVaultBoy() {
-        return new VaultBoy(new Position(5, 5), new Attributes(1,1,1,1));
+        return new VaultBoy(new Position(5, 5));
     }
 
     public static void createGameFile(String arena, VaultBoy vaultBoy, String fileName) throws IOException {
 
-        File file = new File("resources/" + fileName + ".bin");
+        File file = new File("savefiles/" + fileName + ".bin");
         if (!file.exists())
             file.createNewFile();
 

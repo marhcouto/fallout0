@@ -11,7 +11,7 @@ public class VaultBoy extends Character {
     private boolean gameWon;
     private Integer unusedLevelPoints;
 
-    public VaultBoy(@NotNull Position position, @NotNull Attributes attributes) {
+    public VaultBoy(@NotNull Position position) {
         super(position, new CharacterInfo(new Attributes(), 5, 8),1,2);
         this.expPoints = 0;
         this.gameStarting = true;
@@ -34,12 +34,9 @@ public class VaultBoy extends Character {
             levelGain++;
             resultExp -= 100;
         }
+        this.expPoints = resultExp;
         unusedLevelPoints = getUnusedLevelPoints() + levelGain;
         return expGain;
-    }
-
-    public VaultBoy(Position position) {
-        super(position);
     }
 
     public Integer getExpPoints() {

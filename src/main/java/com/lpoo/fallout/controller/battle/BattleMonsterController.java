@@ -13,7 +13,7 @@ import java.util.Random;
 public class BattleMonsterController {
     private static List<BattleMenuModel.OPTION> monsterOptions;
     private final Observable<TurnObserver> observable;
-    private TurnModel turn;
+    private final TurnModel turn;
 
     static {
         monsterOptions = new ArrayList<>();
@@ -27,23 +27,24 @@ public class BattleMonsterController {
         this.turn = turn;
     }
 
-    void step(Random randomEngine) {
+    public void step(Random randomEngine) {
         BattleMenuModel.OPTION chosenOption = monsterOptions.get(randomEngine.nextInt(monsterOptions.size()));
         switch (chosenOption) {
             case ATTACK: {
-                observable.subscribe(new TurnEffect(0, new AttackCommand(turn, new Random()), observable));
+                observable.subscribe(new TurnEffect(0, new AttackCommand(turn, new Random())));
                 break;
             }
             case DEFEND: {
-                observable.subscribe(new TurnEffect(0, new DefendCommand(turn), observable));
+                observable.subscribe(new TurnEffect(0, new DefendCommand(turn)));
                 break;
             }
             case INTIMIDATE: {
-                observable.subscribe(new TurnEffect(0, new IntimidateCommand(turn), observable));
+                observable.subscribe(new TurnEffect(0, new IntimidateCommand(turn)));
                 break;
             }
             default: {
-                System.out.println("Impossible Path");
+                // Impossible path
+                throw new RuntimeException();
             }
         }
     }

@@ -55,7 +55,7 @@ public class BattleMenuController extends OptionMenuController<BattleMenuModel> 
                 break;
             }
             case ENTER: {
-                new TurnEffect(2, activationHandlers.get(getModel().getSelectedOption()), observable);
+                observable.subscribe(new TurnEffect(2, activationHandlers.get(getModel().getSelectedOption())));
                 break;
             }
         }

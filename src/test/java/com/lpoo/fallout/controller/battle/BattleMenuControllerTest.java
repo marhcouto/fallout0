@@ -11,22 +11,22 @@ import org.mockito.Mockito;
 
 class BattleMenuControllerTest {
     private BattleMenuController controller;
-    private BattleStats attackerStats;
-    private BattleStats enemyStats;
+    private Observable<TurnObserver> observable;
     private Game mockedGame;
 
     @BeforeEach
     void setUp() {
-        attackerStats = Mockito.mock(BattleStats.class);
-        enemyStats = Mockito.mock(BattleStats.class);
-        mockedGame = Mockito.mock(Game.class);
+        BattleStats attackerStats = Mockito.mock(BattleStats.class);
+        BattleStats enemyStats = Mockito.mock(BattleStats.class);
+        this.mockedGame = Mockito.mock(Game.class);
 
         BattleModel mockedModel = Mockito.mock(BattleModel.class);
         BattleInfo mockedBattleInfo = Mockito.mock(BattleInfo.class);
         Mockito.when(mockedBattleInfo.getTurn()).thenReturn(new TurnModel(attackerStats, enemyStats));
         Mockito.when(mockedModel.getBattleInfo()).thenReturn(mockedBattleInfo);
+        this.observable = mockedModel;
 
-        controller = new BattleMenuController(mockedModel, new BattleMenuModel());
+        this.controller = new BattleMenuController(mockedModel, new BattleMenuModel());
     }
 
     @Test
@@ -69,5 +69,11 @@ class BattleMenuControllerTest {
         controller.step(mockedGame, GUI.ACTION.LEFT);
 
         Assertions.assertEquals(0, controller.getModel().getSelectedIdx());
+    }
+
+    @Test
+    void testObserverSubscription() {
+        controller.step(mockedGame, GUI.ACTION.ENTER);
+        Mockito.verify(observable, Mockito.times(1)).subscribe(Mockito.any(TurnObserver.class));
     }
 }
