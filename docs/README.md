@@ -50,13 +50,26 @@
   
 ## Implementadas
 - Ecrã inicial: menu onde o jogador terá 5 pontos para distribuir pelos 4 atributos para poder criar o seu personagem
-- Modo de batalha: modo onde é efetuada uma batalha por turnos contra um monstro.
+<p align = "center">
+  <img width = 450 src = "images/features/characterCreation.gif">
+</p>
+
+- Modo de batalha: modo onde é efetuada uma batalha por turnos contra um inimigo.
+<p align = "center">
+  <img width = 450 src = "images/features/battle.gif">
+</p>
 - Movimento do herói: o herói move-se pela arena e o seu movimento é controlado através de teclas do teclado
 - Desenho do herói e da arena: a arena e os seus componentes (monstros e paredes), bem como o herói (Vault Boy), são desenhados no terminal do Lanterna
 - Movimento dos monstros: os monstros movem-se na arena
 - Deteção do inicio de batalha: quando o range do Vault Boy colide com o range de um monstro que esteja no seu campo de visão (sem paredes entre estes), a batalha inicia
+<p align = "center">
+  <img width = 450 src = "images/features/battleStart.gif">
+</p>
 - Ficheiros de jogo: carregamento da arena e outras informações através de ficheiros de jogo
 - Transição entre arenas: existem mais do que uma arena e o jogador viaja entre elas através das suas portas
+<p align = "center">
+  <img width = 450 src = "images/features/arenaTransition.gif">
+</p>
 - Gravação de dados: o jogador pode guardar os dados da partida (em ficheiros) para que o jogo guarde o progresso
 
 ## Por implementar
@@ -75,7 +88,7 @@ Como padrão arquitetural foi utilizado uma combinação de MVC com ***State Pat
 ### Implementação
 Apenas foi apresentado um estado do jogo para simplificar o diagrama de classes. 
 <p align="center">
-  <img width=650 src="images/MVC.svg">
+  <img width=650 src="images/uml/MVC.svg">
 </p>
 
 ### Consequências
@@ -112,7 +125,7 @@ Para resolver este problema decidimos utilizar o *Strategy Pattern*, para que o 
 
 ### Implementação
 <p align="center">
-  <img width=650 src="images/movement.svg">
+  <img width=650 src="images/uml/movement.svg">
 </p>
 
 ### Consequências
@@ -131,7 +144,7 @@ Para este efeito, decidimos implementar o *State Pattern*, com umas pequenas alt
 
 ### Implementação
 <p align = "center">
-  <img width = 650 src = "images/StateGame.svg">
+  <img width = 650 src = "images/uml/stateGame.svg">
 </p>
 
 ### Consequências
@@ -153,7 +166,7 @@ Para suportar esta forma de desenhar os inimigos cada **Viewer** terá um mapa q
 
 ### Implementação 
 <p align = "center">
-  <img width = 650 src = "images/draw.svg">
+  <img width = 650 src = "images/uml/draw.svg">
 </p>
 
 
@@ -181,7 +194,7 @@ Como solução para este problema foi implementado um Composite. Existe, então,
 
 ### Implementação
 <p align = "center">
-  <img width = 650 src = "images/rendererComposite.svg">
+  <img width = 650 src = "images/uml/rendererComposite.svg">
 </p>
 
 ### Consequeências
@@ -197,7 +210,7 @@ Para resolver este problema cada model do menu deve ter um *enum* com as opçõe
 ### Implementação
 O Java não permite o *override* de métodos *static* portanto não foi possivel generalizar a interface dos *enums* utilizados, uma vez que, os métodos adicionados devem ser static. Por isso apenas foi apresentado o UML de um menu que é bastante semelhante a todos os outros menus.
 <p align = "center">
-  <img width = 650 src = "images/optionMenu.svg">
+  <img width = 650 src = "images/uml/optionMenu.svg">
 </p>
 
 ### Consequencias
