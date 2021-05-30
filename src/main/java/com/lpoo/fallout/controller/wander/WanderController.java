@@ -4,8 +4,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.lpoo.fallout.controller.MainController;
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.LanternaGUI;
-import com.lpoo.fallout.gui.LanternaGUIFactory;
-import com.lpoo.fallout.gui.LanternaTerminal;
 import com.lpoo.fallout.model.battle.BattleModel;
 import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.messagedisplay.MessageDisplayModel;
@@ -27,12 +25,19 @@ public class WanderController extends MainController<WanderModel> {
     private final VaultBoyController vaultBoyController;
     private final EnemyController enemyController;
     private boolean justEntered;
+    private FileHandler fileHandler;
 
-    public WanderController(WanderModel model) {
+
+    public WanderController(WanderModel model, FileHandler saveFileClass) {
         super(model);
         this.justEntered = true;
         vaultBoyController = new VaultBoyController(getModel());
         enemyController = new EnemyController(getModel(), new RandomMovingEngine());
+        this.fileHandler = saveFileClass;
+    }
+
+    public WanderController(WanderModel model) {
+        this(model, new FileHandler());
     }
 
     private Enemy checkFight() {
@@ -51,8 +56,8 @@ public class WanderController extends MainController<WanderModel> {
         Door door = getModel().getArena().getDoorMap().get(getModel().getVaultBoy().getPosition());
         if (door != null && !this.justEntered) {
             try {
-                FileHandler.saveArena(getModel().getArena().getName(), getModel().getArena());
-                getModel().setArena(new FileHandler().createArena(door.getArenaFileName()));
+                fileHandler.saveArena(getModel().getArena().getName(), getModel().getArena());
+                getModel().setArena(fileHandler.createArena(door.getArenaFileName()));
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -75,7 +80,7 @@ public class WanderController extends MainController<WanderModel> {
     public void step(Game game, LanternaGUI.ACTION action, long time) {
         if (this.checkShrine() && !getModel().getVaultBoy().isGameWon()) {
             try {
-                FileHandler.saveModel("gamestat", getModel());
+                fileHandler.saveModel("gamestat", getModel());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,7 +91,7 @@ public class WanderController extends MainController<WanderModel> {
             getModel().getVaultBoy().setGameStarting(false);
             getModel().getVaultBoy().setUnusedLevelPoints(5);
             try {
-                FileHandler.saveModel("gamestat", getModel());
+                fileHandler.saveModel("gamestat", getModel());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -96,7 +101,7 @@ public class WanderController extends MainController<WanderModel> {
         if (fightingEnemy != null) {
             try {
                 game.changeTerminalProperty(new TerminalSize(600, 300), 3);
-                FileHandler.saveModel("gamestat", getModel());
+                fileHandler.saveModel("gamestat", getModel());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -109,7 +114,7 @@ public class WanderController extends MainController<WanderModel> {
             }
             case QUIT: {
                 try {
-                    FileHandler.saveModel("gamestat", getModel());
+                    fileHandler.saveModel("gamestat", getModel());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

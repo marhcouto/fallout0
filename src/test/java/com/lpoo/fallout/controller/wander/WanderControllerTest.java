@@ -2,6 +2,7 @@ package com.lpoo.fallout.controller.wander;
 
 import com.lpoo.fallout.controller.Game;
 import com.lpoo.fallout.gui.GUI;
+import com.lpoo.fallout.model.filehandling.FileHandler;
 import com.lpoo.fallout.model.wander.Arena;
 import com.lpoo.fallout.model.wander.Position;
 import com.lpoo.fallout.model.wander.WanderModel;
@@ -19,17 +20,19 @@ import java.util.*;
 
 class WanderControllerTest {
     Game game;
+    FileHandler mockedFileHandler;
 
     @BeforeEach
     void setUp() {
         game = Mockito.mock(Game.class);
+        mockedFileHandler = Mockito.mock(FileHandler.class);
     }
 
     @Test
     void noBattle() {
         Arena arena = new Arena(Arrays.asList(new Wall(new Position(1, 0))), new ArrayList<Door>(), Arrays.asList(new Enemy(new Position(2, 0), Enemy.TYPE.RAT)), "Teste", new Position(6, 6));
         WanderModel model = new WanderModel(new VaultBoy(new Position(0, 0)), arena);
-        WanderController controller = new WanderController(model);
+        WanderController controller = new WanderController(model, mockedFileHandler);
 
         game.pushState(new WanderState(model));
 

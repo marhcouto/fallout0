@@ -41,17 +41,28 @@ public class FileHandler {
         return new WanderModel(vaultBoy, arena);
     }
 
-    public static void saveArena(String fileName, Arena arena) throws IOException {
+    public void saveArena(String fileName, Arena arena) throws IOException {
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("resources/arenas/" + fileName + ".bin",false));
         os.writeObject(arena);
         os.close();
     }
 
-    public static void saveModel(String fileName, WanderModel wanderModel) throws IOException {
+    public void saveModel(String fileName, WanderModel wanderModel) throws IOException {
         saveArena(wanderModel.getArena().getName(), wanderModel.getArena());
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("resources/" + fileName + ".bin", false));
         os.writeObject(wanderModel.getArena().getName());
         os.writeObject(wanderModel.getVaultBoy());
         os.close();
+    }
+
+    public void resetSavedGame() throws IOException, ClassNotFoundException {
+        WanderModel wanderModel = createWanderModel("gamestatinit");
+        Arena arena1 = createArena("arena1init");
+        Arena arena2 = createArena("arena2init");
+        Arena arena3 = createArena("arena3init");
+        saveModel("gamestat", wanderModel);
+        saveArena("arena1", arena1);
+        saveArena("arena2", arena2);
+        saveArena("arena3", arena3);
     }
 }
