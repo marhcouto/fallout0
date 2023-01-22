@@ -1,4 +1,5 @@
-# LPOO: Fallout - a post pandemic RPG
+# LPOO/LDTS: Fallout0 - a post pandemic RPG
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # Introduction
 O jogo que desenvolvemos assimilação ao jogo orinal da série de jogos *Fallout*: um RPG clássico, onde o personagem principal, *Vault Boy*, luta contra inimigos num estilo de combate por turnos, explora arenas e ganha o jogo.
